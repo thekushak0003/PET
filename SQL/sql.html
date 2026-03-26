@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Revision Guide — Placements</title>
+    <style>
+        :root {
+            --bg: #0f1117;
+            --bg2: #161922;
+            --bg3: #1e2230;
+            --border: #2a2f3e;
+            --text: #e8eaf0;
+            --muted: #8a90a0;
+            --accent: #4f9eff;
+            --accent2: #7c5cfc;
+            --green: #3dd68c;
+            --amber: #f5a623;
+            --red: #ff5c5c;
+            --teal: #2dd4bf;
+            --code-bg: #0d1117;
+            --tag-basic: #3dd68c;
+            --tag-medium: #f5a623;
+            --tag-adv: #ff5c5c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        #sidebar {
+            width: 260px;
+            min-width: 260px;
+            background: var(--bg2);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 20px 16px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-header h1 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-header p {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .level-group {
+            margin: 8px 0;
+        }
+
+        .level-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 10px 16px 4px;
+            color: var(--muted);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            font-size: 12.5px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.15s;
+            color: var(--muted);
+        }
+
+        .nav-item:hover {
+            background: var(--bg3);
+            color: var(--text);
+        }
+
+        .nav-item.active {
+            border-left-color: var(--accent);
+            background: rgba(79, 158, 255, 0.08);
+            color: var(--accent);
+        }
+
+        .nav-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot-basic {
+            background: var(--tag-basic);
+        }
+
+        .dot-medium {
+            background: var(--tag-medium);
+        }
+
+        .dot-adv {
+            background: var(--tag-adv);
+        }
+
+        /* MAIN */
+        #main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px 40px;
+            max-width: 900px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: 28px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .badge-basic {
+            background: rgba(61, 214, 140, 0.15);
+            color: var(--tag-basic);
+        }
+
+        .badge-medium {
+            background: rgba(245, 166, 35, 0.15);
+            color: var(--tag-medium);
+        }
+
+        .badge-adv {
+            background: rgba(255, 92, 92, 0.15);
+            color: var(--tag-adv);
+        }
+
+        .section-header h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .section-header p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 28px 0 10px;
+        }
+
+        h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--teal);
+            margin: 18px 0 6px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        li {
+            font-size: 13.5px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        li strong {
+            color: var(--text);
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 24px 0;
+        }
+
+        /* CODE BLOCKS */
+        .code-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 12px 0 18px;
+            overflow: hidden;
+        }
+
+        .code-label {
+            background: var(--bg3);
+            padding: 6px 14px;
+            font-size: 11px;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            font-family: monospace;
+        }
+
+        pre {
+            padding: 14px 16px;
+            overflow-x: auto;
+            font-size: 13px;
+            font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+            line-height: 1.6;
+        }
+
+        .kw {
+            color: #569cd6;
+        }
+
+        /* keywords */
+        .fn {
+            color: #dcdcaa;
+        }
+
+        /* functions */
+        .str {
+            color: #ce9178;
+        }
+
+        /* strings */
+        .num {
+            color: #b5cea8;
+        }
+
+        /* numbers */
+        .cmt {
+            color: #6a9955;
+            font-style: italic;
+        }
+
+        /* comments */
+        .op {
+            color: #d4d4d4;
+        }
+
+        /* operators */
+        .tbl {
+            color: #4ec9b0;
+        }
+
+        /* table/column names */
+        .alias {
+            color: #9cdcfe;
+        }
+
+        /* TABLES */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 12px 0 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead tr {
+            background: var(--bg3);
+        }
+
+        th {
+            padding: 9px 14px;
+            text-align: left;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 8px 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        td:first-child {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* CALLOUTS */
+        .tip {
+            background: rgba(79, 158, 255, 0.07);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .warn {
+            background: rgba(245, 166, 35, 0.07);
+            border-left: 3px solid var(--amber);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .danger {
+            background: rgba(255, 92, 92, 0.07);
+            border-left: 3px solid var(--red);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .success {
+            background: rgba(61, 214, 140, 0.07);
+            border-left: 3px solid var(--green);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 12px 0;
+        }
+
+        .card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .card h4 {
+            margin-top: 0;
+            font-size: 13px;
+        }
+
+        .card p {
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-bottom: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 2px;
+        }
+
+        .tag-blue {
+            background: rgba(79, 158, 255, 0.15);
+            color: var(--accent);
+        }
+
+        .tag-green {
+            background: rgba(61, 214, 140, 0.15);
+            color: var(--green);
+        }
+
+        .progress-bar-wrap {
+            display: flex;
+            gap: 4px;
+            padding: 16px 16px 10px;
+            flex-wrap: wrap;
+        }
+
+        .prog-seg {
+            height: 3px;
+            flex: 1;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            opacity: 0.4;
+        }
+
+        .prog-seg.done {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                display: none;
+            }
+
+            #main {
+                padding: 20px 16px;
+            }
+
+            .grid2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h1>SQL Revision</h1>
+            <p>Placement Preparation Guide</p>
+        </div>
+        <div class="progress-bar-wrap" id="progress"></div>
+
+        <div class="level-group">
+            <div class="level-label">Basic</div>
+            <div class="nav-item active" onclick="show('intro')" id="nav-intro"><span
+                    class="nav-dot dot-basic"></span>Introduction & Types</div>
+            <div class="nav-item" onclick="show('datatypes')" id="nav-datatypes"><span
+                    class="nav-dot dot-basic"></span>Data Types</div>
+            <div class="nav-item" onclick="show('ddl')" id="nav-ddl"><span class="nav-dot dot-basic"></span>DDL Commands
+            </div>
+            <div class="nav-item" onclick="show('dml')" id="nav-dml"><span class="nav-dot dot-basic"></span>DML Commands
+            </div>
+            <div class="nav-item" onclick="show('select')" id="nav-select"><span class="nav-dot dot-basic"></span>SELECT
+                & Filtering</div>
+            <div class="nav-item" onclick="show('constraints')" id="nav-constraints"><span
+                    class="nav-dot dot-basic"></span>Constraints</div>
+            <div class="nav-item" onclick="show('aggregates')" id="nav-aggregates"><span
+                    class="nav-dot dot-basic"></span>Aggregate Functions</div>
+            <div class="nav-item" onclick="show('null')" id="nav-null"><span class="nav-dot dot-basic"></span>NULL
+                Handling</div>
+        </div>
+
+        <div class="level-group">
+            <div class="level-label">Medium</div>
+            <div class="nav-item" onclick="show('joins')" id="nav-joins"><span class="nav-dot dot-medium"></span>JOINs
+            </div>
+            <div class="nav-item" onclick="show('subqueries')" id="nav-subqueries"><span
+                    class="nav-dot dot-medium"></span>Subqueries</div>
+            <div class="nav-item" onclick="show('setops')" id="nav-setops"><span class="nav-dot dot-medium"></span>Set
+                Operations</div>
+            <div class="nav-item" onclick="show('stringdate')" id="nav-stringdate"><span
+                    class="nav-dot dot-medium"></span>String & Date Functions</div>
+            <div class="nav-item" onclick="show('case')" id="nav-case"><span class="nav-dot dot-medium"></span>CASE &
+                Conditional</div>
+            <div class="nav-item" onclick="show('views')" id="nav-views"><span class="nav-dot dot-medium"></span>Views &
+                Indexes</div>
+            <div class="nav-item" onclick="show('normalization')" id="nav-normalization"><span
+                    class="nav-dot dot-medium"></span>Normalization</div>
+        </div>
+
+        <div class="level-group">
+            <div class="level-label">Advanced</div>
+            <div class="nav-item" onclick="show('window')" id="nav-window"><span class="nav-dot dot-adv"></span>Window
+                Functions</div>
+            <div class="nav-item" onclick="show('cte')" id="nav-cte"><span class="nav-dot dot-adv"></span>CTEs &
+                Recursion</div>
+            <div class="nav-item" onclick="show('stored')" id="nav-stored"><span class="nav-dot dot-adv"></span>Stored
+                Procedures & Functions</div>
+            <div class="nav-item" onclick="show('triggers')" id="nav-triggers"><span
+                    class="nav-dot dot-adv"></span>Triggers</div>
+            <div class="nav-item" onclick="show('transactions')" id="nav-transactions"><span
+                    class="nav-dot dot-adv"></span>Transactions & ACID</div>
+            <div class="nav-item" onclick="show('optimization')" id="nav-optimization"><span
+                    class="nav-dot dot-adv"></span>Query Optimization</div>
+            <div class="nav-item" onclick="show('interview')" id="nav-interview"><span
+                    class="nav-dot dot-adv"></span>Interview Questions</div>
+        </div>
+    </nav>
+
+    <main id="main">
+
+        <!-- ==================== INTRO ==================== -->
+        <div class="section active" id="sec-intro">
+            <div class="section-header">
+                <span class="level-badge badge-basic">Basic</span>
+                <h2>Introduction to SQL & Command Types</h2>
+                <p>SQL (Structured Query Language) is the standard language for managing relational databases.
+                    Understanding how SQL commands are categorized is the very first topic in any placement test.</p>
+            </div>
+
+            <h3>What is a Relational Database?</h3>
+            <p>A Relational Database Management System (RDBMS) stores data in structured <strong>tables</strong>
+                (relations) made of rows and columns. Examples: MySQL, PostgreSQL, Oracle, MS SQL Server, SQLite.</p>
+            <ul>
+                <li><strong>Table (Relation):</strong> A collection of rows and columns</li>
+                <li><strong>Row (Tuple):</strong> A single record in a table</li>
+                <li><strong>Column (Attribute):</strong> A field in a table</li>
+                <li><strong>Primary Key:</strong> Uniquely identifies each row</li>
+                <li><strong>Foreign Key:</strong> Links rows between two tables</li>
+            </ul>
+
+            <h3>SQL Command Categories</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Full Name</th>
+                            <th>Commands</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DDL</td>
+                            <td>Data Definition Language</td>
+                            <td>CREATE, ALTER, DROP, TRUNCATE, RENAME</td>
+                            <td>Define/modify schema structure</td>
+                        </tr>
+                        <tr>
+                            <td>DML</td>
+                            <td>Data Manipulation Language</td>
+                            <td>INSERT, UPDATE, DELETE, SELECT*</td>
+                            <td>Manipulate data inside tables</td>
+                        </tr>
+                        <tr>
+                            <td>DQL</td>
+                            <td>Data Query Language</td>
+                            <td>SELECT</td>
+                            <td>Retrieve data (sometimes part of DML)</td>
+                        </tr>
+                        <tr>
+                            <td>DCL</td>
+                            <td>Data Control Language</td>
+                            <td>GRANT, REVOKE</td>
+                            <td>Access permissions</td>
+                        </tr>
+                        <tr>
+                            <td>TCL</td>
+                            <td>Transaction Control Language</td>
+                            <td>COMMIT, ROLLBACK, SAVEPOINT</td>
+                            <td>Manage transactions</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tip">💡 <strong>Placement tip:</strong> DDL changes are auto-committed; DML changes need an
+                explicit COMMIT (in most RDBMS). DDL operates on schema, DML on data.</div>
+
+            <h3>Order of SQL Query Execution</h3>
+            <p>This is a very common placement question. Queries are <em>written</em> in one order but <em>executed</em>
+                in another:</p>
+            <div class="code-block">
+                <div class="code-label">Written order vs Execution order</div>
+                <pre><span class="cmt">-- Written order (how you type it):</span>
+<span class="kw">SELECT</span> → <span class="kw">FROM</span> → <span class="kw">JOIN</span> → <span class="kw">WHERE</span> → <span class="kw">GROUP BY</span> → <span class="kw">HAVING</span> → <span class="kw">ORDER BY</span> → <span class="kw">LIMIT</span>
+
+<span class="cmt">-- Logical execution order:</span>
+<span class="kw">FROM</span> → <span class="kw">JOIN</span> → <span class="kw">WHERE</span> → <span class="kw">GROUP BY</span> → <span class="kw">HAVING</span> → <span class="kw">SELECT</span> → <span class="kw">DISTINCT</span> → <span class="kw">ORDER BY</span> → <span class="kw">LIMIT</span></pre>
+            </div>
+            <div class="warn">⚠️ Because SELECT runs after WHERE, you <strong>cannot</strong> use a column alias in a
+                WHERE clause. You <strong>can</strong> use it in ORDER BY (which runs after SELECT).</div>
+        </div>
+
+        <!-- ==================== DATA TYPES ==================== -->
+        <div class="section" id="sec-datatypes">
+            <div class="section-header">
+                <span class="level-badge badge-basic">Basic</span>
+                <h2>SQL Data Types</h2>
+                <p>Choosing the right data type is fundamental to database design and a common interview topic.</p>
+            </div>
+
+            <h3>Numeric Types</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Range / Size</th>
+                            <th>Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TINYINT</td>
+                            <td>-128 to 127</td>
+                            <td>Flags, small codes</td>
+                        </tr>
+                        <tr>
+                            <td>SMALLINT</td>
+                            <td>-32,768 to 32,767</td>
+                            <td>Small counters</td>
+                        </tr>
+                        <tr>
+                            <td>INT / INTEGER</td>
+                            <td>-2B to 2B (4 bytes)</td>
+                            <td>Most IDs and counts</td>
+                        </tr>
+                        <tr>
+                            <td>BIGINT</td>
+                            <td>±9.2 × 10¹⁸</td>
+                            <td>Large PKs, timestamps</td>
+                        </tr>
+                        <tr>
+                            <td>DECIMAL(p,s)</td>
+                            <td>Exact fixed precision</td>
+                            <td>Money, measurements</td>
+                        </tr>
+                        <tr>
+                            <td>FLOAT / REAL</td>
+                            <td>Approximate 4-byte</td>
+                            <td>Scientific, approximate</td>
+                        </tr>
+                        <tr>
+                            <td>DOUBLE</td>
+                            <td>Approximate 8-byte</td>
+                            <td>High-range floats</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>String / Text Types</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Storage</th>
+                            <th>When to use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CHAR(n)</td>
+                            <td>Fixed n bytes</td>
+                            <td>Fixed-length: country codes, phone numbers</td>
+                        </tr>
+                        <tr>
+                            <td>VARCHAR(n)</td>
+                            <td>Variable, max n bytes</td>
+                            <td>Names, emails — variable length</td>
+                        </tr>
+                        <tr>
+                            <td>TEXT</td>
+                            <td>Large variable</td>
+                            <td>Long descriptions, articles</td>
+                        </tr>
+                        <tr>
+                            <td>ENUM('a','b')</td>
+                            <td>1-2 bytes</td>
+                            <td>Fixed set of values: gender, status</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tip">💡 <strong>CHAR vs VARCHAR:</strong> CHAR pads with spaces to fill width (faster for
+                fixed-length). VARCHAR stores only actual data + length prefix (saves space). Use CHAR for fixed-length
+                fields like PIN codes.</div>
+
+            <h3>Date & Time Types</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Format</th>
+                            <th>Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DATE</td>
+                            <td>YYYY-MM-DD</td>
+                            <td>Birthdays, event dates</td>
+                        </tr>
+                        <tr>
+                            <td>TIME</td>
+                            <td>HH:MM:SS</td>
+                            <td>Time of day</td>
+                        </tr>
+                        <tr>
+                            <td>DATETIME</td>
+                            <td>YYYY-MM-DD HH:MM:SS</td>
+                            <td>Timestamps (no timezone)</td>
+                        </tr>
+                        <tr>
+                            <td>TIMESTAMP</td>
+                            <td>YYYY-MM-DD HH:MM:SS</td>
+                            <td>Auto-updating records (stores UTC)</td>
+                        </tr>
+                        <tr>
+                            <td>YEAR</td>
+                            <td>YYYY</td>
+                            <td>Year only</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== DDL ==================== -->
+        <div class="section" id="sec-ddl">
+            <div class="section-header">
+                <span class="level-badge badge-basic">Basic</span>
+                <h2>DDL Commands</h2>
+                <p>Data Definition Language commands define and modify the structure (schema) of the database. These are
+                    auto-committed — they cannot be rolled back.</p>
+            </div>
+
+            <h3>CREATE TABLE</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">CREATE TABLE</span> <span class="tbl">employees</span> (
+    <span class="tbl">emp_id</span>      <span class="kw">INT</span>           <span class="kw">PRIMARY KEY AUTO_INCREMENT</span>,
+    <span class="tbl">name</span>        <span class="kw">VARCHAR</span>(<span class="num">100</span>)  <span class="kw">NOT NULL</span>,
+    <span class="tbl">email</span>       <span class="kw">VARCHAR</span>(<span class="num">150</span>)  <span class="kw">UNIQUE</span>,
+    <span class="tbl">salary</span>      <span class="kw">DECIMAL</span>(<span class="num">10</span>,<span class="num">2</span>) <span class="kw">DEFAULT</span> <span class="num">30000.00</span>,
+    <span class="tbl">dept_id</span>     <span class="kw">INT</span>,
+    <span class="tbl">hire_date</span>   <span class="kw">DATE</span>,
+    <span class="kw">FOREIGN KEY</span> (<span class="tbl">dept_id</span>) <span class="kw">REFERENCES</span> <span class="tbl">departments</span>(<span class="tbl">dept_id</span>)
+);</pre>
+            </div>
+
+            <h3>ALTER TABLE</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Add a new column</span>
+<span class="kw">ALTER TABLE</span> <span class="tbl">employees</span> <span class="kw">ADD COLUMN</span> <span class="tbl">phone</span> <span class="kw">VARCHAR</span>(<span class="num">15</span>);
+
+<span class="cmt">-- Modify column type/size</span>
+<span class="kw">ALTER TABLE</span> <span class="tbl">employees</span> <span class="kw">MODIFY COLUMN</span> <span class="tbl">name</span> <span class="kw">VARCHAR</span>(<span class="num">200</span>);
+
+<span class="cmt">-- Rename a column (MySQL 8+)</span>
+<span class="kw">ALTER TABLE</span> <span class="tbl">employees</span> <span class="kw">RENAME COLUMN</span> <span class="tbl">phone</span> <span class="kw">TO</span> <span class="tbl">mobile</span>;
+
+<span class="cmt">-- Drop a column</span>
+<span class="kw">ALTER TABLE</span> <span class="tbl">employees</span> <span class="kw">DROP COLUMN</span> <span class="tbl">mobile</span>;
+
+<span class="cmt">-- Add a constraint</span>
+<span class="kw">ALTER TABLE</span> <span class="tbl">employees</span> <span class="kw">ADD CONSTRAINT</span> <span class="tbl">chk_salary</span> <span class="kw">CHECK</span> (<span class="tbl">salary</span> > <span class="num">0</span>);</pre>
+            </div>
+
+            <h3>DROP vs TRUNCATE vs DELETE</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Removes Structure?</th>
+                            <th>Removes Data?</th>
+                            <th>Can Rollback?</th>
+                            <th>Triggers Fired?</th>
+                            <th>Speed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DROP TABLE</td>
+                            <td>Yes (entire table)</td>
+                            <td>Yes</td>
+                            <td>No (DDL)</td>
+                            <td>No</td>
+                            <td>Fast</td>
+                        </tr>
+                        <tr>
+                            <td>TRUNCATE</td>
+                            <td>No (keeps table)</td>
+                            <td>Yes (all rows)</td>
+                            <td>No (DDL)</td>
+                            <td>No</td>
+                            <td>Fast</td>
+                        </tr>
+                        <tr>
+                            <td>DELETE</td>
+                            <td>No</td>
+                            <td>Yes (selective)</td>
+                            <td>Yes (DML)</td>
+                            <td>Yes</td>
+                            <td>Slower</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="danger">⚠️ <strong>Placement favourite:</strong> DROP removes the table + data + structure.
+                TRUNCATE removes all rows but keeps table. DELETE removes rows and supports WHERE clause.</div>
+
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">DROP TABLE</span> <span class="tbl">employees</span>;        <span class="cmt">-- removes table completely</span>
+<span class="kw">TRUNCATE TABLE</span> <span class="tbl">employees</span>;   <span class="cmt">-- removes all data, table stays</span>
+<span class="kw">DELETE FROM</span> <span class="tbl">employees</span>;       <span class="cmt">-- removes all rows (slow, DML)</span>
+<span class="kw">DELETE FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">emp_id</span> = <span class="num">5</span>;  <span class="cmt">-- selective delete</span></pre>
+            </div>
+        </div>
+
+        <!-- ==================== DML ==================== -->
+        <div class="section" id="sec-dml">
+            <div class="section-header">
+                <span class="level-badge badge-basic">Basic</span>
+                <h2>DML Commands — INSERT, UPDATE, DELETE</h2>
+                <p>Data Manipulation Language modifies the actual data inside tables. These operations can be rolled
+                    back within a transaction.</p>
+            </div>
+
+            <h3>INSERT</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Insert a single row</span>
+<span class="kw">INSERT INTO</span> <span class="tbl">employees</span> (<span class="tbl">name</span>, <span class="tbl">email</span>, <span class="tbl">salary</span>, <span class="tbl">dept_id</span>)
+<span class="kw">VALUES</span> (<span class="str">'Arjun Sharma'</span>, <span class="str">'arjun@company.com'</span>, <span class="num">55000</span>, <span class="num">3</span>);
+
+<span class="cmt">-- Insert multiple rows at once</span>
+<span class="kw">INSERT INTO</span> <span class="tbl">employees</span> (<span class="tbl">name</span>, <span class="tbl">salary</span>) <span class="kw">VALUES</span>
+    (<span class="str">'Priya Patel'</span>,  <span class="num">62000</span>),
+    (<span class="str">'Rahul Singh'</span>,  <span class="num">48000</span>),
+    (<span class="str">'Neha Gupta'</span>,   <span class="num">71000</span>);
+
+<span class="cmt">-- Insert from another table (INSERT INTO ... SELECT)</span>
+<span class="kw">INSERT INTO</span> <span class="tbl">emp_archive</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">hire_date</span> < <span class="str">'2020-01-01'</span>;</pre>
+            </div>
+
+            <h3>UPDATE</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Update specific rows</span>
+<span class="kw">UPDATE</span> <span class="tbl">employees</span>
+<span class="kw">SET</span> <span class="tbl">salary</span> = <span class="tbl">salary</span> * <span class="num">1.10</span>,  <span class="cmt">-- 10% raise</span>
+    <span class="tbl">email</span>  = <span class="str">'new@company.com'</span>
+<span class="kw">WHERE</span> <span class="tbl">dept_id</span> = <span class="num">2</span>;
+
+<span class="cmt">-- Update with JOIN (MySQL syntax)</span>
+<span class="kw">UPDATE</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">JOIN</span> <span class="tbl">departments</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">dept_id</span> = <span class="alias">d</span>.<span class="tbl">dept_id</span>
+<span class="kw">SET</span> <span class="alias">e</span>.<span class="tbl">salary</span> = <span class="alias">e</span>.<span class="tbl">salary</span> * <span class="num">1.15</span>
+<span class="kw">WHERE</span> <span class="alias">d</span>.<span class="tbl">dept_name</span> = <span class="str">'Engineering'</span>;</pre>
+            </div>
+            <div class="danger">⚠️ Always use WHERE in UPDATE and DELETE. Without it, <strong>every row</strong> gets
+                modified/deleted!</div>
+
+            <h3>DELETE</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Delete specific rows</span>
+<span class="kw">DELETE FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">emp_id</span> = <span class="num">42</span>;
+
+<span class="cmt">-- Delete with subquery</span>
+<span class="kw">DELETE FROM</span> <span class="tbl">employees</span>
+<span class="kw">WHERE</span> <span class="tbl">dept_id</span> <span class="kw">IN</span> (
+    <span class="kw">SELECT</span> <span class="tbl">dept_id</span> <span class="kw">FROM</span> <span class="tbl">departments</span> <span class="kw">WHERE</span> <span class="tbl">location</span> = <span class="str">'Mumbai'</span>
+);</pre>
+            </div>
+        </div>
+
+        <!-- ==================== SELECT ==================== -->
+        <div class="section" id="sec-select">
+            <div class="section-header">
+                <span class="level-badge badge-basic">Basic</span>
+                <h2>SELECT, Filtering & Sorting</h2>
+                <p>The SELECT statement is the heart of SQL. Master every clause — these appear in almost every
+                    placement test.</p>
+            </div>
+
+            <h3>Basic SELECT Syntax</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span> <span class="tbl">column1</span>, <span class="tbl">column2</span>      <span class="cmt">-- choose columns (* = all)</span>
+<span class="kw">FROM</span>   <span class="tbl">table_name</span>            <span class="cmt">-- source table</span>
+<span class="kw">WHERE</span>  <span class="tbl">condition</span>             <span class="cmt">-- filter rows</span>
+<span class="kw">GROUP BY</span> <span class="tbl">column1</span>             <span class="cmt">-- group for aggregation</span>
+<span class="kw">HAVING</span> <span class="tbl">aggregate_condition</span>  <span class="cmt">-- filter groups</span>
+<span class="kw">ORDER BY</span> <span class="tbl">column1</span> <span class="kw">DESC</span>       <span class="cmt">-- sort result</span>
+<span class="kw">LIMIT</span>  <span class="num">10</span> <span class="kw">OFFSET</span> <span class="num">20</span>;         <span class="cmt">-- pagination</span></pre>
+            </div>
+
+            <h3>WHERE Clause Operators</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Example</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>=</td>
+                            <td>salary = 50000</td>
+                            <td>Equal</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;&gt; or !=</td>
+                            <td>dept_id != 3</td>
+                            <td>Not equal</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;, &gt;, &lt;=, &gt;=</td>
+                            <td>salary >= 40000</td>
+                            <td>Comparison</td>
+                        </tr>
+                        <tr>
+                            <td>BETWEEN…AND</td>
+                            <td>salary BETWEEN 40000 AND 80000</td>
+                            <td>Inclusive range</td>
+                        </tr>
+                        <tr>
+                            <td>IN (…)</td>
+                            <td>dept_id IN (1, 2, 3)</td>
+                            <td>Match any in list</td>
+                        </tr>
+                        <tr>
+                            <td>NOT IN (…)</td>
+                            <td>dept_id NOT IN (4, 5)</td>
+                            <td>Exclude list values</td>
+                        </tr>
+                        <tr>
+                            <td>LIKE</td>
+                            <td>name LIKE 'A%'</td>
+                            <td>Pattern match (% = any, _ = one char)</td>
+                        </tr>
+                        <tr>
+                            <td>IS NULL</td>
+                            <td>email IS NULL</td>
+                            <td>Check for NULL</td>
+                        </tr>
+                        <tr>
+                            <td>IS NOT NULL</td>
+                            <td>email IS NOT NULL</td>
+                            <td>Non-NULL check</td>
+                        </tr>
+                        <tr>
+                            <td>AND / OR / NOT</td>
+                            <td>salary > 50k AND dept=2</td>
+                            <td>Logical operators</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>LIKE Pattern Matching</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">name</span> <span class="kw">LIKE</span> <span class="str">'A%'</span>;      <span class="cmt">-- starts with A</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">name</span> <span class="kw">LIKE</span> <span class="str">'%kumar'</span>;   <span class="cmt">-- ends with kumar</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">name</span> <span class="kw">LIKE</span> <span class="str">'%raj%'</span>;    <span class="cmt">-- contains raj</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">name</span> <span class="kw">LIKE</span> <span class="str">'_a%'</span>;      <span class="cmt">-- 2nd char is 'a'</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">name</span> <span class="kw">LIKE</span> <span class="str">'___'</span>;      <span class="cmt">-- exactly 3 chars</span></pre>
+            </div>
+
+            <h3>ORDER BY & DISTINCT</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT DISTINCT</span> <span class="tbl">dept_id</span> <span class="kw">FROM</span> <span class="tbl">employees</span>;   <span class="cmt">-- unique values only</span>
+
+<span class="kw">SELECT</span> <span class="tbl">name</span>, <span class="tbl">salary</span> <span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>,   <span class="cmt">-- sort by salary high→low</span>
+         <span class="tbl">name</span>   <span class="kw">ASC</span>;    <span class="cmt">-- then by name A→Z</span>
+
+<span class="cmt">-- LIMIT and OFFSET for pagination</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">ORDER BY</span> <span class="tbl">emp_id</span> <span class="kw">LIMIT</span> <span class="num">10</span> <span class="kw">OFFSET</span> <span class="num">20</span>;
+<span class="cmt">-- Returns rows 21-30</span></pre>
+            </div>
+
+            <h3>Aliases</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Column alias</span>
+<span class="kw">SELECT</span> <span class="tbl">emp_id</span> <span class="kw">AS</span> <span class="alias">id</span>,
+       <span class="fn">CONCAT</span>(<span class="tbl">first_name</span>, <span class="str">' '</span>, <span class="tbl">last_name</span>) <span class="kw">AS</span> <span class="alias">full_name</span>,
+       <span class="tbl">salary</span> * <span class="num">12</span> <span class="kw">AS</span> <span class="alias">annual_salary</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>;
+
+<span class="cmt">-- Table alias (useful in JOINs and subqueries)</span>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">d</span>.<span class="tbl">dept_name</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>, <span class="tbl">departments</span> <span class="alias">d</span>
+<span class="kw">WHERE</span> <span class="alias">e</span>.<span class="tbl">dept_id</span> = <span class="alias">d</span>.<span class="tbl">dept_id</span>;</pre>
+            </div>
+        </div>
+
+        <!-- ==================== CONSTRAINTS ==================== -->
+        <div class="section" id="sec-constraints">
+            <div class="section-header">
+                <span class="level-badge badge-basic">Basic</span>
+                <h2>Constraints</h2>
+                <p>Constraints enforce rules on data in tables, ensuring data integrity. A very frequent topic in
+                    theory-based placement rounds.</p>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Constraint</th>
+                            <th>Purpose</th>
+                            <th>Key Rules</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PRIMARY KEY</td>
+                            <td>Uniquely identifies a row</td>
+                            <td>NOT NULL + UNIQUE; one per table</td>
+                        </tr>
+                        <tr>
+                            <td>FOREIGN KEY</td>
+                            <td>Links to PK of another table</td>
+                            <td>Enforces referential integrity</td>
+                        </tr>
+                        <tr>
+                            <td>UNIQUE</td>
+                            <td>All values must be distinct</td>
+                            <td>Allows one NULL per column</td>
+                        </tr>
+                        <tr>
+                            <td>NOT NULL</td>
+                            <td>Disallows NULL values</td>
+                            <td>Must always have a value</td>
+                        </tr>
+                        <tr>
+                            <td>CHECK</td>
+                            <td>Validates value against condition</td>
+                            <td>e.g., salary > 0</td>
+                        </tr>
+                        <tr>
+                            <td>DEFAULT</td>
+                            <td>Sets default value if none given</td>
+                            <td>Applied on INSERT</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-block">
+                <div class="code-label">SQL — Constraint Examples</div>
+                <pre>
+<span class="kw">CREATE TABLE</span> <span class="tbl">orders</span> (
+    <span class="tbl">order_id</span>   <span class="kw">INT PRIMARY KEY</span>,
+    <span class="tbl">customer_id</span> <span class="kw">INT NOT NULL</span>,
+    <span class="tbl">order_date</span> <span class="kw">DATE DEFAULT</span> (<span class="fn">CURRENT_DATE</span>),
+    <span class="tbl">amount</span>     <span class="kw">DECIMAL</span>(<span class="num">10</span>,<span class="num">2</span>) <span class="kw">CHECK</span> (<span class="tbl">amount</span> > <span class="num">0</span>),
+    <span class="tbl">status</span>     <span class="kw">VARCHAR</span>(<span class="num">20</span>) <span class="kw">DEFAULT</span> <span class="str">'pending'</span>,
+    <span class="kw">CONSTRAINT</span> <span class="tbl">fk_customer</span>
+        <span class="kw">FOREIGN KEY</span> (<span class="tbl">customer_id</span>) <span class="kw">REFERENCES</span> <span class="tbl">customers</span>(<span class="tbl">id</span>)
+        <span class="kw">ON DELETE CASCADE</span>
+        <span class="kw">ON UPDATE SET NULL</span>
+);</pre>
+            </div>
+
+            <h3>Foreign Key Actions</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>On DELETE/UPDATE of Parent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CASCADE</td>
+                            <td>Delete/update child rows too</td>
+                        </tr>
+                        <tr>
+                            <td>SET NULL</td>
+                            <td>Set child FK to NULL</td>
+                        </tr>
+                        <tr>
+                            <td>SET DEFAULT</td>
+                            <td>Set child FK to default value</td>
+                        </tr>
+                        <tr>
+                            <td>RESTRICT</td>
+                            <td>Prevent the operation if child rows exist</td>
+                        </tr>
+                        <tr>
+                            <td>NO ACTION</td>
+                            <td>Same as RESTRICT (checked after statement)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Composite Primary Key</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- When a single column is not enough to uniquely identify a row</span>
+<span class="kw">CREATE TABLE</span> <span class="tbl">enrollment</span> (
+    <span class="tbl">student_id</span> <span class="kw">INT</span>,
+    <span class="tbl">course_id</span>  <span class="kw">INT</span>,
+    <span class="tbl">grade</span>      <span class="kw">CHAR</span>(<span class="num">1</span>),
+    <span class="kw">PRIMARY KEY</span> (<span class="tbl">student_id</span>, <span class="tbl">course_id</span>)  <span class="cmt">-- composite PK</span>
+);</pre>
+            </div>
+        </div>
+
+        <!-- ==================== AGGREGATES ==================== -->
+        <div class="section" id="sec-aggregates">
+            <div class="section-header">
+                <span class="level-badge badge-basic">Basic</span>
+                <h2>Aggregate Functions & GROUP BY</h2>
+                <p>Aggregate functions operate on sets of rows to produce a single value. GROUP BY groups rows to apply
+                    aggregates per group.</p>
+            </div>
+
+            <h3>Core Aggregate Functions</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span>
+    <span class="fn">COUNT</span>(*)              <span class="kw">AS</span> <span class="alias">total_rows</span>,       <span class="cmt">-- counts all rows</span>
+    <span class="fn">COUNT</span>(<span class="tbl">email</span>)         <span class="kw">AS</span> <span class="alias">non_null_emails</span>,  <span class="cmt">-- counts non-NULL</span>
+    <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> <span class="tbl">dept_id</span>) <span class="kw">AS</span> <span class="alias">dept_count</span>,    <span class="cmt">-- distinct depts</span>
+    <span class="fn">SUM</span>(<span class="tbl">salary</span>)          <span class="kw">AS</span> <span class="alias">total_payroll</span>,
+    <span class="fn">AVG</span>(<span class="tbl">salary</span>)          <span class="kw">AS</span> <span class="alias">avg_salary</span>,
+    <span class="fn">MIN</span>(<span class="tbl">salary</span>)          <span class="kw">AS</span> <span class="alias">min_salary</span>,
+    <span class="fn">MAX</span>(<span class="tbl">salary</span>)          <span class="kw">AS</span> <span class="alias">max_salary</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>;</pre>
+            </div>
+
+            <h3>GROUP BY</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Aggregate per group</span>
+<span class="kw">SELECT</span>
+    <span class="tbl">dept_id</span>,
+    <span class="fn">COUNT</span>(*)         <span class="kw">AS</span> <span class="alias">headcount</span>,
+    <span class="fn">AVG</span>(<span class="tbl">salary</span>)     <span class="kw">AS</span> <span class="alias">avg_salary</span>,
+    <span class="fn">MAX</span>(<span class="tbl">salary</span>)     <span class="kw">AS</span> <span class="alias">highest</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">GROUP BY</span> <span class="tbl">dept_id</span>
+<span class="kw">ORDER BY</span> <span class="alias">avg_salary</span> <span class="kw">DESC</span>;</pre>
+            </div>
+
+            <div class="tip">💡 <strong>Rule:</strong> Every column in SELECT must either be in GROUP BY or wrapped in
+                an aggregate function.</div>
+
+            <h3>WHERE vs HAVING</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- WHERE filters ROWS (before grouping)</span>
+<span class="cmt">-- HAVING filters GROUPS (after grouping)</span>
+
+<span class="kw">SELECT</span> <span class="tbl">dept_id</span>, <span class="fn">AVG</span>(<span class="tbl">salary</span>) <span class="kw">AS</span> <span class="alias">avg_sal</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">WHERE</span> <span class="tbl">hire_date</span> >= <span class="str">'2020-01-01'</span>   <span class="cmt">-- filter rows first</span>
+<span class="kw">GROUP BY</span> <span class="tbl">dept_id</span>
+<span class="kw">HAVING</span> <span class="fn">AVG</span>(<span class="tbl">salary</span>) > <span class="num">50000</span>        <span class="cmt">-- filter groups after</span>
+<span class="kw">ORDER BY</span> <span class="alias">avg_sal</span> <span class="kw">DESC</span>;</pre>
+            </div>
+
+            <div class="warn">⚠️ <strong>Cannot use column alias in HAVING</strong> (in most databases). Use the full
+                expression: HAVING AVG(salary) > 50000, not HAVING avg_sal > 50000.</div>
+        </div>
+
+        <!-- ==================== NULL ==================== -->
+        <div class="section" id="sec-null">
+            <div class="section-header">
+                <span class="level-badge badge-basic">Basic</span>
+                <h2>NULL Handling</h2>
+                <p>NULL means "unknown" or "absent" — it is NOT zero, NOT empty string. NULL comparisons behave
+                    unexpectedly and are a classic placement trap.</p>
+            </div>
+
+            <h3>NULL Comparison Traps</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- These ALL return FALSE/unknown, NOT what you might expect</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">emp</span> <span class="kw">WHERE</span> <span class="tbl">email</span> = <span class="kw">NULL</span>;     <span class="cmt">-- WRONG ❌</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">emp</span> <span class="kw">WHERE</span> <span class="tbl">email</span> != <span class="kw">NULL</span>;    <span class="cmt">-- WRONG ❌</span>
+
+<span class="cmt">-- Correct way:</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">emp</span> <span class="kw">WHERE</span> <span class="tbl">email</span> <span class="kw">IS NULL</span>;    <span class="cmt">-- CORRECT ✅</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">emp</span> <span class="kw">WHERE</span> <span class="tbl">email</span> <span class="kw">IS NOT NULL</span>; <span class="cmt">-- CORRECT ✅</span></pre>
+            </div>
+
+            <h3>NULL Handling Functions</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- COALESCE: returns first non-NULL value</span>
+<span class="kw">SELECT</span> <span class="fn">COALESCE</span>(<span class="tbl">phone</span>, <span class="tbl">email</span>, <span class="str">'No contact'</span>) <span class="kw">AS</span> <span class="alias">contact</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>;
+
+<span class="cmt">-- IFNULL (MySQL): replace NULL with a value</span>
+<span class="kw">SELECT</span> <span class="fn">IFNULL</span>(<span class="tbl">bonus</span>, <span class="num">0</span>) <span class="kw">AS</span> <span class="alias">bonus</span> <span class="kw">FROM</span> <span class="tbl">employees</span>;
+
+<span class="cmt">-- NULLIF: returns NULL if two values are equal</span>
+<span class="kw">SELECT</span> <span class="fn">NULLIF</span>(<span class="tbl">score</span>, <span class="num">0</span>) <span class="kw">FROM</span> <span class="tbl">results</span>;
+<span class="cmt">-- Returns NULL if score=0, else returns score (avoids divide-by-zero)</span>
+
+<span class="cmt">-- Divide-by-zero safe pattern</span>
+<span class="kw">SELECT</span> total / <span class="fn">NULLIF</span>(count_val, <span class="num">0</span>) <span class="kw">AS</span> <span class="alias">avg</span> <span class="kw">FROM</span> <span class="tbl">stats</span>;</pre>
+            </div>
+
+            <div class="tip">💡 <strong>NULLs and aggregates:</strong> COUNT(*) counts ALL rows. COUNT(column) ignores
+                NULLs. SUM/AVG/MIN/MAX all ignore NULLs automatically.</div>
+        </div>
+
+        <!-- ==================== JOINS ==================== -->
+        <div class="section" id="sec-joins">
+            <div class="section-header">
+                <span class="level-badge badge-medium">Medium</span>
+                <h2>JOINs — The Core of SQL</h2>
+                <p>JOINs combine rows from two or more tables based on a related column. Understanding every type of
+                    JOIN is essential for any placement test.</p>
+            </div>
+
+            <h3>Sample Tables Used in Examples</h3>
+            <div class="grid2">
+                <div class="card">
+                    <h4>employees</h4>
+                    <p>emp_id | name | dept_id<br>1 | Alice | 10<br>2 | Bob | 20<br>3 | Carol | 30<br>4 | Dave | NULL
+                    </p>
+                </div>
+                <div class="card">
+                    <h4>departments</h4>
+                    <p>dept_id | dept_name<br>10 | HR<br>20 | Engineering<br>40 | Finance</p>
+                </div>
+            </div>
+
+            <h3>INNER JOIN</h3>
+            <p>Returns rows that have matching values in BOTH tables.</p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">d</span>.<span class="tbl">dept_name</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">INNER JOIN</span> <span class="tbl">departments</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">dept_id</span> = <span class="alias">d</span>.<span class="tbl">dept_id</span>;
+<span class="cmt">-- Result: Alice/HR, Bob/Engineering  (Carol dept 30 has no match; Dave has NULL)</span></pre>
+            </div>
+
+            <h3>LEFT JOIN (LEFT OUTER JOIN)</h3>
+            <p>Returns ALL rows from the left table, matched rows from right. Non-matched right columns become NULL.</p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">d</span>.<span class="tbl">dept_name</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">LEFT JOIN</span> <span class="tbl">departments</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">dept_id</span> = <span class="alias">d</span>.<span class="tbl">dept_id</span>;
+<span class="cmt">-- Result: Alice/HR, Bob/Engineering, Carol/NULL, Dave/NULL</span>
+
+<span class="cmt">-- Find employees with NO department (classic LEFT JOIN trick)</span>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">LEFT JOIN</span> <span class="tbl">departments</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">dept_id</span> = <span class="alias">d</span>.<span class="tbl">dept_id</span>
+<span class="kw">WHERE</span> <span class="alias">d</span>.<span class="tbl">dept_id</span> <span class="kw">IS NULL</span>;</pre>
+            </div>
+
+            <h3>RIGHT JOIN</h3>
+            <p>Returns ALL rows from the right table. The mirror of LEFT JOIN.</p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">d</span>.<span class="tbl">dept_name</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">RIGHT JOIN</span> <span class="tbl">departments</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">dept_id</span> = <span class="alias">d</span>.<span class="tbl">dept_id</span>;
+<span class="cmt">-- Result: Alice/HR, Bob/Engineering, NULL/Finance</span></pre>
+            </div>
+
+            <h3>FULL OUTER JOIN</h3>
+            <p>Returns ALL rows from both tables, with NULLs where there's no match. (MySQL doesn't natively support
+                this — use UNION of LEFT + RIGHT JOIN.)</p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- PostgreSQL / SQL Server syntax:</span>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">d</span>.<span class="tbl">dept_name</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">FULL OUTER JOIN</span> <span class="tbl">departments</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">dept_id</span> = <span class="alias">d</span>.<span class="tbl">dept_id</span>;
+
+<span class="cmt">-- MySQL workaround using UNION:</span>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">d</span>.<span class="tbl">dept_name</span> <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span> <span class="kw">LEFT JOIN</span> <span class="tbl">departments</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">dept_id</span>=<span class="alias">d</span>.<span class="tbl">dept_id</span>
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">d</span>.<span class="tbl">dept_name</span> <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span> <span class="kw">RIGHT JOIN</span> <span class="tbl">departments</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">dept_id</span>=<span class="alias">d</span>.<span class="tbl">dept_id</span>;</pre>
+            </div>
+
+            <h3>CROSS JOIN</h3>
+            <p>Returns the Cartesian product — every row of table A paired with every row of table B. No ON clause
+                needed.</p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">d</span>.<span class="tbl">dept_name</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">CROSS JOIN</span> <span class="tbl">departments</span> <span class="alias">d</span>;
+<span class="cmt">-- Result: 4 employees × 3 departments = 12 rows</span></pre>
+            </div>
+
+            <h3>SELF JOIN</h3>
+            <p>Joining a table with itself. Used for hierarchical data like org charts (employee–manager relationships).
+            </p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Find each employee and their manager's name</span>
+<span class="kw">SELECT</span>
+    <span class="alias">e</span>.<span class="tbl">name</span>         <span class="kw">AS</span> <span class="alias">employee</span>,
+    <span class="alias">m</span>.<span class="tbl">name</span>         <span class="kw">AS</span> <span class="alias">manager</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">LEFT JOIN</span> <span class="tbl">employees</span> <span class="alias">m</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">manager_id</span> = <span class="alias">m</span>.<span class="tbl">emp_id</span>;</pre>
+            </div>
+
+            <div class="success">✅ <strong>Quick memory trick:</strong> INNER = intersection | LEFT = left +
+                intersection | RIGHT = right + intersection | FULL = everything | CROSS = all combinations</div>
+        </div>
+
+        <!-- ==================== SUBQUERIES ==================== -->
+        <div class="section" id="sec-subqueries">
+            <div class="section-header">
+                <span class="level-badge badge-medium">Medium</span>
+                <h2>Subqueries</h2>
+                <p>A subquery is a query nested inside another query. They can appear in SELECT, FROM, WHERE, and HAVING
+                    clauses.</p>
+            </div>
+
+            <h3>Scalar Subquery (returns one value)</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Find employees earning above the company average</span>
+<span class="kw">SELECT</span> <span class="tbl">name</span>, <span class="tbl">salary</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">WHERE</span> <span class="tbl">salary</span> > (<span class="kw">SELECT</span> <span class="fn">AVG</span>(<span class="tbl">salary</span>) <span class="kw">FROM</span> <span class="tbl">employees</span>);
+
+<span class="cmt">-- Scalar in SELECT clause</span>
+<span class="kw">SELECT</span>
+    <span class="tbl">name</span>,
+    <span class="tbl">salary</span>,
+    (<span class="kw">SELECT</span> <span class="fn">AVG</span>(<span class="tbl">salary</span>) <span class="kw">FROM</span> <span class="tbl">employees</span>) <span class="kw">AS</span> <span class="alias">company_avg</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>;</pre>
+            </div>
+
+            <h3>IN / NOT IN with Subquery</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Employees in departments located in Delhi</span>
+<span class="kw">SELECT</span> <span class="tbl">name</span> <span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">WHERE</span> <span class="tbl">dept_id</span> <span class="kw">IN</span> (
+    <span class="kw">SELECT</span> <span class="tbl">dept_id</span> <span class="kw">FROM</span> <span class="tbl">departments</span>
+    <span class="kw">WHERE</span> <span class="tbl">location</span> = <span class="str">'Delhi'</span>
+);</pre>
+            </div>
+
+            <h3>Correlated Subquery</h3>
+            <p>A correlated subquery references columns from the outer query. It runs once for each row of the outer
+                query — can be slow on large datasets.</p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Find the employee with the highest salary in each department</span>
+<span class="kw">SELECT</span> <span class="tbl">name</span>, <span class="tbl">salary</span>, <span class="tbl">dept_id</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e1</span>
+<span class="kw">WHERE</span> <span class="tbl">salary</span> = (
+    <span class="kw">SELECT</span> <span class="fn">MAX</span>(<span class="tbl">salary</span>)
+    <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e2</span>
+    <span class="kw">WHERE</span> <span class="alias">e2</span>.<span class="tbl">dept_id</span> = <span class="alias">e1</span>.<span class="tbl">dept_id</span>  <span class="cmt">-- references outer query</span>
+);</pre>
+            </div>
+
+            <h3>EXISTS / NOT EXISTS</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- EXISTS: returns TRUE if subquery returns any rows</span>
+<span class="kw">SELECT</span> <span class="tbl">name</span> <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">WHERE EXISTS</span> (
+    <span class="kw">SELECT</span> <span class="num">1</span> <span class="kw">FROM</span> <span class="tbl">orders</span> <span class="alias">o</span>
+    <span class="kw">WHERE</span> <span class="alias">o</span>.<span class="tbl">emp_id</span> = <span class="alias">e</span>.<span class="tbl">emp_id</span>
+);
+<span class="cmt">-- Employees who have placed at least one order</span>
+
+<span class="cmt">-- NOT EXISTS: employees with NO orders</span>
+<span class="kw">SELECT</span> <span class="tbl">name</span> <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">WHERE NOT EXISTS</span> (
+    <span class="kw">SELECT</span> <span class="num">1</span> <span class="kw">FROM</span> <span class="tbl">orders</span> <span class="alias">o</span>
+    <span class="kw">WHERE</span> <span class="alias">o</span>.<span class="tbl">emp_id</span> = <span class="alias">e</span>.<span class="tbl">emp_id</span>
+);</pre>
+            </div>
+
+            <h3>Subquery in FROM (Derived Table)</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Using a subquery as a derived table (inline view)</span>
+<span class="kw">SELECT</span> <span class="alias">dept_stats</span>.<span class="tbl">dept_id</span>, <span class="alias">dept_stats</span>.<span class="tbl">avg_sal</span>
+<span class="kw">FROM</span> (
+    <span class="kw">SELECT</span> <span class="tbl">dept_id</span>, <span class="fn">AVG</span>(<span class="tbl">salary</span>) <span class="kw">AS</span> <span class="tbl">avg_sal</span>
+    <span class="kw">FROM</span> <span class="tbl">employees</span>
+    <span class="kw">GROUP BY</span> <span class="tbl">dept_id</span>
+) <span class="alias">dept_stats</span>
+<span class="kw">WHERE</span> <span class="alias">dept_stats</span>.<span class="tbl">avg_sal</span> > <span class="num">60000</span>;</pre>
+            </div>
+
+            <div class="tip">💡 <strong>EXISTS vs IN:</strong> EXISTS stops as soon as it finds one match (efficient for
+                large datasets). IN evaluates the entire subquery first. For correlated subqueries, EXISTS is generally
+                faster.</div>
+        </div>
+
+        <!-- ==================== SET OPERATIONS ==================== -->
+        <div class="section" id="sec-setops">
+            <div class="section-header">
+                <span class="level-badge badge-medium">Medium</span>
+                <h2>Set Operations</h2>
+                <p>Combine results of multiple SELECT queries. All queries must have the same number of columns with
+                    compatible data types.</p>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Returns</th>
+                            <th>Duplicates?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UNION</td>
+                            <td>All rows from both queries</td>
+                            <td>Removes duplicates</td>
+                        </tr>
+                        <tr>
+                            <td>UNION ALL</td>
+                            <td>All rows from both queries</td>
+                            <td>Keeps duplicates (faster)</td>
+                        </tr>
+                        <tr>
+                            <td>INTERSECT</td>
+                            <td>Only rows in BOTH queries</td>
+                            <td>Removes duplicates</td>
+                        </tr>
+                        <tr>
+                            <td>EXCEPT / MINUS</td>
+                            <td>Rows in first, NOT in second</td>
+                            <td>Removes duplicates</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- UNION: combine and deduplicate</span>
+<span class="kw">SELECT</span> <span class="tbl">name</span> <span class="kw">FROM</span> <span class="tbl">employees_india</span>
+<span class="kw">UNION</span>
+<span class="kw">SELECT</span> <span class="tbl">name</span> <span class="kw">FROM</span> <span class="tbl">employees_usa</span>;
+
+<span class="cmt">-- UNION ALL: faster, keeps duplicates</span>
+<span class="kw">SELECT</span> <span class="tbl">product_id</span>, <span class="tbl">quantity</span> <span class="kw">FROM</span> <span class="tbl">warehouse_a</span>
+<span class="kw">UNION ALL</span>
+<span class="kw">SELECT</span> <span class="tbl">product_id</span>, <span class="tbl">quantity</span> <span class="kw">FROM</span> <span class="tbl">warehouse_b</span>;
+
+<span class="cmt">-- INTERSECT: customers who bought both products</span>
+<span class="kw">SELECT</span> <span class="tbl">customer_id</span> <span class="kw">FROM</span> <span class="tbl">orders</span> <span class="kw">WHERE</span> <span class="tbl">product_id</span> = <span class="num">1</span>
+<span class="kw">INTERSECT</span>
+<span class="kw">SELECT</span> <span class="tbl">customer_id</span> <span class="kw">FROM</span> <span class="tbl">orders</span> <span class="kw">WHERE</span> <span class="tbl">product_id</span> = <span class="num">2</span>;
+
+<span class="cmt">-- EXCEPT: customers who bought product 1 but NOT 2</span>
+<span class="kw">SELECT</span> <span class="tbl">customer_id</span> <span class="kw">FROM</span> <span class="tbl">orders</span> <span class="kw">WHERE</span> <span class="tbl">product_id</span> = <span class="num">1</span>
+<span class="kw">EXCEPT</span>
+<span class="kw">SELECT</span> <span class="tbl">customer_id</span> <span class="kw">FROM</span> <span class="tbl">orders</span> <span class="kw">WHERE</span> <span class="tbl">product_id</span> = <span class="num">2</span>;</pre>
+            </div>
+            <div class="warn">⚠️ MySQL does not support INTERSECT or EXCEPT natively. Use JOIN or NOT IN as
+                alternatives.</div>
+        </div>
+
+        <!-- ==================== STRING & DATE ==================== -->
+        <div class="section" id="sec-stringdate">
+            <div class="section-header">
+                <span class="level-badge badge-medium">Medium</span>
+                <h2>String & Date Functions</h2>
+                <p>Commonly tested in practical SQL rounds. Know the most important functions for each category.</p>
+            </div>
+
+            <h3>String Functions</h3>
+            <div class="code-block">
+                <div class="code-label">SQL — String Functions</div>
+                <pre>
+<span class="fn">LENGTH</span>(<span class="str">'hello'</span>)               <span class="cmt">-- 5</span>
+<span class="fn">UPPER</span>(<span class="str">'hello'</span>)               <span class="cmt">-- HELLO</span>
+<span class="fn">LOWER</span>(<span class="str">'HELLO'</span>)               <span class="cmt">-- hello</span>
+<span class="fn">TRIM</span>(<span class="str">'  hello  '</span>)            <span class="cmt">-- 'hello'</span>
+<span class="fn">LTRIM</span>(<span class="str">'  hello'</span>)             <span class="cmt">-- 'hello'</span>
+<span class="fn">RTRIM</span>(<span class="str">'hello  '</span>)             <span class="cmt">-- 'hello'</span>
+<span class="fn">SUBSTR</span>(<span class="str">'hello'</span>, <span class="num">2</span>, <span class="num">3</span>)         <span class="cmt">-- 'ell' (start, length)</span>
+<span class="fn">LEFT</span>(<span class="str">'hello'</span>, <span class="num">3</span>)              <span class="cmt">-- 'hel'</span>
+<span class="fn">RIGHT</span>(<span class="str">'hello'</span>, <span class="num">3</span>)             <span class="cmt">-- 'llo'</span>
+<span class="fn">CONCAT</span>(<span class="str">'Hi'</span>, <span class="str">' '</span>, <span class="str">'World'</span>)    <span class="cmt">-- 'Hi World'</span>
+<span class="fn">CONCAT_WS</span>(<span class="str">','</span>, <span class="str">'a'</span>, <span class="str">'b'</span>, <span class="str">'c'</span>) <span class="cmt">-- 'a,b,c' (with separator)</span>
+<span class="fn">REPLACE</span>(<span class="str">'hello'</span>, <span class="str">'l'</span>, <span class="str">'r'</span>)    <span class="cmt">-- 'herro'</span>
+<span class="fn">INSTR</span>(<span class="str">'hello'</span>, <span class="str">'ll'</span>)          <span class="cmt">-- 3 (position)</span>
+<span class="fn">LPAD</span>(<span class="str">'5'</span>, <span class="num">3</span>, <span class="str">'0'</span>)             <span class="cmt">-- '005'</span>
+<span class="fn">RPAD</span>(<span class="str">'5'</span>, <span class="num">3</span>, <span class="str">'0'</span>)             <span class="cmt">-- '500'</span>
+<span class="fn">REVERSE</span>(<span class="str">'hello'</span>)              <span class="cmt">-- 'olleh'</span>
+<span class="fn">CHAR_LENGTH</span>(<span class="str">'hello'</span>)          <span class="cmt">-- 5 (unicode-safe)</span></pre>
+            </div>
+
+            <h3>Date & Time Functions</h3>
+            <div class="code-block">
+                <div class="code-label">SQL — Date Functions</div>
+                <pre>
+<span class="fn">NOW</span>()                              <span class="cmt">-- 2024-08-15 14:30:00</span>
+<span class="fn">CURDATE</span>()                          <span class="cmt">-- 2024-08-15</span>
+<span class="fn">CURTIME</span>()                          <span class="cmt">-- 14:30:00</span>
+<span class="fn">YEAR</span>(<span class="fn">NOW</span>())                         <span class="cmt">-- 2024</span>
+<span class="fn">MONTH</span>(<span class="str">'2024-08-15'</span>)                 <span class="cmt">-- 8</span>
+<span class="fn">DAY</span>(<span class="str">'2024-08-15'</span>)                   <span class="cmt">-- 15</span>
+<span class="fn">DAYNAME</span>(<span class="str">'2024-08-15'</span>)               <span class="cmt">-- Thursday</span>
+<span class="fn">MONTHNAME</span>(<span class="str">'2024-08-15'</span>)             <span class="cmt">-- August</span>
+<span class="fn">DATE_FORMAT</span>(<span class="fn">NOW</span>(), <span class="str">'%d/%m/%Y'</span>)      <span class="cmt">-- 15/08/2024</span>
+<span class="fn">DATEDIFF</span>(<span class="str">'2024-12-31'</span>, <span class="str">'2024-01-01'</span>) <span class="cmt">-- 365</span>
+<span class="fn">DATE_ADD</span>(<span class="fn">NOW</span>(), <span class="kw">INTERVAL</span> <span class="num">30</span> <span class="kw">DAY</span>)   <span class="cmt">-- 30 days from now</span>
+<span class="fn">DATE_SUB</span>(<span class="fn">NOW</span>(), <span class="kw">INTERVAL</span> <span class="num">1</span> <span class="kw">YEAR</span>)  <span class="cmt">-- 1 year ago</span>
+<span class="fn">TIMESTAMPDIFF</span>(<span class="kw">YEAR</span>, <span class="tbl">dob</span>, <span class="fn">NOW</span>())    <span class="cmt">-- age in years</span>
+<span class="fn">UNIX_TIMESTAMP</span>()                   <span class="cmt">-- seconds since epoch</span>
+<span class="fn">STR_TO_DATE</span>(<span class="str">'15-08-2024'</span>, <span class="str">'%d-%m-%Y'</span>) <span class="cmt">-- convert string to date</span></pre>
+            </div>
+        </div>
+
+        <!-- ==================== CASE ==================== -->
+        <div class="section" id="sec-case">
+            <div class="section-header">
+                <span class="level-badge badge-medium">Medium</span>
+                <h2>CASE Expressions & Conditional Logic</h2>
+                <p>CASE is SQL's if-then-else. It can appear in SELECT, WHERE, ORDER BY, and aggregate functions.</p>
+            </div>
+
+            <h3>Searched CASE</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span>
+    <span class="tbl">name</span>,
+    <span class="tbl">salary</span>,
+    <span class="kw">CASE</span>
+        <span class="kw">WHEN</span> <span class="tbl">salary</span> >= <span class="num">80000</span> <span class="kw">THEN</span> <span class="str">'Senior'</span>
+        <span class="kw">WHEN</span> <span class="tbl">salary</span> >= <span class="num">50000</span> <span class="kw">THEN</span> <span class="str">'Mid-level'</span>
+        <span class="kw">WHEN</span> <span class="tbl">salary</span> >= <span class="num">30000</span> <span class="kw">THEN</span> <span class="str">'Junior'</span>
+        <span class="kw">ELSE</span> <span class="str">'Intern'</span>
+    <span class="kw">END</span> <span class="kw">AS</span> <span class="alias">level</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>;</pre>
+            </div>
+
+            <h3>Simple CASE</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span>
+    <span class="tbl">dept_id</span>,
+    <span class="kw">CASE</span> <span class="tbl">dept_id</span>
+        <span class="kw">WHEN</span> <span class="num">1</span> <span class="kw">THEN</span> <span class="str">'HR'</span>
+        <span class="kw">WHEN</span> <span class="num">2</span> <span class="kw">THEN</span> <span class="str">'Engineering'</span>
+        <span class="kw">WHEN</span> <span class="num">3</span> <span class="kw">THEN</span> <span class="str">'Sales'</span>
+        <span class="kw">ELSE</span> <span class="str">'Other'</span>
+    <span class="kw">END</span> <span class="kw">AS</span> <span class="alias">dept_name</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>;</pre>
+            </div>
+
+            <h3>CASE in Aggregates (Pivot Pattern)</h3>
+            <div class="code-block">
+                <div class="code-label">SQL — Conditional Aggregation</div>
+                <pre>
+<span class="cmt">-- Count employees by salary band in one row per department</span>
+<span class="kw">SELECT</span>
+    <span class="tbl">dept_id</span>,
+    <span class="fn">COUNT</span>(<span class="kw">CASE WHEN</span> <span class="tbl">salary</span> >= <span class="num">80000</span> <span class="kw">THEN</span> <span class="num">1</span> <span class="kw">END</span>) <span class="kw">AS</span> <span class="alias">senior_count</span>,
+    <span class="fn">COUNT</span>(<span class="kw">CASE WHEN</span> <span class="tbl">salary</span> <span class="kw">BETWEEN</span> <span class="num">50000</span> <span class="kw">AND</span> <span class="num">79999</span> <span class="kw">THEN</span> <span class="num">1</span> <span class="kw">END</span>) <span class="kw">AS</span> <span class="alias">mid_count</span>,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> <span class="tbl">gender</span> = <span class="str">'F'</span> <span class="kw">THEN</span> <span class="tbl">salary</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>) <span class="kw">AS</span> <span class="alias">female_payroll</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">GROUP BY</span> <span class="tbl">dept_id</span>;</pre>
+            </div>
+        </div>
+
+        <!-- ==================== VIEWS & INDEXES ==================== -->
+        <div class="section" id="sec-views">
+            <div class="section-header">
+                <span class="level-badge badge-medium">Medium</span>
+                <h2>Views & Indexes</h2>
+            </div>
+
+            <h3>Views</h3>
+            <p>A view is a virtual table based on a SELECT query. It does not store data itself (unlike materialized
+                views).</p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Create a view</span>
+<span class="kw">CREATE VIEW</span> <span class="tbl">high_earners</span> <span class="kw">AS</span>
+<span class="kw">SELECT</span> <span class="tbl">emp_id</span>, <span class="tbl">name</span>, <span class="tbl">salary</span>, <span class="tbl">dept_id</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">WHERE</span> <span class="tbl">salary</span> > <span class="num">75000</span>;
+
+<span class="cmt">-- Use like a table</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">high_earners</span> <span class="kw">WHERE</span> <span class="tbl">dept_id</span> = <span class="num">2</span>;
+
+<span class="cmt">-- Modify the view definition</span>
+<span class="kw">CREATE OR REPLACE VIEW</span> <span class="tbl">high_earners</span> <span class="kw">AS</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">salary</span> > <span class="num">80000</span>;
+
+<span class="cmt">-- Drop the view</span>
+<span class="kw">DROP VIEW</span> <span class="tbl">high_earners</span>;</pre>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>View</th>
+                            <th>Materialized View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data stored?</td>
+                            <td>No (virtual)</td>
+                            <td>Yes (physically stored)</td>
+                        </tr>
+                        <tr>
+                            <td>Always up-to-date?</td>
+                            <td>Yes (re-runs query)</td>
+                            <td>No (needs refresh)</td>
+                        </tr>
+                        <tr>
+                            <td>Performance</td>
+                            <td>Slower (query reruns)</td>
+                            <td>Faster (pre-computed)</td>
+                        </tr>
+                        <tr>
+                            <td>Support</td>
+                            <td>All RDBMS</td>
+                            <td>PostgreSQL, Oracle</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Indexes</h3>
+            <p>An index is a data structure (typically a B-Tree) that speeds up SELECT queries at the cost of slower
+                writes (INSERT/UPDATE/DELETE) and more storage.</p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Create a single-column index</span>
+<span class="kw">CREATE INDEX</span> <span class="tbl">idx_emp_salary</span> <span class="kw">ON</span> <span class="tbl">employees</span>(<span class="tbl">salary</span>);
+
+<span class="cmt">-- Create a unique index</span>
+<span class="kw">CREATE UNIQUE INDEX</span> <span class="tbl">idx_emp_email</span> <span class="kw">ON</span> <span class="tbl">employees</span>(<span class="tbl">email</span>);
+
+<span class="cmt">-- Composite index (covers multi-column WHERE)</span>
+<span class="kw">CREATE INDEX</span> <span class="tbl">idx_dept_salary</span> <span class="kw">ON</span> <span class="tbl">employees</span>(<span class="tbl">dept_id</span>, <span class="tbl">salary</span>);
+
+<span class="cmt">-- Drop an index</span>
+<span class="kw">DROP INDEX</span> <span class="tbl">idx_emp_salary</span> <span class="kw">ON</span> <span class="tbl">employees</span>;</pre>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Index Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Primary Index</td>
+                            <td>Auto-created on Primary Key, always unique</td>
+                        </tr>
+                        <tr>
+                            <td>Unique Index</td>
+                            <td>Ensures uniqueness, allows one NULL</td>
+                        </tr>
+                        <tr>
+                            <td>Composite Index</td>
+                            <td>Covers multiple columns — order matters!</td>
+                        </tr>
+                        <tr>
+                            <td>Full-Text Index</td>
+                            <td>For text search (MATCH...AGAINST)</td>
+                        </tr>
+                        <tr>
+                            <td>Clustered Index</td>
+                            <td>Data rows stored in index order (one per table)</td>
+                        </tr>
+                        <tr>
+                            <td>Non-Clustered Index</td>
+                            <td>Separate index structure pointing to rows</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== NORMALIZATION ==================== -->
+        <div class="section" id="sec-normalization">
+            <div class="section-header">
+                <span class="level-badge badge-medium">Medium</span>
+                <h2>Normalization</h2>
+                <p>Normalization organizes tables to minimize redundancy and dependency. It is one of the
+                    highest-frequency database theory topics in placements.</p>
+            </div>
+
+            <h3>Why Normalize?</h3>
+            <ul>
+                <li><strong>Eliminate data redundancy</strong> (same data in multiple places)</li>
+                <li><strong>Prevent update anomalies</strong> (update in one place, miss others)</li>
+                <li><strong>Prevent insertion anomalies</strong> (can't add data without unrelated data)</li>
+                <li><strong>Prevent deletion anomalies</strong> (deleting a row loses other data)</li>
+            </ul>
+
+            <h3>First Normal Form (1NF)</h3>
+            <p><strong>Rules:</strong> Each column must have atomic (indivisible) values. No repeating groups. Each row
+                must be unique (has a primary key).</p>
+            <div class="danger">❌ <strong>Violates 1NF:</strong> A column "phones" containing "9876543210, 9988776655"
+                (two values in one cell)</div>
+            <div class="success">✅ <strong>Satisfies 1NF:</strong> Create a separate row or table for each phone number
+            </div>
+
+            <h3>Second Normal Form (2NF)</h3>
+            <p><strong>Must be in 1NF.</strong> No partial dependency — every non-key attribute must depend on the
+                <em>entire</em> composite primary key (applies only when PK is composite).
+            </p>
+            <div class="code-block">
+                <div class="code-label">Example</div>
+                <pre>
+<span class="cmt">-- Violates 2NF: StudentName depends only on StudentID (partial dependency)</span>
+<span class="kw">Table:</span> <span class="tbl">Enrollment</span>(StudentID, CourseID, StudentName, CourseName, Grade)
+<span class="cmt">-- StudentName depends only on StudentID, not on the full PK (StudentID, CourseID)</span>
+
+<span class="cmt">-- Fixed: split into three tables</span>
+<span class="kw">Student</span>(<span class="tbl">StudentID</span>, <span class="tbl">StudentName</span>)
+<span class="kw">Course</span>(<span class="tbl">CourseID</span>, <span class="tbl">CourseName</span>)
+<span class="kw">Enrollment</span>(<span class="tbl">StudentID</span>, <span class="tbl">CourseID</span>, <span class="tbl">Grade</span>)</pre>
+            </div>
+
+            <h3>Third Normal Form (3NF)</h3>
+            <p><strong>Must be in 2NF.</strong> No transitive dependency — non-key attributes must not depend on other
+                non-key attributes.</p>
+            <div class="code-block">
+                <div class="code-label">Example</div>
+                <pre>
+<span class="cmt">-- Violates 3NF: DeptCity depends on DeptID (non-key → non-key)</span>
+<span class="kw">Table:</span> <span class="tbl">Employee</span>(EmpID, Name, DeptID, DeptCity)
+<span class="cmt">-- DeptCity is transitively dependent: EmpID → DeptID → DeptCity</span>
+
+<span class="cmt">-- Fixed:</span>
+<span class="kw">Employee</span>(<span class="tbl">EmpID</span>, <span class="tbl">Name</span>, <span class="tbl">DeptID</span>)
+<span class="kw">Department</span>(<span class="tbl">DeptID</span>, <span class="tbl">DeptCity</span>)</pre>
+            </div>
+
+            <h3>Boyce-Codd Normal Form (BCNF)</h3>
+            <p><strong>Must be in 3NF.</strong> For every functional dependency X → Y, X must be a superkey. BCNF is
+                stricter than 3NF.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Normal Form</th>
+                            <th>Requirement (in addition to previous)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1NF</td>
+                            <td>Atomic values, unique rows, no repeating groups</td>
+                        </tr>
+                        <tr>
+                            <td>2NF</td>
+                            <td>No partial dependencies (on composite PK)</td>
+                        </tr>
+                        <tr>
+                            <td>3NF</td>
+                            <td>No transitive dependencies (non-key → non-key)</td>
+                        </tr>
+                        <tr>
+                            <td>BCNF</td>
+                            <td>Every determinant must be a superkey</td>
+                        </tr>
+                        <tr>
+                            <td>4NF</td>
+                            <td>No multi-valued dependencies</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip">💡 <strong>Denormalization</strong> is intentionally adding redundancy back to improve read
+                performance (used in data warehouses and reporting systems).</div>
+        </div>
+
+        <!-- ==================== WINDOW FUNCTIONS ==================== -->
+        <div class="section" id="sec-window">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Advanced</span>
+                <h2>Window Functions</h2>
+                <p>Window functions perform calculations across a set of table rows related to the current row — without
+                    collapsing them into groups like GROUP BY does. They are among the most powerful and commonly tested
+                    advanced SQL features.</p>
+            </div>
+
+            <h3>Syntax</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="fn">function_name</span>() <span class="kw">OVER</span> (
+    <span class="kw">PARTITION BY</span> <span class="tbl">column1</span>       <span class="cmt">-- divide rows into groups (optional)</span>
+    <span class="kw">ORDER BY</span>     <span class="tbl">column2</span>       <span class="cmt">-- sort within each group (optional)</span>
+    <span class="kw">ROWS BETWEEN</span> UNBOUNDED PRECEDING <span class="kw">AND</span> CURRENT ROW  <span class="cmt">-- frame (optional)</span>
+)</pre>
+            </div>
+
+            <h3>Ranking Functions</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span>
+    <span class="tbl">name</span>, <span class="tbl">dept_id</span>, <span class="tbl">salary</span>,
+    <span class="fn">ROW_NUMBER</span>()   <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> <span class="tbl">dept_id</span> <span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>) <span class="kw">AS</span> <span class="alias">row_num</span>,
+    <span class="fn">RANK</span>()         <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> <span class="tbl">dept_id</span> <span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>) <span class="kw">AS</span> <span class="alias">rank_num</span>,
+    <span class="fn">DENSE_RANK</span>()   <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> <span class="tbl">dept_id</span> <span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>) <span class="kw">AS</span> <span class="alias">dense_rnk</span>,
+    <span class="fn">NTILE</span>(<span class="num">4</span>)       <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>)                      <span class="kw">AS</span> <span class="alias">quartile</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>;</pre>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Function</th>
+                            <th>Tie Handling</th>
+                            <th>Example: salaries 100,100,90</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ROW_NUMBER()</td>
+                            <td>Arbitrary unique numbers</td>
+                            <td>1, 2, 3</td>
+                        </tr>
+                        <tr>
+                            <td>RANK()</td>
+                            <td>Ties get same rank, gaps after</td>
+                            <td>1, 1, 3</td>
+                        </tr>
+                        <tr>
+                            <td>DENSE_RANK()</td>
+                            <td>Ties get same rank, no gaps</td>
+                            <td>1, 1, 2</td>
+                        </tr>
+                        <tr>
+                            <td>NTILE(n)</td>
+                            <td>Distributes into n buckets</td>
+                            <td>Depends on n</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Practical: Top N per Group</h3>
+            <div class="code-block">
+                <div class="code-label">SQL — Top 2 earners per department</div>
+                <pre>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> (
+    <span class="kw">SELECT</span>
+        <span class="tbl">name</span>, <span class="tbl">dept_id</span>, <span class="tbl">salary</span>,
+        <span class="fn">DENSE_RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> <span class="tbl">dept_id</span> <span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>) <span class="kw">AS</span> <span class="alias">rnk</span>
+    <span class="kw">FROM</span> <span class="tbl">employees</span>
+) <span class="alias">ranked</span>
+<span class="kw">WHERE</span> <span class="alias">rnk</span> <= <span class="num">2</span>;</pre>
+            </div>
+
+            <h3>LAG and LEAD</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span>
+    <span class="tbl">month</span>, <span class="tbl">revenue</span>,
+    <span class="fn">LAG</span>(<span class="tbl">revenue</span>, <span class="num">1</span>, <span class="num">0</span>) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> <span class="tbl">month</span>) <span class="kw">AS</span> <span class="alias">prev_month</span>,
+    <span class="fn">LEAD</span>(<span class="tbl">revenue</span>, <span class="num">1</span>, <span class="num">0</span>) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> <span class="tbl">month</span>) <span class="kw">AS</span> <span class="alias">next_month</span>,
+    <span class="tbl">revenue</span> - <span class="fn">LAG</span>(<span class="tbl">revenue</span>) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> <span class="tbl">month</span>) <span class="kw">AS</span> <span class="alias">mom_growth</span>
+<span class="kw">FROM</span> <span class="tbl">monthly_revenue</span>;
+<span class="cmt">-- LAG(col, n, default): value from n rows behind</span>
+<span class="cmt">-- LEAD(col, n, default): value from n rows ahead</span></pre>
+            </div>
+
+            <h3>Running Totals & Moving Averages (ROWS BETWEEN)</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span>
+    <span class="tbl">date</span>, <span class="tbl">amount</span>,
+    <span class="fn">SUM</span>(<span class="tbl">amount</span>) <span class="kw">OVER</span> (
+        <span class="kw">ORDER BY</span> <span class="tbl">date</span>
+        <span class="kw">ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</span>
+    ) <span class="kw">AS</span> <span class="alias">running_total</span>,
+    <span class="fn">AVG</span>(<span class="tbl">amount</span>) <span class="kw">OVER</span> (
+        <span class="kw">ORDER BY</span> <span class="tbl">date</span>
+        <span class="kw">ROWS BETWEEN</span> <span class="num">6</span> <span class="kw">PRECEDING AND CURRENT ROW</span>
+    ) <span class="kw">AS</span> <span class="alias">seven_day_avg</span>
+<span class="kw">FROM</span> <span class="tbl">daily_sales</span>;</pre>
+            </div>
+
+            <h3>FIRST_VALUE / LAST_VALUE</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span>
+    <span class="tbl">name</span>, <span class="tbl">dept_id</span>, <span class="tbl">salary</span>,
+    <span class="fn">FIRST_VALUE</span>(<span class="tbl">name</span>) <span class="kw">OVER</span> (
+        <span class="kw">PARTITION BY</span> <span class="tbl">dept_id</span> <span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>
+    ) <span class="kw">AS</span> <span class="alias">top_earner_in_dept</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>;</pre>
+            </div>
+        </div>
+
+        <!-- ==================== CTEs ==================== -->
+        <div class="section" id="sec-cte">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Advanced</span>
+                <h2>CTEs & Recursive Queries</h2>
+                <p>Common Table Expressions (CTEs) create named, temporary result sets that improve readability and
+                    enable recursion.</p>
+            </div>
+
+            <h3>Basic CTE</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- WITH clause defines the CTE</span>
+<span class="kw">WITH</span> <span class="alias">dept_averages</span> <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> <span class="tbl">dept_id</span>, <span class="fn">AVG</span>(<span class="tbl">salary</span>) <span class="kw">AS</span> <span class="tbl">avg_sal</span>
+    <span class="kw">FROM</span> <span class="tbl">employees</span>
+    <span class="kw">GROUP BY</span> <span class="tbl">dept_id</span>
+)
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">e</span>.<span class="tbl">salary</span>, <span class="alias">d</span>.<span class="tbl">avg_sal</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">JOIN</span> <span class="alias">dept_averages</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">dept_id</span> = <span class="alias">d</span>.<span class="tbl">dept_id</span>
+<span class="kw">WHERE</span> <span class="alias">e</span>.<span class="tbl">salary</span> > <span class="alias">d</span>.<span class="tbl">avg_sal</span>;</pre>
+            </div>
+
+            <h3>Multiple CTEs</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">WITH</span>
+<span class="alias">high_sal_emps</span> <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">salary</span> > <span class="num">70000</span>
+),
+<span class="alias">dept_info</span> <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">departments</span> <span class="kw">WHERE</span> <span class="tbl">location</span> = <span class="str">'Delhi'</span>
+)
+<span class="kw">SELECT</span> <span class="alias">h</span>.<span class="tbl">name</span>, <span class="alias">d</span>.<span class="tbl">dept_name</span>
+<span class="kw">FROM</span> <span class="alias">high_sal_emps</span> <span class="alias">h</span>
+<span class="kw">JOIN</span> <span class="alias">dept_info</span> <span class="alias">d</span> <span class="kw">ON</span> <span class="alias">h</span>.<span class="tbl">dept_id</span> = <span class="alias">d</span>.<span class="tbl">dept_id</span>;</pre>
+            </div>
+
+            <h3>Recursive CTE</h3>
+            <p>A recursive CTE references itself. Used for hierarchical data (org charts, file systems, bill of
+                materials).</p>
+            <div class="code-block">
+                <div class="code-label">SQL — Org Chart Traversal</div>
+                <pre>
+<span class="kw">WITH RECURSIVE</span> <span class="alias">org_chart</span> <span class="kw">AS</span> (
+    <span class="cmt">-- Base case: start from the CEO (no manager)</span>
+    <span class="kw">SELECT</span> <span class="tbl">emp_id</span>, <span class="tbl">name</span>, <span class="tbl">manager_id</span>, <span class="num">0</span> <span class="kw">AS</span> <span class="tbl">level</span>
+    <span class="kw">FROM</span> <span class="tbl">employees</span>
+    <span class="kw">WHERE</span> <span class="tbl">manager_id</span> <span class="kw">IS NULL</span>
+
+    <span class="kw">UNION ALL</span>
+
+    <span class="cmt">-- Recursive case: join employees to their managers</span>
+    <span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">emp_id</span>, <span class="alias">e</span>.<span class="tbl">name</span>, <span class="alias">e</span>.<span class="tbl">manager_id</span>, <span class="alias">oc</span>.<span class="tbl">level</span> + <span class="num">1</span>
+    <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+    <span class="kw">INNER JOIN</span> <span class="alias">org_chart</span> <span class="alias">oc</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">manager_id</span> = <span class="alias">oc</span>.<span class="tbl">emp_id</span>
+)
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="alias">org_chart</span> <span class="kw">ORDER BY</span> <span class="tbl">level</span>, <span class="tbl">name</span>;</pre>
+            </div>
+            <div class="tip">💡 Recursive CTEs always have: (1) an anchor/base query, (2) UNION ALL, (3) a recursive
+                query that references the CTE name, (4) a termination condition (implicit via JOIN).</div>
+        </div>
+
+        <!-- ==================== STORED PROCEDURES ==================== -->
+        <div class="section" id="sec-stored">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Advanced</span>
+                <h2>Stored Procedures & User-Defined Functions</h2>
+            </div>
+
+            <h3>Stored Procedure</h3>
+            <p>A stored procedure is a precompiled, named block of SQL code stored on the server. It can accept
+                parameters, execute logic, and return results.</p>
+            <div class="code-block">
+                <div class="code-label">SQL — MySQL Stored Procedure</div>
+                <pre>
+<span class="kw">DELIMITER</span> //
+
+<span class="kw">CREATE PROCEDURE</span> <span class="fn">GetEmployeesByDept</span>(
+    <span class="kw">IN</span>  <span class="tbl">p_dept_id</span>  <span class="kw">INT</span>,
+    <span class="kw">OUT</span> <span class="tbl">p_count</span>    <span class="kw">INT</span>
+)
+<span class="kw">BEGIN</span>
+    <span class="kw">SELECT</span> <span class="tbl">name</span>, <span class="tbl">salary</span>
+    <span class="kw">FROM</span> <span class="tbl">employees</span>
+    <span class="kw">WHERE</span> <span class="tbl">dept_id</span> = <span class="tbl">p_dept_id</span>
+    <span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>;
+
+    <span class="kw">SELECT</span> <span class="fn">COUNT</span>(*) <span class="kw">INTO</span> <span class="tbl">p_count</span>
+    <span class="kw">FROM</span> <span class="tbl">employees</span>
+    <span class="kw">WHERE</span> <span class="tbl">dept_id</span> = <span class="tbl">p_dept_id</span>;
+<span class="kw">END</span> //
+
+<span class="kw">DELIMITER</span> ;
+
+<span class="cmt">-- Call it:</span>
+<span class="kw">CALL</span> <span class="fn">GetEmployeesByDept</span>(<span class="num">2</span>, @total);
+<span class="kw">SELECT</span> @total;</pre>
+            </div>
+
+            <h3>User-Defined Function (UDF)</h3>
+            <p>Unlike stored procedures, functions must return a value and can be used inside SELECT statements.</p>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">DELIMITER</span> //
+
+<span class="kw">CREATE FUNCTION</span> <span class="fn">get_annual_salary</span>(<span class="tbl">monthly_sal</span> <span class="kw">DECIMAL</span>(<span class="num">10</span>,<span class="num">2</span>))
+<span class="kw">RETURNS DECIMAL</span>(<span class="num">12</span>,<span class="num">2</span>)
+<span class="kw">DETERMINISTIC</span>
+<span class="kw">BEGIN</span>
+    <span class="kw">RETURN</span> <span class="tbl">monthly_sal</span> * <span class="num">12</span>;
+<span class="kw">END</span> //
+
+<span class="kw">DELIMITER</span> ;
+
+<span class="cmt">-- Use in SELECT:</span>
+<span class="kw">SELECT</span> <span class="tbl">name</span>, <span class="fn">get_annual_salary</span>(<span class="tbl">salary</span>) <span class="kw">AS</span> <span class="alias">annual</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>;</pre>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Stored Procedure</th>
+                            <th>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Returns value?</td>
+                            <td>Optional (via OUT params)</td>
+                            <td>Mandatory (single value)</td>
+                        </tr>
+                        <tr>
+                            <td>Use in SELECT?</td>
+                            <td>No</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Exceptions/Transactions</td>
+                            <td>Yes</td>
+                            <td>Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Called with</td>
+                            <td>CALL proc_name()</td>
+                            <td>SELECT func_name()</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== TRIGGERS ==================== -->
+        <div class="section" id="sec-triggers">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Advanced</span>
+                <h2>Triggers</h2>
+                <p>A trigger is a stored program that automatically executes in response to a DML event (INSERT, UPDATE,
+                    DELETE) on a table.</p>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Timing</th>
+                            <th>Events</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>BEFORE</td>
+                            <td>INSERT / UPDATE / DELETE</td>
+                            <td>Runs before the DML operation</td>
+                        </tr>
+                        <tr>
+                            <td>AFTER</td>
+                            <td>INSERT / UPDATE / DELETE</td>
+                            <td>Runs after the DML operation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-block">
+                <div class="code-label">SQL — Audit Trigger</div>
+                <pre>
+<span class="kw">DELIMITER</span> //
+
+<span class="kw">CREATE TRIGGER</span> <span class="tbl">log_salary_change</span>
+<span class="kw">AFTER UPDATE ON</span> <span class="tbl">employees</span>
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+    <span class="kw">IF</span> <span class="kw">OLD</span>.<span class="tbl">salary</span> != <span class="kw">NEW</span>.<span class="tbl">salary</span> <span class="kw">THEN</span>
+        <span class="kw">INSERT INTO</span> <span class="tbl">salary_audit</span> (<span class="tbl">emp_id</span>, <span class="tbl">old_salary</span>, <span class="tbl">new_salary</span>, <span class="tbl">changed_at</span>)
+        <span class="kw">VALUES</span> (<span class="kw">NEW</span>.<span class="tbl">emp_id</span>, <span class="kw">OLD</span>.<span class="tbl">salary</span>, <span class="kw">NEW</span>.<span class="tbl">salary</span>, <span class="fn">NOW</span>());
+    <span class="kw">END IF</span>;
+<span class="kw">END</span> //
+
+<span class="kw">DELIMITER</span> ;
+<span class="cmt">-- OLD: row values before the operation
+-- NEW: row values after the operation (not available in DELETE)</span></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-label">SQL — BEFORE INSERT validation trigger</div>
+                <pre>
+<span class="kw">DELIMITER</span> //
+<span class="kw">CREATE TRIGGER</span> <span class="tbl">validate_salary</span>
+<span class="kw">BEFORE INSERT ON</span> <span class="tbl">employees</span>
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+    <span class="kw">IF NEW</span>.<span class="tbl">salary</span> < <span class="num">0</span> <span class="kw">THEN</span>
+        <span class="kw">SIGNAL SQLSTATE</span> <span class="str">'45000'</span>
+        <span class="kw">SET MESSAGE_TEXT</span> = <span class="str">'Salary cannot be negative'</span>;
+    <span class="kw">END IF</span>;
+<span class="kw">END</span> //
+<span class="kw">DELIMITER</span> ;</pre>
+            </div>
+        </div>
+
+        <!-- ==================== TRANSACTIONS ==================== -->
+        <div class="section" id="sec-transactions">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Advanced</span>
+                <h2>Transactions & ACID Properties</h2>
+                <p>Transactions group SQL statements into a single logical unit. ACID properties are fundamental
+                    database theory — almost always asked in placement interviews.</p>
+            </div>
+
+            <h3>ACID Properties</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Meaning</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Atomicity</td>
+                            <td>All or nothing — all operations succeed or all are rolled back</td>
+                            <td>Bank transfer: debit AND credit both happen, or neither does</td>
+                        </tr>
+                        <tr>
+                            <td>Consistency</td>
+                            <td>DB must go from one valid state to another — all constraints maintained</td>
+                            <td>Balance can't go negative if constraint says no</td>
+                        </tr>
+                        <tr>
+                            <td>Isolation</td>
+                            <td>Concurrent transactions execute as if sequential</td>
+                            <td>Two users updating same account don't interfere</td>
+                        </tr>
+                        <tr>
+                            <td>Durability</td>
+                            <td>Committed changes survive system failures</td>
+                            <td>Data written to disk even after a crash</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>TCL Commands</h3>
+            <div class="code-block">
+                <div class="code-label">SQL — Bank Transfer Transaction</div>
+                <pre>
+<span class="kw">START TRANSACTION</span>;
+
+<span class="kw">UPDATE</span> <span class="tbl">accounts</span> <span class="kw">SET</span> <span class="tbl">balance</span> = <span class="tbl">balance</span> - <span class="num">5000</span>
+<span class="kw">WHERE</span> <span class="tbl">account_id</span> = <span class="num">101</span>;   <span class="cmt">-- debit</span>
+
+<span class="kw">UPDATE</span> <span class="tbl">accounts</span> <span class="kw">SET</span> <span class="tbl">balance</span> = <span class="tbl">balance</span> + <span class="num">5000</span>
+<span class="kw">WHERE</span> <span class="tbl">account_id</span> = <span class="num">202</span>;   <span class="cmt">-- credit</span>
+
+<span class="cmt">-- If everything is OK:</span>
+<span class="kw">COMMIT</span>;
+
+<span class="cmt">-- If something went wrong:</span>
+<span class="kw">ROLLBACK</span>;</pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-label">SQL — SAVEPOINT</div>
+                <pre>
+<span class="kw">START TRANSACTION</span>;
+<span class="kw">INSERT INTO</span> <span class="tbl">orders</span> <span class="kw">VALUES</span> (<span class="num">1001</span>, ...);
+<span class="kw">SAVEPOINT</span> <span class="tbl">sp1</span>;   <span class="cmt">-- mark a checkpoint</span>
+
+<span class="kw">INSERT INTO</span> <span class="tbl">order_items</span> <span class="kw">VALUES</span> (...);
+<span class="kw">ROLLBACK TO</span> <span class="tbl">sp1</span>;  <span class="cmt">-- undo back to savepoint (order_items rolled back)</span>
+<span class="kw">COMMIT</span>;            <span class="cmt">-- commits only the orders insert</span></pre>
+            </div>
+
+            <h3>Transaction Isolation Levels</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Dirty Read</th>
+                            <th>Non-Repeatable Read</th>
+                            <th>Phantom Read</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>READ UNCOMMITTED</td>
+                            <td>Possible</td>
+                            <td>Possible</td>
+                            <td>Possible</td>
+                        </tr>
+                        <tr>
+                            <td>READ COMMITTED</td>
+                            <td>Not possible</td>
+                            <td>Possible</td>
+                            <td>Possible</td>
+                        </tr>
+                        <tr>
+                            <td>REPEATABLE READ</td>
+                            <td>Not possible</td>
+                            <td>Not possible</td>
+                            <td>Possible</td>
+                        </tr>
+                        <tr>
+                            <td>SERIALIZABLE</td>
+                            <td>Not possible</td>
+                            <td>Not possible</td>
+                            <td>Not possible</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tip">💡 <strong>Dirty Read:</strong> Reading uncommitted data | <strong>Non-Repeatable
+                    Read:</strong> Same query returns different data in same transaction | <strong>Phantom
+                    Read:</strong> New rows appear between two reads</div>
+        </div>
+
+        <!-- ==================== OPTIMIZATION ==================== -->
+        <div class="section" id="sec-optimization">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Advanced</span>
+                <h2>Query Optimization</h2>
+                <p>Understanding how to write efficient SQL and analyze query performance is critical for advanced
+                    placement interviews.</p>
+            </div>
+
+            <h3>EXPLAIN / EXPLAIN ANALYZE</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Shows the query execution plan</span>
+<span class="kw">EXPLAIN SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">salary</span> > <span class="num">50000</span>;
+
+<span class="cmt">-- Shows actual execution stats (PostgreSQL / MySQL 8+)</span>
+<span class="kw">EXPLAIN ANALYZE SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span> <span class="kw">WHERE</span> <span class="tbl">salary</span> > <span class="num">50000</span>;</pre>
+            </div>
+
+            <p>Key EXPLAIN output fields to know:</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>type</td>
+                            <td>Access method: ALL (full scan) → range → ref → eq_ref → const (best to worst → best)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>possible_keys</td>
+                            <td>Indexes that could be used</td>
+                        </tr>
+                        <tr>
+                            <td>key</td>
+                            <td>Index actually used (NULL = no index)</td>
+                        </tr>
+                        <tr>
+                            <td>rows</td>
+                            <td>Estimated rows to examine</td>
+                        </tr>
+                        <tr>
+                            <td>Extra</td>
+                            <td>"Using index" = covering index (fast); "Using filesort" = bad sign</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Optimization Best Practices</h3>
+            <div class="code-block">
+                <div class="code-label">Tips</div>
+                <pre>
+<span class="cmt">-- 1. Use indexes on WHERE, JOIN, and ORDER BY columns</span>
+<span class="kw">CREATE INDEX</span> <span class="tbl">idx_salary</span> <span class="kw">ON</span> <span class="tbl">employees</span>(<span class="tbl">salary</span>);
+
+<span class="cmt">-- 2. Avoid functions on indexed columns in WHERE (breaks index)</span>
+<span class="cmt">-- BAD:</span>
+<span class="kw">WHERE</span> <span class="fn">YEAR</span>(<span class="tbl">hire_date</span>) = <span class="num">2023</span>
+<span class="cmt">-- GOOD:</span>
+<span class="kw">WHERE</span> <span class="tbl">hire_date</span> <span class="kw">BETWEEN</span> <span class="str">'2023-01-01'</span> <span class="kw">AND</span> <span class="str">'2023-12-31'</span>
+
+<span class="cmt">-- 3. SELECT only needed columns</span>
+<span class="cmt">-- BAD:</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="cmt">-- GOOD:</span>
+<span class="kw">SELECT</span> <span class="tbl">emp_id</span>, <span class="tbl">name</span>, <span class="tbl">salary</span> <span class="kw">FROM</span> <span class="tbl">employees</span>
+
+<span class="cmt">-- 4. Use EXISTS instead of IN for large subqueries</span>
+<span class="cmt">-- 5. Avoid DISTINCT when unnecessary</span>
+<span class="cmt">-- 6. Use LIMIT to cap large result sets</span>
+<span class="cmt">-- 7. Prefer JOINs over correlated subqueries for performance</span>
+<span class="cmt">-- 8. Avoid leading wildcards in LIKE</span>
+<span class="kw">WHERE</span> <span class="tbl">name</span> <span class="kw">LIKE</span> <span class="str">'%kumar'</span>  <span class="cmt">-- BAD: can't use index</span>
+<span class="kw">WHERE</span> <span class="tbl">name</span> <span class="kw">LIKE</span> <span class="str">'kumar%'</span>  <span class="cmt">-- GOOD: can use index</span></pre>
+            </div>
+        </div>
+
+        <!-- ==================== INTERVIEW ==================== -->
+        <div class="section" id="sec-interview">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Advanced</span>
+                <h2>Top Placement Interview Questions</h2>
+                <p>Classic SQL problems that appear repeatedly in placement tests at top companies. Understand the
+                    pattern, not just the answer.</p>
+            </div>
+
+            <h3>Q1: Find the Nth highest salary</h3>
+            <div class="code-block">
+                <div class="code-label">SQL — Multiple approaches</div>
+                <pre>
+<span class="cmt">-- Using LIMIT OFFSET (MySQL)</span>
+<span class="kw">SELECT DISTINCT</span> <span class="tbl">salary</span> <span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="num">1</span> <span class="kw">OFFSET</span> N-<span class="num">1</span>;  <span class="cmt">-- replace N with the desired rank</span>
+
+<span class="cmt">-- Using subquery (any DB)</span>
+<span class="kw">SELECT</span> <span class="fn">MAX</span>(<span class="tbl">salary</span>) <span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">WHERE</span> <span class="tbl">salary</span> &lt; (
+    <span class="kw">SELECT</span> <span class="fn">MAX</span>(<span class="tbl">salary</span>) <span class="kw">FROM</span> <span class="tbl">employees</span>
+);  <span class="cmt">-- This gives the 2nd highest</span>
+
+<span class="cmt">-- Using DENSE_RANK (most robust)</span>
+<span class="kw">SELECT</span> <span class="tbl">salary</span> <span class="kw">FROM</span> (
+    <span class="kw">SELECT</span> <span class="tbl">salary</span>, <span class="fn">DENSE_RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> <span class="tbl">salary</span> <span class="kw">DESC</span>) <span class="kw">AS</span> <span class="alias">rnk</span>
+    <span class="kw">FROM</span> <span class="tbl">employees</span>
+) <span class="alias">t</span>
+<span class="kw">WHERE</span> <span class="alias">rnk</span> = N;  <span class="cmt">-- replace N</span></pre>
+            </div>
+
+            <h3>Q2: Find duplicate records</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Find duplicate emails</span>
+<span class="kw">SELECT</span> <span class="tbl">email</span>, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> <span class="alias">cnt</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span>
+<span class="kw">GROUP BY</span> <span class="tbl">email</span>
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(*) > <span class="num">1</span>;
+
+<span class="cmt">-- Delete duplicates, keep one row</span>
+<span class="kw">DELETE FROM</span> <span class="tbl">employees</span>
+<span class="kw">WHERE</span> <span class="tbl">emp_id</span> <span class="kw">NOT IN</span> (
+    <span class="kw">SELECT</span> <span class="fn">MIN</span>(<span class="tbl">emp_id</span>)
+    <span class="kw">FROM</span> <span class="tbl">employees</span>
+    <span class="kw">GROUP BY</span> <span class="tbl">email</span>
+);</pre>
+            </div>
+
+            <h3>Q3: Employees earning more than their manager</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span> <span class="alias">e</span>.<span class="tbl">name</span> <span class="kw">AS</span> <span class="alias">employee</span>, <span class="alias">m</span>.<span class="tbl">name</span> <span class="kw">AS</span> <span class="alias">manager</span>
+<span class="kw">FROM</span> <span class="tbl">employees</span> <span class="alias">e</span>
+<span class="kw">JOIN</span> <span class="tbl">employees</span> <span class="alias">m</span> <span class="kw">ON</span> <span class="alias">e</span>.<span class="tbl">manager_id</span> = <span class="alias">m</span>.<span class="tbl">emp_id</span>
+<span class="kw">WHERE</span> <span class="alias">e</span>.<span class="tbl">salary</span> > <span class="alias">m</span>.<span class="tbl">salary</span>;</pre>
+            </div>
+
+            <h3>Q4: Consecutive seat numbers / streak detection</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="cmt">-- Find students sitting in consecutive seats</span>
+<span class="kw">SELECT DISTINCT</span> <span class="alias">a</span>.<span class="tbl">seat_id</span>
+<span class="kw">FROM</span> <span class="tbl">cinema</span> <span class="alias">a</span>
+<span class="kw">JOIN</span> <span class="tbl">cinema</span> <span class="alias">b</span>
+  <span class="kw">ON</span> <span class="fn">ABS</span>(<span class="alias">a</span>.<span class="tbl">seat_id</span> - <span class="alias">b</span>.<span class="tbl">seat_id</span>) = <span class="num">1</span>
+<span class="kw">WHERE</span> <span class="alias">a</span>.<span class="tbl">free</span> = <span class="num">1</span> <span class="kw">AND</span> <span class="alias">b</span>.<span class="tbl">free</span> = <span class="num">1</span>
+<span class="kw">ORDER BY</span> <span class="alias">a</span>.<span class="tbl">seat_id</span>;</pre>
+            </div>
+
+            <h3>Q5: Running total / cumulative sum</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span>
+    <span class="tbl">date</span>, <span class="tbl">amount</span>,
+    <span class="fn">SUM</span>(<span class="tbl">amount</span>) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> <span class="tbl">date</span>) <span class="kw">AS</span> <span class="alias">cumulative_total</span>
+<span class="kw">FROM</span> <span class="tbl">transactions</span>;</pre>
+            </div>
+
+            <h3>Q6: Find customers who placed orders every month</h3>
+            <div class="code-block">
+                <div class="code-label">SQL</div>
+                <pre>
+<span class="kw">SELECT</span> <span class="tbl">customer_id</span>
+<span class="kw">FROM</span> <span class="tbl">orders</span>
+<span class="kw">GROUP BY</span> <span class="tbl">customer_id</span>
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> <span class="fn">DATE_FORMAT</span>(<span class="tbl">order_date</span>, <span class="str">'%Y-%m'</span>)) = (
+    <span class="kw">SELECT</span> <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> <span class="fn">DATE_FORMAT</span>(<span class="tbl">order_date</span>, <span class="str">'%Y-%m'</span>))
+    <span class="kw">FROM</span> <span class="tbl">orders</span>
+);</pre>
+            </div>
+
+            <h3>Q7: Pivot — rows to columns</h3>
+            <div class="code-block">
+                <div class="code-label">SQL — Conditional Aggregation Pivot</div>
+                <pre>
+<span class="cmt">-- Convert rows of (dept, month, sales) to columns per month</span>
+<span class="kw">SELECT</span>
+    <span class="tbl">dept_id</span>,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> <span class="tbl">month</span> = <span class="str">'Jan'</span> <span class="kw">THEN</span> <span class="tbl">sales</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>) <span class="kw">AS</span> <span class="alias">Jan</span>,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> <span class="tbl">month</span> = <span class="str">'Feb'</span> <span class="kw">THEN</span> <span class="tbl">sales</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>) <span class="kw">AS</span> <span class="alias">Feb</span>,
+    <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> <span class="tbl">month</span> = <span class="str">'Mar'</span> <span class="kw">THEN</span> <span class="tbl">sales</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>) <span class="kw">AS</span> <span class="alias">Mar</span>
+<span class="kw">FROM</span> <span class="tbl">dept_sales</span>
+<span class="kw">GROUP BY</span> <span class="tbl">dept_id</span>;</pre>
+            </div>
+
+            <h3>Quick Reference: Must-Know Concepts</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Key Point to Remember</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RANK vs DENSE_RANK</td>
+                            <td>RANK has gaps; DENSE_RANK doesn't</td>
+                        </tr>
+                        <tr>
+                            <td>DELETE vs TRUNCATE</td>
+                            <td>DELETE is DML (rollback-able); TRUNCATE is DDL</td>
+                        </tr>
+                        <tr>
+                            <td>WHERE vs HAVING</td>
+                            <td>WHERE filters rows; HAVING filters groups</td>
+                        </tr>
+                        <tr>
+                            <td>UNION vs UNION ALL</td>
+                            <td>UNION removes duplicates; UNION ALL keeps them (faster)</td>
+                        </tr>
+                        <tr>
+                            <td>INNER vs LEFT JOIN</td>
+                            <td>INNER = only matches; LEFT = all left + matches</td>
+                        </tr>
+                        <tr>
+                            <td>NULL comparisons</td>
+                            <td>Use IS NULL/IS NOT NULL, never = NULL</td>
+                        </tr>
+                        <tr>
+                            <td>Execution order</td>
+                            <td>FROM→WHERE→GROUP BY→HAVING→SELECT→ORDER BY→LIMIT</td>
+                        </tr>
+                        <tr>
+                            <td>Index trade-off</td>
+                            <td>Faster reads, slower writes; don't over-index</td>
+                        </tr>
+                        <tr>
+                            <td>Normalization 3NF</td>
+                            <td>No transitive dependencies (A→B→C, fix by separating)</td>
+                        </tr>
+                        <tr>
+                            <td>ACID</td>
+                            <td>Atomicity, Consistency, Isolation, Durability</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const sections = ['intro', 'datatypes', 'ddl', 'dml', 'select', 'constraints', 'aggregates', 'null', 'joins', 'subqueries', 'setops', 'stringdate', 'case', 'views', 'normalization', 'window', 'cte', 'stored', 'triggers', 'transactions', 'optimization', 'interview'];
+        const visited = new Set();
+
+        function show(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('sec-' + id).classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
+            visited.add(id);
+            updateProgress();
+            document.getElementById('main').scrollTop = 0;
+        }
+
+        function updateProgress() {
+            const wrap = document.getElementById('progress');
+            wrap.innerHTML = '';
+            const colors = {
+                intro: '#3dd68c', datatypes: '#3dd68c', ddl: '#3dd68c', dml: '#3dd68c', select: '#3dd68c',
+                constraints: '#3dd68c', aggregates: '#3dd68c', null: '#3dd68c',
+                joins: '#f5a623', subqueries: '#f5a623', setops: '#f5a623', stringdate: '#f5a623',
+                case: '#f5a623', views: '#f5a623', normalization: '#f5a623',
+                window: '#ff5c5c', cte: '#ff5c5c', stored: '#ff5c5c', triggers: '#ff5c5c',
+                transactions: '#ff5c5c', optimization: '#ff5c5c', interview: '#ff5c5c'
+            };
+            sections.forEach(id => {
+                const seg = document.createElement('div');
+                seg.className = 'prog-seg' + (visited.has(id) ? ' done' : '');
+                seg.style.background = colors[id];
+                seg.onclick = () => show(id);
+                wrap.appendChild(seg);
+            });
+        }
+
+        updateProgress();
+    </script>
+</body>
+
+</html>

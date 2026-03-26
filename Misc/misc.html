@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Libraries — Placement Guide</title>
+    <style>
+        :root {
+            --bg: #0c0f1a;
+            --bg2: #111520;
+            --bg3: #181d2e;
+            --border: #1e2540;
+            --text: #dde4f5;
+            --muted: #5a6a9a;
+            --numpy: #4dabf7;
+            --pandas: #e17055;
+            --mpl: #a29bfe;
+            --sns: #fd79a8;
+            --sklearn: #00b894;
+            --nltk: #fdcb6e;
+            --bi: #f9ca24;
+            --code-bg: #080b14;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh
+        }
+
+        /* ── SIDEBAR ── */
+        #sidebar {
+            width: 268px;
+            min-width: 268px;
+            background: var(--bg2);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto
+        }
+
+        .sidebar-header {
+            padding: 16px 16px 10px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px
+        }
+
+        .ds-badge {
+            background: linear-gradient(135deg, #4dabf7, #a29bfe, #fd79a8);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 4px;
+            letter-spacing: .6px
+        }
+
+        .sidebar-header h1 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .sidebar-header p {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 1px
+        }
+
+        .progress-bar-wrap {
+            display: flex;
+            gap: 3px;
+            padding: 12px 14px 7px;
+            flex-wrap: wrap
+        }
+
+        .prog-seg {
+            height: 3px;
+            flex: 1;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: opacity .2s;
+            opacity: .22
+        }
+
+        .prog-seg.done {
+            opacity: 1
+        }
+
+        .lib-group {
+            margin: 4px 0
+        }
+
+        .lib-label {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 9px 14px 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .lib-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            font-size: 12px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all .15s;
+            color: var(--muted)
+        }
+
+        .nav-item:hover {
+            background: var(--bg3);
+            color: var(--text)
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, .04);
+            color: var(--text)
+        }
+
+        .nav-num {
+            font-size: 10px;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: var(--bg3)
+        }
+
+        /* ── MAIN ── */
+        #main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px 38px;
+            max-width: 940px
+        }
+
+        .section {
+            display: none
+        }
+
+        .section.active {
+            display: block
+        }
+
+        .sec-hero {
+            margin-bottom: 26px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .lib-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            margin-bottom: 10px
+        }
+
+        .sec-hero h2 {
+            font-size: 25px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .sec-hero p {
+            font-size: 13.5px;
+            color: var(--muted);
+            margin-top: 6px;
+            line-height: 1.65
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 26px 0 9px
+        }
+
+        h4 {
+            font-size: 13.5px;
+            font-weight: 600;
+            margin: 16px 0 6px;
+            color: #a0b0d0
+        }
+
+        p {
+            font-size: 13.5px;
+            line-height: 1.72;
+            color: var(--text);
+            margin-bottom: 9px
+        }
+
+        ul,
+        ol {
+            padding-left: 18px;
+            margin-bottom: 9px
+        }
+
+        li {
+            font-size: 13px;
+            line-height: 1.85;
+            color: var(--muted)
+        }
+
+        li strong {
+            color: var(--text)
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 22px 0
+        }
+
+        code {
+            background: var(--bg3);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+            font-size: 12px
+        }
+
+        /* ── CODE BLOCKS ── */
+        .code-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 10px 0 16px;
+            overflow: hidden
+        }
+
+        .code-label {
+            background: var(--bg3);
+            padding: 5px 12px;
+            font-size: 10.5px;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            font-family: monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        pre {
+            padding: 13px 15px;
+            overflow-x: auto;
+            font-size: 12.5px;
+            font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+            line-height: 1.65
+        }
+
+        /* syntax */
+        .kw {
+            color: #c792ea
+        }
+
+        .fn {
+            color: #82aaff
+        }
+
+        .str {
+            color: #c3e88d
+        }
+
+        .num {
+            color: #f78c6c
+        }
+
+        .cmt {
+            color: #546e94;
+            font-style: italic
+        }
+
+        .bi {
+            color: #ffcb6b
+        }
+
+        .cls {
+            color: #ffcb6b
+        }
+
+        .op {
+            color: #89ddff
+        }
+
+        .var {
+            color: #eeffff
+        }
+
+        .out {
+            color: #546e94
+        }
+
+        .attr {
+            color: #f07178
+        }
+
+        /* ── TABLES ── */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 10px 0 16px
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12.5px
+        }
+
+        thead tr {
+            background: var(--bg3)
+        }
+
+        th {
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border)
+        }
+
+        td {
+            padding: 7px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+            vertical-align: top
+        }
+
+        td:first-child {
+            color: var(--text);
+            font-weight: 500;
+            font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+            font-size: 12px
+        }
+
+        tr:last-child td {
+            border-bottom: none
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, .015)
+        }
+
+        /* ── CALLOUTS ── */
+        .tip {
+            padding: 11px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
+            font-size: 12.5px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid
+        }
+
+        .warn {
+            padding: 11px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
+            font-size: 12.5px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid
+        }
+
+        /* ── GRIDS ── */
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 13px;
+            margin: 12px 0
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0
+        }
+
+        .card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            padding: 12px 14px
+        }
+
+        .card h4 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 12.5px
+        }
+
+        .card p {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 0;
+            line-height: 1.55
+        }
+
+        /* ── OUTPUT PREVIEW ── */
+        .out-block {
+            background: #070a12;
+            border: 1px solid #1a2035;
+            border-radius: 0 0 7px 7px;
+            margin-top: -1px;
+            padding: 9px 14px;
+            font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+            font-size: 12px;
+            color: #546e94;
+            border-top: 1px dashed #1a2035
+        }
+
+        .out-block .ov {
+            color: #7ec8e3
+        }
+
+        .out-block .num {
+            color: #f78c6c
+        }
+
+        /* ── CHEATSHEET GRID ── */
+        .cheat {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 10px;
+            margin: 12px 0
+        }
+
+        .cheat-card {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 12px
+        }
+
+        .cheat-card .ch-title {
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            margin-bottom: 6px;
+            color: var(--muted)
+        }
+
+        .cheat-card pre {
+            padding: 0;
+            font-size: 11.5px;
+            line-height: 1.6
+        }
+
+        @media(max-width:768px) {
+            #sidebar {
+                display: none
+            }
+
+            #main {
+                padding: 18px 14px
+            }
+
+            .grid2,
+            .grid3 {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-row"><span class="ds-badge">DS LIBS</span></div>
+            <h1>Data Science Libraries</h1>
+            <p>Placement Revision Guide</p>
+        </div>
+        <div class="progress-bar-wrap" id="progress"></div>
+
+        <div class="lib-group">
+            <div class="lib-label" style="color:var(--numpy)"><span class="lib-dot"
+                    style="background:var(--numpy)"></span>NumPy</div>
+            <div class="nav-item active" onclick="show('np1')" id="nav-np1"><span class="nav-num"
+                    style="background:rgba(77,171,247,.15);color:var(--numpy)">1</span>Arrays & Creation</div>
+            <div class="nav-item" onclick="show('np2')" id="nav-np2"><span class="nav-num"
+                    style="background:rgba(77,171,247,.15);color:var(--numpy)">2</span>Indexing & Slicing</div>
+            <div class="nav-item" onclick="show('np3')" id="nav-np3"><span class="nav-num"
+                    style="background:rgba(77,171,247,.15);color:var(--numpy)">3</span>Operations & Broadcasting</div>
+            <div class="nav-item" onclick="show('np4')" id="nav-np4"><span class="nav-num"
+                    style="background:rgba(77,171,247,.15);color:var(--numpy)">4</span>Math, Stats & Linear Algebra
+            </div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label" style="color:var(--pandas)"><span class="lib-dot"
+                    style="background:var(--pandas)"></span>Pandas</div>
+            <div class="nav-item" onclick="show('pd1')" id="nav-pd1"><span class="nav-num"
+                    style="background:rgba(225,112,85,.15);color:var(--pandas)">1</span>Series & DataFrame</div>
+            <div class="nav-item" onclick="show('pd2')" id="nav-pd2"><span class="nav-num"
+                    style="background:rgba(225,112,85,.15);color:var(--pandas)">2</span>Indexing & Selection</div>
+            <div class="nav-item" onclick="show('pd3')" id="nav-pd3"><span class="nav-num"
+                    style="background:rgba(225,112,85,.15);color:var(--pandas)">3</span>Data Cleaning</div>
+            <div class="nav-item" onclick="show('pd4')" id="nav-pd4"><span class="nav-num"
+                    style="background:rgba(225,112,85,.15);color:var(--pandas)">4</span>GroupBy, Merge & Pivot</div>
+            <div class="nav-item" onclick="show('pd5')" id="nav-pd5"><span class="nav-num"
+                    style="background:rgba(225,112,85,.15);color:var(--pandas)">5</span>Apply, Map & I/O</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label" style="color:var(--mpl)"><span class="lib-dot"
+                    style="background:var(--mpl)"></span>Matplotlib</div>
+            <div class="nav-item" onclick="show('mpl1')" id="nav-mpl1"><span class="nav-num"
+                    style="background:rgba(162,155,254,.15);color:var(--mpl)">1</span>Figures & Axes</div>
+            <div class="nav-item" onclick="show('mpl2')" id="nav-mpl2"><span class="nav-num"
+                    style="background:rgba(162,155,254,.15);color:var(--mpl)">2</span>Plot Types & Styling</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label" style="color:var(--sns)"><span class="lib-dot"
+                    style="background:var(--sns)"></span>Seaborn</div>
+            <div class="nav-item" onclick="show('sns1')" id="nav-sns1"><span class="nav-num"
+                    style="background:rgba(253,121,168,.15);color:var(--sns)">1</span>Statistical Plots</div>
+            <div class="nav-item" onclick="show('sns2')" id="nav-sns2"><span class="nav-num"
+                    style="background:rgba(253,121,168,.15);color:var(--sns)">2</span>Themes & Advanced Plots</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label" style="color:var(--sklearn)"><span class="lib-dot"
+                    style="background:var(--sklearn)"></span>Scikit-learn</div>
+            <div class="nav-item" onclick="show('sk1')" id="nav-sk1"><span class="nav-num"
+                    style="background:rgba(0,184,148,.15);color:var(--sklearn)">1</span>Preprocessing</div>
+            <div class="nav-item" onclick="show('sk2')" id="nav-sk2"><span class="nav-num"
+                    style="background:rgba(0,184,148,.15);color:var(--sklearn)">2</span>Models & Evaluation</div>
+            <div class="nav-item" onclick="show('sk3')" id="nav-sk3"><span class="nav-num"
+                    style="background:rgba(0,184,148,.15);color:var(--sklearn)">3</span>Pipelines & Tuning</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label" style="color:var(--nltk)"><span class="lib-dot"
+                    style="background:var(--nltk)"></span>NLTK</div>
+            <div class="nav-item" onclick="show('nl1')" id="nav-nl1"><span class="nav-num"
+                    style="background:rgba(253,203,110,.15);color:var(--nltk)">1</span>Tokenization & Text</div>
+            <div class="nav-item" onclick="show('nl2')" id="nav-nl2"><span class="nav-num"
+                    style="background:rgba(253,203,110,.15);color:var(--nltk)">2</span>POS, NER & Parsing</div>
+            <div class="nav-item" onclick="show('nl3')" id="nav-nl3"><span class="nav-num"
+                    style="background:rgba(253,203,110,.15);color:var(--nltk)">3</span>TF-IDF & Text Features</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label" style="color:var(--bi)"><span class="lib-dot"
+                    style="background:var(--bi)"></span>Power BI / Tableau</div>
+            <div class="nav-item" onclick="show('bi1')" id="nav-bi1"><span class="nav-num"
+                    style="background:rgba(249,202,36,.15);color:var(--bi)">1</span>Power BI Essentials</div>
+            <div class="nav-item" onclick="show('bi2')" id="nav-bi2"><span class="nav-num"
+                    style="background:rgba(249,202,36,.15);color:var(--bi)">2</span>DAX Fundamentals</div>
+            <div class="nav-item" onclick="show('bi3')" id="nav-bi3"><span class="nav-num"
+                    style="background:rgba(249,202,36,.15);color:var(--bi)">3</span>Tableau Essentials</div>
+            <div class="nav-item" onclick="show('bi4')" id="nav-bi4"><span class="nav-num"
+                    style="background:rgba(249,202,36,.15);color:var(--bi)">4</span>BI Concepts & Interview Q&A</div>
+        </div>
+    </nav>
+
+    <main id="main">
+
+        <!-- ═══════════════════ NUMPY 1 ═══════════════════ -->
+        <div class="section active" id="sec-np1">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(77,171,247,.12);color:var(--numpy)">■ NumPy · Section 1
+                </div>
+                <h2>Arrays & Creation</h2>
+                <p>NumPy is the backbone of scientific computing in Python. Its <code>ndarray</code> is a fixed-type,
+                    contiguous-memory array that makes operations 10–100× faster than Python lists.</p>
+            </div>
+
+            <h3 style="color:var(--numpy)">Why NumPy over Python Lists?</h3>
+            <div class="grid3">
+                <div class="card">
+                    <h4>Speed</h4>
+                    <p>Vectorised C operations avoid Python loop overhead. 50–100× faster for numerical work.</p>
+                </div>
+                <div class="card">
+                    <h4>Memory</h4>
+                    <p>Stores homogeneous typed data contiguously. Less memory, better cache performance.</p>
+                </div>
+                <div class="card">
+                    <h4>Broadcasting</h4>
+                    <p>Perform operations on arrays of different shapes without explicit loops.</p>
+                </div>
+            </div>
+
+            <h3 style="color:var(--numpy)">Array Creation</h3>
+            <div class="code-block">
+                <div class="code-label">Python · NumPy Creation</div>
+                <pre>
+<span class="kw">import</span> numpy <span class="kw">as</span> <span class="var">np</span>
+
+<span class="cmt"># From Python lists</span>
+<span class="var">a</span> = np.array([<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>])              <span class="cmt"># 1-D, dtype=int64</span>
+<span class="var">b</span> = np.array([[<span class="num">1</span>,<span class="num">2</span>],[<span class="num">3</span>,<span class="num">4</span>]], dtype=<span class="bi">float</span>)  <span class="cmt"># 2-D float</span>
+
+<span class="cmt"># Factory functions</span>
+np.zeros((<span class="num">3</span>, <span class="num">4</span>))         <span class="cmt"># 3×4 of 0.0</span>
+np.ones((<span class="num">2</span>, <span class="num">3</span>))          <span class="cmt"># 2×3 of 1.0</span>
+np.full((<span class="num">2</span>, <span class="num">2</span>), <span class="num">7</span>)       <span class="cmt"># 2×2 of 7</span>
+np.eye(<span class="num">4</span>)                 <span class="cmt"># 4×4 identity</span>
+np.empty((<span class="num">3</span>, <span class="num">3</span>))         <span class="cmt"># uninitialised (fast)</span>
+np.random.rand(<span class="num">3</span>, <span class="num">3</span>)     <span class="cmt"># uniform [0,1)</span>
+np.random.randn(<span class="num">3</span>, <span class="num">3</span>)    <span class="cmt"># standard normal N(0,1)</span>
+np.random.randint(<span class="num">0</span>,<span class="num">10</span>,(<span class="num">3</span>,<span class="num">3</span>))  <span class="cmt"># random ints</span>
+np.random.seed(<span class="num">42</span>)       <span class="cmt"># reproducibility</span>
+
+<span class="cmt"># Ranges</span>
+np.arange(<span class="num">0</span>, <span class="num">10</span>, <span class="num">2</span>)      <span class="cmt"># [0 2 4 6 8]   start,stop,step</span>
+np.linspace(<span class="num">0</span>, <span class="num">1</span>, <span class="num">5</span>)     <span class="cmt"># [0. .25 .5 .75 1.]  n evenly-spaced</span>
+np.logspace(<span class="num">0</span>, <span class="num">3</span>, <span class="num">4</span>)     <span class="cmt"># [1, 10, 100, 1000]</span></pre>
+            </div>
+
+            <h3 style="color:var(--numpy)">Array Attributes</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">x</span> = np.arange(<span class="num">24</span>).reshape(<span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>)
+
+<span class="var">x</span>.<span class="attr">shape</span>       <span class="cmt"># (2, 3, 4)   — dimensions</span>
+<span class="var">x</span>.<span class="attr">ndim</span>        <span class="cmt"># 3           — number of axes</span>
+<span class="var">x</span>.<span class="attr">size</span>        <span class="cmt"># 24          — total elements</span>
+<span class="var">x</span>.<span class="attr">dtype</span>       <span class="cmt"># int64       — element type</span>
+<span class="var">x</span>.<span class="attr">itemsize</span>    <span class="cmt"># 8 bytes     — per element</span>
+<span class="var">x</span>.<span class="attr">nbytes</span>      <span class="cmt"># 192 bytes   — total memory</span></pre>
+            </div>
+
+            <h3 style="color:var(--numpy)">Data Types</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>dtype</th>
+                            <th>Description</th>
+                            <th>Range / Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>int8/16/32/64</td>
+                            <td>Signed integers</td>
+                            <td>int8: −128 to 127; int64 is default</td>
+                        </tr>
+                        <tr>
+                            <td>uint8/16/32/64</td>
+                            <td>Unsigned integers</td>
+                            <td>uint8: 0–255 (images!)</td>
+                        </tr>
+                        <tr>
+                            <td>float16/32/64</td>
+                            <td>Floating point</td>
+                            <td>float64 (double) is default</td>
+                        </tr>
+                        <tr>
+                            <td>complex64/128</td>
+                            <td>Complex numbers</td>
+                            <td>Real + imaginary parts</td>
+                        </tr>
+                        <tr>
+                            <td>bool</td>
+                            <td>Boolean</td>
+                            <td>True/False stored as 1 bit</td>
+                        </tr>
+                        <tr>
+                            <td>str_ / unicode_</td>
+                            <td>Fixed-width strings</td>
+                            <td>Use object dtype for variable length</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tip" style="border-color:var(--numpy);background:rgba(77,171,247,.05)">💡 <strong>Type
+                    casting:</strong> <code>arr.astype(np.float32)</code> — reduce memory for large arrays (float32 uses
+                half the memory of float64). Critical for deep learning models.</div>
+        </div>
+
+        <!-- ═══════════════════ NUMPY 2 ═══════════════════ -->
+        <div class="section" id="sec-np2">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(77,171,247,.12);color:var(--numpy)">■ NumPy · Section 2
+                </div>
+                <h2>Indexing, Slicing & Reshaping</h2>
+            </div>
+
+            <h3 style="color:var(--numpy)">Basic Indexing & Slicing</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">a</span> = np.array([[<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>],
+              [<span class="num">4</span>,<span class="num">5</span>,<span class="num">6</span>],
+              [<span class="num">7</span>,<span class="num">8</span>,<span class="num">9</span>]])
+
+<span class="cmt"># Single element</span>
+<span class="var">a</span>[<span class="num">1</span>, <span class="num">2</span>]           <span class="cmt"># 6    — row 1, col 2</span>
+<span class="var">a</span>[<span class="num">-1</span>, <span class="num">-1</span>]         <span class="cmt"># 9    — last row, last col</span>
+
+<span class="cmt"># Slicing  [start:stop:step]</span>
+<span class="var">a</span>[<span class="num">0</span>, :]           <span class="cmt"># [1 2 3]   — first row</span>
+<span class="var">a</span>[:, <span class="num">1</span>]           <span class="cmt"># [2 5 8]   — second column</span>
+<span class="var">a</span>[<span class="num">0</span>:<span class="num">2</span>, <span class="num">1</span>:<span class="num">3</span>]       <span class="cmt"># [[2,3],[5,6]]</span>
+<span class="var">a</span>[::<span class="num">2</span>, ::<span class="num">2</span>]       <span class="cmt"># [[1,3],[7,9]] — every 2nd</span>
+
+<span class="cmt"># ⚠️ Slices are VIEWS, not copies!</span>
+<span class="var">v</span> = <span class="var">a</span>[<span class="num">0</span>]
+<span class="var">v</span>[<span class="num">0</span>] = <span class="num">99</span>          <span class="cmt"># modifies a too!</span>
+<span class="var">copy</span> = <span class="var">a</span>[<span class="num">0</span>].copy() <span class="cmt"># use .copy() for safety</span></pre>
+            </div>
+
+            <h3 style="color:var(--numpy)">Fancy Indexing & Boolean Masks</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">a</span> = np.array([<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>, <span class="num">40</span>, <span class="num">50</span>])
+
+<span class="cmt"># Fancy (integer array) indexing — always returns copy</span>
+<span class="var">a</span>[[<span class="num">0</span>, <span class="num">2</span>, <span class="num">4</span>]]      <span class="cmt"># [10 30 50]</span>
+<span class="var">a</span>[np.array([<span class="num">3</span>,<span class="num">1</span>])]  <span class="cmt"># [40 20]</span>
+
+<span class="cmt"># Boolean masking</span>
+<span class="var">mask</span> = <span class="var">a</span> > <span class="num">25</span>       <span class="cmt"># [F F T T T]</span>
+<span class="var">a</span>[<span class="var">mask</span>]            <span class="cmt"># [30 40 50]</span>
+<span class="var">a</span>[<span class="var">a</span> % <span class="num">20</span> == <span class="num">0</span>]     <span class="cmt"># [20 40]</span>
+
+<span class="cmt"># Compound conditions</span>
+<span class="var">a</span>[(<span class="var">a</span> > <span class="num">15</span>) & (<span class="var">a</span> < <span class="num">45</span>)]   <span class="cmt"># [20 30 40]</span>
+np.where(<span class="var">a</span> > <span class="num">30</span>, <span class="var">a</span>, <span class="num">0</span>)   <span class="cmt"># [0 0 0 40 50]</span></pre>
+            </div>
+
+            <h3 style="color:var(--numpy)">Reshaping & Stacking</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">x</span> = np.arange(<span class="num">12</span>)
+
+<span class="var">x</span>.reshape(<span class="num">3</span>, <span class="num">4</span>)     <span class="cmt"># 3×4   — -1 auto-calculates dim</span>
+<span class="var">x</span>.reshape(<span class="num">2</span>, -<span class="num">1</span>)    <span class="cmt"># 2×6   — auto second dim</span>
+<span class="var">x</span>.reshape(-<span class="num">1</span>, <span class="num">1</span>)    <span class="cmt"># 12×1  — column vector</span>
+<span class="var">x</span>.flatten()          <span class="cmt"># 1-D copy (always copy)</span>
+<span class="var">x</span>.ravel()            <span class="cmt"># 1-D view when possible</span>
+
+<span class="cmt"># Transpose</span>
+<span class="var">m</span> = np.arange(<span class="num">6</span>).reshape(<span class="num">2</span>,<span class="num">3</span>)
+<span class="var">m</span>.T                  <span class="cmt"># 3×2 transpose</span>
+<span class="var">m</span>.transpose(<span class="num">1</span>,<span class="num">0</span>)     <span class="cmt"># same as .T for 2-D</span>
+
+<span class="cmt"># Adding axes</span>
+<span class="var">v</span> = np.array([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>])      <span class="cmt"># shape (3,)</span>
+<span class="var">v</span>[np.newaxis, :]           <span class="cmt"># shape (1,3) row vector</span>
+<span class="var">v</span>[:, np.newaxis]           <span class="cmt"># shape (3,1) column vector</span>
+np.expand_dims(<span class="var">v</span>, axis=<span class="num">0</span>) <span class="cmt"># same as newaxis</span>
+
+<span class="cmt"># Stacking</span>
+<span class="var">a</span> = np.array([<span class="num">1</span>,<span class="num">2</span>]); <span class="var">b</span> = np.array([<span class="num">3</span>,<span class="num">4</span>])
+np.hstack([<span class="var">a</span>, <span class="var">b</span>])   <span class="cmt"># [1 2 3 4]  — horizontal</span>
+np.vstack([<span class="var">a</span>, <span class="var">b</span>])   <span class="cmt"># [[1,2],[3,4]]  — vertical</span>
+np.stack([<span class="var">a</span>, <span class="var">b</span>], axis=<span class="num">0</span>)  <span class="cmt"># new axis</span>
+np.concatenate([<span class="var">a</span>,<span class="var">b</span>], axis=<span class="num">0</span>)
+np.split(<span class="var">a</span>, <span class="num">2</span>)       <span class="cmt"># split into 2 equal parts</span></pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ NUMPY 3 ═══════════════════ -->
+        <div class="section" id="sec-np3">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(77,171,247,.12);color:var(--numpy)">■ NumPy · Section 3
+                </div>
+                <h2>Operations & Broadcasting</h2>
+            </div>
+
+            <h3 style="color:var(--numpy)">Element-wise Operations</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">a</span> = np.array([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>])
+<span class="var">b</span> = np.array([<span class="num">4</span>,<span class="num">5</span>,<span class="num">6</span>])
+
+<span class="cmt"># All are element-wise</span>
+<span class="var">a</span> + <span class="var">b</span>              <span class="cmt"># [5 7 9]</span>
+<span class="var">a</span> * <span class="var">b</span>              <span class="cmt"># [4 10 18]   NOT matrix multiply</span>
+<span class="var">a</span> ** <span class="num">2</span>             <span class="cmt"># [1 4 9]</span>
+np.sqrt(<span class="var">a</span>)         <span class="cmt"># element-wise sqrt</span>
+np.exp(<span class="var">a</span>)          <span class="cmt"># e^each</span>
+np.log(<span class="var">a</span>)          <span class="cmt"># natural log</span>
+np.abs(np.array([-<span class="num">1</span>,-<span class="num">2</span>,<span class="num">3</span>]))  <span class="cmt"># [1 2 3]</span>
+np.clip(<span class="var">a</span>, <span class="num">2</span>, <span class="num">5</span>)   <span class="cmt"># clamp to [2,5]</span>
+np.round(<span class="var">a</span>, <span class="num">2</span>)     <span class="cmt"># round to 2 decimal places</span>
+
+<span class="cmt"># Comparison (returns bool array)</span>
+<span class="var">a</span> > <span class="num">2</span>              <span class="cmt"># [F F T]</span>
+np.equal(<span class="var">a</span>, <span class="var">b</span>)    <span class="cmt"># element-wise ==</span></pre>
+            </div>
+
+            <h3 style="color:var(--numpy)">Broadcasting Rules</h3>
+            <p>Broadcasting allows operations on arrays of different shapes. NumPy pads smaller shapes with 1s on the
+                left and stretches size-1 dimensions.</p>
+            <div class="code-block">
+                <div class="code-label">Python · Broadcasting</div>
+                <pre>
+<span class="cmt"># Rule: compare shapes right-to-left
+# Dimensions must be equal OR one of them is 1</span>
+
+<span class="var">A</span> = np.ones((<span class="num">3</span>, <span class="num">4</span>))   <span class="cmt"># shape (3,4)</span>
+<span class="var">B</span> = np.ones((<span class="num">4</span>,))    <span class="cmt"># shape (4,) → padded to (1,4)</span>
+<span class="var">A</span> + <span class="var">B</span>                 <span class="cmt"># OK — B broadcasts to (3,4)</span>
+
+<span class="var">C</span> = np.ones((<span class="num">3</span>, <span class="num">1</span>))  <span class="cmt"># shape (3,1)</span>
+<span class="var">A</span> + <span class="var">C</span>                 <span class="cmt"># OK — C broadcasts to (3,4)</span>
+
+<span class="cmt"># Practical: subtract column mean (z-score normalisation)</span>
+<span class="var">X</span> = np.random.randn(<span class="num">100</span>, <span class="num">5</span>)  <span class="cmt"># 100 samples, 5 features</span>
+<span class="var">X_norm</span> = (<span class="var">X</span> - <span class="var">X</span>.mean(axis=<span class="num">0</span>)) / <span class="var">X</span>.std(axis=<span class="num">0</span>)
+<span class="cmt"># mean/std shape: (5,) → broadcasts over 100 rows</span></pre>
+            </div>
+
+            <div class="tip" style="border-color:var(--numpy);background:rgba(77,171,247,.05)">💡 <strong>Broadcasting
+                    vs matrix multiply:</strong> <code>a * b</code> = element-wise. <code>a @ b</code> or
+                <code>np.dot(a, b)</code> = matrix multiplication (inner dims must match).
+            </div>
+
+            <h3 style="color:var(--numpy)">Aggregation & Reduction</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">m</span> = np.array([[<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>],
+              [<span class="num">4</span>,<span class="num">5</span>,<span class="num">6</span>]])
+
+<span class="cmt"># axis=None → over all elements</span>
+<span class="cmt"># axis=0    → collapse rows (result per column)</span>
+<span class="cmt"># axis=1    → collapse columns (result per row)</span>
+
+<span class="var">m</span>.sum()               <span class="cmt"># 21</span>
+<span class="var">m</span>.sum(axis=<span class="num">0</span>)         <span class="cmt"># [5 7 9]  — column sums</span>
+<span class="var">m</span>.sum(axis=<span class="num">1</span>)         <span class="cmt"># [6 15]   — row sums</span>
+<span class="var">m</span>.mean(axis=<span class="num">0</span>)        <span class="cmt"># [2.5 3.5 4.5]</span>
+<span class="var">m</span>.max(); <span class="var">m</span>.min()
+<span class="var">m</span>.argmax(); <span class="var">m</span>.argmin() <span class="cmt"># index of max/min</span>
+<span class="var">m</span>.cumsum(axis=<span class="num">1</span>)      <span class="cmt"># cumulative sum along rows</span>
+<span class="var">m</span>.prod(axis=<span class="num">0</span>)        <span class="cmt"># column products</span>
+np.any(<span class="var">m</span> > <span class="num">5</span>)         <span class="cmt"># True  (any element)</span>
+np.all(<span class="var">m</span> > <span class="num">0</span>)         <span class="cmt"># True  (all elements)</span>
+np.unique(<span class="var">m</span>)          <span class="cmt"># sorted unique values</span>
+np.sort(<span class="var">m</span>, axis=<span class="num">1</span>)    <span class="cmt"># sort each row</span>
+np.argsort(<span class="var">m</span>, axis=<span class="num">0</span>)<span class="cmt"># indices that would sort</span></pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ NUMPY 4 ═══════════════════ -->
+        <div class="section" id="sec-np4">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(77,171,247,.12);color:var(--numpy)">■ NumPy · Section 4
+                </div>
+                <h2>Math, Statistics & Linear Algebra</h2>
+            </div>
+
+            <h3 style="color:var(--numpy)">Statistical Functions</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">x</span> = np.random.randn(<span class="num">1000</span>)
+
+np.mean(<span class="var">x</span>)               <span class="cmt"># sample mean</span>
+np.median(<span class="var">x</span>)             <span class="cmt"># 50th percentile</span>
+np.std(<span class="var">x</span>)                 <span class="cmt"># std dev (ddof=0 default)</span>
+np.std(<span class="var">x</span>, ddof=<span class="num">1</span>)        <span class="cmt"># unbiased (sample) std</span>
+np.var(<span class="var">x</span>)                 <span class="cmt"># variance</span>
+np.percentile(<span class="var">x</span>, [<span class="num">25</span>,<span class="num">50</span>,<span class="num">75</span>])  <span class="cmt"># quartiles</span>
+np.quantile(<span class="var">x</span>, <span class="num">0.95</span>)     <span class="cmt"># 95th percentile</span>
+np.corrcoef(<span class="var">x</span>, <span class="var">y</span>)        <span class="cmt"># 2×2 correlation matrix</span>
+np.cov(<span class="var">x</span>, <span class="var">y</span>)              <span class="cmt"># 2×2 covariance matrix</span>
+np.histogram(<span class="var">x</span>, bins=<span class="num">20</span>) <span class="cmt"># (counts, bin_edges)</span></pre>
+            </div>
+
+            <h3 style="color:var(--numpy)">Linear Algebra (numpy.linalg)</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> numpy <span class="kw">import</span> linalg <span class="kw">as</span> <span class="var">LA</span>
+
+<span class="var">A</span> = np.array([[<span class="num">1</span>,<span class="num">2</span>],[<span class="num">3</span>,<span class="num">4</span>]])
+
+<span class="cmt"># Matrix operations</span>
+<span class="var">A</span> @ <span class="var">A</span>              <span class="cmt"># matrix multiply (same as np.dot(A,A))</span>
+LA.det(<span class="var">A</span>)          <span class="cmt"># determinant: -2.0</span>
+LA.inv(<span class="var">A</span>)          <span class="cmt"># matrix inverse</span>
+LA.matrix_rank(<span class="var">A</span>)  <span class="cmt"># rank</span>
+LA.norm(<span class="var">A</span>)         <span class="cmt"># Frobenius norm (default)</span>
+LA.norm(<span class="var">A</span>, ord=<span class="num">2</span>)  <span class="cmt"># 2-norm (largest singular value)</span>
+
+<span class="cmt"># Eigendecomposition</span>
+<span class="var">vals</span>, <span class="var">vecs</span> = LA.eig(<span class="var">A</span>)    <span class="cmt"># eigenvalues & eigenvectors</span>
+<span class="var">vals</span>, <span class="var">vecs</span> = LA.eigh(<span class="var">A</span>)   <span class="cmt"># for symmetric matrices</span>
+
+<span class="cmt"># SVD — used internally by PCA</span>
+<span class="var">U</span>, <span class="var">S</span>, <span class="var">Vt</span> = LA.svd(<span class="var">A</span>)     <span class="cmt"># A = U @ diag(S) @ Vt</span>
+
+<span class="cmt"># Solve linear system Ax = b</span>
+<span class="var">b</span> = np.array([<span class="num">5</span>, <span class="num">11</span>])
+<span class="var">x</span> = LA.solve(<span class="var">A</span>, <span class="var">b</span>)       <span class="cmt"># [1. 2.]</span>
+<span class="var">x</span> = LA.lstsq(<span class="var">A</span>, <span class="var">b</span>, rcond=<span class="kw">None</span>)[<span class="num">0</span>]  <span class="cmt"># least-squares</span></pre>
+            </div>
+
+            <h3 style="color:var(--numpy)">Random Module</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">rng</span> = np.random.default_rng(seed=<span class="num">42</span>)  <span class="cmt"># modern API</span>
+
+<span class="var">rng</span>.random((<span class="num">3</span>,<span class="num">3</span>))        <span class="cmt"># uniform [0,1)</span>
+<span class="var">rng</span>.standard_normal(<span class="num">5</span>)   <span class="cmt"># N(0,1)</span>
+<span class="var">rng</span>.normal(<span class="num">5</span>, <span class="num">2</span>, <span class="num">100</span>)    <span class="cmt"># N(μ=5, σ=2) 100 samples</span>
+<span class="var">rng</span>.integers(<span class="num">0</span>, <span class="num">10</span>, <span class="num">5</span>)  <span class="cmt"># 5 random ints in [0,10)</span>
+<span class="var">rng</span>.choice(<span class="var">arr</span>, <span class="num">3</span>)       <span class="cmt"># sample 3 without replacement</span>
+<span class="var">rng</span>.shuffle(<span class="var">arr</span>)         <span class="cmt"># in-place shuffle</span>
+<span class="var">rng</span>.permutation(<span class="var">arr</span>)     <span class="cmt"># returns shuffled copy</span></pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ PANDAS 1 ═══════════════════ -->
+        <div class="section" id="sec-pd1">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(225,112,85,.12);color:var(--pandas)">■ Pandas · Section 1
+                </div>
+                <h2>Series & DataFrame</h2>
+                <p>Pandas provides labelled, flexible data structures for real-world tabular data. The
+                    <code>DataFrame</code> is the central object of data analysis in Python.
+                </p>
+            </div>
+
+            <h3 style="color:var(--pandas)">Series</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">import</span> pandas <span class="kw">as</span> <span class="var">pd</span>
+<span class="kw">import</span> numpy  <span class="kw">as</span> <span class="var">np</span>
+
+<span class="cmt"># Series = 1-D labelled array</span>
+<span class="var">s</span> = pd.Series([<span class="num">10</span>,<span class="num">20</span>,<span class="num">30</span>], index=[<span class="str">'a'</span>,<span class="str">'b'</span>,<span class="str">'c'</span>], name=<span class="str">'vals'</span>)
+<span class="var">s</span>[<span class="str">'b'</span>]            <span class="cmt"># 20  — label access</span>
+<span class="var">s</span>[<span class="num">1</span>]              <span class="cmt"># 20  — position access</span>
+<span class="var">s</span>.values          <span class="cmt"># numpy array</span>
+<span class="var">s</span>.index           <span class="cmt"># Index(['a','b','c'])</span>
+<span class="var">s</span>.dtype           <span class="cmt"># int64</span>
+<span class="var">s</span>.describe()      <span class="cmt"># count, mean, std, min, 25%, 50%, 75%, max</span>
+<span class="var">s</span>.value_counts()  <span class="cmt"># frequency of each unique value</span></pre>
+            </div>
+
+            <h3 style="color:var(--pandas)">DataFrame Creation</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># From dict</span>
+<span class="var">df</span> = pd.DataFrame({
+    <span class="str">'name'</span>:   [<span class="str">'Alice'</span>, <span class="str">'Bob'</span>, <span class="str">'Carol'</span>],
+    <span class="str">'age'</span>:    [<span class="num">25</span>, <span class="num">30</span>, <span class="num">28</span>],
+    <span class="str">'salary'</span>: [<span class="num">60000</span>, <span class="num">75000</span>, <span class="num">68000</span>],
+    <span class="str">'dept'</span>:   [<span class="str">'HR'</span>, <span class="str">'Eng'</span>, <span class="str">'Eng'</span>]
+})
+
+<span class="cmt"># From CSV / Excel / SQL</span>
+pd.read_csv(<span class="str">'data.csv'</span>, parse_dates=[<span class="str">'date'</span>], index_col=<span class="str">'id'</span>)
+pd.read_excel(<span class="str">'file.xlsx'</span>, sheet_name=<span class="str">'Sheet1'</span>)
+pd.read_json(<span class="str">'data.json'</span>)
+pd.read_sql(<span class="str">"SELECT * FROM table"</span>, <span class="var">conn</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--pandas)">Essential DataFrame Methods</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Shape & overview</span>
+<span class="var">df</span>.shape          <span class="cmt"># (3, 4)</span>
+<span class="var">df</span>.dtypes          <span class="cmt"># column types</span>
+<span class="var">df</span>.info()          <span class="cmt"># non-null counts + dtypes</span>
+<span class="var">df</span>.describe()      <span class="cmt"># stats for numeric cols</span>
+<span class="var">df</span>.describe(include=<span class="str">'all'</span>)  <span class="cmt"># include categoricals</span>
+<span class="var">df</span>.head(<span class="num">5</span>)         <span class="cmt"># first 5 rows</span>
+<span class="var">df</span>.tail(<span class="num">3</span>)         <span class="cmt"># last 3 rows</span>
+<span class="var">df</span>.sample(<span class="num">3</span>)       <span class="cmt"># 3 random rows</span>
+<span class="var">df</span>.columns         <span class="cmt"># Index of column names</span>
+<span class="var">df</span>.index           <span class="cmt"># row index</span>
+
+<span class="cmt"># Column operations</span>
+<span class="var">df</span>[<span class="str">'age'</span>]                   <span class="cmt"># Series</span>
+<span class="var">df</span>[[<span class="str">'name'</span>, <span class="str">'salary'</span>]]      <span class="cmt"># sub-DataFrame</span>
+<span class="var">df</span>[<span class="str">'annual'</span>] = <span class="var">df</span>[<span class="str">'salary'</span>] * <span class="num">12</span>   <span class="cmt"># new column</span>
+<span class="var">df</span>.rename(columns={<span class="str">'age'</span>:<span class="str">'Age'</span>}, inplace=<span class="kw">True</span>)
+<span class="var">df</span>.drop(columns=[<span class="str">'annual'</span>])
+<span class="var">df</span>.drop_duplicates()
+<span class="var">df</span>.sort_values(<span class="str">'salary'</span>, ascending=<span class="kw">False</span>)
+<span class="var">df</span>.reset_index(drop=<span class="kw">True</span>)</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ PANDAS 2 ═══════════════════ -->
+        <div class="section" id="sec-pd2">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(225,112,85,.12);color:var(--pandas)">■ Pandas · Section 2
+                </div>
+                <h2>Indexing & Selection</h2>
+            </div>
+
+            <h3 style="color:var(--pandas)">loc vs iloc vs []</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Selector Type</th>
+                            <th>Row</th>
+                            <th>Column</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>df[col]</td>
+                            <td>Column label</td>
+                            <td>—</td>
+                            <td>Column by name</td>
+                        </tr>
+                        <tr>
+                            <td>df.loc[r, c]</td>
+                            <td>Label-based</td>
+                            <td>Row label / slice</td>
+                            <td>Column label / slice</td>
+                        </tr>
+                        <tr>
+                            <td>df.iloc[r, c]</td>
+                            <td>Position-based</td>
+                            <td>Integer position</td>
+                            <td>Integer position</td>
+                        </tr>
+                        <tr>
+                            <td>df.at[r, c]</td>
+                            <td>Label (scalar)</td>
+                            <td>Single row label</td>
+                            <td>Single col label</td>
+                        </tr>
+                        <tr>
+                            <td>df.iat[r, c]</td>
+                            <td>Position (scalar)</td>
+                            <td>Single int</td>
+                            <td>Single int</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-block">
+                <div class="code-label">Python · loc, iloc, boolean</div>
+                <pre>
+<span class="cmt"># loc — label-based (inclusive both ends)</span>
+<span class="var">df</span>.loc[<span class="num">0</span>, <span class="str">'name'</span>]               <span class="cmt"># 'Alice'</span>
+<span class="var">df</span>.loc[<span class="num">0</span>:<span class="num">2</span>, <span class="str">'name'</span>:<span class="str">'salary'</span>]    <span class="cmt"># rows 0-2, cols name to salary</span>
+<span class="var">df</span>.loc[<span class="var">df</span>[<span class="str">'dept'</span>] == <span class="str">'Eng'</span>]     <span class="cmt"># boolean mask</span>
+<span class="var">df</span>.loc[<span class="var">df</span>[<span class="str">'salary'</span>] > <span class="num">65000</span>, [<span class="str">'name'</span>,<span class="str">'salary'</span>]]
+
+<span class="cmt"># iloc — integer position (stop exclusive)</span>
+<span class="var">df</span>.iloc[<span class="num">0</span>, <span class="num">1</span>]        <span class="cmt"># row 0, col 1</span>
+<span class="var">df</span>.iloc[:, <span class="num">1</span>:<span class="num">3</span>]      <span class="cmt"># all rows, cols 1 and 2</span>
+<span class="var">df</span>.iloc[[-<span class="num">1</span>,-<span class="num">2</span>]]     <span class="cmt"># last 2 rows</span>
+<span class="var">df</span>.iloc[::<span class="num">2</span>]         <span class="cmt"># every other row</span>
+
+<span class="cmt"># Boolean indexing (very common pattern)</span>
+<span class="var">mask</span> = (<span class="var">df</span>[<span class="str">'age'</span>] > <span class="num">26</span>) & (<span class="var">df</span>[<span class="str">'dept'</span>] == <span class="str">'Eng'</span>)
+<span class="var">df</span>[<span class="var">mask</span>]
+
+<span class="cmt"># query() method (readable SQL-like)</span>
+<span class="var">df</span>.query(<span class="str">"age > 26 and dept == 'Eng'"</span>)
+<span class="var">df</span>.query(<span class="str">"salary.between(60000, 70000)"</span>)</pre>
+            </div>
+
+            <div class="warn" style="border-color:#f39c12;background:rgba(243,156,18,.05)">⚠️
+                <strong>SettingWithCopyWarning:</strong> <code>df[df['x']>0]['y'] = 1</code> may not work (chained
+                assignment on a copy). Use <code>df.loc[df['x']>0, 'y'] = 1</code> instead.
+            </div>
+        </div>
+
+        <!-- ═══════════════════ PANDAS 3 ═══════════════════ -->
+        <div class="section" id="sec-pd3">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(225,112,85,.12);color:var(--pandas)">■ Pandas · Section 3
+                </div>
+                <h2>Data Cleaning</h2>
+            </div>
+
+            <h3 style="color:var(--pandas)">Handling Missing Values</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Detection</span>
+<span class="var">df</span>.isnull()              <span class="cmt"># boolean mask of NaN</span>
+<span class="var">df</span>.isnull().sum()        <span class="cmt"># count NaN per column</span>
+<span class="var">df</span>.isnull().sum() / <span class="bi">len</span>(<span class="var">df</span>) * <span class="num">100</span>  <span class="cmt"># % missing</span>
+<span class="var">df</span>.notnull()
+<span class="var">df</span>.dropna()              <span class="cmt"># drop rows with ANY NaN</span>
+<span class="var">df</span>.dropna(subset=[<span class="str">'salary'</span>])   <span class="cmt"># only if salary is NaN</span>
+<span class="var">df</span>.dropna(axis=<span class="num">1</span>, thresh=<span class="num">50</span>)  <span class="cmt"># drop cols with &lt;50 non-null</span>
+
+<span class="cmt"># Filling</span>
+<span class="var">df</span>.fillna(<span class="num">0</span>)             <span class="cmt"># fill all NaN with 0</span>
+<span class="var">df</span>[<span class="str">'age'</span>].fillna(<span class="var">df</span>[<span class="str">'age'</span>].mean())  <span class="cmt"># mean imputation</span>
+<span class="var">df</span>.fillna(method=<span class="str">'ffill'</span>)  <span class="cmt"># forward-fill</span>
+<span class="var">df</span>.fillna(method=<span class="str">'bfill'</span>)  <span class="cmt"># backward-fill</span>
+<span class="var">df</span>.interpolate()          <span class="cmt"># linear interpolation</span>
+<span class="var">df</span>.fillna({<span class="str">'age'</span>:<span class="num">0</span>, <span class="str">'salary'</span>:<span class="var">df</span>[<span class="str">'salary'</span>].median()})</pre>
+            </div>
+
+            <h3 style="color:var(--pandas)">Type Conversion & String Cleaning</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Type conversion</span>
+<span class="var">df</span>[<span class="str">'age'</span>] = <span class="var">df</span>[<span class="str">'age'</span>].astype(<span class="bi">int</span>)
+<span class="var">df</span>[<span class="str">'date'</span>] = pd.to_datetime(<span class="var">df</span>[<span class="str">'date'</span>])
+<span class="var">df</span>[<span class="str">'price'</span>] = pd.to_numeric(<span class="var">df</span>[<span class="str">'price'</span>], errors=<span class="str">'coerce'</span>)
+<span class="var">df</span>[<span class="str">'cat'</span>] = <span class="var">df</span>[<span class="str">'cat'</span>].astype(<span class="str">'category'</span>)  <span class="cmt"># saves memory</span>
+
+<span class="cmt"># String operations (via .str accessor)</span>
+<span class="var">df</span>[<span class="str">'name'</span>].<span class="attr">str</span>.lower()
+<span class="var">df</span>[<span class="str">'name'</span>].<span class="attr">str</span>.strip()
+<span class="var">df</span>[<span class="str">'name'</span>].<span class="attr">str</span>.replace(<span class="str">'Inc'</span>, <span class="str">''</span>)
+<span class="var">df</span>[<span class="str">'name'</span>].<span class="attr">str</span>.contains(<span class="str">'Ltd'</span>, na=<span class="kw">False</span>)
+<span class="var">df</span>[<span class="str">'name'</span>].<span class="attr">str</span>.split(<span class="str">','</span>, expand=<span class="kw">True</span>)
+<span class="var">df</span>[<span class="str">'name'</span>].<span class="attr">str</span>.len()
+<span class="var">df</span>[<span class="str">'email'</span>].<span class="attr">str</span>.extract(<span class="str">r'@(.+)\.'</span>)  <span class="cmt"># regex capture group</span>
+
+<span class="cmt"># Datetime accessor</span>
+<span class="var">df</span>[<span class="str">'date'</span>].<span class="attr">dt</span>.year
+<span class="var">df</span>[<span class="str">'date'</span>].<span class="attr">dt</span>.month
+<span class="var">df</span>[<span class="str">'date'</span>].<span class="attr">dt</span>.day_name()
+<span class="var">df</span>[<span class="str">'date'</span>].<span class="attr">dt</span>.quarter
+<span class="var">df</span>[<span class="str">'date'</span>].<span class="attr">dt</span>.days_in_month</pre>
+            </div>
+
+            <h3 style="color:var(--pandas)">Outlier Detection</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># IQR method</span>
+<span class="var">Q1</span> = <span class="var">df</span>[<span class="str">'salary'</span>].quantile(<span class="num">0.25</span>)
+<span class="var">Q3</span> = <span class="var">df</span>[<span class="str">'salary'</span>].quantile(<span class="num">0.75</span>)
+<span class="var">IQR</span> = <span class="var">Q3</span> - <span class="var">Q1</span>
+<span class="var">df_clean</span> = <span class="var">df</span>[(<span class="var">df</span>[<span class="str">'salary'</span>] >= <span class="var">Q1</span> - <span class="num">1.5</span>*<span class="var">IQR</span>) &
+               (<span class="var">df</span>[<span class="str">'salary'</span>] <= <span class="var">Q3</span> + <span class="num">1.5</span>*<span class="var">IQR</span>)]
+
+<span class="cmt"># Z-score method</span>
+<span class="var">z</span> = (<span class="var">df</span>[<span class="str">'salary'</span>] - <span class="var">df</span>[<span class="str">'salary'</span>].mean()) / <span class="var">df</span>[<span class="str">'salary'</span>].std()
+<span class="var">df_clean</span> = <span class="var">df</span>[<span class="var">z</span>.abs() < <span class="num">3</span>]</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ PANDAS 4 ═══════════════════ -->
+        <div class="section" id="sec-pd4">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(225,112,85,.12);color:var(--pandas)">■ Pandas · Section 4
+                </div>
+                <h2>GroupBy, Merge & Pivot</h2>
+            </div>
+
+            <h3 style="color:var(--pandas)">GroupBy</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Split → Apply → Combine</span>
+<span class="var">df</span>.groupby(<span class="str">'dept'</span>)[<span class="str">'salary'</span>].mean()
+<span class="var">df</span>.groupby(<span class="str">'dept'</span>).agg({
+    <span class="str">'salary'</span>: [<span class="str">'mean'</span>, <span class="str">'max'</span>, <span class="str">'count'</span>],
+    <span class="str">'age'</span>:    <span class="str">'median'</span>
+})
+
+<span class="cmt"># Named aggregations (pandas 0.25+)</span>
+<span class="var">df</span>.groupby(<span class="str">'dept'</span>).agg(
+    avg_salary  = (<span class="str">'salary'</span>, <span class="str">'mean'</span>),
+    max_salary  = (<span class="str">'salary'</span>, <span class="str">'max'</span>),
+    headcount   = (<span class="str">'name'</span>,   <span class="str">'count'</span>)
+).reset_index()
+
+<span class="cmt"># Custom aggregation</span>
+<span class="var">df</span>.groupby(<span class="str">'dept'</span>)[<span class="str">'salary'</span>].agg(<span class="kw">lambda</span> <span class="var">x</span>: <span class="var">x</span>.max() - <span class="var">x</span>.min())
+
+<span class="cmt"># Transform (returns same-index Series — great for feature engineering)</span>
+<span class="var">df</span>[<span class="str">'dept_avg'</span>] = <span class="var">df</span>.groupby(<span class="str">'dept'</span>)[<span class="str">'salary'</span>].transform(<span class="str">'mean'</span>)
+
+<span class="cmt"># Filter groups</span>
+<span class="var">df</span>.groupby(<span class="str">'dept'</span>).filter(<span class="kw">lambda</span> <span class="var">g</span>: <span class="var">g</span>[<span class="str">'salary'</span>].mean() > <span class="num">65000</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--pandas)">Merge & Join</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">df1</span> = pd.DataFrame({<span class="str">'id'</span>:[<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>], <span class="str">'name'</span>:[<span class="str">'A'</span>,<span class="str">'B'</span>,<span class="str">'C'</span>]})
+<span class="var">df2</span> = pd.DataFrame({<span class="str">'id'</span>:[<span class="num">1</span>,<span class="num">2</span>,<span class="num">4</span>], <span class="str">'score'</span>:[<span class="num">90</span>,<span class="num">85</span>,<span class="num">70</span>]})
+
+<span class="cmt"># SQL-style joins</span>
+pd.merge(<span class="var">df1</span>, <span class="var">df2</span>, on=<span class="str">'id'</span>, how=<span class="str">'inner'</span>)  <span class="cmt"># rows in both</span>
+pd.merge(<span class="var">df1</span>, <span class="var">df2</span>, on=<span class="str">'id'</span>, how=<span class="str">'left'</span>)   <span class="cmt"># all df1 rows</span>
+pd.merge(<span class="var">df1</span>, <span class="var">df2</span>, on=<span class="str">'id'</span>, how=<span class="str">'outer'</span>)  <span class="cmt"># all rows</span>
+
+<span class="cmt"># Different key names</span>
+pd.merge(<span class="var">df1</span>, <span class="var">df2</span>, left_on=<span class="str">'id'</span>, right_on=<span class="str">'emp_id'</span>)
+
+<span class="cmt"># Stacking rows</span>
+pd.concat([<span class="var">df1</span>, <span class="var">df2</span>], axis=<span class="num">0</span>, ignore_index=<span class="kw">True</span>)  <span class="cmt"># rows</span>
+pd.concat([<span class="var">df1</span>, <span class="var">df2</span>], axis=<span class="num">1</span>)                     <span class="cmt"># columns</span></pre>
+            </div>
+
+            <h3 style="color:var(--pandas)">Pivot Tables</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># pivot_table — like Excel pivot</span>
+<span class="var">pt</span> = <span class="var">df</span>.pivot_table(
+    values  = <span class="str">'salary'</span>,
+    index   = <span class="str">'dept'</span>,
+    columns = <span class="str">'gender'</span>,
+    aggfunc = <span class="str">'mean'</span>,
+    margins = <span class="kw">True</span>      <span class="cmt"># add row/col totals</span>
+)
+
+<span class="cmt"># pivot — no aggregation, must be unique</span>
+<span class="var">df</span>.pivot(index=<span class="str">'date'</span>, columns=<span class="str">'product'</span>, values=<span class="str">'sales'</span>)
+
+<span class="cmt"># melt — wide to long (inverse of pivot)</span>
+pd.melt(<span class="var">df</span>, id_vars=[<span class="str">'name'</span>], value_vars=[<span class="str">'q1'</span>,<span class="str">'q2'</span>,<span class="str">'q3'</span>],
+        var_name=<span class="str">'quarter'</span>, value_name=<span class="str">'revenue'</span>)
+
+<span class="cmt"># crosstab — frequency table</span>
+pd.crosstab(<span class="var">df</span>[<span class="str">'dept'</span>], <span class="var">df</span>[<span class="str">'gender'</span>], normalize=<span class="str">'all'</span>)</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ PANDAS 5 ═══════════════════ -->
+        <div class="section" id="sec-pd5">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(225,112,85,.12);color:var(--pandas)">■ Pandas · Section 5
+                </div>
+                <h2>Apply, Map & I/O</h2>
+            </div>
+
+            <h3 style="color:var(--pandas)">apply / map / applymap</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># apply — most flexible, works on Series or DataFrame</span>
+<span class="var">df</span>[<span class="str">'salary'</span>].apply(<span class="kw">lambda</span> <span class="var">x</span>: <span class="var">x</span> * <span class="num">1.1</span>)           <span class="cmt"># 10% raise</span>
+<span class="var">df</span>.apply(<span class="kw">lambda</span> <span class="var">row</span>: <span class="var">row</span>[<span class="str">'salary'</span>]/<span class="var">row</span>[<span class="str">'age'</span>], axis=<span class="num">1</span>)
+
+<span class="kw">def</span> <span class="fn">categorise</span>(<span class="var">s</span>):
+    <span class="kw">if</span> <span class="var">s</span> >= <span class="num">70000</span>: <span class="kw">return</span> <span class="str">'High'</span>
+    <span class="kw">elif</span> <span class="var">s</span> >= <span class="num">50000</span>: <span class="kw">return</span> <span class="str">'Mid'</span>
+    <span class="kw">else</span>: <span class="kw">return</span> <span class="str">'Low'</span>
+<span class="var">df</span>[<span class="str">'band'</span>] = <span class="var">df</span>[<span class="str">'salary'</span>].apply(<span class="fn">categorise</span>)
+
+<span class="cmt"># map — Series only, replace values</span>
+<span class="var">df</span>[<span class="str">'dept'</span>].map({<span class="str">'HR'</span>:<span class="num">0</span>, <span class="str">'Eng'</span>:<span class="num">1</span>})   <span class="cmt"># label encoding</span>
+
+<span class="cmt"># applymap (pandas &lt; 2.1) / map on DataFrame (2.1+)</span>
+<span class="var">df</span>.select_dtypes(<span class="str">'number'</span>).map(<span class="kw">lambda</span> <span class="var">x</span>: <span class="bi">round</span>(<span class="var">x</span>, <span class="num">2</span>))
+
+<span class="cmt"># np.where and pd.cut for fast conditional columns</span>
+<span class="var">df</span>[<span class="str">'senior'</span>] = np.where(<span class="var">df</span>[<span class="str">'age'</span>] > <span class="num">30</span>, <span class="num">1</span>, <span class="num">0</span>)
+<span class="var">df</span>[<span class="str">'age_band'</span>] = pd.cut(<span class="var">df</span>[<span class="str">'age'</span>], bins=[<span class="num">0</span>,<span class="num">25</span>,<span class="num">35</span>,<span class="num">100</span>],
+                          labels=[<span class="str">'Young'</span>,<span class="str">'Mid'</span>,<span class="str">'Senior'</span>])
+<span class="var">df</span>[<span class="str">'quartile'</span>] = pd.qcut(<span class="var">df</span>[<span class="str">'salary'</span>], q=<span class="num">4</span>, labels=[<span class="str">'Q1'</span>,<span class="str">'Q2'</span>,<span class="str">'Q3'</span>,<span class="str">'Q4'</span>])</pre>
+            </div>
+
+            <h3 style="color:var(--pandas)">Exporting Data</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="var">df</span>.to_csv(<span class="str">'out.csv'</span>, index=<span class="kw">False</span>)
+<span class="var">df</span>.to_excel(<span class="str">'out.xlsx'</span>, sheet_name=<span class="str">'Data'</span>, index=<span class="kw">False</span>)
+<span class="var">df</span>.to_json(<span class="str">'out.json'</span>, orient=<span class="str">'records'</span>)
+<span class="var">df</span>.to_parquet(<span class="str">'out.parquet'</span>)  <span class="cmt"># fast columnar format</span>
+<span class="var">df</span>.to_sql(<span class="str">'table'</span>, <span class="var">engine</span>, if_exists=<span class="str">'replace'</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--pandas)">Performance Tips</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tip</th>
+                            <th>Why</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Use <code>category</code> dtype for low-cardinality strings</td>
+                            <td>80–90% memory reduction; faster groupby</td>
+                        </tr>
+                        <tr>
+                            <td>Use <code>query()</code> over boolean indexing for readability</td>
+                            <td>Same speed, cleaner syntax</td>
+                        </tr>
+                        <tr>
+                            <td>Avoid row-by-row iteration (<code>iterrows</code>)</td>
+                            <td>100× slower than vectorised; use <code>apply</code> or vectorise</td>
+                        </tr>
+                        <tr>
+                            <td>Use <code>pd.read_csv(..., usecols=[...])</code></td>
+                            <td>Only load needed columns; faster, less memory</td>
+                        </tr>
+                        <tr>
+                            <td>Use <code>chunksize</code> for large files</td>
+                            <td>Process in batches without memory overflow</td>
+                        </tr>
+                        <tr>
+                            <td>Prefer <code>np.where</code> over <code>apply</code> for conditionals</td>
+                            <td>10–50× faster for simple if/else</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ MATPLOTLIB 1 ═══════════════════ -->
+        <div class="section" id="sec-mpl1">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(162,155,254,.12);color:var(--mpl)">■ Matplotlib · Section
+                    1</div>
+                <h2>Figures, Axes & Anatomy</h2>
+                <p>Matplotlib is the foundational plotting library. Understanding the Figure/Axes hierarchy is key to
+                    creating professional, publication-quality plots.</p>
+            </div>
+
+            <h3 style="color:var(--mpl)">Object-Oriented API (preferred)</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> <span class="var">plt</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> <span class="var">np</span>
+
+<span class="cmt"># Create Figure and Axes explicitly (OO API — use this)</span>
+<span class="var">fig</span>, <span class="var">ax</span> = plt.subplots(figsize=(<span class="num">8</span>, <span class="num">5</span>))
+
+<span class="var">x</span> = np.linspace(<span class="num">0</span>, <span class="num">2</span>*np.pi, <span class="num">100</span>)
+<span class="var">ax</span>.plot(<span class="var">x</span>, np.sin(<span class="var">x</span>), label=<span class="str">'sin(x)'</span>, color=<span class="str">'#4dabf7'</span>, lw=<span class="num">2</span>)
+<span class="var">ax</span>.plot(<span class="var">x</span>, np.cos(<span class="var">x</span>), label=<span class="str">'cos(x)'</span>, linestyle=<span class="str">'--'</span>)
+
+<span class="cmt"># Labels & Formatting</span>
+<span class="var">ax</span>.set_title(<span class="str">'Sine and Cosine'</span>, fontsize=<span class="num">14</span>, fontweight=<span class="str">'bold'</span>)
+<span class="var">ax</span>.set_xlabel(<span class="str">'x (radians)'</span>)
+<span class="var">ax</span>.set_ylabel(<span class="str">'Amplitude'</span>)
+<span class="var">ax</span>.legend(loc=<span class="str">'upper right'</span>)
+<span class="var">ax</span>.grid(<span class="kw">True</span>, alpha=<span class="num">0.3</span>)
+<span class="var">ax</span>.set_xlim(<span class="num">0</span>, <span class="num">2</span>*np.pi)
+<span class="var">ax</span>.set_ylim(-<span class="num">1.2</span>, <span class="num">1.2</span>)
+<span class="var">ax</span>.axhline(<span class="num">0</span>, color=<span class="str">'gray'</span>, lw=<span class="num">0.5</span>)  <span class="cmt"># horizontal reference line</span>
+
+plt.tight_layout()
+plt.savefig(<span class="str">'plot.png'</span>, dpi=<span class="num">150</span>, bbox_inches=<span class="str">'tight'</span>)
+plt.show()</pre>
+            </div>
+
+            <h3 style="color:var(--mpl)">Multiple Subplots</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Grid of subplots</span>
+<span class="var">fig</span>, <span class="var">axes</span> = plt.subplots(<span class="num">2</span>, <span class="num">3</span>, figsize=(<span class="num">12</span>, <span class="num">8</span>), sharex=<span class="kw">True</span>)
+<span class="var">axes</span>[<span class="num">0</span>, <span class="num">0</span>].plot(<span class="var">x</span>, <span class="var">y</span>)   <span class="cmt"># row 0, col 0</span>
+<span class="var">axes</span>[<span class="num">1</span>, <span class="num">2</span>].bar(<span class="var">cats</span>, <span class="var">vals</span>) <span class="cmt"># row 1, col 2</span>
+
+<span class="cmt"># Flatten for easier iteration</span>
+<span class="kw">for</span> <span class="var">ax</span>, <span class="var">col</span> <span class="kw">in</span> <span class="bi">zip</span>(<span class="var">axes</span>.flatten(), <span class="var">df</span>.columns):
+    <span class="var">ax</span>.hist(<span class="var">df</span>[<span class="var">col</span>], bins=<span class="num">20</span>)
+    <span class="var">ax</span>.set_title(<span class="var">col</span>)
+
+<span class="cmt"># Custom layout with subplot2grid</span>
+<span class="var">ax1</span> = plt.subplot2grid((<span class="num">3</span>,<span class="num">3</span>), (<span class="num">0</span>,<span class="num">0</span>), colspan=<span class="num">2</span>)
+<span class="var">ax2</span> = plt.subplot2grid((<span class="num">3</span>,<span class="num">3</span>), (<span class="num">0</span>,<span class="num">2</span>), rowspan=<span class="num">2</span>)</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ MATPLOTLIB 2 ═══════════════════ -->
+        <div class="section" id="sec-mpl2">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(162,155,254,.12);color:var(--mpl)">■ Matplotlib · Section
+                    2</div>
+                <h2>Plot Types & Styling</h2>
+            </div>
+
+            <h3 style="color:var(--mpl)">Plot Type Reference</h3>
+            <div class="code-block">
+                <div class="code-label">Python · All Major Plot Types</div>
+                <pre>
+<span class="cmt"># Line</span>
+<span class="var">ax</span>.plot(<span class="var">x</span>, <span class="var">y</span>, marker=<span class="str">'o'</span>, markersize=<span class="num">4</span>, linewidth=<span class="num">2</span>)
+
+<span class="cmt"># Scatter</span>
+<span class="var">ax</span>.scatter(<span class="var">x</span>, <span class="var">y</span>, c=<span class="var">colors</span>, s=<span class="var">sizes</span>, alpha=<span class="num">0.6</span>, cmap=<span class="str">'viridis'</span>)
+
+<span class="cmt"># Bar</span>
+<span class="var">ax</span>.bar(<span class="var">categories</span>, <span class="var">values</span>, color=<span class="str">'steelblue'</span>, edgecolor=<span class="str">'white'</span>)
+<span class="var">ax</span>.barh(<span class="var">categories</span>, <span class="var">values</span>)  <span class="cmt"># horizontal</span>
+<span class="var">ax</span>.bar(<span class="var">x</span>, <span class="var">y1</span>)
+<span class="var">ax</span>.bar(<span class="var">x</span>, <span class="var">y2</span>, bottom=<span class="var">y1</span>)   <span class="cmt"># stacked bar</span>
+
+<span class="cmt"># Histogram</span>
+<span class="var">ax</span>.hist(<span class="var">data</span>, bins=<span class="num">30</span>, density=<span class="kw">True</span>, alpha=<span class="num">0.7</span>)
+
+<span class="cmt"># Box plot</span>
+<span class="var">ax</span>.boxplot([<span class="var">data1</span>, <span class="var">data2</span>], labels=[<span class="str">'A'</span>,<span class="str">'B'</span>], notch=<span class="kw">True</span>)
+
+<span class="cmt"># Pie</span>
+<span class="var">ax</span>.pie(<span class="var">sizes</span>, labels=<span class="var">labels</span>, autopct=<span class="str">'%1.1f%%'</span>, explode=[<span class="num">0.1</span>,<span class="num">0</span>,<span class="num">0</span>])
+
+<span class="cmt"># Error bars</span>
+<span class="var">ax</span>.errorbar(<span class="var">x</span>, <span class="var">y</span>, yerr=<span class="var">err</span>, fmt=<span class="str">'o'</span>, capsize=<span class="num">4</span>)
+
+<span class="cmt"># Fill between</span>
+<span class="var">ax</span>.fill_between(<span class="var">x</span>, <span class="var">y1</span>, <span class="var">y2</span>, alpha=<span class="num">0.3</span>, color=<span class="str">'blue'</span>)
+
+<span class="cmt"># Heatmap via imshow</span>
+<span class="var">im</span> = <span class="var">ax</span>.imshow(<span class="var">matrix</span>, cmap=<span class="str">'coolwarm'</span>, aspect=<span class="str">'auto'</span>)
+<span class="var">fig</span>.colorbar(<span class="var">im</span>, <span class="var">ax</span>=<span class="var">ax</span>)
+
+<span class="cmt"># Contour</span>
+<span class="var">ax</span>.contourf(<span class="var">X</span>, <span class="var">Y</span>, <span class="var">Z</span>, levels=<span class="num">20</span>, cmap=<span class="str">'plasma'</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--mpl)">Styling & Customisation</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Styles</span>
+plt.style.use(<span class="str">'seaborn-v0_8'</span>)     <span class="cmt"># or 'ggplot', 'dark_background'</span>
+<span class="bi">print</span>(plt.style.available)         <span class="cmt"># all available styles</span>
+
+<span class="cmt"># Annotations</span>
+<span class="var">ax</span>.annotate(<span class="str">'peak'</span>, xy=(<span class="num">1.57</span>,<span class="num">1</span>), xytext=(<span class="num">2</span>,<span class="num">0.8</span>),
+            arrowprops=<span class="bi">dict</span>(arrowstyle=<span class="str">'->'</span>))
+<span class="var">ax</span>.text(<span class="num">0.5</span>, <span class="num">0.5</span>, <span class="str">'label'</span>, transform=<span class="var">ax</span>.transAxes,
+        ha=<span class="str">'center'</span>, fontsize=<span class="num">12</span>)
+
+<span class="cmt"># Ticks</span>
+<span class="var">ax</span>.set_xticks([<span class="num">0</span>, np.pi, <span class="num">2</span>*np.pi])
+<span class="var">ax</span>.set_xticklabels([<span class="str">'0'</span>, <span class="str">'π'</span>, <span class="str">'2π'</span>])
+<span class="var">ax</span>.tick_params(axis=<span class="str">'x'</span>, rotation=<span class="num">45</span>)
+
+<span class="cmt"># Twin axes (dual y-axis)</span>
+<span class="var">ax2</span> = <span class="var">ax</span>.twinx()
+<span class="var">ax2</span>.plot(<span class="var">x</span>, <span class="var">y2</span>, color=<span class="str">'red'</span>, label=<span class="str">'right axis'</span>)
+
+<span class="cmt"># Log scale</span>
+<span class="var">ax</span>.set_yscale(<span class="str">'log'</span>)</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ SEABORN 1 ═══════════════════ -->
+        <div class="section" id="sec-sns1">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(253,121,168,.12);color:var(--sns)">■ Seaborn · Section 1
+                </div>
+                <h2>Statistical Plots</h2>
+                <p>Seaborn builds on Matplotlib with a high-level interface for statistical visualisation, beautiful
+                    defaults, and native DataFrame support.</p>
+            </div>
+
+            <h3 style="color:var(--sns)">Distribution Plots</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">import</span> seaborn <span class="kw">as</span> <span class="var">sns</span>
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> <span class="var">plt</span>
+
+<span class="var">tips</span> = sns.load_dataset(<span class="str">'tips'</span>)
+
+<span class="cmt"># Histogram + KDE</span>
+sns.histplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'total_bill'</span>, kde=<span class="kw">True</span>, bins=<span class="num">30</span>, hue=<span class="str">'sex'</span>)
+
+<span class="cmt"># KDE only</span>
+sns.kdeplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'total_bill'</span>, hue=<span class="str">'sex'</span>, fill=<span class="kw">True</span>)
+
+<span class="cmt"># ECDF</span>
+sns.ecdfplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'total_bill'</span>)
+
+<span class="cmt"># Rug plot</span>
+sns.rugplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'total_bill'</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--sns)">Categorical Plots</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Box plot — shows quartiles and outliers</span>
+sns.boxplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'day'</span>, y=<span class="str">'total_bill'</span>, hue=<span class="str">'sex'</span>)
+
+<span class="cmt"># Violin — combines box + KDE</span>
+sns.violinplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'day'</span>, y=<span class="str">'total_bill'</span>, split=<span class="kw">True</span>)
+
+<span class="cmt"># Strip + Swarm — show individual points</span>
+sns.stripplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'day'</span>, y=<span class="str">'tip'</span>, jitter=<span class="kw">True</span>)
+sns.swarmplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'day'</span>, y=<span class="str">'tip'</span>)  <span class="cmt"># non-overlapping</span>
+
+<span class="cmt"># Bar plot — mean + CI by default</span>
+sns.barplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'day'</span>, y=<span class="str">'total_bill'</span>, estimator=<span class="str">'mean'</span>,
+            errorbar=<span class="str">'sd'</span>, palette=<span class="str">'Set2'</span>)
+
+<span class="cmt"># Count plot</span>
+sns.countplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'day'</span>, order=<span class="var">tips</span>[<span class="str">'day'</span>].value_counts().index)
+
+<span class="cmt"># Point plot (mean + CI lines)</span>
+sns.pointplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'day'</span>, y=<span class="str">'total_bill'</span>, hue=<span class="str">'sex'</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--sns)">Relational Plots</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Scatter</span>
+sns.scatterplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'total_bill'</span>, y=<span class="str">'tip'</span>,
+                hue=<span class="str">'sex'</span>, size=<span class="str">'size'</span>, style=<span class="str">'day'</span>)
+
+<span class="cmt"># Line</span>
+sns.lineplot(<span class="var">data</span>=<span class="var">df</span>, x=<span class="str">'date'</span>, y=<span class="str">'value'</span>, hue=<span class="str">'group'</span>)
+
+<span class="cmt"># Regression line (with CI)</span>
+sns.regplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'total_bill'</span>, y=<span class="str">'tip'</span>, scatter_kws={<span class="str">'alpha'</span>:<span class="num">0.4</span>})
+sns.lmplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'total_bill'</span>, y=<span class="str">'tip'</span>, col=<span class="str">'sex'</span>)  <span class="cmt"># facets</span>
+
+<span class="cmt"># Correlation heatmap</span>
+<span class="var">corr</span> = <span class="var">df</span>.corr()
+sns.heatmap(<span class="var">corr</span>, annot=<span class="kw">True</span>, fmt=<span class="str">'.2f'</span>, cmap=<span class="str">'coolwarm'</span>,
+            vmin=-<span class="num">1</span>, vmax=<span class="num">1</span>, square=<span class="kw">True</span>)</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ SEABORN 2 ═══════════════════ -->
+        <div class="section" id="sec-sns2">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(253,121,168,.12);color:var(--sns)">■ Seaborn · Section 2
+                </div>
+                <h2>Themes, Palettes & Advanced Plots</h2>
+            </div>
+
+            <h3 style="color:var(--sns)">Themes & Contexts</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Themes: white, dark, whitegrid, darkgrid, ticks</span>
+sns.set_theme(style=<span class="str">'whitegrid'</span>, palette=<span class="str">'husl'</span>)
+sns.set_context(<span class="str">'talk'</span>)  <span class="cmt"># paper, notebook, talk, poster</span>
+
+<span class="cmt"># Palettes</span>
+sns.color_palette(<span class="str">'Set2'</span>)           <span class="cmt"># qualitative</span>
+sns.color_palette(<span class="str">'coolwarm'</span>, <span class="num">5</span>)   <span class="cmt"># diverging</span>
+sns.color_palette(<span class="str">'Blues_d'</span>)       <span class="cmt"># sequential</span>
+sns.palplot(sns.color_palette(<span class="str">'tab10'</span>))  <span class="cmt"># visualise palette</span></pre>
+            </div>
+
+            <h3 style="color:var(--sns)">Advanced / Multi-Plot Figures</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="cmt"># Pair plot — all pairwise scatter/hist</span>
+sns.pairplot(<span class="var">df</span>[<span class="var">numeric_cols</span>], hue=<span class="str">'species'</span>, diag_kind=<span class="str">'kde'</span>,
+             plot_kws={<span class="str">'alpha'</span>:<span class="num">0.4</span>})
+
+<span class="cmt"># Cluster heatmap — hierarchically clustered</span>
+sns.clustermap(<span class="var">df</span>.corr(), cmap=<span class="str">'vlag'</span>, figsize=(<span class="num">8</span>,<span class="num">8</span>),
+               annot=<span class="kw">True</span>, fmt=<span class="str">'.2f'</span>, z_score=<span class="num">1</span>)
+
+<span class="cmt"># Joint plot — scatter + marginal distributions</span>
+sns.jointplot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'total_bill'</span>, y=<span class="str">'tip'</span>,
+              kind=<span class="str">'hex'</span>)  <span class="cmt"># kind: scatter,hex,kde,reg,resid</span>
+
+<span class="cmt"># Facet grid — repeat plot across subsets</span>
+<span class="var">g</span> = sns.FacetGrid(<span class="var">tips</span>, col=<span class="str">'sex'</span>, row=<span class="str">'time'</span>, height=<span class="num">3</span>)
+<span class="var">g</span>.map(sns.histplot, <span class="str">'total_bill'</span>)
+<span class="var">g</span>.add_legend()
+
+<span class="cmt"># catplot — figure-level categorical plot</span>
+sns.catplot(<span class="var">data</span>=<span class="var">tips</span>, kind=<span class="str">'box'</span>, x=<span class="str">'day'</span>, y=<span class="str">'total_bill'</span>,
+            col=<span class="str">'sex'</span>, height=<span class="num">4</span>, aspect=<span class="num">0.8</span>)
+
+<span class="cmt"># displot — figure-level distribution plot</span>
+sns.displot(<span class="var">data</span>=<span class="var">tips</span>, x=<span class="str">'total_bill'</span>, col=<span class="str">'sex'</span>,
+            kind=<span class="str">'kde'</span>, fill=<span class="kw">True</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--sns)">Matplotlib vs Seaborn — When to Use Each</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Matplotlib</th>
+                            <th>Seaborn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Control level</td>
+                            <td>Full control over every element</td>
+                            <td>High-level, less boilerplate</td>
+                        </tr>
+                        <tr>
+                            <td>Statistical support</td>
+                            <td>Manual</td>
+                            <td>Built-in (CI, KDE, regression)</td>
+                        </tr>
+                        <tr>
+                            <td>DataFrame support</td>
+                            <td>Manual (arrays only)</td>
+                            <td>Native <code>data=df, x='col'</code></td>
+                        </tr>
+                        <tr>
+                            <td>Defaults</td>
+                            <td>Plain (configurable)</td>
+                            <td>Beautiful out of the box</td>
+                        </tr>
+                        <tr>
+                            <td>Best for</td>
+                            <td>Custom, complex layouts; production charts</td>
+                            <td>Quick EDA, statistical analysis</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ SKLEARN 1 ═══════════════════ -->
+        <div class="section" id="sec-sk1">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(0,184,148,.12);color:var(--sklearn)">■ Scikit-learn ·
+                    Section 1</div>
+                <h2>Preprocessing</h2>
+                <p>Scikit-learn provides a consistent API: every estimator has <code>fit()</code>,
+                    <code>transform()</code>, and <code>fit_transform()</code>. Preprocessing is the critical first
+                    step.
+                </p>
+            </div>
+
+            <h3 style="color:var(--sklearn)">The sklearn API Pattern</h3>
+            <div class="code-block">
+                <div class="code-label">Python · Universal pattern</div>
+                <pre>
+<span class="cmt"># Every sklearn object follows the same pattern:</span>
+<span class="cmt"># 1. Import & instantiate</span>
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> StandardScaler
+<span class="var">scaler</span> = StandardScaler()
+
+<span class="cmt"># 2. Fit on TRAINING data only</span>
+<span class="var">scaler</span>.fit(<span class="var">X_train</span>)
+
+<span class="cmt"># 3. Transform both train and test</span>
+<span class="var">X_train_scaled</span> = <span class="var">scaler</span>.transform(<span class="var">X_train</span>)
+<span class="var">X_test_scaled</span>  = <span class="var">scaler</span>.transform(<span class="var">X_test</span>)
+
+<span class="cmt"># Or combine steps: fit_transform(train), transform(test)</span>
+<span class="var">X_train_scaled</span> = <span class="var">scaler</span>.fit_transform(<span class="var">X_train</span>)
+<span class="var">X_test_scaled</span>  = <span class="var">scaler</span>.transform(<span class="var">X_test</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--sklearn)">Scalers & Encoders</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> (
+    StandardScaler, MinMaxScaler, RobustScaler,
+    LabelEncoder, OrdinalEncoder, OneHotEncoder,
+    PolynomialFeatures, PowerTransformer, Normalizer
+)
+
+<span class="cmt"># Scalers</span>
+StandardScaler()              <span class="cmt"># z-score: (x-μ)/σ</span>
+MinMaxScaler(feature_range=(<span class="num">0</span>,<span class="num">1</span>))  <span class="cmt"># min-max normalisation</span>
+RobustScaler()                <span class="cmt"># median + IQR (outlier-robust)</span>
+Normalizer(norm=<span class="str">'l2'</span>)        <span class="cmt"># scale each SAMPLE to unit norm</span>
+
+<span class="cmt"># Encoders</span>
+<span class="var">le</span> = LabelEncoder()
+<span class="var">y_enc</span> = <span class="var">le</span>.fit_transform(<span class="var">y</span>)  <span class="cmt"># ordinal label encoding</span>
+<span class="var">le</span>.classes_                   <span class="cmt"># original class names</span>
+
+<span class="var">ohe</span> = OneHotEncoder(drop=<span class="str">'first'</span>, sparse_output=<span class="kw">False</span>)
+<span class="var">X_ohe</span> = <span class="var">ohe</span>.fit_transform(<span class="var">X</span>[[<span class="str">'cat_col'</span>]])
+
+<span class="cmt"># Polynomial features</span>
+<span class="var">poly</span> = PolynomialFeatures(degree=<span class="num">2</span>, include_bias=<span class="kw">False</span>)
+<span class="var">X_poly</span> = <span class="var">poly</span>.fit_transform(<span class="var">X</span>)
+
+<span class="cmt"># Power transform (makes more Gaussian)</span>
+PowerTransformer(method=<span class="str">'yeo-johnson'</span>)  <span class="cmt"># handles negative values</span></pre>
+            </div>
+
+            <h3 style="color:var(--sklearn)">Imputation</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> sklearn.impute <span class="kw">import</span> SimpleImputer, KNNImputer, IterativeImputer
+
+<span class="cmt"># Mean / median / most_frequent / constant</span>
+<span class="var">imp</span> = SimpleImputer(strategy=<span class="str">'median'</span>)
+<span class="var">X_imp</span> = <span class="var">imp</span>.fit_transform(<span class="var">X</span>)
+
+<span class="cmt"># KNN imputation</span>
+<span class="var">knn_imp</span> = KNNImputer(n_neighbors=<span class="num">5</span>)
+
+<span class="cmt"># Iterative (MICE-like)</span>
+<span class="var">it_imp</span> = IterativeImputer(max_iter=<span class="num">10</span>, random_state=<span class="num">42</span>)</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ SKLEARN 2 ═══════════════════ -->
+        <div class="section" id="sec-sk2">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(0,184,148,.12);color:var(--sklearn)">■ Scikit-learn ·
+                    Section 2</div>
+                <h2>Models & Evaluation</h2>
+            </div>
+
+            <h3 style="color:var(--sklearn)">Classification Models</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> sklearn.linear_model   <span class="kw">import</span> LogisticRegression
+<span class="kw">from</span> sklearn.tree           <span class="kw">import</span> DecisionTreeClassifier
+<span class="kw">from</span> sklearn.ensemble       <span class="kw">import</span> RandomForestClassifier, GradientBoostingClassifier
+<span class="kw">from</span> sklearn.svm            <span class="kw">import</span> SVC
+<span class="kw">from</span> sklearn.neighbors      <span class="kw">import</span> KNeighborsClassifier
+<span class="kw">from</span> sklearn.naive_bayes    <span class="kw">import</span> GaussianNB, MultinomialNB
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+
+<span class="var">X_train</span>,<span class="var">X_test</span>,<span class="var">y_train</span>,<span class="var">y_test</span> = train_test_split(
+    <span class="var">X</span>, <span class="var">y</span>, test_size=<span class="num">0.2</span>, stratify=<span class="var">y</span>, random_state=<span class="num">42</span>)
+
+<span class="var">clf</span> = RandomForestClassifier(n_estimators=<span class="num">200</span>, max_depth=<span class="num">5</span>,
+                               random_state=<span class="num">42</span>, n_jobs=-<span class="num">1</span>)
+<span class="var">clf</span>.fit(<span class="var">X_train</span>, <span class="var">y_train</span>)
+<span class="var">y_pred</span>  = <span class="var">clf</span>.predict(<span class="var">X_test</span>)
+<span class="var">y_prob</span>  = <span class="var">clf</span>.predict_proba(<span class="var">X_test</span>)[:, <span class="num">1</span>]  <span class="cmt"># probability of class 1</span>
+<span class="var">clf</span>.feature_importances_  <span class="cmt"># feature importance scores</span></pre>
+            </div>
+
+            <h3 style="color:var(--sklearn)">Evaluation Metrics</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> (
+    accuracy_score, precision_score, recall_score,
+    f1_score, roc_auc_score, classification_report,
+    confusion_matrix, ConfusionMatrixDisplay,
+    mean_squared_error, r2_score, mean_absolute_error,
+    roc_curve, precision_recall_curve
+)
+
+<span class="cmt"># Classification</span>
+<span class="bi">print</span>(classification_report(<span class="var">y_test</span>, <span class="var">y_pred</span>))  <span class="cmt"># full summary</span>
+<span class="var">cm</span> = confusion_matrix(<span class="var">y_test</span>, <span class="var">y_pred</span>)
+ConfusionMatrixDisplay(<span class="var">cm</span>).plot()
+
+accuracy_score(<span class="var">y_test</span>, <span class="var">y_pred</span>)
+f1_score(<span class="var">y_test</span>, <span class="var">y_pred</span>, average=<span class="str">'macro'</span>)  <span class="cmt"># macro/micro/weighted</span>
+roc_auc_score(<span class="var">y_test</span>, <span class="var">y_prob</span>)
+
+<span class="cmt"># Plot ROC curve</span>
+<span class="var">fpr</span>, <span class="var">tpr</span>, _ = roc_curve(<span class="var">y_test</span>, <span class="var">y_prob</span>)
+<span class="var">ax</span>.plot(<span class="var">fpr</span>, <span class="var">tpr</span>)
+
+<span class="cmt"># Regression</span>
+mean_squared_error(<span class="var">y_test</span>, <span class="var">y_pred</span>, squared=<span class="kw">False</span>)  <span class="cmt"># RMSE</span>
+r2_score(<span class="var">y_test</span>, <span class="var">y_pred</span>)
+mean_absolute_error(<span class="var">y_test</span>, <span class="var">y_pred</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--sklearn)">Cross-Validation</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> (
+    cross_val_score, cross_validate, StratifiedKFold)
+
+<span class="cmt"># Simple CV</span>
+<span class="var">scores</span> = cross_val_score(<span class="var">clf</span>, <span class="var">X</span>, <span class="var">y</span>, cv=<span class="num">5</span>, scoring=<span class="str">'f1_macro'</span>)
+<span class="bi">print</span>(<span class="var">f</span><span class="str">f"CV F1: {scores.mean():.3f} ± {scores.std():.3f}"</span>)
+
+<span class="cmt"># Multiple metrics at once</span>
+<span class="var">cv_results</span> = cross_validate(<span class="var">clf</span>, <span class="var">X</span>, <span class="var">y</span>, cv=<span class="num">5</span>,
+    scoring=[<span class="str">'accuracy'</span>, <span class="str">'f1_macro'</span>, <span class="str">'roc_auc'</span>],
+    return_train_score=<span class="kw">True</span>)</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ SKLEARN 3 ═══════════════════ -->
+        <div class="section" id="sec-sk3">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(0,184,148,.12);color:var(--sklearn)">■ Scikit-learn ·
+                    Section 3</div>
+                <h2>Pipelines & Hyperparameter Tuning</h2>
+            </div>
+
+            <h3 style="color:var(--sklearn)">Pipeline</h3>
+            <div class="code-block">
+                <div class="code-label">Python · Full Pipeline</div>
+                <pre>
+<span class="kw">from</span> sklearn.pipeline       <span class="kw">import</span> Pipeline
+<span class="kw">from</span> sklearn.compose        <span class="kw">import</span> ColumnTransformer
+<span class="kw">from</span> sklearn.preprocessing  <span class="kw">import</span> StandardScaler, OneHotEncoder
+<span class="kw">from</span> sklearn.impute          <span class="kw">import</span> SimpleImputer
+<span class="kw">from</span> sklearn.ensemble        <span class="kw">import</span> RandomForestClassifier
+
+<span class="var">num_cols</span> = [<span class="str">'age'</span>, <span class="str">'salary'</span>]
+<span class="var">cat_cols</span> = [<span class="str">'dept'</span>, <span class="str">'gender'</span>]
+
+<span class="cmt"># Separate pipelines for numeric & categorical</span>
+<span class="var">num_pipe</span> = Pipeline([
+    (<span class="str">'impute'</span>,  SimpleImputer(strategy=<span class="str">'median'</span>)),
+    (<span class="str">'scale'</span>,   StandardScaler()),
+])
+<span class="var">cat_pipe</span> = Pipeline([
+    (<span class="str">'impute'</span>,  SimpleImputer(strategy=<span class="str">'most_frequent'</span>)),
+    (<span class="str">'encode'</span>,  OneHotEncoder(drop=<span class="str">'first'</span>, handle_unknown=<span class="str">'ignore'</span>)),
+])
+
+<span class="cmt"># Combine with ColumnTransformer</span>
+<span class="var">preprocessor</span> = ColumnTransformer([
+    (<span class="str">'num'</span>, <span class="var">num_pipe</span>, <span class="var">num_cols</span>),
+    (<span class="str">'cat'</span>, <span class="var">cat_pipe</span>, <span class="var">cat_cols</span>),
+])
+
+<span class="cmt"># Full end-to-end pipeline</span>
+<span class="var">model</span> = Pipeline([
+    (<span class="str">'prep'</span>,   <span class="var">preprocessor</span>),
+    (<span class="str">'model'</span>,  RandomForestClassifier(random_state=<span class="num">42</span>)),
+])
+
+<span class="var">model</span>.fit(<span class="var">X_train</span>, <span class="var">y_train</span>)   <span class="cmt"># fit everything at once</span>
+<span class="var">model</span>.score(<span class="var">X_test</span>, <span class="var">y_test</span>)   <span class="cmt"># no data leakage!</span></pre>
+            </div>
+
+            <h3 style="color:var(--sklearn)">Hyperparameter Tuning</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> GridSearchCV, RandomizedSearchCV
+<span class="kw">from</span> scipy.stats <span class="kw">import</span> randint, uniform
+
+<span class="cmt"># Grid Search — exhaustive</span>
+<span class="var">param_grid</span> = {
+    <span class="str">'model__n_estimators'</span>: [<span class="num">100</span>, <span class="num">200</span>],
+    <span class="str">'model__max_depth'</span>:    [<span class="num">3</span>, <span class="num">5</span>, <span class="kw">None</span>],
+    <span class="str">'model__max_features'</span>: [<span class="str">'sqrt'</span>, <span class="str">'log2'</span>],
+}
+<span class="var">gs</span> = GridSearchCV(<span class="var">model</span>, <span class="var">param_grid</span>, cv=<span class="num">5</span>,
+                   scoring=<span class="str">'f1_macro'</span>, n_jobs=-<span class="num">1</span>)
+<span class="var">gs</span>.fit(<span class="var">X_train</span>, <span class="var">y_train</span>)
+<span class="var">gs</span>.best_params_
+<span class="var">gs</span>.best_score_
+
+<span class="cmt"># Random Search — faster for large spaces</span>
+<span class="var">param_dist</span> = {
+    <span class="str">'model__n_estimators'</span>: randint(<span class="num">50</span>, <span class="num">500</span>),
+    <span class="str">'model__max_depth'</span>:    [<span class="num">3</span>, <span class="num">5</span>, <span class="num">10</span>, <span class="kw">None</span>],
+}
+<span class="var">rs</span> = RandomizedSearchCV(<span class="var">model</span>, <span class="var">param_dist</span>, n_iter=<span class="num">50</span>,
+                         cv=<span class="num">5</span>, random_state=<span class="num">42</span>)</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ NLTK 1 ═══════════════════ -->
+        <div class="section" id="sec-nl1">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(253,203,110,.12);color:var(--nltk)">■ NLTK · Section 1
+                </div>
+                <h2>Tokenization, Stopwords & Stemming</h2>
+                <p>NLTK (Natural Language Toolkit) is Python's foundational NLP library. It provides tools for
+                    tokenization, POS tagging, parsing, and more.</p>
+            </div>
+
+            <h3 style="color:var(--nltk)">Setup & Downloads</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">import</span> nltk
+<span class="cmt"># One-time downloads (run once)</span>
+nltk.download(<span class="str">'punkt'</span>)          <span class="cmt"># tokenizer models</span>
+nltk.download(<span class="str">'punkt_tab'</span>)
+nltk.download(<span class="str">'stopwords'</span>)      <span class="cmt"># stop word lists</span>
+nltk.download(<span class="str">'wordnet'</span>)        <span class="cmt"># lexical database</span>
+nltk.download(<span class="str">'averaged_perceptron_tagger'</span>)  <span class="cmt"># POS tagger</span>
+nltk.download(<span class="str">'maxent_ne_chunker'</span>)   <span class="cmt"># NE chunker</span>
+nltk.download(<span class="str">'words'</span>)               <span class="cmt"># English word list</span>
+nltk.download(<span class="str">'vader_lexicon'</span>)       <span class="cmt"># sentiment analysis</span></pre>
+            </div>
+
+            <h3 style="color:var(--nltk)">Tokenization</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> nltk.tokenize <span class="kw">import</span> (
+    word_tokenize, sent_tokenize,
+    TweetTokenizer, RegexpTokenizer, MWETokenizer
+)
+
+<span class="var">text</span> = <span class="str">"Hello! This is NLTK. It's great for NLP tasks."</span>
+
+<span class="cmt"># Word tokenization</span>
+<span class="var">words</span> = word_tokenize(<span class="var">text</span>)
+<span class="cmt"># ['Hello', '!', 'This', 'is', 'NLTK', '.', "It's", 'great', ...]</span>
+
+<span class="cmt"># Sentence tokenization</span>
+<span class="var">sents</span> = sent_tokenize(<span class="var">text</span>)
+<span class="cmt"># ['Hello!', 'This is NLTK.', "It's great for NLP tasks."]</span>
+
+<span class="cmt"># Custom regex tokenizer — keep only words</span>
+<span class="var">tok</span> = RegexpTokenizer(<span class="var">r</span><span class="str">r'\w+'</span>)
+<span class="var">tok</span>.tokenize(<span class="var">text</span>)   <span class="cmt"># no punctuation</span>
+
+<span class="cmt"># Tweet tokenizer</span>
+<span class="var">tt</span> = TweetTokenizer(strip_handles=<span class="kw">True</span>, reduce_len=<span class="kw">True</span>)
+<span class="var">tt</span>.tokenize(<span class="str">"@user Looooove this!!! 😊 #NLP"</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--nltk)">Stopwords & Text Normalisation</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> nltk.corpus       <span class="kw">import</span> stopwords
+<span class="kw">from</span> nltk.stem         <span class="kw">import</span> PorterStemmer, SnowballStemmer
+<span class="kw">from</span> nltk.stem         <span class="kw">import</span> WordNetLemmatizer
+<span class="kw">import</span> string
+
+<span class="cmt"># Stopwords</span>
+<span class="var">stop</span> = <span class="bi">set</span>(stopwords.words(<span class="str">'english'</span>))
+<span class="var">stop</span>.update([<span class="str">'also'</span>, <span class="str">'however'</span>])   <span class="cmt"># add custom</span>
+
+<span class="cmt"># Full cleaning pipeline</span>
+<span class="kw">def</span> <span class="fn">clean_text</span>(<span class="var">text</span>):
+    <span class="var">tokens</span> = word_tokenize(<span class="var">text</span>.lower())
+    <span class="var">tokens</span> = [<span class="var">t</span> <span class="kw">for</span> <span class="var">t</span> <span class="kw">in</span> <span class="var">tokens</span>
+              <span class="kw">if</span> <span class="var">t</span>.isalpha() <span class="kw">and</span> <span class="var">t</span> <span class="kw">not in</span> <span class="var">stop</span>]
+    <span class="kw">return</span> <span class="var">tokens</span>
+
+<span class="cmt"># Stemming (rule-based, fast, may create non-words)</span>
+<span class="var">ps</span> = PorterStemmer()
+<span class="var">ps</span>.stem(<span class="str">'running'</span>)    <span class="cmt"># 'run'</span>
+<span class="var">ps</span>.stem(<span class="str">'studies'</span>)    <span class="cmt"># 'studi'</span>
+
+<span class="var">ss</span> = SnowballStemmer(<span class="str">'english'</span>)   <span class="cmt"># better than Porter</span>
+
+<span class="cmt"># Lemmatisation (uses vocabulary, returns real words)</span>
+<span class="var">lem</span> = WordNetLemmatizer()
+<span class="var">lem</span>.lemmatize(<span class="str">'running'</span>, pos=<span class="str">'v'</span>)  <span class="cmt"># 'run'  (need POS!)</span>
+<span class="var">lem</span>.lemmatize(<span class="str">'studies'</span>, pos=<span class="str">'v'</span>)  <span class="cmt"># 'study'</span>
+<span class="var">lem</span>.lemmatize(<span class="str">'better'</span>,  pos=<span class="str">'a'</span>)  <span class="cmt"># 'good'</span>
+<span class="cmt"># pos: 'n'=noun, 'v'=verb, 'a'=adj, 'r'=adverb</span></pre>
+            </div>
+            <div class="tip" style="border-color:var(--nltk);background:rgba(253,203,110,.05)">💡 <strong>Stemming vs
+                    Lemmatisation:</strong> Stemming is faster but crude (may produce non-words like "studi").
+                Lemmatisation is slower but always produces a real word. Use lemmatisation for downstream NLP tasks;
+                stemming for search/IR where speed matters.</div>
+        </div>
+
+        <!-- ═══════════════════ NLTK 2 ═══════════════════ -->
+        <div class="section" id="sec-nl2">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(253,203,110,.12);color:var(--nltk)">■ NLTK · Section 2
+                </div>
+                <h2>POS Tagging, NER & Sentiment</h2>
+            </div>
+
+            <h3 style="color:var(--nltk)">Part-of-Speech Tagging</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> nltk <span class="kw">import</span> pos_tag, pos_tag_sents
+
+<span class="var">tokens</span> = word_tokenize(<span class="str">"The quick brown fox jumps over the lazy dog"</span>)
+<span class="var">tagged</span> = pos_tag(<span class="var">tokens</span>)
+<span class="cmt"># [('The','DT'),('quick','JJ'),('brown','JJ'),('fox','NN'),
+#  ('jumps','VBZ'),('over','IN'),('the','DT'),('lazy','JJ'),('dog','NN')]</span></pre>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>POS Tag</th>
+                            <th>Meaning</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NN / NNS / NNP</td>
+                            <td>Noun (singular / plural / proper)</td>
+                            <td>dog, cats, London</td>
+                        </tr>
+                        <tr>
+                            <td>VB / VBD / VBG / VBZ</td>
+                            <td>Verb (base / past / gerund / 3ps)</td>
+                            <td>run, ran, running, runs</td>
+                        </tr>
+                        <tr>
+                            <td>JJ / JJR / JJS</td>
+                            <td>Adjective (base / comparative / superlative)</td>
+                            <td>big, bigger, biggest</td>
+                        </tr>
+                        <tr>
+                            <td>RB / RBR</td>
+                            <td>Adverb (base / comparative)</td>
+                            <td>quickly, faster</td>
+                        </tr>
+                        <tr>
+                            <td>DT</td>
+                            <td>Determiner</td>
+                            <td>the, a, an</td>
+                        </tr>
+                        <tr>
+                            <td>IN</td>
+                            <td>Preposition / subordinating conjunction</td>
+                            <td>in, of, that</td>
+                        </tr>
+                        <tr>
+                            <td>PRP / PRP$</td>
+                            <td>Personal / possessive pronoun</td>
+                            <td>he, she, his, her</td>
+                        </tr>
+                        <tr>
+                            <td>CC</td>
+                            <td>Coordinating conjunction</td>
+                            <td>and, but, or</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color:var(--nltk)">Named Entity Recognition</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">import</span> nltk
+<span class="kw">from</span> nltk <span class="kw">import</span> ne_chunk
+
+<span class="var">sentence</span> = <span class="str">"Barack Obama was born in Hawaii and became president"</span>
+<span class="var">tokens</span> = word_tokenize(<span class="var">sentence</span>)
+<span class="var">tagged</span> = pos_tag(<span class="var">tokens</span>)
+<span class="var">tree</span>   = ne_chunk(<span class="var">tagged</span>)
+<span class="bi">print</span>(<span class="var">tree</span>)
+<span class="cmt"># (S (PERSON Barack/NNP Obama/NNP) was/VBD born/VBN in/IN
+#    (GPE Hawaii/NNP) and/CC became/VBD president/NN)</span>
+
+<span class="cmt"># Extract named entities</span>
+<span class="kw">for</span> <span class="var">subtree</span> <span class="kw">in</span> <span class="var">tree</span>.subtrees(filter=<span class="kw">lambda</span> <span class="var">t</span>: <span class="var">t</span>.label() != <span class="str">'S'</span>):
+    <span class="bi">print</span>(<span class="var">subtree</span>.label(), <span class="str">' '</span>.join(<span class="var">c</span>[<span class="num">0</span>] <span class="kw">for</span> <span class="var">c</span> <span class="kw">in</span> <span class="var">subtree</span>.leaves()))</span>
+<span class="cmt"># PERSON Barack Obama
+# GPE Hawaii</span></pre>
+            </div>
+
+            <h3 style="color:var(--nltk)">Sentiment Analysis (VADER)</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> nltk.sentiment <span class="kw">import</span> SentimentIntensityAnalyzer
+
+<span class="var">sia</span> = SentimentIntensityAnalyzer()
+<span class="var">texts</span> = [
+    <span class="str">"This movie was absolutely fantastic!"</span>,
+    <span class="str">"The product is terrible. Total waste of money."</span>,
+    <span class="str">"It's okay, nothing special."</span>
+]
+<span class="kw">for</span> <span class="var">t</span> <span class="kw">in</span> <span class="var">texts</span>:
+    <span class="var">scores</span> = <span class="var">sia</span>.polarity_scores(<span class="var">t</span>)
+    <span class="bi">print</span>(<span class="var">scores</span>)
+<span class="cmt"># {'neg':0.0, 'neu':0.25, 'pos':0.75, 'compound':0.75}
+# {'neg':0.6,  'neu':0.4,  'pos':0.0,  'compound':-0.73}
+# {'neg':0.0,  'neu':0.8,  'pos':0.2,  'compound':0.17}
+# compound >= 0.05 → positive
+# compound <= -0.05 → negative
+# else → neutral</span></pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ NLTK 3 ═══════════════════ -->
+        <div class="section" id="sec-nl3">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(253,203,110,.12);color:var(--nltk)">■ NLTK · Section 3
+                </div>
+                <h2>TF-IDF, Bag of Words & Text Features</h2>
+            </div>
+
+            <h3 style="color:var(--nltk)">Frequency Distribution</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> nltk import FreqDist, bigrams, trigrams, ngrams
+
+<span class="var">tokens</span> = word_tokenize(<span class="var">text</span>.lower())
+<span class="var">fdist</span> = FreqDist(<span class="var">tokens</span>)
+<span class="var">fdist</span>.most_common(<span class="num">10</span>)    <span class="cmt"># top 10 words</span>
+<span class="var">fdist</span>.plot(<span class="num">20</span>)            <span class="cmt"># frequency plot</span>
+
+<span class="cmt"># N-grams</span>
+<span class="bi">list</span>(bigrams(<span class="var">tokens</span>))[:<span class="num">3</span>]   <span class="cmt"># consecutive pairs</span>
+<span class="bi">list</span>(trigrams(<span class="var">tokens</span>))[:<span class="num">3</span>]  <span class="cmt"># consecutive triples</span>
+<span class="bi">list</span>(ngrams(<span class="var">tokens</span>, <span class="num">4</span>))     <span class="cmt"># 4-grams</span>
+FreqDist(bigrams(<span class="var">tokens</span>)).most_common(<span class="num">5</span>)</pre>
+            </div>
+
+            <h3 style="color:var(--nltk)">Bag of Words & TF-IDF with sklearn</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> sklearn.feature_extraction.text <span class="kw">import</span> (
+    CountVectorizer, TfidfVectorizer)
+
+<span class="var">corpus</span> = [
+    <span class="str">"I love machine learning and Python"</span>,
+    <span class="str">"Python is great for data science"</span>,
+    <span class="str">"Machine learning with Python is powerful"</span>
+]
+
+<span class="cmt"># Bag of Words</span>
+<span class="var">bow</span> = CountVectorizer(
+    max_features=<span class="num">100</span>,     <span class="cmt"># keep top 100 terms</span>
+    ngram_range=(<span class="num">1</span>,<span class="num">2</span>),    <span class="cmt"># unigrams + bigrams</span>
+    stop_words=<span class="str">'english'</span>,
+    min_df=<span class="num">2</span>,             <span class="cmt"># ignore terms in &lt;2 docs</span>
+    max_df=<span class="num">0.95</span>           <span class="cmt"># ignore terms in &gt;95% docs</span>
+)
+<span class="var">X_bow</span> = <span class="var">bow</span>.fit_transform(<span class="var">corpus</span>)  <span class="cmt"># sparse matrix</span>
+<span class="var">bow</span>.vocabulary_                     <span class="cmt"># word → index</span>
+<span class="var">bow</span>.get_feature_names_out()
+
+<span class="cmt"># TF-IDF (Term Freq × Inverse Doc Freq)</span>
+<span class="cmt"># TF(t,d) = count(t in d) / total_words(d)</span>
+<span class="cmt"># IDF(t)  = log(N / df(t))  — rare words get higher weight</span>
+<span class="var">tfidf</span> = TfidfVectorizer(max_features=<span class="num">5000</span>, sublinear_tf=<span class="kw">True</span>)
+<span class="var">X_tfidf</span> = <span class="var">tfidf</span>.fit_transform(<span class="var">corpus</span>)
+<span class="var">tfidf</span>.idf_  <span class="cmt"># IDF value for each term</span></pre>
+            </div>
+
+            <h3 style="color:var(--nltk)">Word Similarity with WordNet</h3>
+            <div class="code-block">
+                <div class="code-label">Python</div>
+                <pre>
+<span class="kw">from</span> nltk.corpus <span class="kw">import</span> wordnet
+
+<span class="cmt"># Get synsets (sets of synonyms)</span>
+<span class="var">syns</span> = wordnet.synsets(<span class="str">'good'</span>)
+<span class="var">syns</span>[<span class="num">0</span>].name()          <span class="cmt"># 'good.n.01'</span>
+<span class="var">syns</span>[<span class="num">0</span>].definition()    <span class="cmt"># 'benefit'</span>
+<span class="var">syns</span>[<span class="num">0</span>].examples()      <span class="cmt"># ['for your own good']</span>
+<span class="var">syns</span>[<span class="num">0</span>].lemmas()        <span class="cmt"># lemma objects</span>
+<span class="var">syns</span>[<span class="num">0</span>].lemmas()[<span class="num">0</span>].name()  <span class="cmt"># 'good'</span>
+
+<span class="cmt"># Synonyms and antonyms</span>
+<span class="var">syns</span> = [l.name() <span class="kw">for</span> s <span class="kw">in</span> wordnet.synsets(<span class="str">'happy'</span>) <span class="kw">for</span> l <span class="kw">in</span> s.lemmas()]
+<span class="var">ants</span> = [a.name() <span class="kw">for</span> s <span class="kw">in</span> wordnet.synsets(<span class="str">'happy'</span>) <span class="kw">for</span> l <span class="kw">in</span> s.lemmas()
+                        <span class="kw">for</span> a <span class="kw">in</span> l.antonyms()]
+
+<span class="cmt"># Word similarity (path similarity 0-1)</span>
+<span class="var">dog</span>  = wordnet.synset(<span class="str">'dog.n.01'</span>)
+<span class="var">cat</span>  = wordnet.synset(<span class="str">'cat.n.01'</span>)
+<span class="var">ship</span> = wordnet.synset(<span class="str">'ship.n.01'</span>)
+<span class="var">dog</span>.path_similarity(<span class="var">cat</span>)   <span class="cmt"># ~0.2  (more similar)</span>
+<span class="var">dog</span>.path_similarity(<span class="var">ship</span>)  <span class="cmt"># ~0.07 (less similar)</span></pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ BI 1 ═══════════════════ -->
+        <div class="section" id="sec-bi1">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(249,202,36,.12);color:var(--bi)">■ Power BI · Section 1
+                </div>
+                <h2>Power BI Essentials</h2>
+                <p>Power BI is Microsoft's business intelligence platform for creating interactive dashboards and
+                    reports from multiple data sources.</p>
+            </div>
+
+            <h3 style="color:var(--bi)">Power BI Architecture</h3>
+            <div class="grid3">
+                <div class="card">
+                    <h4>Power BI Desktop</h4>
+                    <p>Windows application for building reports. Free. Contains Power Query (ETL), Data Model, and
+                        Report View.</p>
+                </div>
+                <div class="card">
+                    <h4>Power BI Service</h4>
+                    <p>Cloud platform (app.powerbi.com). Publish reports, share dashboards, schedule refresh, set
+                        alerts.</p>
+                </div>
+                <div class="card">
+                    <h4>Power BI Mobile</h4>
+                    <p>iOS/Android app for consuming reports on the go. Supports KPI tiles and push notifications.</p>
+                </div>
+            </div>
+
+            <h3 style="color:var(--bi)">The Data Flow</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stage</th>
+                            <th>Tool</th>
+                            <th>What Happens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Connect</td>
+                            <td>Power Query</td>
+                            <td>Connect to 100+ data sources: SQL, Excel, APIs, SharePoint, Dataverse</td>
+                        </tr>
+                        <tr>
+                            <td>Transform (ETL)</td>
+                            <td>Power Query Editor (M language)</td>
+                            <td>Clean, reshape, filter, merge, pivot/unpivot, type conversion</td>
+                        </tr>
+                        <tr>
+                            <td>Model</td>
+                            <td>Data Model</td>
+                            <td>Define relationships (star/snowflake schema), create hierarchies, set data types</td>
+                        </tr>
+                        <tr>
+                            <td>Calculate</td>
+                            <td>DAX</td>
+                            <td>Create measures and calculated columns for business metrics</td>
+                        </tr>
+                        <tr>
+                            <td>Visualise</td>
+                            <td>Report View</td>
+                            <td>Drag-drop visuals, slicers, filters, bookmarks, drill-through</td>
+                        </tr>
+                        <tr>
+                            <td>Share</td>
+                            <td>Power BI Service</td>
+                            <td>Publish to workspace, share dashboards, set row-level security (RLS)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color:var(--bi)">Key Concepts</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dataset</td>
+                            <td>The underlying data model (tables + relationships + measures)</td>
+                        </tr>
+                        <tr>
+                            <td>Report</td>
+                            <td>Multi-page canvas with interactive visualisations built from one dataset</td>
+                        </tr>
+                        <tr>
+                            <td>Dashboard</td>
+                            <td>Single-page view of pinned tiles (from one or many reports). Service only.</td>
+                        </tr>
+                        <tr>
+                            <td>Measure</td>
+                            <td>Calculated value evaluated in context (DAX). Not stored — computed on-the-fly.</td>
+                        </tr>
+                        <tr>
+                            <td>Calculated Column</td>
+                            <td>New column computed row-by-row at refresh. Stored in model.</td>
+                        </tr>
+                        <tr>
+                            <td>Slicer</td>
+                            <td>Visual filter that lets report consumers filter the page interactively.</td>
+                        </tr>
+                        <tr>
+                            <td>Drill-through</td>
+                            <td>Right-click a data point and navigate to a detail page pre-filtered to that value.</td>
+                        </tr>
+                        <tr>
+                            <td>RLS (Row-Level Security)</td>
+                            <td>Restrict data access per user role at the row level.</td>
+                        </tr>
+                        <tr>
+                            <td>Import vs DirectQuery</td>
+                            <td>Import: data copied to model (fast, limited to 1GB). DirectQuery: live query to source
+                                (slow, no limits).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color:var(--bi)">Power Query (M Language) Essentials</h3>
+            <div class="code-block">
+                <div class="code-label">M Language · Power Query</div>
+                <pre>
+<span class="cmt">// Each step creates a new table — applied sequentially</span>
+<span class="kw">let</span>
+    Source      = Excel.Workbook(File.Contents(<span class="str">"data.xlsx"</span>), <span class="kw">true</span>),
+    Sheet1      = Source{[Name=<span class="str">"Sales"</span>]}[Data],
+    Promoted    = Table.PromoteHeaders(Sheet1),
+    ChangedType = Table.TransformColumnTypes(Promoted,{
+                    {<span class="str">"Date"</span>, type date},
+                    {<span class="str">"Revenue"</span>, type number}}),
+    Filtered    = Table.SelectRows(ChangedType,
+                    each [Revenue] > <span class="num">0</span>),
+    AddedCol    = Table.AddColumn(Filtered, <span class="str">"Year"</span>,
+                    each Date.Year([Date]), Int64.Type)
+<span class="kw">in</span>
+    AddedCol</pre>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ BI 2 ═══════════════════ -->
+        <div class="section" id="sec-bi2">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(249,202,36,.12);color:var(--bi)">■ Power BI · Section 2
+                </div>
+                <h2>DAX Fundamentals</h2>
+                <p>Data Analysis Expressions (DAX) is the formula language of Power BI. It is used to create Measures
+                    and Calculated Columns.</p>
+            </div>
+
+            <h3 style="color:var(--bi)">Measures vs Calculated Columns</h3>
+            <div class="grid2">
+                <div class="card">
+                    <h4>Measure</h4>
+                    <p>Aggregated value computed at query time based on filter context. Not stored. Use for KPIs, sums,
+                        averages. Always defined with an aggregation.</p>
+                </div>
+                <div class="card">
+                    <h4>Calculated Column</h4>
+                    <p>Row-by-row calculation stored in the table. Use for categorising, lookups, text manipulation.
+                        Computed at refresh time.</p>
+                </div>
+            </div>
+
+            <h3 style="color:var(--bi)">DAX Measure Examples</h3>
+            <div class="code-block">
+                <div class="code-label">DAX</div>
+                <pre>
+<span class="cmt">// Basic aggregations</span>
+Total Sales  = SUM(Sales[Revenue])
+Avg Order    = AVERAGE(Sales[Revenue])
+Order Count  = COUNTROWS(Sales)
+Unique Prods = DISTINCTCOUNT(Sales[ProductID])
+
+<span class="cmt">// Conditional measure</span>
+Big Orders = CALCULATE(
+    COUNTROWS(Sales),
+    Sales[Revenue] > <span class="num">1000</span>
+)
+
+<span class="cmt">// % of total (using ALL to remove filter)</span>
+Sales % Total = DIVIDE(
+    [Total Sales],
+    CALCULATE([Total Sales], ALL(Sales))
+)
+
+<span class="cmt">// Year-over-Year growth</span>
+Sales LY = CALCULATE([Total Sales],
+               SAMEPERIODLASTYEAR(Calendar[Date]))
+YoY Growth % = DIVIDE([Total Sales] - [Sales LY], [Sales LY])
+
+<span class="cmt">// Running total (YTD)</span>
+Sales YTD = TOTALYTD([Total Sales], Calendar[Date])
+Sales QTD = TOTALQTD([Total Sales], Calendar[Date])
+Sales MTD = TOTALMTD([Total Sales], Calendar[Date])
+
+<span class="cmt">// Ranking</span>
+Rank = RANKX(ALL(Products[Name]), [Total Sales], , DESC, DENSE)</pre>
+            </div>
+
+            <h3 style="color:var(--bi)">Key DAX Functions</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Functions</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Aggregation</td>
+                            <td>SUM, AVERAGE, MIN, MAX, COUNT, COUNTROWS, DISTINCTCOUNT</td>
+                            <td>Standard aggregations</td>
+                        </tr>
+                        <tr>
+                            <td>Filter</td>
+                            <td>CALCULATE, FILTER, ALL, ALLEXCEPT, REMOVEFILTERS</td>
+                            <td>Modify the filter context</td>
+                        </tr>
+                        <tr>
+                            <td>Time Intelligence</td>
+                            <td>SAMEPERIODLASTYEAR, TOTALYTD, DATEADD, DATESYTD</td>
+                            <td>Period comparisons</td>
+                        </tr>
+                        <tr>
+                            <td>Logical</td>
+                            <td>IF, SWITCH, AND, OR, NOT, IFERROR, BLANK</td>
+                            <td>Conditional logic</td>
+                        </tr>
+                        <tr>
+                            <td>Text</td>
+                            <td>CONCATENATE, LEFT, RIGHT, MID, FIND, FORMAT, LEN</td>
+                            <td>String manipulation</td>
+                        </tr>
+                        <tr>
+                            <td>Math</td>
+                            <td>DIVIDE, ROUND, ABS, SQRT, MOD, POWER</td>
+                            <td>Safe division, rounding</td>
+                        </tr>
+                        <tr>
+                            <td>Table</td>
+                            <td>SUMMARIZE, ADDCOLUMNS, SELECTCOLUMNS, TOPN, RANKX</td>
+                            <td>Table manipulation</td>
+                        </tr>
+                        <tr>
+                            <td>Relationship</td>
+                            <td>RELATED, RELATEDTABLE, USERELATIONSHIP</td>
+                            <td>Cross-table lookups</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip" style="border-color:var(--bi);background:rgba(249,202,36,.05)">💡
+                <strong>CALCULATE</strong> is the most important DAX function. It evaluates an expression in a modified
+                filter context. Almost all advanced DAX measures use CALCULATE.
+            </div>
+        </div>
+
+        <!-- ═══════════════════ BI 3 ═══════════════════ -->
+        <div class="section" id="sec-bi3">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(249,202,36,.12);color:var(--bi)">■ Tableau · Section 3
+                </div>
+                <h2>Tableau Essentials</h2>
+                <p>Tableau is a leading BI/visualisation tool with an intuitive drag-and-drop interface. It excels at
+                    ad-hoc visual analytics and storytelling with data.</p>
+            </div>
+
+            <h3 style="color:var(--bi)">Core Concepts</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dimensions</td>
+                            <td>Categorical fields (blue pills). Used for grouping, filtering, labelling. e.g., Region,
+                                Category, Date</td>
+                        </tr>
+                        <tr>
+                            <td>Measures</td>
+                            <td>Numeric fields (green pills). Aggregated by default. e.g., Sales, Profit, Quantity</td>
+                        </tr>
+                        <tr>
+                            <td>Rows / Columns Shelf</td>
+                            <td>Fields dragged here define the X and Y axes of the view</td>
+                        </tr>
+                        <tr>
+                            <td>Marks Card</td>
+                            <td>Control colour, size, shape, label, detail, tooltip of marks</td>
+                        </tr>
+                        <tr>
+                            <td>Filters Shelf</td>
+                            <td>Restrict data shown in the view</td>
+                        </tr>
+                        <tr>
+                            <td>Pages Shelf</td>
+                            <td>Animates a view across values of a dimension (like a flipbook)</td>
+                        </tr>
+                        <tr>
+                            <td>Sets</td>
+                            <td>Custom subsets of dimension members (in/out). Dynamic or fixed.</td>
+                        </tr>
+                        <tr>
+                            <td>Groups</td>
+                            <td>Manually combine dimension members into categories</td>
+                        </tr>
+                        <tr>
+                            <td>Hierarchies</td>
+                            <td>Drill-down paths: Year → Quarter → Month → Day</td>
+                        </tr>
+                        <tr>
+                            <td>LOD Expressions</td>
+                            <td>Level of Detail calculations — compute at a different granularity than the view</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color:var(--bi)">Tableau Calculated Fields</h3>
+            <div class="code-block">
+                <div class="code-label">Tableau Calculation Syntax</div>
+                <pre>
+<span class="cmt">// Basic arithmetic</span>
+[Profit Margin] = [Profit] / [Sales]
+
+<span class="cmt">// IF/IIF conditional</span>
+[Performance] = IF [Sales] > <span class="num">10000</span> THEN "High"
+                ELSEIF [Sales] > <span class="num">5000</span> THEN "Mid"
+                ELSE "Low" END
+
+<span class="cmt">// Date functions</span>
+[Year]  = YEAR([Order Date])
+[Month] = DATENAME('month', [Order Date])
+[Days Diff] = DATEDIFF('day', [Order Date], [Ship Date])
+
+<span class="cmt">// String functions</span>
+UPPER([Product Name])
+LEFT([Region], <span class="num">3</span>)
+CONTAINS([Category], "Tech")
+
+<span class="cmt">// LOD — FIXED level of detail</span>
+{ FIXED [Customer ID] : SUM([Sales]) }   <span class="cmt">// customer-level total</span>
+{ INCLUDE [Product] : AVG([Profit]) }    <span class="cmt">// include product dimension</span>
+{ EXCLUDE [Region] : SUM([Sales]) }      <span class="cmt">// exclude region from calc</span>
+
+<span class="cmt">// Table calculation (running total)</span>
+RUNNING_SUM(SUM([Sales]))
+RANK(SUM([Sales]))</pre>
+            </div>
+
+            <h3 style="color:var(--bi)">Tableau Chart Types Quick Reference</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Chart Type</th>
+                            <th>Rows / Columns</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bar Chart</td>
+                            <td>Dimension on Rows, Measure on Columns</td>
+                            <td>Comparing categories</td>
+                        </tr>
+                        <tr>
+                            <td>Line Chart</td>
+                            <td>Date on Columns, Measure on Rows</td>
+                            <td>Trends over time</td>
+                        </tr>
+                        <tr>
+                            <td>Scatter Plot</td>
+                            <td>Measure on both Rows and Columns</td>
+                            <td>Correlation between two measures</td>
+                        </tr>
+                        <tr>
+                            <td>Map</td>
+                            <td>Geographic dimension (auto-geocoded)</td>
+                            <td>Spatial distribution</td>
+                        </tr>
+                        <tr>
+                            <td>Treemap</td>
+                            <td>Dimensions to Color/Label, Measure to Size</td>
+                            <td>Part-of-whole hierarchical</td>
+                        </tr>
+                        <tr>
+                            <td>Heat Map</td>
+                            <td>Two dimensions on Rows/Columns, Measure to Color</td>
+                            <td>Cross-tabular patterns</td>
+                        </tr>
+                        <tr>
+                            <td>Gantt Chart</td>
+                            <td>Date on Columns, Dimension on Rows, Duration to Size</td>
+                            <td>Project timelines</td>
+                        </tr>
+                        <tr>
+                            <td>Bullet Chart</td>
+                            <td>Dual axis: actual vs target measure</td>
+                            <td>KPI vs goal comparison</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ BI 4 ═══════════════════ -->
+        <div class="section" id="sec-bi4">
+            <div class="sec-hero">
+                <div class="lib-badge" style="background:rgba(249,202,36,.12);color:var(--bi)">■ BI · Section 4</div>
+                <h2>BI Concepts, Best Practices & Interview Q&A</h2>
+            </div>
+
+            <h3 style="color:var(--bi)">Data Modelling — Star vs Snowflake Schema</h3>
+            <div class="grid2">
+                <div class="card">
+                    <h4>Star Schema</h4>
+                    <p>One central fact table connected to multiple denormalised dimension tables. Simple joins, fast
+                        queries. Preferred in Power BI and most BI tools.</p>
+                </div>
+                <div class="card">
+                    <h4>Snowflake Schema</h4>
+                    <p>Dimension tables are normalised into sub-dimensions. Less storage redundancy but more complex
+                        joins. Can slow query performance.</p>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                            <th>Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fact Table</td>
+                            <td>Central table with measurable events (rows = transactions)</td>
+                            <td>Sales, Orders, Page Views</td>
+                        </tr>
+                        <tr>
+                            <td>Dimension Table</td>
+                            <td>Descriptive context for facts — who, what, where, when</td>
+                            <td>Customer, Product, Date, Store</td>
+                        </tr>
+                        <tr>
+                            <td>Surrogate Key</td>
+                            <td>Auto-generated integer PK in dimension tables</td>
+                            <td>CustomerKey, ProductKey</td>
+                        </tr>
+                        <tr>
+                            <td>Foreign Key</td>
+                            <td>Reference from fact table to dimension table</td>
+                            <td>Sales[CustomerKey] → Customer[CustomerKey]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color:var(--bi)">KPIs & Dashboard Best Practices</h3>
+            <ul>
+                <li><strong>Max 5–7 KPIs per dashboard</strong> — cognitive overload reduces action</li>
+                <li><strong>Hierarchy of attention</strong> — most important metric top-left (F-pattern reading)</li>
+                <li><strong>Always show context</strong> — a number alone means nothing; show vs target, vs prior
+                    period, vs budget</li>
+                <li><strong>Consistent colour encoding</strong> — green = good, red = bad; never use colour decoratively
+                </li>
+                <li><strong>Avoid 3D charts and pie charts with many slices</strong> — bar/line charts are always
+                    clearer</li>
+                <li><strong>Mobile-first thinking</strong> — design for smallest screen; simplify, not just resize</li>
+            </ul>
+
+            <h3 style="color:var(--bi)">Power BI vs Tableau Comparison</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Power BI</th>
+                            <th>Tableau</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pricing</td>
+                            <td>Free Desktop; Pro ≈ $10/user/month</td>
+                            <td>Creator ≈ $75/user/month; more expensive</td>
+                        </tr>
+                        <tr>
+                            <td>Ease of use</td>
+                            <td>Good; Excel-like feel</td>
+                            <td>Excellent drag-drop; shallower learning curve for visuals</td>
+                        </tr>
+                        <tr>
+                            <td>Data volume</td>
+                            <td>Good (1GB Import limit; DirectQuery unlimited)</td>
+                            <td>Excellent; handles very large extracts</td>
+                        </tr>
+                        <tr>
+                            <td>Calculation language</td>
+                            <td>DAX (powerful, steep curve)</td>
+                            <td>Tableau Calculations + LOD (more visual)</td>
+                        </tr>
+                        <tr>
+                            <td>Microsoft integration</td>
+                            <td>Excellent (Teams, Excel, Azure, SharePoint)</td>
+                            <td>Good (via connectors)</td>
+                        </tr>
+                        <tr>
+                            <td>Visualisation variety</td>
+                            <td>Good + custom visuals marketplace</td>
+                            <td>Excellent; pixel-perfect control</td>
+                        </tr>
+                        <tr>
+                            <td>Data preparation</td>
+                            <td>Power Query (excellent)</td>
+                            <td>Tableau Prep (separate tool)</td>
+                        </tr>
+                        <tr>
+                            <td>Best for</td>
+                            <td>Microsoft-heavy organisations, finance reporting</td>
+                            <td>Ad-hoc analytics, complex visualisations</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color:var(--bi)">Top Interview Questions & Answers</h3>
+            <div class="code-block">
+                <div class="code-label">Q&A</div>
+                <pre>
+<span class="cmt">Q: What is the difference between a Measure and a Calculated Column in Power BI?</span>
+<span class="str">A: A Measure is a dynamic aggregation evaluated in filter context at query time
+   — it's not stored in the table. A Calculated Column is computed row-by-row
+   at data refresh and stored in the model. Use Measures for KPIs/aggregations;
+   Calculated Columns for row-level classifications or lookups.</span>
+
+<span class="cmt">Q: What is filter context in DAX?</span>
+<span class="str">A: The set of filters applied to a calculation. It comes from slicers, page
+   filters, visual-level filters, and row context from tables. CALCULATE() is
+   used to modify filter context — e.g., ALL() removes a filter, FILTER() adds
+   a condition.</span>
+
+<span class="cmt">Q: When would you use DirectQuery vs Import mode?</span>
+<span class="str">A: Import: better performance; data snapshotted in model; 1GB compressed limit.
+   DirectQuery: always shows live data; no storage limit; but slower (every
+   interaction fires a query to the source). Use DirectQuery for large
+   real-time data or when data governance prohibits copying data.</span>
+
+<span class="cmt">Q: What are LOD expressions in Tableau?</span>
+<span class="str">A: Level of Detail expressions allow you to compute aggregations at a different
+   granularity than the current view. FIXED computes regardless of view filters.
+   INCLUDE adds a finer granularity. EXCLUDE removes a coarser dimension.</span>
+
+<span class="cmt">Q: What is Row-Level Security (RLS) in Power BI?</span>
+<span class="str">A: RLS restricts which rows of data a user can see based on their role/login.
+   You define DAX filter expressions per role (e.g., [Region] = USERNAME())
+   and assign users to roles. Applied at the model level, invisible to users.</span></pre>
+            </div>
+
+            <h3 style="color:var(--bi)">Quick-Fire Reference</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>numpy vs list speed?</td>
+                            <td>50–100× faster — vectorised C operations, contiguous memory</td>
+                        </tr>
+                        <tr>
+                            <td>pandas loc vs iloc?</td>
+                            <td>loc = label-based (inclusive); iloc = integer position (exclusive stop)</td>
+                        </tr>
+                        <tr>
+                            <td>When to use .copy()?</td>
+                            <td>Numpy slices are views — modify the original! Use .copy() to avoid this</td>
+                        </tr>
+                        <tr>
+                            <td>Seaborn figure-level vs axes-level?</td>
+                            <td>Figure-level (displot, catplot, relplot) create their own Figure; axes-level (histplot,
+                                boxplot) work on existing Axes</td>
+                        </tr>
+                        <tr>
+                            <td>Sklearn pipeline benefit?</td>
+                            <td>Prevents data leakage — scaler/encoder fitted only on training fold in CV</td>
+                        </tr>
+                        <tr>
+                            <td>Stemming vs Lemmatisation?</td>
+                            <td>Stemming: fast, may give non-words. Lemmatisation: slower, always real words</td>
+                        </tr>
+                        <tr>
+                            <td>TF-IDF vs BoW?</td>
+                            <td>BoW: raw counts (common words dominate). TF-IDF: down-weights frequent words across
+                                corpus, highlights distinctive terms</td>
+                        </tr>
+                        <tr>
+                            <td>Power BI CALCULATE?</td>
+                            <td>Most important DAX function — evaluates expression in modified filter context</td>
+                        </tr>
+                        <tr>
+                            <td>Star vs Snowflake schema?</td>
+                            <td>Star: denormalised dimensions, faster queries, simpler. Snowflake: normalised, saves
+                                storage, more complex joins</td>
+                        </tr>
+                        <tr>
+                            <td>VADER compound score range?</td>
+                            <td>-1 (most negative) to +1 (most positive). ≥0.05 = positive, ≤-0.05 = negative</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const sections = ['np1', 'np2', 'np3', 'np4', 'pd1', 'pd2', 'pd3', 'pd4', 'pd5', 'mpl1', 'mpl2', 'sns1', 'sns2', 'sk1', 'sk2', 'sk3', 'nl1', 'nl2', 'nl3', 'bi1', 'bi2', 'bi3', 'bi4'];
+        const colors = { np1: '#4dabf7', np2: '#4dabf7', np3: '#4dabf7', np4: '#4dabf7', pd1: '#e17055', pd2: '#e17055', pd3: '#e17055', pd4: '#e17055', pd5: '#e17055', mpl1: '#a29bfe', mpl2: '#a29bfe', sns1: '#fd79a8', sns2: '#fd79a8', sk1: '#00b894', sk2: '#00b894', sk3: '#00b894', nl1: '#fdcb6e', nl2: '#fdcb6e', nl3: '#fdcb6e', bi1: '#f9ca24', bi2: '#f9ca24', bi3: '#f9ca24', bi4: '#f9ca24' };
+        const visited = new Set();
+        function show(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('sec-' + id).classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
+            visited.add(id); updateProgress();
+            document.getElementById('main').scrollTop = 0;
+        }
+        function updateProgress() {
+            const wrap = document.getElementById('progress'); wrap.innerHTML = '';
+            sections.forEach(id => {
+                const seg = document.createElement('div');
+                seg.className = 'prog-seg' + (visited.has(id) ? ' done' : '');
+                seg.style.background = colors[id];
+                seg.onclick = () => show(id);
+                wrap.appendChild(seg);
+            });
+        }
+        updateProgress();
+        // Set active nav color dynamically
+        document.querySelectorAll('.nav-item').forEach(el => {
+            el.addEventListener('click', function () {
+                const id = this.getAttribute('onclick').replace("show('", "").replace("')", "");
+                this.style.color = colors[id];
+                this.style.borderLeftColor = colors[id];
+                this.style.background = 'rgba(255,255,255,0.04)';
+            });
+        });
+    </script>
+</body>
+
+</html>

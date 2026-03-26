@@ -1,0 +1,3499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Mastery — Placement Guide</title>
+    <style>
+        :root {
+            --bg: #08090f;
+            --bg2: #0e1018;
+            --bg3: #141720;
+            --border: #1c2030;
+            --text: #dde5f8;
+            --muted: #4e5a7a;
+            --verbal: #06b6d4;
+            --nonverb: #a855f7;
+            --quant: #10b981;
+            --gold: #f59e0b;
+            --red: #f43f5e;
+            --blue: #3b82f6;
+            --rose: #ec4899;
+            --lime: #84cc16;
+            --orange: #f97316;
+            --code-bg: #060810;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh
+        }
+
+        /* SIDEBAR */
+        #sidebar {
+            width: 272px;
+            min-width: 272px;
+            background: var(--bg2);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent
+        }
+
+        .sidebar-header {
+            padding: 14px 15px 10px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .apt-badge {
+            background: linear-gradient(135deg, #06b6d4, #a855f7, #10b981);
+            color: #fff;
+            font-size: 9.5px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 4px;
+            letter-spacing: .7px;
+            display: inline-block;
+            margin-bottom: 5px
+        }
+
+        .sidebar-header h1 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .sidebar-header p {
+            font-size: 10.5px;
+            color: var(--muted);
+            margin-top: 1px
+        }
+
+        .prog-wrap {
+            display: flex;
+            gap: 2px;
+            padding: 10px 13px 6px;
+            flex-wrap: wrap
+        }
+
+        .prog-seg {
+            height: 3px;
+            flex: 1;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: opacity .2s;
+            opacity: .18
+        }
+
+        .prog-seg.done {
+            opacity: 1
+        }
+
+        .grp {
+            margin: 3px 0
+        }
+
+        .grp-label {
+            font-size: 9.5px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 7px 13px 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--muted)
+        }
+
+        .grp-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 5.5px 13px;
+            font-size: 11.5px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all .14s;
+            color: var(--muted)
+        }
+
+        .nav-item:hover {
+            background: var(--bg3);
+            color: var(--text)
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, .04);
+            color: var(--text);
+            border-left-color: var(--verbal)
+        }
+
+        .nav-icon {
+            font-size: 12px;
+            flex-shrink: 0;
+            width: 17px;
+            text-align: center
+        }
+
+        /* MAIN */
+        #main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 28px 40px;
+            max-width: 970px
+        }
+
+        .section {
+            display: none
+        }
+
+        .section.active {
+            display: block
+        }
+
+        .sec-hero {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .sec-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 11px;
+            border-radius: 20px;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: .7px;
+            text-transform: uppercase;
+            margin-bottom: 9px
+        }
+
+        .sec-hero h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .sec-hero p {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 5px;
+            line-height: 1.7
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 24px 0 9px;
+            color: var(--gold)
+        }
+
+        h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin: 14px 0 5px;
+            color: #90a8cc
+        }
+
+        p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--text);
+            margin-bottom: 8px
+        }
+
+        ul,
+        ol {
+            padding-left: 17px;
+            margin-bottom: 8px
+        }
+
+        li {
+            font-size: 12.5px;
+            line-height: 1.9;
+            color: var(--muted)
+        }
+
+        li strong {
+            color: var(--text)
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 20px 0
+        }
+
+        code {
+            background: var(--bg3);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+            font-size: 12px;
+            color: var(--gold)
+        }
+
+        /* TABLES */
+        .tw {
+            overflow-x: auto;
+            margin: 9px 0 14px
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12.5px
+        }
+
+        thead tr {
+            background: var(--bg3)
+        }
+
+        th {
+            padding: 7px 11px;
+            text-align: left;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted)
+        }
+
+        td {
+            padding: 7px 11px;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+            vertical-align: top;
+            line-height: 1.5
+        }
+
+        td:first-child {
+            color: var(--text);
+            font-weight: 600
+        }
+
+        tr:last-child td {
+            border-bottom: none
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, .012)
+        }
+
+        /* CALLOUTS */
+        .tip {
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+            font-size: 12.5px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid var(--verbal);
+            background: rgba(6, 182, 212, .06)
+        }
+
+        .warn {
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+            font-size: 12.5px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid var(--gold);
+            background: rgba(245, 158, 11, .06)
+        }
+
+        .success {
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+            font-size: 12.5px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid var(--quant);
+            background: rgba(16, 185, 129, .06)
+        }
+
+        .purple-box {
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+            font-size: 12.5px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid var(--nonverb);
+            background: rgba(168, 85, 247, .06)
+        }
+
+        /* GRIDS */
+        .g2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 11px 0
+        }
+
+        .g3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin: 11px 0
+        }
+
+        .g4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 9px;
+            margin: 11px 0
+        }
+
+        .card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            padding: 12px 14px
+        }
+
+        .card h4 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 12.5px
+        }
+
+        .card p {
+            font-size: 11.5px;
+            color: var(--muted);
+            margin-bottom: 0;
+            line-height: 1.55
+        }
+
+        /* QUESTION BOXES */
+        .q-box {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 10px 0;
+            overflow: hidden
+        }
+
+        .q-stem {
+            padding: 12px 16px;
+            font-size: 13px;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            line-height: 1.6
+        }
+
+        .q-stem strong {
+            color: var(--gold)
+        }
+
+        .q-opts {
+            padding: 10px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px
+        }
+
+        .q-opt {
+            font-size: 12.5px;
+            color: var(--muted);
+            padding: 4px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px
+        }
+
+        .q-opt.correct .opt-letter {
+            background: rgba(16, 185, 129, .2);
+            border-color: var(--quant);
+            color: var(--quant)
+        }
+
+        .q-opt.correct .opt-text {
+            color: var(--quant)
+        }
+
+        .opt-letter {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0px
+        }
+
+        .opt-text {
+            font-size: 12.5px;
+            line-height: 1.5
+        }
+
+        .q-answer {
+            background: rgba(16, 185, 129, .05);
+            border-top: 1px solid var(--border);
+            padding: 9px 16px;
+            font-size: 12px;
+            color: var(--quant)
+        }
+
+        /* FORMULA BLOCK */
+        .formula {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 16px;
+            margin: 9px 0;
+            font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+            font-size: 13px;
+            color: var(--nonverb);
+            text-align: center;
+            line-height: 1.7
+        }
+
+        /* PROCESS STEPS */
+        .step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin: 8px 0
+        }
+
+        .step-n {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        .step-b {
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.65;
+            flex: 1
+        }
+
+        .step-b strong {
+            color: var(--gold)
+        }
+
+        /* PATTERN VISUAL */
+        .pattern-grid {
+            display: flex;
+            gap: 6px;
+            margin: 10px 0;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .pat-cell {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: var(--bg3)
+        }
+
+        .pat-cell.ans {
+            border-color: var(--quant);
+            background: rgba(16, 185, 129, .08)
+        }
+
+        .pat-sep {
+            color: var(--muted);
+            font-size: 20px;
+            font-weight: 700
+        }
+
+        .pat-q {
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 700
+        }
+
+        /* WORD ROOTS */
+        .roots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 8px;
+            margin: 10px 0
+        }
+
+        .root-card {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 9px 12px
+        }
+
+        .root-card .root {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--verbal);
+            margin-bottom: 2px
+        }
+
+        .root-card .meaning {
+            font-size: 11.5px;
+            color: var(--muted);
+            margin-bottom: 2px
+        }
+
+        .root-card .examples {
+            font-size: 11px;
+            color: var(--text);
+            font-style: italic
+        }
+
+        /* PILL */
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 10.5px;
+            font-weight: 600;
+            margin: 1px
+        }
+
+        .pv {
+            background: rgba(6, 182, 212, .15);
+            color: var(--verbal)
+        }
+
+        .pn {
+            background: rgba(168, 85, 247, .15);
+            color: var(--nonverb)
+        }
+
+        .pq {
+            background: rgba(16, 185, 129, .15);
+            color: var(--quant)
+        }
+
+        .pg {
+            background: rgba(245, 158, 11, .15);
+            color: var(--gold)
+        }
+
+        /* TRICK BOX */
+        .trick {
+            background: rgba(168, 85, 247, .05);
+            border: 1px solid rgba(168, 85, 247, .2);
+            border-radius: 7px;
+            padding: 11px 14px;
+            margin: 10px 0;
+            font-size: 12.5px;
+            color: var(--text);
+            line-height: 1.65
+        }
+
+        .trick-title {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--nonverb);
+            margin-bottom: 5px
+        }
+
+        /* ANALOGY VISUAL */
+        .analogy-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+            flex-wrap: wrap
+        }
+
+        .ana-box {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 6px 12px;
+            font-size: 12.5px;
+            color: var(--text);
+            font-weight: 600
+        }
+
+        .ana-rel {
+            font-size: 11px;
+            color: var(--muted);
+            padding: 4px 8px;
+            background: rgba(168, 85, 247, .08);
+            border-radius: 4px
+        }
+
+        .ana-colon {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--nonverb);
+            padding: 0 4px
+        }
+
+        /* QUICK REF */
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+            margin: 10px 0
+        }
+
+        .qr-card {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            padding: 11px 13px
+        }
+
+        .qr-title {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            color: var(--muted);
+            margin-bottom: 5px
+        }
+
+        .qr-formula {
+            font-size: 12.5px;
+            color: var(--text);
+            line-height: 1.7;
+            font-family: 'Cascadia Code', monospace
+        }
+
+        /* VOCAB LIST */
+        .vocab-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            margin: 10px 0
+        }
+
+        .vocab-item {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 7px 10px;
+            font-size: 12px
+        }
+
+        .v-word {
+            font-weight: 700;
+            color: var(--verbal);
+            margin-bottom: 2px
+        }
+
+        .v-mean {
+            color: var(--muted)
+        }
+
+        .v-use {
+            color: var(--muted);
+            font-style: italic;
+            font-size: 11px;
+            margin-top: 2px
+        }
+
+        /* SHAPES for non-verbal */
+        .shape-row {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .shape-box {
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg3);
+            font-size: 26px
+        }
+
+        .shape-box.correct {
+            border-color: var(--quant);
+            background: rgba(16, 185, 129, .08)
+        }
+
+        .shape-box.question {
+            border-color: var(--gold);
+            border-style: dashed
+        }
+
+        @media(max-width:768px) {
+            #sidebar {
+                display: none
+            }
+
+            #main {
+                padding: 16px 13px
+            }
+
+            .g2,
+            .g3,
+            .g4 {
+                grid-template-columns: 1fr
+            }
+
+            .vocab-list {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <span class="apt-badge">APTITUDE</span>
+            <h1>Aptitude Mastery</h1>
+            <p>Verbal & Non-Verbal — Placement Guide</p>
+        </div>
+        <div class="prog-wrap" id="progress"></div>
+
+        <div class="grp">
+            <div class="grp-label"><span class="grp-dot" style="background:#f59e0b"></span>Overview</div>
+            <div class="nav-item active" onclick="show('overview')" id="nav-overview"><span
+                    class="nav-icon">🗺️</span>Aptitude Overview</div>
+            <div class="nav-item" onclick="show('strategy')" id="nav-strategy"><span class="nav-icon">⚡</span>Exam
+                Strategy & Tips</div>
+        </div>
+
+        <div class="grp">
+            <div class="grp-label"><span class="grp-dot" style="background:var(--verbal)"></span>Verbal Aptitude</div>
+            <div class="nav-item" onclick="show('rc')" id="nav-rc"> <span class="nav-icon">📖</span>Reading
+                Comprehension</div>
+            <div class="nav-item" onclick="show('vocab')" id="nav-vocab"> <span class="nav-icon">🔤</span>Vocabulary &
+                Word Power</div>
+            <div class="nav-item" onclick="show('analogy')" id="nav-analogy"> <span class="nav-icon">🔗</span>Verbal
+                Analogies</div>
+            <div class="nav-item" onclick="show('sentcomp')" id="nav-sentcomp"><span class="nav-icon">✏️</span>Sentence
+                Completion</div>
+            <div class="nav-item" onclick="show('error')" id="nav-error"> <span class="nav-icon">🔍</span>Error Spotting
+            </div>
+            <div class="nav-item" onclick="show('parajump')" id="nav-parajump"><span class="nav-icon">🔀</span>Para
+                Jumbles</div>
+            <div class="nav-item" onclick="show('critical')" id="nav-critical"><span class="nav-icon">🧩</span>Critical
+                Reasoning</div>
+        </div>
+
+        <div class="grp">
+            <div class="grp-label"><span class="grp-dot" style="background:var(--nonverb)"></span>Non-Verbal Reasoning
+            </div>
+            <div class="nav-item" onclick="show('series')" id="nav-series"> <span class="nav-icon">🔢</span>Series &
+                Sequences</div>
+            <div class="nav-item" onclick="show('nvanalogy')" id="nav-nvanalogy"><span class="nav-icon">🖼️</span>Figure
+                Analogy</div>
+            <div class="nav-item" onclick="show('classify')" id="nav-classify"><span
+                    class="nav-icon">🗂️</span>Classification / Odd-one-out</div>
+            <div class="nav-item" onclick="show('mirror')" id="nav-mirror"> <span class="nav-icon">🪞</span>Mirror &
+                Water Images</div>
+            <div class="nav-item" onclick="show('paper')" id="nav-paper"> <span class="nav-icon">📄</span>Paper Folding
+                & Cutting</div>
+            <div class="nav-item" onclick="show('cube')" id="nav-cube"> <span class="nav-icon">🎲</span>Cubes & Dice
+            </div>
+            <div class="nav-item" onclick="show('venn')" id="nav-venn"> <span class="nav-icon">⭕</span>Venn Diagrams
+            </div>
+            <div class="nav-item" onclick="show('coding')" id="nav-coding"> <span
+                    class="nav-icon">🔐</span>Coding–Decoding</div>
+        </div>
+
+        <div class="grp">
+            <div class="grp-label"><span class="grp-dot" style="background:var(--quant)"></span>Logical Reasoning</div>
+            <div class="nav-item" onclick="show('direction')" id="nav-direction"><span
+                    class="nav-icon">🧭</span>Directions & Distances</div>
+            <div class="nav-item" onclick="show('blood')" id="nav-blood"> <span class="nav-icon">👨‍👩‍👧</span>Blood
+                Relations</div>
+            <div class="nav-item" onclick="show('seating')" id="nav-seating"> <span class="nav-icon">💺</span>Seating
+                Arrangement</div>
+            <div class="nav-item" onclick="show('syllogism')" id="nav-syllogism"><span
+                    class="nav-icon">📝</span>Syllogisms</div>
+            <div class="nav-item" onclick="show('statements')" id="nav-statements"><span
+                    class="nav-icon">💬</span>Statements & Conclusions</div>
+        </div>
+
+        <div class="grp">
+            <div class="grp-label"><span class="grp-dot" style="background:#10b981"></span>Quantitative Aptitude</div>
+            <div class="nav-item" onclick="show('numbers')" id="nav-numbers"> <span class="nav-icon">🔢</span>Number
+                System & HCF/LCM</div>
+            <div class="nav-item" onclick="show('percent')" id="nav-percent"> <span class="nav-icon">%</span>Percentages
+            </div>
+            <div class="nav-item" onclick="show('profit')" id="nav-profit"> <span class="nav-icon">💹</span>Profit, Loss
+                & Discount</div>
+            <div class="nav-item" onclick="show('tsd')" id="nav-tsd"> <span class="nav-icon">🚂</span>Time, Speed &
+                Distance</div>
+            <div class="nav-item" onclick="show('tw')" id="nav-tw"> <span class="nav-icon">⏱️</span>Time & Work</div>
+            <div class="nav-item" onclick="show('ratio')" id="nav-ratio"> <span class="nav-icon">⚖️</span>Ratio,
+                Proportion & Mixture</div>
+            <div class="nav-item" onclick="show('pnc')" id="nav-pnc"> <span class="nav-icon">🎲</span>P&C and
+                Probability</div>
+            <div class="nav-item" onclick="show('di')" id="nav-di"> <span class="nav-icon">📊</span>Data Interpretation
+            </div>
+        </div>
+
+        <div class="grp">
+            <div class="grp-label"><span class="grp-dot" style="background:var(--red)"></span>Practice & Revision</div>
+            <div class="nav-item" onclick="show('formulas')" id="nav-formulas"> <span class="nav-icon">📌</span>Master
+                Formula Sheet</div>
+            <div class="nav-item" onclick="show('practice')" id="nav-practice"> <span class="nav-icon">🏋️</span>Mixed
+                Practice Questions</div>
+            <div class="nav-item" onclick="show('interview')" id="nav-interview"><span
+                    class="nav-icon">🎤</span>Placement Q&A</div>
+        </div>
+    </nav>
+
+    <main id="main">
+
+        <!-- ═══ OVERVIEW ═══ -->
+        <div class="section active" id="sec-overview">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(245,158,11,.1);color:var(--gold)">■ Overview</div>
+                <h2>Aptitude — Verbal & Non-Verbal</h2>
+                <p>Aptitude tests assess reasoning, problem-solving, and comprehension ability. They appear in virtually
+                    every placement test across IT, consulting, banking, FMCG, and PSU sectors.</p>
+            </div>
+            <h3>What is Tested & Where</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Section</th>
+                            <th>What is Tested</th>
+                            <th>Companies</th>
+                            <th>Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="pill pv">Verbal</span></td>
+                            <td>Comprehension, vocabulary, grammar, reasoning with words</td>
+                            <td>TCS, Infosys, Wipro, Cognizant, consulting firms</td>
+                            <td>25–40%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pn">Non-Verbal</span></td>
+                            <td>Pattern recognition, spatial reasoning, visual logic</td>
+                            <td>TCS, Capgemini, HCL, government exams</td>
+                            <td>20–30%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pq">Quantitative</span></td>
+                            <td>Arithmetic, algebra, data analysis</td>
+                            <td>All major IT, banking (IBPS), consulting</td>
+                            <td>30–50%</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pg">Logical</span></td>
+                            <td>Puzzles, arrangements, blood relations, syllogisms</td>
+                            <td>All placement tests</td>
+                            <td>20–35%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Company-Specific Focus Areas</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Strong Focus</th>
+                            <th>Question Style</th>
+                            <th>Time Pressure</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TCS NQT</td>
+                            <td>Verbal ability, Reasoning, Numerical ability</td>
+                            <td>Moderate difficulty, varied types</td>
+                            <td>High — 40 questions in 40 min</td>
+                        </tr>
+                        <tr>
+                            <td>Infosys</td>
+                            <td>Logical reasoning, Math ability, Verbal</td>
+                            <td>Difficult puzzles and DI</td>
+                            <td>Very High</td>
+                        </tr>
+                        <tr>
+                            <td>Wipro WILP</td>
+                            <td>Quantitative, Verbal, Logical</td>
+                            <td>Moderate, multiple sections</td>
+                            <td>Moderate</td>
+                        </tr>
+                        <tr>
+                            <td>Cognizant</td>
+                            <td>Arithmetic, English grammar, Logical</td>
+                            <td>Mix of easy to medium</td>
+                            <td>Moderate</td>
+                        </tr>
+                        <tr>
+                            <td>Accenture</td>
+                            <td>Cognitive assessment, English, Logical</td>
+                            <td>Scenario-based, application</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>AMCAT / COCUBES</td>
+                            <td>Quant, English, Logical comprehensively</td>
+                            <td>Adaptive difficulty</td>
+                            <td>High</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tip">💡 <strong>The golden ratio of prep:</strong> Spend 40% time on Quantitative (highest
+                marks), 30% on Verbal (easiest to improve quickly), and 30% on Non-Verbal & Logical (requires pattern
+                practice, not memorisation).</div>
+        </div>
+
+        <!-- ═══ STRATEGY ═══ -->
+        <div class="section" id="sec-strategy">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(245,158,11,.1);color:var(--gold)">■ Overview</div>
+                <h2>Exam Strategy & Time Management</h2>
+            </div>
+            <h3>The 3-Pass Strategy</h3>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">1</div>
+                <div class="step-b"><strong>Pass 1 — Easy wins (first 60% of time):</strong> Go through all questions.
+                    Answer everything you can solve in under 45 seconds. Skip and mark anything that takes longer. Build
+                    confidence and secure easy marks first.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(168,85,247,.15);color:var(--nonverb)">2</div>
+                <div class="step-b"><strong>Pass 2 — Medium questions (next 30% of time):</strong> Return to skipped
+                    questions that seem solvable. Use elimination. Apply shortcuts and tricks you've practised. Don't
+                    spend more than 90 seconds on any single question.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(16,185,129,.15);color:var(--quant)">3</div>
+                <div class="step-b"><strong>Pass 3 — Guess strategically (last 10%):</strong> With 1–2 minutes left,
+                    fill remaining blanks. Use elimination to narrow options even without solving fully. Never leave
+                    blank if no negative marking.</div>
+            </div>
+
+            <h3>Section-wise Time Allocation (60-min test)</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Section</th>
+                            <th>Typical Questions</th>
+                            <th>Allocated Time</th>
+                            <th>Time per Question</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Verbal Ability</td>
+                            <td>15–20</td>
+                            <td>18–20 min</td>
+                            <td>~60–70 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Non-Verbal / Logical</td>
+                            <td>10–15</td>
+                            <td>15–18 min</td>
+                            <td>~70–90 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Quantitative Aptitude</td>
+                            <td>15–20</td>
+                            <td>20–25 min</td>
+                            <td>~75–90 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Buffer / Review</td>
+                            <td>—</td>
+                            <td>5 min</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Quick Wins — High ROI Strategies</h3>
+            <div class="g2">
+                <div class="card" style="border-top:2px solid var(--verbal)">
+                    <h4 style="color:var(--verbal)">Verbal Quick Wins</h4>
+                    <p>RC: Read the questions before the passage. Vocabulary: learn word roots (50 roots = 500+ words).
+                        Grammar: focus on subject-verb agreement and tense errors — appear in 60% of error-spotting.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Non-Verbal Quick Wins</h4>
+                    <p>Series: look for +n, ×n, and alternating patterns first. Mirror images: shapes do NOT flip, only
+                        direction reverses. Odd-one-out: usually one property (sides, symmetry, shading) that differs.
+                    </p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--quant)">
+                    <h4 style="color:var(--quant)">Quant Quick Wins</h4>
+                    <p>Learn divisibility rules for 2–13. Memorise squares up to 25 and cubes up to 15. Percentages:
+                        convert to fractions (25% = ¼) for speed. Use approximation — exact answers rarely needed.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--gold)">
+                    <h4 style="color:var(--gold)">Elimination Strategy</h4>
+                    <p>Even without solving: eliminate obviously wrong options (too large/small, wrong unit, opposite
+                        meaning). Reduces 4-choice to 2-choice → guess accuracy jumps from 25% to 50%.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ READING COMPREHENSION ═══ -->
+        <div class="section" id="sec-rc">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(6,182,212,.1);color:var(--verbal)">■ Verbal</div>
+                <h2>Reading Comprehension (RC)</h2>
+                <p>RC passages test your ability to understand, infer, and analyse written text. Typically 2–4 passages
+                    with 4–7 questions each.</p>
+            </div>
+            <h3>Question Types in RC</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question Type</th>
+                            <th>What It Tests</th>
+                            <th>Strategy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Main Idea / Central Theme</td>
+                            <td>Overall purpose of the passage</td>
+                            <td>Read first and last paragraphs. The main idea is usually stated or implied there.</td>
+                        </tr>
+                        <tr>
+                            <td>Factual / Detail</td>
+                            <td>Specific information stated in text</td>
+                            <td>Scan for keywords from the question. Answer must be directly stated — not inferred.</td>
+                        </tr>
+                        <tr>
+                            <td>Inference</td>
+                            <td>What can be concluded beyond what's stated</td>
+                            <td>The answer must follow logically from the passage. Watch for "too strong" options
+                                (always/never).</td>
+                        </tr>
+                        <tr>
+                            <td>Tone / Attitude</td>
+                            <td>Author's emotional stance</td>
+                            <td>Look for adjectives and adverbs. Options: critical, appreciative, neutral, sarcastic,
+                                objective.</td>
+                        </tr>
+                        <tr>
+                            <td>Vocabulary in Context</td>
+                            <td>Meaning of a word as used in the passage</td>
+                            <td>Re-read the surrounding sentence. The word may have an unusual usage — context is key.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Title</td>
+                            <td>Best heading for the passage</td>
+                            <td>Must cover all main points without being too specific or too broad.</td>
+                        </tr>
+                        <tr>
+                            <td>Assumption</td>
+                            <td>Unstated premise the author relies on</td>
+                            <td>An assumption is something that MUST be true for the argument to hold.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>The SQR3 Method for RC</h3>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">S</div>
+                <div class="step-b"><strong>Survey:</strong> Skim the passage in 30 seconds — read first sentence of
+                    each paragraph to get the structure.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">Q</div>
+                <div class="step-b"><strong>Questions first:</strong> Read all questions before reading the passage in
+                    full. Know what to look for.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">R1</div>
+                <div class="step-b"><strong>Read actively:</strong> Read the passage with the questions in mind.
+                    Underline key facts, names, dates, opinions.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">R2</div>
+                <div class="step-b"><strong>Recall:</strong> After reading, briefly summarise each paragraph in your
+                    head in one sentence.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">R3</div>
+                <div class="step-b"><strong>Review:</strong> Answer questions. For detail questions, go back to find the
+                    exact location. Don't rely on memory.</div>
+            </div>
+
+            <h3>Sample RC Question</h3>
+            <div class="q-box">
+                <div class="q-stem"><strong>Passage (excerpt):</strong> "The Industrial Revolution, which began in
+                    Britain in the late 18th century, fundamentally transformed human society. It shifted economies from
+                    agrarian and handicraft bases to one dominated by industry and machine manufacturing. Critics argue
+                    that while it generated unprecedented wealth, it also created profound social inequalities, with
+                    factory workers enduring gruelling conditions for meagre wages."<br><br><strong>Q: The author's tone
+                        toward the Industrial Revolution is best described as:</strong></div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">Wholly celebratory</span>
+                    </div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">Balanced,
+                            acknowledging both benefits and drawbacks</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">Strongly critical of
+                            industrialisation</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">Indifferent and purely
+                            factual</span></div>
+                </div>
+                <div class="q-answer">✅ B — The passage uses "unprecedented wealth" (positive) and "gruelling
+                    conditions, meagre wages" (negative) — a balanced, nuanced view.</div>
+            </div>
+            <div class="warn">⚠️ <strong>Trap alert:</strong> "Too extreme" options (always, never, completely,
+                entirely) are almost always wrong in RC. Real-world passages deal in nuance, not absolutes.</div>
+        </div>
+
+        <!-- ═══ VOCABULARY ═══ -->
+        <div class="section" id="sec-vocab">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(6,182,212,.1);color:var(--verbal)">■ Verbal</div>
+                <h2>Vocabulary & Word Power</h2>
+                <p>Tested via Synonyms, Antonyms, and Contextual usage. The fastest way to build vocabulary is through
+                    word roots — knowing 50 roots unlocks 500+ words.</p>
+            </div>
+            <h3>Essential Word Roots</h3>
+            <div class="roots-grid">
+                <div class="root-card">
+                    <div class="root">BENE / BENI</div>
+                    <div class="meaning">Good / Well</div>
+                    <div class="examples">beneficial, benevolent, benefactor</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">MAL / MALE</div>
+                    <div class="meaning">Bad / Evil</div>
+                    <div class="examples">malicious, malevolent, malfunction</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">CRED</div>
+                    <div class="meaning">Believe</div>
+                    <div class="examples">credible, incredible, credential</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">DICT / DIC</div>
+                    <div class="meaning">Say / Speak</div>
+                    <div class="examples">dictate, contradict, predict, verdict</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">PORT</div>
+                    <div class="meaning">Carry</div>
+                    <div class="examples">portable, import, export, transport</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">SCRIB / SCRIPT</div>
+                    <div class="meaning">Write</div>
+                    <div class="examples">describe, prescription, manuscript</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">VOCA / VOC</div>
+                    <div class="meaning">Voice / Call</div>
+                    <div class="examples">vocal, invoke, advocate, vocabulary</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">TERR</div>
+                    <div class="meaning">Earth / Land</div>
+                    <div class="examples">terrain, territory, terrestrial</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">TEMP / TEMPOR</div>
+                    <div class="meaning">Time</div>
+                    <div class="examples">temporary, contemporary, temporal</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">VIT / VIV</div>
+                    <div class="meaning">Life / Live</div>
+                    <div class="examples">vital, vivid, survive, revive</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">GRAPH / GRAM</div>
+                    <div class="meaning">Write / Record</div>
+                    <div class="examples">biography, telegram, photograph</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">PHIL</div>
+                    <div class="meaning">Love</div>
+                    <div class="examples">philosophy, philanthropist, bibliophile</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">PHOB</div>
+                    <div class="meaning">Fear</div>
+                    <div class="examples">phobia, claustrophobia, xenophobia</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">MICRO</div>
+                    <div class="meaning">Small</div>
+                    <div class="examples">microscope, microbe, microcosm</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">MONO</div>
+                    <div class="meaning">One / Single</div>
+                    <div class="examples">monopoly, monotone, monarch</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">POLY / MULTI</div>
+                    <div class="meaning">Many</div>
+                    <div class="examples">polygon, polyglot, multifaceted</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">RUPT</div>
+                    <div class="meaning">Break</div>
+                    <div class="examples">rupture, interrupt, corrupt, abrupt</div>
+                </div>
+                <div class="root-card">
+                    <div class="root">SPEC / SPECT</div>
+                    <div class="meaning">See / Look</div>
+                    <div class="examples">spectacle, inspect, perspective</div>
+                </div>
+            </div>
+
+            <h3>High-Frequency Synonyms & Antonyms</h3>
+            <div class="vocab-list">
+                <div class="vocab-item">
+                    <div class="v-word">Acrimony</div>
+                    <div class="v-mean">Bitterness, hostility</div>
+                    <div class="v-use">Antonym: goodwill, amity</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Alacrity</div>
+                    <div class="v-mean">Eagerness, promptness</div>
+                    <div class="v-use">Synonym: zeal, enthusiasm</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Ameliorate</div>
+                    <div class="v-mean">Improve, make better</div>
+                    <div class="v-use">Antonym: worsen, aggravate</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Ambiguous</div>
+                    <div class="v-mean">Unclear, having two meanings</div>
+                    <div class="v-use">Antonym: explicit, unequivocal</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Benign</div>
+                    <div class="v-mean">Harmless, gentle, kind</div>
+                    <div class="v-use">Antonym: malignant, harmful</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Candid</div>
+                    <div class="v-mean">Honest, frank, straightforward</div>
+                    <div class="v-use">Synonym: forthright, blunt</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Cryptic</div>
+                    <div class="v-mean">Mysterious, hidden meaning</div>
+                    <div class="v-use">Antonym: transparent, lucid</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Docile</div>
+                    <div class="v-mean">Easily managed, obedient</div>
+                    <div class="v-use">Antonym: stubborn, defiant</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Eloquent</div>
+                    <div class="v-mean">Fluent, persuasive speech</div>
+                    <div class="v-use">Antonym: inarticulate, mumbling</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Ephemeral</div>
+                    <div class="v-mean">Short-lived, transient</div>
+                    <div class="v-use">Antonym: permanent, eternal</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Frugal</div>
+                    <div class="v-mean">Economical, thrifty</div>
+                    <div class="v-use">Antonym: extravagant, wasteful</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Gregarious</div>
+                    <div class="v-mean">Sociable, enjoying company</div>
+                    <div class="v-use">Antonym: reclusive, introverted</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Insolent</div>
+                    <div class="v-mean">Rude, disrespectful</div>
+                    <div class="v-use">Antonym: respectful, courteous</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Lethargic</div>
+                    <div class="v-mean">Sluggish, lacking energy</div>
+                    <div class="v-use">Antonym: energetic, vivacious</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Meticulous</div>
+                    <div class="v-mean">Very careful, precise</div>
+                    <div class="v-use">Synonym: scrupulous, fastidious</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Nefarious</div>
+                    <div class="v-mean">Wicked, criminal</div>
+                    <div class="v-use">Antonym: virtuous, noble</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Obstinate</div>
+                    <div class="v-mean">Stubbornly persistent</div>
+                    <div class="v-use">Synonym: stubborn, tenacious</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Paucity</div>
+                    <div class="v-mean">Scarcity, shortage</div>
+                    <div class="v-use">Antonym: abundance, plethora</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Prolific</div>
+                    <div class="v-mean">Productive, generating many works</div>
+                    <div class="v-use">Antonym: unproductive, barren</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Recalcitrant</div>
+                    <div class="v-mean">Resistant to authority, defiant</div>
+                    <div class="v-use">Antonym: compliant, obedient</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Sagacious</div>
+                    <div class="v-mean">Wise, having good judgement</div>
+                    <div class="v-use">Synonym: astute, judicious</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Taciturn</div>
+                    <div class="v-mean">Habitually silent</div>
+                    <div class="v-use">Antonym: loquacious, garrulous</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Tenacious</div>
+                    <div class="v-mean">Persistent, holding firmly</div>
+                    <div class="v-use">Antonym: weak-willed, yielding</div>
+                </div>
+                <div class="vocab-item">
+                    <div class="v-word">Verbose</div>
+                    <div class="v-mean">Using too many words</div>
+                    <div class="v-use">Antonym: concise, succinct</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ VERBAL ANALOGIES ═══ -->
+        <div class="section" id="sec-analogy">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(6,182,212,.1);color:var(--verbal)">■ Verbal</div>
+                <h2>Verbal Analogies</h2>
+                <p>Analogies test your ability to see relationships between word pairs. The key is identifying the EXACT
+                    type of relationship — not just a "similar" one.</p>
+            </div>
+            <h3>Types of Analogy Relationships</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Relationship Type</th>
+                            <th>Example</th>
+                            <th>Pattern</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Part → Whole</td>
+                            <td>Chapter : Book</td>
+                            <td>First is a part of Second</td>
+                        </tr>
+                        <tr>
+                            <td>Tool → Purpose</td>
+                            <td>Scalpel : Surgery</td>
+                            <td>First is used for Second</td>
+                        </tr>
+                        <tr>
+                            <td>Cause → Effect</td>
+                            <td>Fire : Burn</td>
+                            <td>First causes Second</td>
+                        </tr>
+                        <tr>
+                            <td>Action → Agent</td>
+                            <td>Write : Author</td>
+                            <td>First is done by Second</td>
+                        </tr>
+                        <tr>
+                            <td>Degree of intensity</td>
+                            <td>Angry : Furious</td>
+                            <td>Second is extreme degree of First</td>
+                        </tr>
+                        <tr>
+                            <td>Antonym</td>
+                            <td>Zenith : Nadir</td>
+                            <td>First and Second are opposites</td>
+                        </tr>
+                        <tr>
+                            <td>Synonym</td>
+                            <td>Brave : Courageous</td>
+                            <td>First and Second mean the same</td>
+                        </tr>
+                        <tr>
+                            <td>Worker → Product</td>
+                            <td>Author : Novel</td>
+                            <td>First creates Second</td>
+                        </tr>
+                        <tr>
+                            <td>Worker → Workplace</td>
+                            <td>Doctor : Hospital</td>
+                            <td>First works in Second</td>
+                        </tr>
+                        <tr>
+                            <td>Animal → Young</td>
+                            <td>Cat : Kitten</td>
+                            <td>Second is offspring of First</td>
+                        </tr>
+                        <tr>
+                            <td>Animal → Sound</td>
+                            <td>Dog : Bark</td>
+                            <td>Second is sound made by First</td>
+                        </tr>
+                        <tr>
+                            <td>Male → Female</td>
+                            <td>Lion : Lioness</td>
+                            <td>Second is female of First</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity → Unit</td>
+                            <td>Distance : Kilometre</td>
+                            <td>Second is unit of First</td>
+                        </tr>
+                        <tr>
+                            <td>Object → Category</td>
+                            <td>Rose : Flower</td>
+                            <td>First is a type of Second</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Sample Analogy Questions</h3>
+            <div class="q-box">
+                <div class="q-stem"><strong>Q1.</strong> PAINTER : CANVAS :: SCULPTOR : ?</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">Brush</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">Marble</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">Museum</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">Chisel</span></div>
+                </div>
+                <div class="q-answer">✅ B — A painter works on canvas; a sculptor works on marble. (Worker → Material
+                    relationship)</div>
+            </div>
+            <div class="q-box">
+                <div class="q-stem"><strong>Q2.</strong> PROVOKE : PACIFY :: AGGRAVATE : ?</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">Irritate</span></div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">Worsen</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">C</span><span class="opt-text">Mitigate</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">Instigate</span></div>
+                </div>
+                <div class="q-answer">✅ C — Provoke and Pacify are antonyms; Aggravate and Mitigate are antonyms.
+                    (Antonym relationship)</div>
+            </div>
+
+            <div class="trick">
+                <div class="trick-title">⚡ Solving Trick</div>Make a clear sentence: "<em>A PAINTER works on a
+                    CANVAS</em> in the same way that a SCULPTOR works on ___." Fill in the blank using your sentence
+                structure. This prevents you from being misled by superficially similar options.
+            </div>
+        </div>
+
+        <!-- ═══ SENTENCE COMPLETION ═══ -->
+        <div class="section" id="sec-sentcomp">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(6,182,212,.1);color:var(--verbal)">■ Verbal</div>
+                <h2>Sentence Completion & Fill in the Blanks</h2>
+            </div>
+            <h3>Strategy for Sentence Completion</h3>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">1</div>
+                <div class="step-b"><strong>Read the full sentence</strong> — identify the overall meaning and tone
+                    before looking at options.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">2</div>
+                <div class="step-b"><strong>Look for signal words:</strong><br>• Contrast signals: <em>but, however,
+                        although, yet, despite, whereas, nevertheless</em> → opposite idea follows<br>• Support signals:
+                    <em>and, also, moreover, furthermore, in addition</em> → similar idea follows<br>• Cause signals:
+                    <em>because, since, as, therefore, thus, consequently</em></div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">3</div>
+                <div class="step-b"><strong>Predict the answer</strong> before looking at options. Use your prediction
+                    to eliminate wrong answers quickly.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">4</div>
+                <div class="step-b"><strong>Check if the answer makes sense</strong> by reading the completed sentence
+                    aloud in your head.</div>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> Despite his reputation for being _______, the professor's
+                    lecture today was surprisingly engaging and full of fascinating anecdotes.<br><br><em>(Signal word:
+                        "Despite" → contrast → blank must mean NOT engaging)</em></div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">Brilliant</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">Tedious</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">Articulate</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">Enthusiastic</span></div>
+                </div>
+                <div class="q-answer">✅ B — "Despite" signals contrast. The lecture was engaging, so his reputation must
+                    be the OPPOSITE → tedious (boring/dull).</div>
+            </div>
+
+            <h3>Double Blank Sentences</h3>
+            <p>When two blanks appear, use the <strong>relationship between blanks</strong> as an extra clue:</p>
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> The scientist's theory was so _______ that it _______ even the
+                    most knowledgeable experts in the field.</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">complex —
+                            simplified</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">revolutionary —
+                            bewildered</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">simple — confused</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">ordinary —
+                            impressed</span></div>
+                </div>
+                <div class="q-answer">✅ B — "Even the most knowledgeable experts" were affected, implying the theory was
+                    beyond their understanding. Revolutionary theory → bewildered experts. The blanks must support each
+                    other.</div>
+            </div>
+        </div>
+
+        <!-- ═══ ERROR SPOTTING ═══ -->
+        <div class="section" id="sec-error">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(6,182,212,.1);color:var(--verbal)">■ Verbal</div>
+                <h2>Error Spotting & Sentence Correction</h2>
+                <p>Questions present a sentence divided into parts. Identify the part containing a grammatical error. If
+                    there's no error, mark "No Error."</p>
+            </div>
+            <h3>The Most Common Error Types</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Error Type</th>
+                            <th>Rule</th>
+                            <th>Wrong</th>
+                            <th>Correct</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Subject-Verb Agreement</td>
+                            <td>Singular subject → singular verb; plural subject → plural verb</td>
+                            <td>The team are playing well</td>
+                            <td>The team is playing well</td>
+                        </tr>
+                        <tr>
+                            <td>Collective Nouns</td>
+                            <td>Collective nouns take singular verb: team, jury, committee, group, family</td>
+                            <td>The jury were divided</td>
+                            <td>The jury was divided</td>
+                        </tr>
+                        <tr>
+                            <td>Either/Neither + Verb</td>
+                            <td>Either…or / Neither…nor → verb agrees with the NEARER subject</td>
+                            <td>Either Ram or his brothers is wrong</td>
+                            <td>Either Ram or his brothers are wrong</td>
+                        </tr>
+                        <tr>
+                            <td>Wrong Tense</td>
+                            <td>Consistent tense throughout a sentence</td>
+                            <td>He came in and sits down</td>
+                            <td>He came in and sat down</td>
+                        </tr>
+                        <tr>
+                            <td>Pronoun Agreement</td>
+                            <td>Pronoun must agree with its antecedent in gender, number, person</td>
+                            <td>Everyone must do their best</td>
+                            <td>Everyone must do his/her best</td>
+                        </tr>
+                        <tr>
+                            <td>Double Negative</td>
+                            <td>Two negatives make a positive — avoid in formal English</td>
+                            <td>I don't know nothing about it</td>
+                            <td>I know nothing about it</td>
+                        </tr>
+                        <tr>
+                            <td>Misplaced Modifier</td>
+                            <td>Modifier must be placed next to the word it modifies</td>
+                            <td>She only drinks water in the morning</td>
+                            <td>She drinks only water in the morning</td>
+                        </tr>
+                        <tr>
+                            <td>Preposition Error</td>
+                            <td>Different prepositions change meaning: interested IN, different FROM, similar TO</td>
+                            <td>She is different than me</td>
+                            <td>She is different from me</td>
+                        </tr>
+                        <tr>
+                            <td>Use of "Less vs Fewer"</td>
+                            <td>Fewer = countable; Less = uncountable</td>
+                            <td>Less students came today</td>
+                            <td>Fewer students came today</td>
+                        </tr>
+                        <tr>
+                            <td>Use of "Between vs Among"</td>
+                            <td>Between = two; Among = more than two</td>
+                            <td>Divide this between the five members</td>
+                            <td>Divide this among the five members</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Sample Error Spotting</h3>
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> (A) Neither the manager / (B) nor the employees / (C) were
+                    present / (D) at the meeting. / (E) No Error</div>
+                <div class="q-opts">
+                    <div class="q-opt correct"><span class="opt-letter">C</span><span class="opt-text">were
+                            present</span></div>
+                </div>
+                <div class="q-answer">✅ C — "Neither…nor" → verb agrees with the NEARER subject "employees" (plural).
+                    But wait — "employees" IS plural, so "were" is correct! Actually (E) No Error. In this construction:
+                    Neither…nor + plural nearest = plural verb. Trick: if the question says E is the answer, verify
+                    carefully!</div>
+            </div>
+            <div class="trick">
+                <div class="trick-title">⚡ Top Error Spotting Trick</div>Mentally break the sentence at commas and check
+                each clause independently. Most errors occur in:<br>1. Subject-verb agreement (50% of errors)<br>2.
+                Pronoun reference (20%)<br>3. Tense consistency (20%)<br>4. Preposition / article usage (10%)
+            </div>
+        </div>
+
+        <!-- ═══ PARA JUMBLES ═══ -->
+        <div class="section" id="sec-parajump">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(6,182,212,.1);color:var(--verbal)">■ Verbal</div>
+                <h2>Para Jumbles & Para Completion</h2>
+            </div>
+            <h3>Strategy to Crack Para Jumbles</h3>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">1</div>
+                <div class="step-b"><strong>Find the Opening Sentence:</strong> It introduces the topic without pronouns
+                    referring to unmentioned entities. Never has "however," "but," "therefore," or "also" at the start.
+                    Usually has the broadest, most general statement.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">2</div>
+                <div class="step-b"><strong>Find the Closing Sentence:</strong> Summarises, concludes, or gives a future
+                    outlook. Often has words like "thus," "finally," "in conclusion," "therefore." May contain the main
+                    solution or result.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">3</div>
+                <div class="step-b"><strong>Use Pronoun Clues:</strong> "He," "she," "it," "they," "this," "these,"
+                    "those" always refer to something mentioned in the PREVIOUS sentence. Find the sentence that
+                    introduces the noun each pronoun refers to.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">4</div>
+                <div class="step-b"><strong>Use Connector Words:</strong> Look for logical connectors: "however,"
+                    "moreover," "in addition," "consequently," "nevertheless," "on the other hand" — these link ideas in
+                    a predictable order.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(6,182,212,.15);color:var(--verbal)">5</div>
+                <div class="step-b"><strong>Build Chains:</strong> Find 2–3 sentences that clearly follow each other.
+                    Use these chains to determine the overall order.</div>
+            </div>
+
+            <div class="tip">💡 <strong>Mandatory Pair technique:</strong> Find any two sentences that MUST go together
+                (A always precedes B). Use this fixed relationship as an anchor to determine the options that work.
+            </div>
+
+            <h3>Para Completion Strategy</h3>
+            <p>Given a paragraph with the last sentence missing — choose the best concluding line:</p>
+            <ul>
+                <li>The concluding sentence must <strong>follow logically</strong> from the entire paragraph</li>
+                <li>It should match the <strong>tone</strong> of the passage (formal/informal, positive/negative)</li>
+                <li>It should NOT introduce an entirely new idea not discussed in the passage</li>
+                <li>Avoid options that are <strong>too specific</strong> (contradicts the generality of a conclusion) or
+                    <strong>too broad</strong></li>
+            </ul>
+        </div>
+
+        <!-- ═══ CRITICAL REASONING ═══ -->
+        <div class="section" id="sec-critical">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(6,182,212,.1);color:var(--verbal)">■ Verbal</div>
+                <h2>Critical Reasoning</h2>
+                <p>Critical reasoning tests your ability to evaluate arguments — finding assumptions, strengths,
+                    weaknesses, conclusions, and inferences.</p>
+            </div>
+            <h3>Key CR Question Types</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question Type</th>
+                            <th>What to Find</th>
+                            <th>Strategy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Conclusion</td>
+                            <td>What must be true if the argument is valid?</td>
+                            <td>The conclusion follows NECESSARILY from the premises. Should not require additional
+                                assumptions.</td>
+                        </tr>
+                        <tr>
+                            <td>Assumption</td>
+                            <td>Unstated premise the argument depends on</td>
+                            <td>Use the Negation Test: negate each option. If negation DESTROYS the argument → that's
+                                the assumption.</td>
+                        </tr>
+                        <tr>
+                            <td>Strengthen</td>
+                            <td>Which option makes the argument more valid?</td>
+                            <td>Find what would provide additional evidence supporting the conclusion.</td>
+                        </tr>
+                        <tr>
+                            <td>Weaken</td>
+                            <td>Which option undermines the argument?</td>
+                            <td>Find what would make the conclusion less likely to be true.</td>
+                        </tr>
+                        <tr>
+                            <td>Flaw</td>
+                            <td>What is wrong with the reasoning?</td>
+                            <td>Look for: hasty generalisation, false causation, circular reasoning, false dichotomy, ad
+                                hominem.</td>
+                        </tr>
+                        <tr>
+                            <td>Inference</td>
+                            <td>What can be inferred from the passage?</td>
+                            <td>Must be directly supported. Avoid "too strong" or "beyond scope" options.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>The Negation Test (for Assumptions)</h3>
+            <div class="q-box">
+                <div class="q-stem"><strong>Argument:</strong> "All students who scored above 90% in math will be
+                    selected for the advanced programme. Riya scored 94%. Therefore, Riya will be
+                    selected."<br><br><strong>Q: Which of the following is an assumption?</strong></div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">Riya studied very hard
+                            for her math exam</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">No student who
+                            scored above 90% will be excluded from the programme for any other reason</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">The advanced programme is
+                            beneficial for students</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">Riya wants to join the
+                            advanced programme</span></div>
+                </div>
+                <div class="q-answer">✅ B — Negate B: "Students above 90% CAN be excluded for other reasons." If true,
+                    this DESTROYS the conclusion "Riya WILL be selected." So B is the assumption. Negating A, C, or D
+                    doesn't affect the argument.</div>
+            </div>
+        </div>
+
+        <!-- ═══ SERIES & SEQUENCES ═══ -->
+        <div class="section" id="sec-series">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(168,85,247,.1);color:var(--nonverb)">■ Non-Verbal</div>
+                <h2>Number & Letter Series</h2>
+                <p>Series questions ask you to identify the pattern and find the next/missing term. Over 80% of series
+                    follow one of these patterns.</p>
+            </div>
+            <h3>Number Series — Pattern Types</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pattern Type</th>
+                            <th>Example</th>
+                            <th>How to Identify</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Arithmetic (+n each time)</td>
+                            <td>3, 7, 11, 15, 19, <strong>23</strong></td>
+                            <td>Difference between consecutive terms is constant (+4)</td>
+                        </tr>
+                        <tr>
+                            <td>Geometric (×n each time)</td>
+                            <td>2, 6, 18, 54, <strong>162</strong></td>
+                            <td>Ratio of consecutive terms is constant (×3)</td>
+                        </tr>
+                        <tr>
+                            <td>Squares</td>
+                            <td>1, 4, 9, 16, 25, <strong>36</strong></td>
+                            <td>Terms are 1², 2², 3², 4²...</td>
+                        </tr>
+                        <tr>
+                            <td>Cubes</td>
+                            <td>1, 8, 27, 64, <strong>125</strong></td>
+                            <td>Terms are 1³, 2³, 3³...</td>
+                        </tr>
+                        <tr>
+                            <td>Fibonacci-type</td>
+                            <td>2, 3, 5, 8, 13, <strong>21</strong></td>
+                            <td>Each term = sum of two preceding terms</td>
+                        </tr>
+                        <tr>
+                            <td>Alternating series</td>
+                            <td>2, 10, 4, 12, 6, 14, <strong>8</strong></td>
+                            <td>Two interleaved series: odd positions (2,4,6...) and even (10,12,14...)</td>
+                        </tr>
+                        <tr>
+                            <td>Difference of differences</td>
+                            <td>2, 3, 6, 11, 18, <strong>27</strong></td>
+                            <td>Differences: 1,3,5,7,9... (differences increase by 2)</td>
+                        </tr>
+                        <tr>
+                            <td>n² + n or n² − n</td>
+                            <td>2, 6, 12, 20, 30, <strong>42</strong></td>
+                            <td>n(n+1): 1×2, 2×3, 3×4, 4×5...</td>
+                        </tr>
+                        <tr>
+                            <td>Prime numbers</td>
+                            <td>2, 3, 5, 7, 11, 13, <strong>17</strong></td>
+                            <td>Only divisible by 1 and themselves</td>
+                        </tr>
+                        <tr>
+                            <td>Mixed operations</td>
+                            <td>3, 7, 15, 31, <strong>63</strong></td>
+                            <td>×2+1 each time: 3→7(×2+1)→15(×2+1)→31...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Letter Series</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Example</th>
+                            <th>Pattern</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Skip letters</td>
+                            <td>A, C, E, G, <strong>I</strong></td>
+                            <td>+2 positions in alphabet each time</td>
+                        </tr>
+                        <tr>
+                            <td>Groups of letters</td>
+                            <td>AB, DE, GH, JK, <strong>MN</strong></td>
+                            <td>Groups of 2, skipping 1 letter between groups</td>
+                        </tr>
+                        <tr>
+                            <td>Reverse / mirror</td>
+                            <td>Z, Y, X, W, <strong>V</strong></td>
+                            <td>Reverse alphabetical order</td>
+                        </tr>
+                        <tr>
+                            <td>Position coding</td>
+                            <td>A=1, B=2, Z=26 — "If COME = 3+15+13+5 = 36"</td>
+                            <td>Convert to position numbers, find pattern</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> Find the missing term: 4, 9, 25, 49, 121, <strong>?</strong>
+                </div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">144</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">169</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">196</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">225</span></div>
+                </div>
+                <div class="q-answer">✅ B — 4=2², 9=3², 25=5², 49=7², 121=11², ? = 13² = 169. These are squares of PRIME
+                    numbers (2,3,5,7,11,13).</div>
+            </div>
+        </div>
+
+        <!-- ═══ FIGURE ANALOGY ═══ -->
+        <div class="section" id="sec-nvanalogy">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(168,85,247,.1);color:var(--nonverb)">■ Non-Verbal</div>
+                <h2>Figure / Non-Verbal Analogy</h2>
+                <p>Figure analogy presents two related figures, then a third figure — find the fourth that maintains the
+                    same relationship.</p>
+            </div>
+            <h3>What Changes Between Figures — Checklist</h3>
+            <div class="g3">
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Shape Properties</h4>
+                    <p>Number of sides, shape type (triangle→square), curved vs angular, internal lines, symmetry</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Size & Orientation</h4>
+                    <p>Rotation (90°, 180°, 270°), reflection, scaling (bigger/smaller), direction facing</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Shading & Fill</h4>
+                    <p>Filled vs hollow, shading pattern (dots, lines, cross-hatch), which portion is shaded</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Number & Count</h4>
+                    <p>Number of elements, how elements are arranged, elements added or removed</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Position</h4>
+                    <p>Inside/outside, overlapping, which figure is on top (z-order), corner positions</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Combination</h4>
+                    <p>Often 2–3 changes happen simultaneously — find ALL of them, not just the most obvious one</p>
+                </div>
+            </div>
+            <div class="trick">
+                <div class="trick-title">⚡ Systematic Approach</div>List all visible properties of Figure 1, then list
+                what changed to get Figure 2. Apply EXACTLY those same changes to Figure 3 to predict Figure 4.
+                Eliminate any option that differs from your prediction on ANY property.
+            </div>
+        </div>
+
+        <!-- ═══ CLASSIFICATION ═══ -->
+        <div class="section" id="sec-classify">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(168,85,247,.1);color:var(--nonverb)">■ Non-Verbal</div>
+                <h2>Classification & Odd One Out</h2>
+            </div>
+            <h3>Finding the Odd One Out — Property Check</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property to Check</th>
+                            <th>Example (Numbers)</th>
+                            <th>Example (Words)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Number of sides</td>
+                            <td>Triangle, Square, Pentagon, Circle ← (no sides)</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Even vs Odd</td>
+                            <td>4, 8, 12, 17, 20 ← (17 is odd, rest are even)</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Prime vs Composite</td>
+                            <td>13, 17, 23, 31, 32 ← (32 is composite)</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Perfect square/cube</td>
+                            <td>4, 9, 16, 25, 28 ← (28 is not a perfect square)</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Category membership</td>
+                            <td>—</td>
+                            <td>Rose, Tulip, Mango, Jasmine ← (Mango is not a flower)</td>
+                        </tr>
+                        <tr>
+                            <td>Degree of relationship</td>
+                            <td>—</td>
+                            <td>Warm, Hot, Scorching, Cool ← (Cool is not high temperature)</td>
+                        </tr>
+                        <tr>
+                            <td>Digits sum</td>
+                            <td>12(3), 21(3), 30(3), 19(10) ← (19 digit sum differs)</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> Which is the odd one out? 6, 9, 15, 21, 24, 28</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">9</span></div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">21</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">C</span><span class="opt-text">28</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">24</span></div>
+                </div>
+                <div class="q-answer">✅ C — All others are multiples of 3: 6(÷3=2), 9(÷3=3), 15(÷3=5), 21(÷3=7),
+                    24(÷3=8). But 28 ÷ 3 = 9.33 — not a multiple of 3.</div>
+            </div>
+        </div>
+
+        <!-- ═══ MIRROR & WATER ═══ -->
+        <div class="section" id="sec-mirror">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(168,85,247,.1);color:var(--nonverb)">■ Non-Verbal</div>
+                <h2>Mirror & Water Images</h2>
+            </div>
+            <h3>The Core Rules</h3>
+            <div class="g2">
+                <div class="card" style="border-top:2px solid var(--verbal)">
+                    <h4 style="color:var(--verbal)">Mirror Image (Left-Right Reflection)</h4>
+                    <ul style="font-size:12px;color:var(--muted);padding-left:16px">
+                        <li>Mirror placed on the <strong>RIGHT side</strong> → image appears on the right</li>
+                        <li><strong>Left and right are SWAPPED</strong>, top and bottom remain the same</li>
+                        <li>What faces left → faces right in the mirror</li>
+                        <li>Number of elements, size, and up-down position: UNCHANGED</li>
+                        <li>Trick for letters: d↔b, p↔q, reversed: E→Ǝ, F→⊣</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Water Image (Top-Bottom Reflection)</h4>
+                    <ul style="font-size:12px;color:var(--muted);padding-left:16px">
+                        <li>Mirror placed at the <strong>BOTTOM</strong> → reflection below the object</li>
+                        <li><strong>Top and bottom are SWAPPED</strong>, left and right remain the same</li>
+                        <li>What faces up → faces down in the water image</li>
+                        <li>An upside-down version of the original</li>
+                        <li>Trick for letters: n↔u, d↔p, M↔W, T→⊥</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> If the word <strong>DOMAIN</strong> is placed in front of a
+                    vertical mirror, what will its reflection show?</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">DOMAIN (unchanged)</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">NIAMOB</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">C</span><span class="opt-text">ᴎIAMOᴅ (letters
+                            reversed left-right)</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">Upside-down DOMAIN</span>
+                    </div>
+                </div>
+                <div class="q-answer">✅ C — Mirror image reverses left and right. The word appears reversed, with each
+                    letter also flipped horizontally. Key: left-right swap, top-bottom preserved. D would be a water
+                    image.</div>
+            </div>
+
+            <div class="trick">
+                <div class="trick-title">⚡ Clock Mirror Trick</div>If a clock shows a time in a mirror, to find the real
+                time: subtract the mirror-image time from 11:60. Mirror shows 7:20 → Real time = 11:60 − 7:20 = 4:40.
+                This formula works for all clock mirror questions.
+            </div>
+        </div>
+
+        <!-- ═══ PAPER FOLDING ═══ -->
+        <div class="section" id="sec-paper">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(168,85,247,.1);color:var(--nonverb)">■ Non-Verbal</div>
+                <h2>Paper Folding & Cutting</h2>
+            </div>
+            <h3>Rules for Paper Folding</h3>
+            <ul>
+                <li><strong>Each fold doubles</strong> the layers. After 1 fold: 2 layers. After 2 folds: 4 layers.
+                    After n folds: 2ⁿ layers.</li>
+                <li>A hole punched through n layers creates <strong>2ⁿ holes</strong> when unfolded (if no overlap)</li>
+                <li>The holes are <strong>symmetric</strong> about the fold line(s)</li>
+                <li>Holes near the fold line create symmetrical pairs on either side</li>
+                <li>The position of holes mirrors across each fold line</li>
+            </ul>
+            <h3>Step-by-Step Approach</h3>
+            <div class="step">
+                <div class="step-n" style="background:rgba(168,85,247,.15);color:var(--nonverb)">1</div>
+                <div class="step-b"><strong>Identify the fold lines</strong> — note direction
+                    (horizontal/vertical/diagonal) and order of folds.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(168,85,247,.15);color:var(--nonverb)">2</div>
+                <div class="step-b"><strong>Mentally unfold in REVERSE order</strong> — the last fold is unfolded first.
+                    Reflect the cut positions across each fold line.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(168,85,247,.15);color:var(--nonverb)">3</div>
+                <div class="step-b"><strong>Count total holes</strong> — multiply by 2 for each fold. One punch through
+                    2-fold paper = 4 holes.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(168,85,247,.15);color:var(--nonverb)">4</div>
+                <div class="step-b"><strong>Check symmetry</strong> — the final answer must be symmetrical about all
+                    fold lines used.</div>
+            </div>
+            <div class="purple-box">🔑 <strong>Key insight:</strong> When a square paper is folded diagonally and a hole
+                is punched at the corner (fold point), unfolding gives only 1 hole (the fold point). When punched away
+                from the fold, you get 2 holes (one mirrored across the fold). A vertical + horizontal fold with centre
+                punch = 1 hole (all layers overlap at centre).</div>
+        </div>
+
+        <!-- ═══ CUBES & DICE ═══ -->
+        <div class="section" id="sec-cube">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(168,85,247,.1);color:var(--nonverb)">■ Non-Verbal</div>
+                <h2>Cubes & Dice</h2>
+            </div>
+            <h3>Cube Painting Rules</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cube Cut into n×n×n</th>
+                            <th>No faces painted</th>
+                            <th>1 face painted</th>
+                            <th>2 faces painted</th>
+                            <th>3 faces painted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>n=3 (27 small cubes)</td>
+                            <td>(n−2)³ = 1</td>
+                            <td>6(n−2)² = 6</td>
+                            <td>12(n−2) = 12</td>
+                            <td>8 (always corners)</td>
+                        </tr>
+                        <tr>
+                            <td>n=4 (64 small cubes)</td>
+                            <td>8</td>
+                            <td>24</td>
+                            <td>24</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>n=5 (125 small cubes)</td>
+                            <td>27</td>
+                            <td>54</td>
+                            <td>36</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>General formula (n×n×n)</td>
+                            <td>(n−2)³</td>
+                            <td>6(n−2)²</td>
+                            <td>12(n−2)</td>
+                            <td>8 (always 8)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Dice Rules — Opposite Faces</h3>
+            <div class="g2">
+                <div class="card" style="border-top:2px solid var(--gold)">
+                    <h4 style="color:var(--gold)">Standard Dice</h4>
+                    <p>On a standard die, opposite faces always sum to 7:<br>• 1 is opposite to 6<br>• 2 is opposite to
+                        5<br>• 3 is opposite to 4</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Finding Opposite Faces from Diagrams</h4>
+                    <p>When two positions of a die are shown, the faces visible in both positions <strong>cannot be
+                            opposite</strong>. The common faces help eliminate options. Any face NOT appearing in either
+                        view is opposite to the face common to both views.</p>
+                </div>
+            </div>
+            <div class="trick">
+                <div class="trick-title">⚡ Dice Trick — Common Face Method</div>Given two views of a die: (1) Find a
+                face common to both views. (2) The face opposite to the common face is the one that appears in neither
+                view. (3) Then use rotation to determine the remaining pairs. Works for 90% of dice questions.
+            </div>
+        </div>
+
+        <!-- ═══ VENN DIAGRAMS ═══ -->
+        <div class="section" id="sec-venn">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(168,85,247,.1);color:var(--nonverb)">■ Non-Verbal</div>
+                <h2>Venn Diagrams</h2>
+                <p>Venn diagram questions in aptitude tests either: (A) ask what shape best represents the relationship
+                    between three groups, OR (B) give numbers in regions and ask you to calculate totals.</p>
+            </div>
+            <h3>Common Venn Diagram Formulas</h3>
+            <div class="formula">n(A ∪ B) = n(A) + n(B) − n(A ∩ B)</div>
+            <div class="formula">n(A ∪ B ∪ C) = n(A) + n(B) + n(C) − n(A∩B) − n(B∩C) − n(A∩C) + n(A∩B∩C)</div>
+            <div class="formula">Only A = n(A) − n(A∩B) − n(A∩C) + n(A∩B∩C)</div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> In a class of 60 students, 30 play Cricket, 25 play Football,
+                    and 10 play both. How many play neither?</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">10</span></div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">13</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">C</span><span class="opt-text">15</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">20</span></div>
+                </div>
+                <div class="q-answer">✅ C — n(C∪F) = 30 + 25 − 10 = 45. Play neither = 60 − 45 = 15.</div>
+            </div>
+        </div>
+
+        <!-- ═══ CODING DECODING ═══ -->
+        <div class="section" id="sec-coding">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(168,85,247,.1);color:var(--nonverb)">■ Non-Verbal</div>
+                <h2>Coding – Decoding</h2>
+            </div>
+            <h3>Common Coding Patterns</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pattern</th>
+                            <th>Example</th>
+                            <th>Rule</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Letter shift (+n)</td>
+                            <td>A=D, B=E, CAT=FDW</td>
+                            <td>Each letter moved forward by n positions</td>
+                        </tr>
+                        <tr>
+                            <td>Reverse alphabet</td>
+                            <td>A=Z, B=Y, C=X (A+Z=27)</td>
+                            <td>Replace each letter with its mirror (1st↔26th)</td>
+                        </tr>
+                        <tr>
+                            <td>Number substitution</td>
+                            <td>A=1, B=2… Z=26</td>
+                            <td>Alphabetical position</td>
+                        </tr>
+                        <tr>
+                            <td>Word reversal</td>
+                            <td>CAT → TAC</td>
+                            <td>Spell word backwards</td>
+                        </tr>
+                        <tr>
+                            <td>Alternate letters</td>
+                            <td>Vowels coded separately from consonants</td>
+                            <td>Look for AEIOU vs BCDFG... pattern</td>
+                        </tr>
+                        <tr>
+                            <td>Symbol substitution</td>
+                            <td>A=@, B=#, specific symbols</td>
+                            <td>Find the mapping table from given examples</td>
+                        </tr>
+                        <tr>
+                            <td>Positional coding</td>
+                            <td>CAT: C=3, A=1, T=20 → code=3120</td>
+                            <td>Concatenate position numbers</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> In a certain code, MOTHER is written as NPUIFS. How is FATHER
+                    written?</div>
+                <div class="q-opts">
+                    <div class="q-opt correct"><span class="opt-letter">A</span><span class="opt-text">GBUIFS</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">FBUIFS</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">GBUHFS</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">GBUIFR</span></div>
+                </div>
+                <div class="q-answer">✅ A — M→N, O→P, T→U, H→I, E→F, R→S. Each letter is shifted +1 in the alphabet.
+                    FATHER → G,B,U,I,F,S → GBUIFS.</div>
+            </div>
+        </div>
+
+        <!-- ═══ DIRECTIONS ═══ -->
+        <div class="section" id="sec-direction">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Logical</div>
+                <h2>Directions & Distances</h2>
+            </div>
+            <h3>The Compass Rose — Direction Rules</h3>
+            <div class="g2">
+                <div class="card" style="border-top:2px solid var(--quant)">
+                    <h4 style="color:var(--quant)">Basic Directions</h4>
+                    <div
+                        style="font-family:monospace;font-size:13px;color:var(--text);line-height:2;background:var(--code-bg);padding:10px;border-radius:5px;text-align:center;margin-top:6px">
+                        &nbsp;&nbsp;&nbsp;N<br>NW ↖ ↑ ↗ NE<br>W ← • → E<br>SW ↙ ↓ ↘ SE<br>&nbsp;&nbsp;&nbsp;S
+                    </div>
+                </div>
+                <div class="card" style="border-top:2px solid var(--quant)">
+                    <h4 style="color:var(--quant)">Turning Rules</h4>
+                    <ul style="font-size:12px;color:var(--muted);padding-left:14px">
+                        <li>Facing North + Right turn = East</li>
+                        <li>Facing North + Left turn = West</li>
+                        <li>Facing East + Right turn = South</li>
+                        <li>Facing East + Left turn = North</li>
+                        <li>180° turn = opposite direction always</li>
+                        <li>4 × 90° turns = back to start direction</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="trick">
+                <div class="trick-title">⚡ Shadow Direction Trick</div>In the MORNING (sunrise in East): If person faces
+                North, shadow falls WEST. If faces South, shadow falls EAST. In the EVENING (sunset in West): If person
+                faces North, shadow falls EAST. Formula: shadow is ALWAYS on opposite side from sun. Draw a simple
+                diagram — it takes 10 seconds and prevents errors.
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> A man starts walking North, turns right, walks 4 km, turns right
+                    again, walks 2 km, turns left, walks 3 km. In which direction is he now facing?</div>
+                <div class="q-opts">
+                    <div class="q-opt correct"><span class="opt-letter">A</span><span class="opt-text">East</span></div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">North</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">South</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">West</span></div>
+                </div>
+                <div class="q-answer">✅ A — Start: North. Right turn → East (4km). Right turn → South (2km). Left turn →
+                    East (3km). Final direction: East.</div>
+            </div>
+        </div>
+
+        <!-- ═══ BLOOD RELATIONS ═══ -->
+        <div class="section" id="sec-blood">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Logical</div>
+                <h2>Blood Relations</h2>
+            </div>
+            <h3>Relationship Chart</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Relation</th>
+                            <th>Who They Are</th>
+                            <th>Relation</th>
+                            <th>Who They Are</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Son's wife</td>
+                            <td>Daughter-in-law</td>
+                            <td>Wife's brother</td>
+                            <td>Brother-in-law</td>
+                        </tr>
+                        <tr>
+                            <td>Daughter's husband</td>
+                            <td>Son-in-law</td>
+                            <td>Husband's sister</td>
+                            <td>Sister-in-law</td>
+                        </tr>
+                        <tr>
+                            <td>Brother's wife</td>
+                            <td>Sister-in-law</td>
+                            <td>Father's brother</td>
+                            <td>Uncle (Paternal)</td>
+                        </tr>
+                        <tr>
+                            <td>Sister's husband</td>
+                            <td>Brother-in-law</td>
+                            <td>Mother's brother</td>
+                            <td>Uncle (Maternal / Mama)</td>
+                        </tr>
+                        <tr>
+                            <td>Father's father</td>
+                            <td>Paternal grandfather</td>
+                            <td>Father's sister</td>
+                            <td>Aunt (Paternal / Bua)</td>
+                        </tr>
+                        <tr>
+                            <td>Mother's father</td>
+                            <td>Maternal grandfather (Nana)</td>
+                            <td>Mother's sister</td>
+                            <td>Aunt (Maternal / Mausi)</td>
+                        </tr>
+                        <tr>
+                            <td>Uncle's son/daughter</td>
+                            <td>Cousin</td>
+                            <td>Grandfather's son</td>
+                            <td>Father or Uncle</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="trick">
+                <div class="trick-title">⚡ Drawing Family Trees</div>Always draw a family tree diagram. Use: □ for male,
+                ○ for female. Horizontal lines = married, vertical lines = children, diagonal = siblings. Track gender
+                carefully — "A's son's wife's mother" chains can be solved in 5 seconds with a tree but take 2 minutes
+                with logic alone.
+            </div>
+        </div>
+
+        <!-- ═══ SEATING ARRANGEMENT ═══ -->
+        <div class="section" id="sec-seating">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Logical</div>
+                <h2>Seating Arrangement</h2>
+            </div>
+            <h3>Linear vs Circular Arrangement</h3>
+            <div class="g2">
+                <div class="card" style="border-top:2px solid var(--verbal)">
+                    <h4 style="color:var(--verbal)">Linear Arrangement</h4>
+                    <ul style="font-size:12px;padding-left:14px;color:var(--muted)">
+                        <li>People sit in a row facing one direction (usually North/South)</li>
+                        <li>"Left" and "Right" are absolute — fix them from the start</li>
+                        <li>Place the most constrained person first (most clues about them)</li>
+                        <li>Fix 1–2 people whose positions are certain, then place others relative to them</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top:2px solid var(--nonverb)">
+                    <h4 style="color:var(--nonverb)">Circular Arrangement</h4>
+                    <ul style="font-size:12px;padding-left:14px;color:var(--muted)">
+                        <li>People sit around a circular table — fix ONE person first (they are the reference)</li>
+                        <li>Facing the centre: right = clockwise, left = anti-clockwise</li>
+                        <li>Facing away from centre: right = anti-clockwise, left = clockwise</li>
+                        <li>"Opposite" in circular = n/2 seats away (for n people)</li>
+                    </ul>
+                </div>
+            </div>
+            <h3>Strategy for Arrangement Questions</h3>
+            <div class="step">
+                <div class="step-n" style="background:rgba(16,185,129,.15);color:var(--quant)">1</div>
+                <div class="step-b"><strong>Count people and seats</strong> — 6 people, 6 chairs in a line / circle.
+                    Draw the structure first.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(16,185,129,.15);color:var(--quant)">2</div>
+                <div class="step-b"><strong>Identify definite positions first</strong> — "A sits at one end" → place A
+                    at position 1. Build from certainties.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(16,185,129,.15);color:var(--quant)">3</div>
+                <div class="step-b"><strong>Apply "next to" and "not next to" constraints</strong> — Use trial and error
+                    when two options remain. Try one; if contradiction arises, try the other.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(16,185,129,.15);color:var(--quant)">4</div>
+                <div class="step-b"><strong>Verify every clue</strong> — Once all positions are filled, re-check ALL
+                    given clues. If any is violated, backtrack.</div>
+            </div>
+        </div>
+
+        <!-- ═══ SYLLOGISMS ═══ -->
+        <div class="section" id="sec-syllogism">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Logical</div>
+                <h2>Syllogisms</h2>
+                <p>Syllogisms give two or more statements and ask which conclusions follow. Always treat statements as
+                    TRUE regardless of real-world logic.</p>
+            </div>
+            <h3>Venn Diagram Approach for Syllogisms</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Statement Type</th>
+                            <th>Example</th>
+                            <th>Venn Representation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>All A are B (Universal Positive)</td>
+                            <td>All cats are animals</td>
+                            <td>Circle A entirely inside Circle B</td>
+                        </tr>
+                        <tr>
+                            <td>No A is B (Universal Negative)</td>
+                            <td>No dog is a cat</td>
+                            <td>Circles A and B completely separate</td>
+                        </tr>
+                        <tr>
+                            <td>Some A are B (Particular Positive)</td>
+                            <td>Some fruits are vegetables</td>
+                            <td>Circles A and B partially overlapping</td>
+                        </tr>
+                        <tr>
+                            <td>Some A are not B (Particular Negative)</td>
+                            <td>Some birds cannot fly</td>
+                            <td>Part of A outside B</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Statements:</strong><br>1. All mangoes are fruits.<br>2. All fruits are
+                    sweet.<br><br><strong>Conclusions:</strong><br>I. All mangoes are sweet.<br>II. Some sweets are
+                    mangoes.</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">Only I follows</span>
+                    </div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">Both I and II
+                            follow</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">Only II follows</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">Neither follows</span>
+                    </div>
+                </div>
+                <div class="q-answer">✅ B — Mangoes⊂Fruits⊂Sweet. So: All mangoes are sweet (I ✓). If all mangoes are
+                    sweet, then some sweets are mangoes (II ✓ — conversion of "All mangoes are sweet" → "Some sweets are
+                    mangoes").</div>
+            </div>
+
+            <div class="trick">
+                <div class="trick-title">⚡ Syllogism Shortcut Rules</div>
+                • All A are B + All B are C → All A are C ✓<br>
+                • All A are B + No B is C → No A is C ✓<br>
+                • All A are B + Some B are C → Some A are C ✗ (NOT necessarily)<br>
+                • Some A are B + Some B are C → No definite conclusion about A and C<br>
+                • "Some A are B" can always be converted to "Some B are A" ✓
+            </div>
+        </div>
+
+        <!-- ═══ STATEMENTS ═══ -->
+        <div class="section" id="sec-statements">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Logical</div>
+                <h2>Statements, Arguments & Conclusions</h2>
+            </div>
+            <h3>Key Distinctions</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Definition</th>
+                            <th>Key Test</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Strong Argument</td>
+                            <td>Directly related to the statement, important and not trivial</td>
+                            <td>Addresses the CORE issue, not a peripheral concern</td>
+                        </tr>
+                        <tr>
+                            <td>Weak Argument</td>
+                            <td>Vague, trivial, based on assumptions, or not directly related</td>
+                            <td>"It has always been done this way" — tradition-based = always weak</td>
+                        </tr>
+                        <tr>
+                            <td>Follows from Statement</td>
+                            <td>Can be directly inferred from the given statements</td>
+                            <td>Don't add outside information. Stick strictly to what's stated.</td>
+                        </tr>
+                        <tr>
+                            <td>Does Not Follow</td>
+                            <td>Requires assumptions or outside information</td>
+                            <td>If you need world knowledge not in the text → doesn't follow</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Statement:</strong> "Company X should introduce a 4-day work week to improve
+                    employee wellbeing."<br><br><strong>Arguments:</strong><br>I. Yes — studies show 4-day weeks
+                    increase productivity and reduce burnout.<br>II. No — employees are already paid for 5 days;
+                    changing this would be unfair to the company.<br>III. No — it has never been done in India before.
+                </div>
+                <div class="q-opts">
+                    <div class="q-opt correct"><span class="opt-letter">A</span><span class="opt-text">Only I is
+                            strong</span></div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">Both I and II are
+                            strong</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">All are strong</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">None is strong</span>
+                    </div>
+                </div>
+                <div class="q-answer">✅ A — I is strong: directly addresses the core issue with evidence. II is weak:
+                    superficial — the premise can be renegotiated. III is weak: "never done before" is always a weak
+                    argument (appeal to tradition).</div>
+            </div>
+        </div>
+
+        <!-- ═══ NUMBER SYSTEM ═══ -->
+        <div class="section" id="sec-numbers">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Quantitative</div>
+                <h2>Number System, HCF & LCM</h2>
+            </div>
+            <h3>Divisibility Rules — Cheat Sheet</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Divisible by</th>
+                            <th>Rule</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2</td>
+                            <td>Last digit is even (0,2,4,6,8)</td>
+                            <td>248 ÷ 2 ✓</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Sum of digits divisible by 3</td>
+                            <td>123: 1+2+3=6 ✓</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Last two digits divisible by 4</td>
+                            <td>1324: 24÷4=6 ✓</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Last digit is 0 or 5</td>
+                            <td>345 ÷ 5 ✓</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Divisible by both 2 and 3</td>
+                            <td>132: even + digit sum=6 ✓</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Double last digit, subtract from rest; repeat until small</td>
+                            <td>161: 16−(1×2)=14 ✓</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Last three digits divisible by 8</td>
+                            <td>1832: 832÷8=104 ✓</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Sum of digits divisible by 9</td>
+                            <td>729: 7+2+9=18 ✓</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>(Sum of odd-position digits) − (Sum of even-position digits) = 0 or 11</td>
+                            <td>1331: (1+3)−(3+1)=0 ✓</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Divisible by both 3 and 4</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>Last two digits are 00, 25, 50, or 75</td>
+                            <td>325 ÷ 25 ✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>HCF & LCM Formulas</h3>
+            <div class="formula">HCF × LCM = Product of two numbers (only for two numbers)</div>
+            <div class="formula">LCM of fractions = LCM(Numerators) / HCF(Denominators)</div>
+            <div class="formula">HCF of fractions = HCF(Numerators) / LCM(Denominators)</div>
+            <h4>When to use HCF vs LCM</h4>
+            <ul>
+                <li><strong>HCF:</strong> When you need to <em>divide/distribute equally</em> — "largest number that
+                    divides all," "cut into equal pieces," "tile a room with largest square tiles"</li>
+                <li><strong>LCM:</strong> When you need to <em>synchronise events</em> — "when will they meet again,"
+                    "smallest common multiple," "traffic lights timing"</li>
+            </ul>
+        </div>
+
+        <!-- ═══ PERCENTAGES ═══ -->
+        <div class="section" id="sec-percent">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Quantitative</div>
+                <h2>Percentages</h2>
+            </div>
+            <h3>Core Formulas</h3>
+            <div class="qr-grid">
+                <div class="qr-card">
+                    <div class="qr-title">Percentage of a number</div>
+                    <div class="qr-formula">x% of N = (x × N) / 100</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">What % is A of B?</div>
+                    <div class="qr-formula">(A / B) × 100</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Percentage increase</div>
+                    <div class="qr-formula">[(New − Old) / Old] × 100</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Value after x% increase</div>
+                    <div class="qr-formula">Original × (1 + x/100)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Value after x% decrease</div>
+                    <div class="qr-formula">Original × (1 − x/100)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Successive % change (a% then b%)</div>
+                    <div class="qr-formula">Net change = a + b + (ab/100) %</div>
+                </div>
+            </div>
+
+            <h3>Fraction-Percentage Equivalents (Memorise)</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fraction</th>
+                            <th>%</th>
+                            <th>Fraction</th>
+                            <th>%</th>
+                            <th>Fraction</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1/2</td>
+                            <td>50%</td>
+                            <td>1/3</td>
+                            <td>33.33%</td>
+                            <td>1/4</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td>1/5</td>
+                            <td>20%</td>
+                            <td>1/6</td>
+                            <td>16.67%</td>
+                            <td>1/7</td>
+                            <td>14.28%</td>
+                        </tr>
+                        <tr>
+                            <td>1/8</td>
+                            <td>12.5%</td>
+                            <td>1/9</td>
+                            <td>11.11%</td>
+                            <td>1/10</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td>1/12</td>
+                            <td>8.33%</td>
+                            <td>1/15</td>
+                            <td>6.67%</td>
+                            <td>1/20</td>
+                            <td>5%</td>
+                        </tr>
+                        <tr>
+                            <td>2/3</td>
+                            <td>66.67%</td>
+                            <td>3/4</td>
+                            <td>75%</td>
+                            <td>3/5</td>
+                            <td>60%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tip">💡 <strong>Speed trick:</strong> Convert percentages to fractions for calculation. "Find
+                37.5% of 480" → 37.5% = 3/8 → 480 × 3/8 = 180. Much faster than 37.5 × 480 / 100.</div>
+        </div>
+
+        <!-- ═══ PROFIT & LOSS ═══ -->
+        <div class="section" id="sec-profit">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Quantitative</div>
+                <h2>Profit, Loss & Discount</h2>
+            </div>
+            <h3>Core Formulas</h3>
+            <div class="qr-grid">
+                <div class="qr-card">
+                    <div class="qr-title">Profit</div>
+                    <div class="qr-formula">Profit = SP − CP</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Loss</div>
+                    <div class="qr-formula">Loss = CP − SP</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Profit %</div>
+                    <div class="qr-formula">(Profit / CP) × 100</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">SP with Profit%</div>
+                    <div class="qr-formula">SP = CP × (100 + P%) / 100</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">SP with Loss%</div>
+                    <div class="qr-formula">SP = CP × (100 − L%) / 100</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Discount</div>
+                    <div class="qr-formula">Discount = MP − SP</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Discount %</div>
+                    <div class="qr-formula">(Discount / MP) × 100</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Dishonest trader</div>
+                    <div class="qr-formula">Profit% = [(True wt − False wt) / False wt] × 100</div>
+                </div>
+            </div>
+
+            <h3>Two Articles — Tricky Scenario</h3>
+            <div class="trick">
+                <div class="trick-title">⚡ Equal SP, Same Profit% and Loss% → Always a Loss!</div>If two items are sold
+                at the same SP, one at x% profit and one at x% loss, the net result is always a LOSS
+                of:<br><br><strong>Net Loss% = x² / 100</strong><br><br>Example: Both sold at ₹1000. One at 20% profit,
+                one at 20% loss. Net loss% = 20²/100 = 4%.
+            </div>
+        </div>
+
+        <!-- ═══ TIME SPEED DISTANCE ═══ -->
+        <div class="section" id="sec-tsd">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Quantitative</div>
+                <h2>Time, Speed & Distance</h2>
+            </div>
+            <div class="formula">Speed = Distance / Time &nbsp;|&nbsp; Distance = Speed × Time &nbsp;|&nbsp; Time =
+                Distance / Speed</div>
+            <h3>Key Formulas & Concepts</h3>
+            <div class="qr-grid">
+                <div class="qr-card">
+                    <div class="qr-title">Unit conversion</div>
+                    <div class="qr-formula">km/h → m/s: × 5/18<br>m/s → km/h: × 18/5</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Average speed (same distance)</div>
+                    <div class="qr-formula">Avg speed = 2S₁S₂/(S₁+S₂)<br>(Harmonic mean — NOT arithmetic)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Relative speed (same direction)</div>
+                    <div class="qr-formula">Relative speed = |S₁ − S₂|</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Relative speed (opposite direction)</div>
+                    <div class="qr-formula">Relative speed = S₁ + S₂</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Train crossing a pole</div>
+                    <div class="qr-formula">Time = Length of train / Speed</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Train crossing a platform</div>
+                    <div class="qr-formula">Time = (Train length + Platform length) / Speed</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Boat upstream speed</div>
+                    <div class="qr-formula">Effective speed = Boat − Current</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Boat downstream speed</div>
+                    <div class="qr-formula">Effective speed = Boat + Current</div>
+                </div>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> A car travels 60 km at 40 km/h and another 60 km at 60 km/h.
+                    What is the average speed for the entire journey?</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">50 km/h</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">48 km/h</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">45 km/h</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">52 km/h</span></div>
+                </div>
+                <div class="q-answer">✅ B — Same distance both ways → use Harmonic mean: 2×40×60/(40+60) = 4800/100 = 48
+                    km/h. NOT 50 km/h (arithmetic mean). Common trap!</div>
+            </div>
+        </div>
+
+        <!-- ═══ TIME & WORK ═══ -->
+        <div class="section" id="sec-tw">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Quantitative</div>
+                <h2>Time & Work</h2>
+            </div>
+            <div class="formula">If A can do work in n days → A's 1-day work = 1/n</div>
+            <div class="formula">Combined rate = 1/A + 1/B = (A+B)/(A×B) → Time together = AB/(A+B)</div>
+            <h3>Work & Wages</h3>
+            <p>In wage distribution problems, wages are distributed in the <strong>ratio of work done</strong> (which is
+                inversely proportional to time taken, directly proportional to rate).</p>
+            <div class="qr-grid">
+                <div class="qr-card">
+                    <div class="qr-title">Pipes — Inlet + Outlet</div>
+                    <div class="qr-formula">Net rate = 1/a − 1/b<br>(+ for filling, − for emptying)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">A is x times faster than B</div>
+                    <div class="qr-formula">A's time = B's time / x<br>Together = AB/(A+B)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">M men, D days, H hours, W work</div>
+                    <div class="qr-formula">M₁D₁H₁/W₁ = M₂D₂H₂/W₂</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">LCM method (faster)</div>
+                    <div class="qr-formula">Let total work = LCM(days)<br>Rate = LCM/days per person</div>
+                </div>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q:</strong> A can do a work in 12 days, B in 15 days. If they work together,
+                    A leaves 3 days before completion. How many days does B work alone at the end?</div>
+                <div class="q-opts">
+                    <div class="q-opt correct"><span class="opt-letter">A</span><span class="opt-text">3 days</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">4 days</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">5 days</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">6 days</span></div>
+                </div>
+                <div class="q-answer">✅ A — LCM(12,15)=60. A's rate=5/day, B's rate=4/day. B's 3 days alone = 12 units.
+                    Remaining = 48 units done together. Time = 48/9 = 16/3 days. Hmm — let x = days together. 9x + 4×3 =
+                    60 → 9x = 48 → x = 16/3 ≈ 5.33 days. B works alone for 3 days → ✅ A.</div>
+            </div>
+        </div>
+
+        <!-- ═══ RATIO & MIXTURES ═══ -->
+        <div class="section" id="sec-ratio">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Quantitative</div>
+                <h2>Ratio, Proportion & Mixtures</h2>
+            </div>
+            <h3>Core Formulas</h3>
+            <div class="qr-grid">
+                <div class="qr-card">
+                    <div class="qr-title">If a:b = p:q</div>
+                    <div class="qr-formula">a/b = p/q → aq = bp (cross-multiply)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Componendo & Dividendo</div>
+                    <div class="qr-formula">If a/b=c/d → (a+b)/(a−b) = (c+d)/(c−d)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Partnership — Profit Share</div>
+                    <div class="qr-formula">Profit ratio = Capital × Time ratio</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Alligation (Mixture) Rule</div>
+                    <div class="qr-formula">Cheaper : Dearer = (Mean − Cheaper) : (Dearer − Mean)<br>= (d − m) : (m − c)
+                    </div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Successive dilution</div>
+                    <div class="qr-formula">Remaining = P × [(V−R)/V]ⁿ<br>P=original, V=volume, R=replaced, n=times
+                    </div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Ratio increase/decrease</div>
+                    <div class="qr-formula">If a:b=3:4 and each increased by 2 → new ratio ≠ 5:6 (calculate fresh)</div>
+                </div>
+            </div>
+
+            <div class="trick">
+                <div class="trick-title">⚡ Alligation Visual</div>
+                Draw a cross (X shape):<br>
+                Top-left = Cost of cheaper (c) &nbsp;&nbsp;&nbsp; Top-right = Cost of dearer (d)<br>
+                Centre = Mean price (m)<br>
+                Bottom-right = m − c (quantity of cheaper)<br>
+                Bottom-left = d − m (quantity of dearer)<br>
+                Ratio of cheaper to dearer = (d−m) : (m−c)
+            </div>
+        </div>
+
+        <!-- ═══ P&C AND PROBABILITY ═══ -->
+        <div class="section" id="sec-pnc">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Quantitative</div>
+                <h2>Permutation, Combination & Probability</h2>
+            </div>
+            <h3>Core Formulas</h3>
+            <div class="qr-grid">
+                <div class="qr-card">
+                    <div class="qr-title">Permutation (order matters)</div>
+                    <div class="qr-formula">ⁿPr = n! / (n−r)!</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Combination (order doesn't matter)</div>
+                    <div class="qr-formula">ⁿCr = n! / [r! × (n−r)!]</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Circular permutation</div>
+                    <div class="qr-formula">(n−1)! ways (fix one person)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Probability</div>
+                    <div class="qr-formula">P(E) = Favourable outcomes / Total outcomes</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">P(A or B)</div>
+                    <div class="qr-formula">P(A∪B) = P(A) + P(B) − P(A∩B)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">P(A and B) — independent</div>
+                    <div class="qr-formula">P(A∩B) = P(A) × P(B)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Complement</div>
+                    <div class="qr-formula">P(not A) = 1 − P(A)</div>
+                </div>
+                <div class="qr-card">
+                    <div class="qr-title">Conditional probability</div>
+                    <div class="qr-formula">P(A|B) = P(A∩B) / P(B)</div>
+                </div>
+            </div>
+
+            <h3>P vs C — Quick Decide</h3>
+            <ul>
+                <li><strong>Use P (Permutation)</strong> when order MATTERS: passwords, phone numbers, seating in a row,
+                    medals (gold/silver/bronze)</li>
+                <li><strong>Use C (Combination)</strong> when order DOESN'T matter: committee selection, choosing a
+                    team, handshakes, groupings</li>
+            </ul>
+            <div class="tip">💡 <strong>Trick:</strong> ⁿCr = ⁿC(n-r). So ¹⁰C₇ = ¹⁰C₃ = 120. Always compute the smaller
+                of r and (n-r) for faster calculation.</div>
+        </div>
+
+        <!-- ═══ DATA INTERPRETATION ═══ -->
+        <div class="section" id="sec-di">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(16,185,129,.1);color:var(--quant)">■ Quantitative</div>
+                <h2>Data Interpretation</h2>
+                <p>DI gives you tables, bar charts, line graphs, or pie charts and asks 4–5 questions about them. Speed
+                    and approximate calculation are key.</p>
+            </div>
+            <h3>DI Strategy</h3>
+            <div class="step">
+                <div class="step-n" style="background:rgba(16,185,129,.15);color:var(--quant)">1</div>
+                <div class="step-b"><strong>Read titles and axes first</strong> — What is measured? What are units? What
+                    time period? Miss this → answer wrong questions.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(16,185,129,.15);color:var(--quant)">2</div>
+                <div class="step-b"><strong>Read all questions before calculating</strong> — You might find some
+                    questions can share intermediate calculations.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(16,185,129,.15);color:var(--quant)">3</div>
+                <div class="step-b"><strong>Approximate aggressively</strong> — "What is 2,34,567 as a % of 11,23,456?"
+                    → ~234/1123 → ~21%. Round both numbers for speed.</div>
+            </div>
+            <div class="step">
+                <div class="step-n" style="background:rgba(16,185,129,.15);color:var(--quant)">4</div>
+                <div class="step-b"><strong>Eliminate clearly wrong options</strong> — If your approximate answer is
+                    21%, options 47% and 8% are eliminated. Choose between 19% and 23%.</div>
+            </div>
+
+            <h3>Common DI Question Types</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question Type</th>
+                            <th>Formula / Approach</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Percentage change from Year A to Year B</td>
+                            <td>[(B − A) / A] × 100. If result is negative → decrease.</td>
+                        </tr>
+                        <tr>
+                            <td>Ratio of two values</td>
+                            <td>Divide the two values. Simplify. Compare to options.</td>
+                        </tr>
+                        <tr>
+                            <td>What % is A of B</td>
+                            <td>(A / B) × 100. Note: "% of B" not "% more than B."</td>
+                        </tr>
+                        <tr>
+                            <td>Average over multiple periods</td>
+                            <td>Sum all values ÷ number of periods.</td>
+                        </tr>
+                        <tr>
+                            <td>Pie chart: angle of a sector</td>
+                            <td>(% share / 100) × 360°. Or (Value / Total) × 360°.</td>
+                        </tr>
+                        <tr>
+                            <td>"How many times greater"</td>
+                            <td>Larger ÷ Smaller = n times. "n times greater" = n−1 more.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══ FORMULA SHEET ═══ -->
+        <div class="section" id="sec-formulas">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(244,63,94,.1);color:var(--red)">■ Revision</div>
+                <h2>Master Formula Sheet</h2>
+                <p>Everything you need to memorise — in one place. Review this the night before the exam.</p>
+            </div>
+            <h3>Quantitative</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Key Formulas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Simple Interest</td>
+                            <td>SI = PRT/100 &nbsp;|&nbsp; Amount = P(1 + RT/100)</td>
+                        </tr>
+                        <tr>
+                            <td>Compound Interest</td>
+                            <td>A = P(1 + R/100)ⁿ &nbsp;|&nbsp; CI = A − P</td>
+                        </tr>
+                        <tr>
+                            <td>Profit & Loss</td>
+                            <td>SP = CP(100±P%)/100 &nbsp;|&nbsp; Equal SP same % = Loss% = x²/100</td>
+                        </tr>
+                        <tr>
+                            <td>Time & Work</td>
+                            <td>Together = AB/(A+B) &nbsp;|&nbsp; MDH/W = constant</td>
+                        </tr>
+                        <tr>
+                            <td>TSD</td>
+                            <td>Avg speed = 2v₁v₂/(v₁+v₂) &nbsp;|&nbsp; 1 km/h = 5/18 m/s</td>
+                        </tr>
+                        <tr>
+                            <td>Mixtures</td>
+                            <td>Alligation: cheaper:dearer = (d−m):(m−c)</td>
+                        </tr>
+                        <tr>
+                            <td>Ages</td>
+                            <td>Set up two equations. Present and past/future ages.</td>
+                        </tr>
+                        <tr>
+                            <td>Area: Triangle</td>
+                            <td>½bh &nbsp;|&nbsp; √(s(s-a)(s-b)(s-c)) (Heron's) &nbsp;|&nbsp; s=(a+b+c)/2</td>
+                        </tr>
+                        <tr>
+                            <td>Area: Circle</td>
+                            <td>πr² &nbsp;|&nbsp; Circumference = 2πr</td>
+                        </tr>
+                        <tr>
+                            <td>Volume: Cylinder</td>
+                            <td>πr²h &nbsp;|&nbsp; LSA = 2πrh</td>
+                        </tr>
+                        <tr>
+                            <td>Volume: Cone</td>
+                            <td>⅓πr²h &nbsp;|&nbsp; Slant = √(r²+h²)</td>
+                        </tr>
+                        <tr>
+                            <td>Volume: Sphere</td>
+                            <td>4/3πr³ &nbsp;|&nbsp; SA = 4πr²</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Important Number Facts</h3>
+            <div class="g4">
+                <div class="card">
+                    <h4>Squares (n²)</h4>
+                    <p style="font-family:monospace;font-size:11px">1=1, 2=4, 3=9, 4=16, 5=25<br>6=36, 7=49, 8=64,
+                        9=81<br>10=100, 11=121, 12=144<br>13=169, 14=196, 15=225<br>16=256, 17=289, 18=324<br>19=361,
+                        20=400, 25=625</p>
+                </div>
+                <div class="card">
+                    <h4>Cubes (n³)</h4>
+                    <p style="font-family:monospace;font-size:11px">1=1, 2=8, 3=27, 4=64<br>5=125, 6=216,
+                        7=343<br>8=512, 9=729, 10=1000<br>11=1331, 12=1728<br>13=2197, 14=2744<br>15=3375</p>
+                </div>
+                <div class="card">
+                    <h4>Prime Numbers (first 20)</h4>
+                    <p style="font-family:monospace;font-size:11px">2, 3, 5, 7, 11, 13, 17, 19,<br>23, 29, 31, 37, 41,
+                        43, 47,<br>53, 59, 61, 67, 71, 73, 79,<br>83, 89, 97</p>
+                </div>
+                <div class="card">
+                    <h4>Important Values</h4>
+                    <p style="font-family:monospace;font-size:11px">π ≈ 22/7 ≈ 3.14<br>√2 ≈ 1.414<br>√3 ≈ 1.732<br>√5 ≈
+                        2.236<br>1 km = 1000 m<br>1 litre = 1000 cc<br>1 kg = 1000 g</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ PRACTICE QUESTIONS ═══ -->
+        <div class="section" id="sec-practice">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(244,63,94,.1);color:var(--red)">■ Practice</div>
+                <h2>Mixed Practice Questions</h2>
+            </div>
+
+            <h3>Verbal Practice</h3>
+            <div class="q-box">
+                <div class="q-stem"><strong>V1 [Analogy]:</strong> LACONIC : VERBOSE :: TRANSPARENT : ?</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">Translucent</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">Opaque</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">Clear</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">Visible</span></div>
+                </div>
+                <div class="q-answer">✅ B — Laconic (brief) is the antonym of Verbose (wordy). Transparent is the
+                    antonym of Opaque.</div>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>V2 [Error Spotting]:</strong> (A) The teacher, along with / (B) his
+                    students, / (C) were invited / (D) to the conference. / (E) No Error</div>
+                <div class="q-opts">
+                    <div class="q-opt correct"><span class="opt-letter">C</span><span class="opt-text">were
+                            invited</span></div>
+                    <div class="q-opt"><span class="opt-letter">E</span><span class="opt-text">No Error</span></div>
+                </div>
+                <div class="q-answer">✅ C — "Along with" does NOT make the subject plural. The subject is "The teacher"
+                    (singular). Correct: "was invited."</div>
+            </div>
+
+            <h3>Non-Verbal Practice</h3>
+            <div class="q-box">
+                <div class="q-stem"><strong>NV1 [Number Series]:</strong> 1, 4, 9, 16, 25, 36, 49, ?, 81</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">56</span></div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">62</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">C</span><span class="opt-text">64</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">72</span></div>
+                </div>
+                <div class="q-answer">✅ C — Perfect squares: 1², 2², 3²...8², 9². Missing term = 8² = 64.</div>
+            </div>
+
+            <h3>Quantitative Practice</h3>
+            <div class="q-box">
+                <div class="q-stem"><strong>Q1 [Percentage]:</strong> A shopkeeper marks goods 40% above cost price and
+                    gives 20% discount. What is the profit/loss percentage?</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">20% profit</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">12% profit</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">8% profit</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">No profit, no loss</span>
+                    </div>
+                </div>
+                <div class="q-answer">✅ B — Let CP = 100. MP = 140 (40% markup). SP = 140 × 0.8 = 112 (20% discount).
+                    Profit = 112 − 100 = 12 → 12%.</div>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q2 [TSD]:</strong> Two trains of length 100m and 80m are moving in the same
+                    direction at 72 km/h and 36 km/h. How long will the faster train take to completely pass the slower?
+                </div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">16 sec</span></div>
+                    <div class="q-opt"><span class="opt-letter">B</span><span class="opt-text">18 sec</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">C</span><span class="opt-text">18 sec</span>
+                    </div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">20 sec</span></div>
+                </div>
+                <div class="q-answer">✅ Same direction: Relative speed = 72−36 = 36 km/h = 10 m/s. Total length to cross
+                    = 100+80 = 180 m. Time = 180/10 = 18 sec.</div>
+            </div>
+
+            <div class="q-box">
+                <div class="q-stem"><strong>Q3 [P&C]:</strong> In how many ways can 6 people be seated around a circular
+                    table?</div>
+                <div class="q-opts">
+                    <div class="q-opt"><span class="opt-letter">A</span><span class="opt-text">720</span></div>
+                    <div class="q-opt correct"><span class="opt-letter">B</span><span class="opt-text">120</span></div>
+                    <div class="q-opt"><span class="opt-letter">C</span><span class="opt-text">360</span></div>
+                    <div class="q-opt"><span class="opt-letter">D</span><span class="opt-text">24</span></div>
+                </div>
+                <div class="q-answer">✅ B — Circular arrangement = (n−1)! = (6−1)! = 5! = 120. (In a circle, one person
+                    is fixed as reference; the rest are arranged in 5! ways.)</div>
+            </div>
+        </div>
+
+        <!-- ═══ INTERVIEW Q&A ═══ -->
+        <div class="section" id="sec-interview">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(244,63,94,.1);color:var(--red)">■ Interview Prep</div>
+                <h2>Placement Aptitude Q&A & Quick Tips</h2>
+            </div>
+            <h3>Frequently Asked Aptitude Concepts</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer / Key Point</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>What is the LCM of 12 and 18?</td>
+                            <td>LCM = 36. Method: prime factorisation 12=2²×3, 18=2×3². LCM = 2²×3² = 36.</td>
+                        </tr>
+                        <tr>
+                            <td>A sum doubles in 8 years at SI. What is the rate?</td>
+                            <td>SI = P → PTR/100 = P → 8×R/100 = 1 → R = 12.5%</td>
+                        </tr>
+                        <tr>
+                            <td>In how many ways can DELHI be arranged?</td>
+                            <td>5 distinct letters → 5! = 120. (No repeating letters.)</td>
+                        </tr>
+                        <tr>
+                            <td>What % is 75 of 300?</td>
+                            <td>(75/300) × 100 = 25%</td>
+                        </tr>
+                        <tr>
+                            <td>A pipe fills a tank in 6h, another drains in 4h. Together?</td>
+                            <td>Net rate = 1/6 − 1/4 = 2/12 − 3/12 = −1/12 → Tank drains in 12h</td>
+                        </tr>
+                        <tr>
+                            <td>What is the probability of getting a sum of 7 from two dice?</td>
+                            <td>Favourable: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6. Total = 36. P = 6/36 = 1/6</td>
+                        </tr>
+                        <tr>
+                            <td>If A:B = 2:3 and B:C = 4:5, find A:B:C</td>
+                            <td>A:B = 8:12, B:C = 12:15 → A:B:C = 8:12:15</td>
+                        </tr>
+                        <tr>
+                            <td>What is the mirror image of 12:45 on a clock?</td>
+                            <td>11:60 − 12:45 = 11:15. The real time is 11:15.</td>
+                        </tr>
+                        <tr>
+                            <td>Find the odd one out: 121, 169, 196, 256, 225</td>
+                            <td>All are perfect squares except... 121=11², 169=13², 196=14², 225=15², 256=16². All ARE
+                                perfect squares. Actually odd one: none — check if pattern is odd/even squares: 11,13,15
+                                odd; 14,16 even → 169 and 121 and 225 are squares of odd numbers, 196 and 256 are
+                                squares of even → depends on context.</td>
+                        </tr>
+                        <tr>
+                            <td>Speed is increased by 25%. Time for same distance?</td>
+                            <td>Time decreases to 4/5 of original → 20% decrease. (If speed × 5/4, time × 4/5)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>The Night-Before Checklist</h3>
+            <ul class="checklist" style="list-style:none;padding:0;margin:10px 0">
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Review divisibility rules</strong> — 2 through 13</span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Know squares to 25, cubes to 15</strong></span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Fraction-percentage conversions</strong> — 1/3=33.33%, 1/7=14.28%,
+                        1/8=12.5%</span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Alligation formula</strong> — cheaper:dearer = (d−m):(m−c)</span>
+                </li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Average speed formula</strong> — 2S₁S₂/(S₁+S₂), NOT
+                        (S₁+S₂)/2</span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Circular permutation = (n−1)!</strong></span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Mirror image rule</strong> — left-right swap; water image =
+                        top-bottom swap</span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Cube paint formula</strong> — 3-faces=8, 2-faces=12(n-2),
+                        1-face=6(n-2)², 0-face=(n-2)³</span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Syllogism</strong> — All A are B + All B are C → All A are C (but
+                        not: Some A are B + Some B are C → nothing about A and C)</span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">RC strategy</strong> — Questions first, then passage; never
+                        outside the text for factual Qs</span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">Error spotting priority</strong> — Check subject-verb agreement
+                        FIRST in every sentence</span></li>
+                <li
+                    style="font-size:13px;color:var(--muted);line-height:1.85;display:flex;align-items:flex-start;gap:9px">
+                    <span style="font-size:14px;color:var(--quant);flex-shrink:0">✓</span><span><strong
+                            style="color:var(--text)">3-pass exam strategy</strong> — Easy first, medium second, guess
+                        last. Never leave blank without negative marking.</span></li>
+            </ul>
+        </div>
+
+    </main>
+    <script>
+        const sections = ['overview', 'strategy', 'rc', 'vocab', 'analogy', 'sentcomp', 'error', 'parajump', 'critical', 'series', 'nvanalogy', 'classify', 'mirror', 'paper', 'cube', 'venn', 'coding', 'direction', 'blood', 'seating', 'syllogism', 'statements', 'numbers', 'percent', 'profit', 'tsd', 'tw', 'ratio', 'pnc', 'di', 'formulas', 'practice', 'interview'];
+        const colors = { overview: '#f59e0b', strategy: '#f59e0b', rc: '#06b6d4', vocab: '#06b6d4', analogy: '#06b6d4', sentcomp: '#06b6d4', error: '#06b6d4', parajump: '#06b6d4', critical: '#06b6d4', series: '#a855f7', nvanalogy: '#a855f7', classify: '#a855f7', mirror: '#a855f7', paper: '#a855f7', cube: '#a855f7', venn: '#a855f7', coding: '#a855f7', direction: '#10b981', blood: '#10b981', seating: '#10b981', syllogism: '#10b981', statements: '#10b981', numbers: '#10b981', percent: '#10b981', profit: '#10b981', tsd: '#10b981', tw: '#10b981', ratio: '#10b981', pnc: '#10b981', di: '#10b981', formulas: '#f43f5e', practice: '#f43f5e', interview: '#f43f5e' };
+        const visited = new Set();
+        function show(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('sec-' + id).classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
+            visited.add(id); updateProgress();
+            document.getElementById('main').scrollTop = 0;
+        }
+        function updateProgress() {
+            const wrap = document.getElementById('progress'); wrap.innerHTML = '';
+            sections.forEach(id => {
+                const seg = document.createElement('div');
+                seg.className = 'prog-seg' + (visited.has(id) ? ' done' : '');
+                seg.style.background = colors[id];
+                seg.onclick = () => show(id);
+                wrap.appendChild(seg);
+            });
+        }
+        updateProgress();
+    </script>
+</body>
+
+</html>

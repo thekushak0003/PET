@@ -1,0 +1,3266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study Mastery — Placement Guide</title>
+    <style>
+        :root {
+            --bg: #0a0c0f;
+            --bg2: #0f1218;
+            --bg3: #161b24;
+            --border: #1e2535;
+            --text: #e2eaf8;
+            --muted: #5a6b8a;
+            --gold: #f5c842;
+            --teal: #38d9a9;
+            --rose: #f06595;
+            --blue: #60a5fa;
+            --violet: #a78bfa;
+            --amber: #fb923c;
+            --green: #4ade80;
+            --red: #f87171;
+            --code-bg: #080a0e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh
+        }
+
+        /* ── SIDEBAR ── */
+        #sidebar {
+            width: 268px;
+            min-width: 268px;
+            background: var(--bg2);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent
+        }
+
+        .sidebar-header {
+            padding: 16px 16px 11px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 5px
+        }
+
+        .cs-badge {
+            background: linear-gradient(135deg, #f5c842, #f06595, #a78bfa);
+            color: #0a0c0f;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 4px;
+            letter-spacing: .6px
+        }
+
+        .sidebar-header h1 {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .sidebar-header p {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 1px
+        }
+
+        .progress-bar-wrap {
+            display: flex;
+            gap: 3px;
+            padding: 11px 14px 7px;
+            flex-wrap: wrap
+        }
+
+        .prog-seg {
+            height: 3px;
+            flex: 1;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: opacity .2s;
+            opacity: .2
+        }
+
+        .prog-seg.done {
+            opacity: 1
+        }
+
+        .lib-group {
+            margin: 4px 0
+        }
+
+        .lib-label {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            padding: 8px 14px 3px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--muted)
+        }
+
+        .lib-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 6px 14px 6px 16px;
+            font-size: 12px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all .15s;
+            color: var(--muted)
+        }
+
+        .nav-item:hover {
+            background: var(--bg3);
+            color: var(--text)
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, .04);
+            color: var(--text);
+            border-left-color: var(--gold)
+        }
+
+        .nav-icon {
+            font-size: 13px;
+            flex-shrink: 0;
+            width: 18px;
+            text-align: center
+        }
+
+        /* ── MAIN ── */
+        #main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px 42px;
+            max-width: 960px
+        }
+
+        .section {
+            display: none
+        }
+
+        .section.active {
+            display: block
+        }
+
+        .sec-hero {
+            margin-bottom: 26px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .sec-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            margin-bottom: 10px
+        }
+
+        .sec-hero h2 {
+            font-size: 25px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .sec-hero p {
+            font-size: 13.5px;
+            color: var(--muted);
+            margin-top: 6px;
+            line-height: 1.7
+        }
+
+        h3 {
+            font-size: 15.5px;
+            font-weight: 600;
+            margin: 26px 0 10px;
+            color: var(--gold)
+        }
+
+        h4 {
+            font-size: 13.5px;
+            font-weight: 600;
+            margin: 16px 0 6px;
+            color: #90a8d0
+        }
+
+        p {
+            font-size: 13.5px;
+            line-height: 1.75;
+            color: var(--text);
+            margin-bottom: 9px
+        }
+
+        ul,
+        ol {
+            padding-left: 18px;
+            margin-bottom: 9px
+        }
+
+        li {
+            font-size: 13px;
+            line-height: 1.9;
+            color: var(--muted)
+        }
+
+        li strong {
+            color: var(--text)
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 22px 0
+        }
+
+        code {
+            background: var(--bg3);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+            font-size: 12px;
+            color: var(--gold)
+        }
+
+        /* ── TABLES ── */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 10px 0 16px
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12.5px
+        }
+
+        thead tr {
+            background: var(--bg3)
+        }
+
+        th {
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted)
+        }
+
+        td {
+            padding: 7.5px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+            vertical-align: top;
+            line-height: 1.55
+        }
+
+        td:first-child {
+            color: var(--text);
+            font-weight: 600
+        }
+
+        tr:last-child td {
+            border-bottom: none
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, .015)
+        }
+
+        /* ── CALLOUTS ── */
+        .tip {
+            padding: 11px 15px;
+            border-radius: 0 7px 7px 0;
+            margin: 12px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid var(--teal);
+            background: rgba(56, 217, 169, .06)
+        }
+
+        .warn {
+            padding: 11px 15px;
+            border-radius: 0 7px 7px 0;
+            margin: 12px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid var(--amber);
+            background: rgba(251, 146, 60, .06)
+        }
+
+        .danger {
+            padding: 11px 15px;
+            border-radius: 0 7px 7px 0;
+            margin: 12px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid var(--red);
+            background: rgba(248, 113, 113, .06)
+        }
+
+        .success {
+            padding: 11px 15px;
+            border-radius: 0 7px 7px 0;
+            margin: 12px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid var(--green);
+            background: rgba(74, 222, 128, .06)
+        }
+
+        .gold-box {
+            padding: 11px 15px;
+            border-radius: 0 7px 7px 0;
+            margin: 12px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.65;
+            border-left: 3px solid var(--gold);
+            background: rgba(245, 200, 66, .06)
+        }
+
+        /* ── GRIDS ── */
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 13px;
+            margin: 12px 0
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0
+        }
+
+        .grid4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0
+        }
+
+        .card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 13px 15px
+        }
+
+        .card h4 {
+            margin-top: 0;
+            margin-bottom: 6px;
+            font-size: 13px
+        }
+
+        .card p {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 0;
+            line-height: 1.58
+        }
+
+        /* ── PROCESS STEPS ── */
+        .step-row {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+            margin: 9px 0
+        }
+
+        .step-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        .step-body {
+            font-size: 13.5px;
+            color: var(--text);
+            line-height: 1.65;
+            flex: 1
+        }
+
+        .step-body strong {
+            color: var(--gold)
+        }
+
+        /* ── FRAMEWORK BLOCK ── */
+        .fw-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 22px;
+            margin: 13px 0 18px;
+            position: relative
+        }
+
+        .fw-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            position: absolute;
+            top: -10px;
+            left: 14px;
+            background: var(--code-bg);
+            padding: 0 8px
+        }
+
+        /* ── CASE STUDY BOX ── */
+        .case-box {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 14px 0 20px
+        }
+
+        .case-header {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px
+        }
+
+        .case-icon {
+            font-size: 26px;
+            flex-shrink: 0;
+            margin-top: 2px
+        }
+
+        .case-meta {
+            flex: 1
+        }
+
+        .case-company {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 2px
+        }
+
+        .case-type {
+            font-size: 10.5px;
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: .5px;
+            text-transform: uppercase
+        }
+
+        .case-body {
+            padding: 14px 18px
+        }
+
+        .case-q {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 10px;
+            line-height: 1.5
+        }
+
+        .case-section {
+            margin-bottom: 12px
+        }
+
+        .case-section-title {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        .case-section-body {
+            font-size: 12.5px;
+            color: var(--muted);
+            line-height: 1.65
+        }
+
+        .case-section-body strong {
+            color: var(--text)
+        }
+
+        /* ── TREE NODES ── */
+        .tree-wrap {
+            margin: 14px 0
+        }
+
+        .tree-root {
+            background: rgba(245, 200, 66, .12);
+            border: 1px solid rgba(245, 200, 66, .4);
+            border-radius: 6px;
+            padding: 8px 16px;
+            display: inline-block;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 13.5px
+        }
+
+        .tree-level {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            padding-left: 20px;
+            border-left: 2px solid var(--border);
+            margin-left: 10px;
+            margin-bottom: 10px
+        }
+
+        .tree-node {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 12.5px;
+            color: var(--text);
+            background: var(--bg3)
+        }
+
+        .tree-node.teal {
+            border-color: var(--teal);
+            color: var(--teal);
+            background: rgba(56, 217, 169, .07)
+        }
+
+        .tree-node.blue {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: rgba(96, 165, 250, .07)
+        }
+
+        .tree-node.rose {
+            border-color: var(--rose);
+            color: var(--rose);
+            background: rgba(240, 101, 149, .07)
+        }
+
+        .tree-node.violet {
+            border-color: var(--violet);
+            color: var(--violet);
+            background: rgba(167, 139, 250, .07)
+        }
+
+        /* ── ANSWER TEMPLATE ── */
+        .ans-block {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 10px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.7
+        }
+
+        .ans-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        /* ── FLOW ── */
+        .flow-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin: 14px 0;
+            flex-wrap: wrap
+        }
+
+        .flow-box {
+            flex: 1;
+            min-width: 80px;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            padding: 10px 10px;
+            text-align: center
+        }
+
+        .flow-box .fb-title {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 3px
+        }
+
+        .flow-box .fb-sub {
+            font-size: 10px;
+            color: var(--muted);
+            line-height: 1.4
+        }
+
+        .flow-arrow {
+            color: var(--muted);
+            font-size: 16px;
+            flex-shrink: 0
+        }
+
+        /* ── DO / DON'T ── */
+        .dos-donts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 13px 0
+        }
+
+        .do-col {
+            background: rgba(74, 222, 128, .05);
+            border: 1px solid rgba(74, 222, 128, .2);
+            border-radius: 8px;
+            padding: 13px 15px
+        }
+
+        .dont-col {
+            background: rgba(248, 113, 113, .05);
+            border: 1px solid rgba(248, 113, 113, .2);
+            border-radius: 8px;
+            padding: 13px 15px
+        }
+
+        .do-col h4 {
+            color: var(--green);
+            margin-top: 0;
+            font-size: 13px;
+            margin-bottom: 7px
+        }
+
+        .dont-col h4 {
+            color: var(--red);
+            margin-top: 0;
+            font-size: 13px;
+            margin-bottom: 7px
+        }
+
+        .do-col li,
+        .dont-col li {
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--muted)
+        }
+
+        /* ── CHECKLIST ── */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0
+        }
+
+        .checklist li {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.85;
+            display: flex;
+            align-items: flex-start;
+            gap: 9px
+        }
+
+        .checklist li::before {
+            content: "☐";
+            font-size: 14px;
+            color: var(--muted);
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        .checklist li strong {
+            color: var(--text)
+        }
+
+        /* ── PILL ── */
+        .pill {
+            display: inline-block;
+            padding: 2px 9px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 1px 2px
+        }
+
+        .pill-gold {
+            background: rgba(245, 200, 66, .15);
+            color: var(--gold)
+        }
+
+        .pill-teal {
+            background: rgba(56, 217, 169, .15);
+            color: var(--teal)
+        }
+
+        .pill-rose {
+            background: rgba(240, 101, 149, .15);
+            color: var(--rose)
+        }
+
+        .pill-blue {
+            background: rgba(96, 165, 250, .15);
+            color: var(--blue)
+        }
+
+        .pill-violet {
+            background: rgba(167, 139, 250, .15);
+            color: var(--violet)
+        }
+
+        .pill-amber {
+            background: rgba(251, 146, 60, .15);
+            color: var(--amber)
+        }
+
+        /* ── METRIC STRIP ── */
+        .metric-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 13px 0
+        }
+
+        .m-card {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 14px;
+            text-align: center
+        }
+
+        .m-val {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 3px
+        }
+
+        .m-label {
+            font-size: 10px;
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: .5px;
+            text-transform: uppercase
+        }
+
+        @media(max-width:768px) {
+            #sidebar {
+                display: none
+            }
+
+            #main {
+                padding: 18px 14px
+            }
+
+            .grid2,
+            .grid3,
+            .grid4 {
+                grid-template-columns: 1fr
+            }
+
+            .metric-strip {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .dos-donts {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-row"><span class="cs-badge">CASE STUDY</span></div>
+            <h1>Case Study Mastery</h1>
+            <p>Placement Preparation Guide</p>
+        </div>
+        <div class="progress-bar-wrap" id="progress"></div>
+
+        <div class="lib-group">
+            <div class="lib-label"><span class="lib-dot" style="background:var(--gold)"></span>Foundations</div>
+            <div class="nav-item active" onclick="show('what')" id="nav-what"> <span class="nav-icon">🧭</span>What is a
+                Case Study?</div>
+            <div class="nav-item" onclick="show('types')" id="nav-types"> <span class="nav-icon">🗂️</span>Types of Case
+                Studies</div>
+            <div class="nav-item" onclick="show('mindset')" id="nav-mindset"><span class="nav-icon">🧠</span>The Case
+                Mindset</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label"><span class="lib-dot" style="background:var(--teal)"></span>Structure & Approach
+            </div>
+            <div class="nav-item" onclick="show('structure')" id="nav-structure"> <span class="nav-icon">🏗️</span>The
+                Universal Structure</div>
+            <div class="nav-item" onclick="show('clarify')" id="nav-clarify"> <span class="nav-icon">❓</span>Clarifying
+                Questions</div>
+            <div class="nav-item" onclick="show('frameworks')" id="nav-frameworks"> <span
+                    class="nav-icon">📐</span>Choosing Frameworks</div>
+            <div class="nav-item" onclick="show('synthesis')" id="nav-synthesis"> <span
+                    class="nav-icon">🎯</span>Synthesis & Recommendation</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label"><span class="lib-dot" style="background:var(--rose)"></span>Case Types Deep-Dive
+            </div>
+            <div class="nav-item" onclick="show('profitability')" id="nav-profitability"> <span
+                    class="nav-icon">📉</span>Profitability Cases</div>
+            <div class="nav-item" onclick="show('marketentry')" id="nav-marketentry"> <span
+                    class="nav-icon">🌍</span>Market Entry Cases</div>
+            <div class="nav-item" onclick="show('growth')" id="nav-growth"> <span class="nav-icon">📈</span>Growth
+                Strategy Cases</div>
+            <div class="nav-item" onclick="show('manda')" id="nav-manda"> <span class="nav-icon">🤝</span>M&A /
+                Investment Cases</div>
+            <div class="nav-item" onclick="show('pricing')" id="nav-pricing"> <span class="nav-icon">💰</span>Pricing
+                Cases</div>
+            <div class="nav-item" onclick="show('ops')" id="nav-ops"> <span class="nav-icon">⚙️</span>Operational Cases
+            </div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label"><span class="lib-dot" style="background:var(--blue)"></span>Quantitative Skills</div>
+            <div class="nav-item" onclick="show('fermi')" id="nav-fermi"> <span class="nav-icon">🔢</span>Fermi
+                Estimation</div>
+            <div class="nav-item" onclick="show('maths')" id="nav-maths"> <span class="nav-icon">➕</span>Case Maths &
+                Shortcuts</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label"><span class="lib-dot" style="background:var(--violet)"></span>Full Worked Cases</div>
+            <div class="nav-item" onclick="show('case1')" id="nav-case1"> <span class="nav-icon">☕</span>Case 1: Coffee
+                Chain</div>
+            <div class="nav-item" onclick="show('case2')" id="nav-case2"> <span class="nav-icon">📱</span>Case 2:
+                Telecom Entry</div>
+            <div class="nav-item" onclick="show('case3')" id="nav-case3"> <span class="nav-icon">🚗</span>Case 3: EV
+                Start-up</div>
+            <div class="nav-item" onclick="show('case4')" id="nav-case4"> <span class="nav-icon">🏥</span>Case 4:
+                Hospital Ops</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label"><span class="lib-dot" style="background:var(--amber)"></span>Communication</div>
+            <div class="nav-item" onclick="show('communicate')" id="nav-communicate"> <span
+                    class="nav-icon">🗣️</span>Communication & Presence</div>
+            <div class="nav-item" onclick="show('charts')" id="nav-charts"> <span class="nav-icon">📊</span>Charts &
+                Data Reading</div>
+            <div class="nav-item" onclick="show('written')" id="nav-written"> <span class="nav-icon">✍️</span>Written
+                Case Studies</div>
+        </div>
+
+        <div class="lib-group">
+            <div class="lib-label"><span class="lib-dot" style="background:var(--red)"></span>Interview Prep</div>
+            <div class="nav-item" onclick="show('mistakes')" id="nav-mistakes"> <span class="nav-icon">⚠️</span>Common
+                Mistakes</div>
+            <div class="nav-item" onclick="show('practice')" id="nav-practice"> <span
+                    class="nav-icon">🏋️</span>Practice Checklist</div>
+            <div class="nav-item" onclick="show('qanda')" id="nav-qanda"> <span class="nav-icon">🎤</span>Interview Q&A
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+
+        <!-- ══════════════ WHAT ══════════════ -->
+        <div class="section active" id="sec-what">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(245,200,66,.1);color:var(--gold)">■ Foundations</div>
+                <h2>What is a Case Study Interview?</h2>
+                <p>A case study interview presents a real or hypothetical business problem and asks you to analyse it,
+                    structure your thinking, and deliver a recommendation — all under pressure, in real time.</p>
+            </div>
+
+            <h3>Why Companies Use Case Studies</h3>
+            <div class="grid3">
+                <div class="card" style="border-top:2px solid var(--gold)">
+                    <h4 style="color:var(--gold)">Simulate Real Work</h4>
+                    <p>Consulting and strategy work is exactly this: ambiguous problems → structured analysis →
+                        actionable recommendations. Cases test if you can actually do the job.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--teal)">
+                    <h4 style="color:var(--teal)">Test Structured Thinking</h4>
+                    <p>Can you break a complex, messy problem into MECE components? Can you identify what matters most
+                        and ignore what doesn't?</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--rose)">
+                    <h4 style="color:var(--rose)">Assess Communication</h4>
+                    <p>Can you articulate complex ideas clearly? Do you think aloud confidently? Can you handle pushback
+                        without crumbling?</p>
+                </div>
+            </div>
+
+            <h3>What is Actually Being Evaluated</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>What Interviewers Look For</th>
+                            <th>Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Problem Structuring</td>
+                            <td>MECE breakdown, issue trees, logical hypothesis, not jumping to answers</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Analytical Rigour</td>
+                            <td>Correct maths, reasonable assumptions, data-driven reasoning</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Business Judgement</td>
+                            <td>Common sense, prioritisation, understanding of business context</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Communication</td>
+                            <td>Clear, confident, concise; structured answers; good listening</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Hypothesis-driven</td>
+                            <td>Forming a view early and testing it vs boiling the ocean</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Creativity</td>
+                            <td>Generating non-obvious insights and solutions</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Grace Under Pressure</td>
+                            <td>Staying calm, recovering from mistakes, handling curveballs</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Synthesis</td>
+                            <td>Pulling scattered findings into a crisp, actionable recommendation</td>
+                            <td>High</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Where Case Studies Appear</h3>
+            <div class="grid4">
+                <div class="card">
+                    <h4>Management Consulting</h4>
+                    <p>McKinsey, BCG, Bain, Deloitte, KPMG, EY, PwC — core selection method at all rounds.</p>
+                </div>
+                <div class="card">
+                    <h4>Strategy Roles</h4>
+                    <p>Corporate strategy, business development, chief of staff, strategy & operations at tech firms
+                        (Google, Meta, Amazon).</p>
+                </div>
+                <div class="card">
+                    <h4>Product Management</h4>
+                    <p>PM interviews include product strategy cases, market sizing, and feature prioritisation cases.
+                    </p>
+                </div>
+                <div class="card">
+                    <h4>Investment Banking & PE</h4>
+                    <p>Modelling cases, LBO scenarios, deal analysis. More quantitative than consulting cases.</p>
+                </div>
+            </div>
+            <div class="tip">💡 <strong>Key insight:</strong> The interviewer doesn't expect a perfect answer. They want
+                to see a structured mind at work. A wrong answer with great structure beats a right answer with no
+                structure every time.</div>
+        </div>
+
+        <!-- ══════════════ TYPES ══════════════ -->
+        <div class="section" id="sec-types">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(245,200,66,.1);color:var(--gold)">■ Foundations</div>
+                <h2>Types of Case Studies</h2>
+                <p>Recognising the case type in the first 60 seconds lets you deploy the right framework immediately —
+                    saving critical thinking time.</p>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Case Type</th>
+                            <th>Trigger Phrases</th>
+                            <th>Primary Approach</th>
+                            <th>Key Question</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="pill pill-rose">Profitability</span></td>
+                            <td>"Profits are falling," "margins are under pressure," "EBITDA decline"</td>
+                            <td>Revenue vs Cost tree → Diagnose driver → Benchmark → Fix</td>
+                            <td>Is it a revenue problem or a cost problem?</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-teal">Market Entry</span></td>
+                            <td>"Should we enter X market?" "Launch in Y country?" "Expand to Z segment?"</td>
+                            <td>Market attractiveness → Competitive position → Entry mode → Financials</td>
+                            <td>Is the market attractive AND can we win?</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-gold">Growth Strategy</span></td>
+                            <td>"How do we grow revenues by X%?" "Reach $1B in 5 years?"</td>
+                            <td>Ansoff Matrix → Revenue drivers → Levers prioritised by RICE</td>
+                            <td>Grow existing or enter new?</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-blue">M&A / Investment</span></td>
+                            <td>"Should we acquire?" "Is this a good investment?"</td>
+                            <td>Strategic rationale → Target quality → Synergies → Risks → Valuation</td>
+                            <td>Do synergies exceed the premium paid?</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-violet">Pricing</span></td>
+                            <td>"What price should we charge?" "Should we change pricing model?"</td>
+                            <td>WTP → Cost floor → Competitive anchors → Pricing strategy</td>
+                            <td>What value does the customer get and what will they pay?</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-amber">Operations</span></td>
+                            <td>"Reduce costs," "improve efficiency," "supply chain issues"</td>
+                            <td>Value chain → Process map → Root cause → Benchmark → Improve</td>
+                            <td>Where in the value chain is the inefficiency?</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-gold">Competitive Response</span></td>
+                            <td>"A new competitor entered," "rival launched X," "losing market share"</td>
+                            <td>Understand threat → Porter's 5 → Response options → Risk of each</td>
+                            <td>How serious is the threat and what's our best counter?</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-teal">Market Sizing</span></td>
+                            <td>"How large is the market for X?" "Estimate the revenue of Y"</td>
+                            <td>Top-down OR bottom-up → State assumptions → Calculate → Sanity check</td>
+                            <td>What population/supply unit × price makes sense?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Case Formats</h3>
+            <div class="grid3">
+                <div class="card" style="border-top:2px solid var(--teal)">
+                    <h4 style="color:var(--teal)">Interviewer-led (Traditional)</h4>
+                    <p>Interviewer guides the case, provides data on request, answers clarifying questions. 30–45 mins.
+                        Most common at MBB (McKinsey, BCG, Bain).</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--gold)">
+                    <h4 style="color:var(--gold)">Candidate-led</h4>
+                    <p>You drive entirely — ask for data you need, set the agenda. Tests initiative and structure. BCG,
+                        Deloitte often use this style.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--violet)">
+                    <h4 style="color:var(--violet)">Written / Take-home Case</h4>
+                    <p>Given a pack of data (exhibits, tables). 1–3 hours. Produce a structured written analysis and
+                        slides. Tests depth, not just verbal structure.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--rose)">
+                    <h4 style="color:var(--rose)">Group Case</h4>
+                    <p>2–4 candidates tackle a case together while assessors observe. Tests collaboration, leadership,
+                        constructive disagreement, and listening.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--amber)">
+                    <h4 style="color:var(--amber)">Video / AI-led Case</h4>
+                    <p>Recorded or AI-moderated. No real-time feedback. Tests self-structure and comfort with ambiguity
+                        alone. McKinsey's Solve Game.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--blue)">
+                    <h4 style="color:var(--blue)">Industry / Technical Case</h4>
+                    <p>Domain-specific (e.g., healthcare, manufacturing). Tests industry knowledge + consulting skills.
+                        Common at strategy boutiques.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ MINDSET ══════════════ -->
+        <div class="section" id="sec-mindset">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(245,200,66,.1);color:var(--gold)">■ Foundations</div>
+                <h2>The Case Study Mindset</h2>
+                <p>The mindset you bring into the room matters as much as the frameworks you've memorised. These mental
+                    models separate good candidates from exceptional ones.</p>
+            </div>
+
+            <h3>The Four Core Mental Models</h3>
+            <div class="fw-block">
+                <span class="fw-title">Think Like a Consultant</span>
+                <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+                    <div style="display:flex;gap:14px;align-items:flex-start">
+                        <span style="font-size:22px;flex-shrink:0">🔬</span>
+                        <div>
+                            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px">
+                                Hypothesis-first, not data-first</div>
+                            <div style="font-size:12.5px;color:var(--muted)">Form a view early. "My initial hypothesis
+                                is X because of Y. I'll test it by examining Z." Don't wait for all the data — drive
+                                toward an answer and update as you learn.</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:14px;align-items:flex-start">
+                        <span style="font-size:22px;flex-shrink:0">🗺️</span>
+                        <div>
+                            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px">Breadth
+                                before depth (MECE)</div>
+                            <div style="font-size:12.5px;color:var(--muted)">Always sketch the full problem space before
+                                diving into any single branch. Premature depth = missing the real issue hiding in the
+                                other branch.</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:14px;align-items:flex-start">
+                        <span style="font-size:22px;flex-shrink:0">🎯</span>
+                        <div>
+                            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px">Prioritise
+                                ruthlessly (80/20)</div>
+                            <div style="font-size:12.5px;color:var(--muted)">You have 30 minutes, not 3 weeks. Identify
+                                the 2–3 issues most likely to contain the answer. Explicitly say: "I'll focus on X
+                                because it's likely the biggest driver."</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:14px;align-items:flex-start">
+                        <span style="font-size:22px;flex-shrink:0">💡</span>
+                        <div>
+                            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px">Answer first
+                                (Pyramid Principle)</div>
+                            <div style="font-size:12.5px;color:var(--muted)">Lead with the recommendation, follow with
+                                evidence. Never build up to the answer — give it first. "I recommend X. Here's why: 1,
+                                2, 3."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Thinking Out Loud</h3>
+            <p>Unlike exams, the interviewer scores your <strong>thinking process</strong>, not just your conclusion.
+                Narrate your thought process continuously:</p>
+            <div class="grid2">
+                <div class="do-col">
+                    <h4>✅ DO say</h4>
+                    <ul>
+                        <li>"Let me structure this — I'm thinking about it as two buckets: revenue and costs…"</li>
+                        <li>"Before I dive in, can I take 60 seconds to sketch a framework?"</li>
+                        <li>"My hypothesis is X. To test it, I'd want to know…"</li>
+                        <li>"I'm going to focus on the revenue side first because it's likely the bigger driver."</li>
+                        <li>"That's interesting — it changes my hypothesis. Let me update my thinking."</li>
+                    </ul>
+                </div>
+                <div class="dont-col">
+                    <h4>❌ DON'T do</h4>
+                    <ul>
+                        <li>Go silent for 30+ seconds without explaining what you're doing</li>
+                        <li>Jump straight to a solution without structuring</li>
+                        <li>Say "I don't know" and stop — always say "I'd estimate X because…"</li>
+                        <li>Change your answer the moment the interviewer pushes back</li>
+                        <li>Apologise excessively when you make a maths error</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>The Mindset Shift: "So What?"</h3>
+            <p>After every piece of analysis, ask yourself: <strong style="color:var(--gold)">"So what does this mean
+                    for the client?"</strong> Every insight must connect to an implication or action. Raw data without
+                interpretation is noise.</p>
+            <div class="fw-block">
+                <span class="fw-title">So What? Chain</span>
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                    <div
+                        style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 13px;font-size:12.5px;color:var(--text)">
+                        📊 <strong>Data:</strong> Revenue fell 15%</div>
+                    <div style="color:var(--muted)">→</div>
+                    <div
+                        style="background:rgba(245,200,66,.08);border:1px solid rgba(245,200,66,.3);border-radius:6px;padding:8px 13px;font-size:12.5px;color:var(--text)">
+                        🔍 <strong>Insight:</strong> All decline from one product line</div>
+                    <div style="color:var(--muted)">→</div>
+                    <div
+                        style="background:rgba(56,217,169,.08);border:1px solid rgba(56,217,169,.3);border-radius:6px;padding:8px 13px;font-size:12.5px;color:var(--text)">
+                        💡 <strong>Implication:</strong> Problem is isolated, not systemic</div>
+                    <div style="color:var(--muted)">→</div>
+                    <div
+                        style="background:rgba(240,101,149,.08);border:1px solid rgba(240,101,149,.3);border-radius:6px;padding:8px 13px;font-size:12.5px;color:var(--text)">
+                        🎯 <strong>Action:</strong> Focus intervention on that product line</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ STRUCTURE ══════════════ -->
+        <div class="section" id="sec-structure">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(56,217,169,.1);color:var(--teal)">■ Structure & Approach
+                </div>
+                <h2>The Universal Case Structure</h2>
+                <p>Every case interview — regardless of type — follows the same high-level arc. Internalise this so
+                    deeply it becomes automatic.</p>
+            </div>
+
+            <h3>The 6-Phase Arc</h3>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(245,200,66,.15);color:var(--gold)">1</div>
+                <div class="step-body"><strong>Open: Listen & confirm (1–2 min)</strong><br>Receive the prompt. Listen
+                    carefully. Take notes. Repeat the question back in your own words to confirm understanding and show
+                    active listening. "So if I understand correctly, your client is X, facing Y, and you'd like me to
+                    recommend Z — is that right?"</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(56,217,169,.15);color:var(--teal)">2</div>
+                <div class="step-body"><strong>Clarify: Ask 1–2 targeted questions (1–2 min)</strong><br>Ask only
+                    high-value clarifying questions. "What does success look like?" "Is this a short-term fix or a
+                    long-term strategy?" "Any parts of the business that are out of scope?" Don't ask for information
+                    you should be able to derive yourself.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">3</div>
+                <div class="step-body"><strong>Structure: Build your framework (2–3 min)</strong><br>"I'd like to take
+                    60–90 seconds to structure my thinking." Build a MECE issue tree on paper. Announce the structure:
+                    "I'm going to look at this through three lenses: X, Y, and Z. I'll start with X because it's likely
+                    the biggest driver."</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(96,165,250,.15);color:var(--blue)">4</div>
+                <div class="step-body"><strong>Analyse: Work through branches (15–20 min)</strong><br>Proceed
+                    methodically. Ask for data when needed. Do mental maths out loud. Form mini-hypotheses per branch.
+                    Signpost clearly: "Moving to the cost side now…" Prioritise the 2–3 branches most likely to hold the
+                    answer.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(167,139,250,.15);color:var(--violet)">5</div>
+                <div class="step-body"><strong>Synthesise: Pull findings together (2–3 min)</strong><br>"Based on what
+                    we've covered, let me synthesise." Draw connections between findings. Identify the root cause. Frame
+                    as: "The problem is fundamentally about X, driven primarily by Y."</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">6</div>
+                <div class="step-body"><strong>Recommend: Crisp, direct recommendation (1–2 min)</strong><br>"I
+                    recommend that the client does X." Give 2–3 supporting reasons. Acknowledge the key risk and a
+                    mitigation. Propose clear next steps. Never be wishy-washy.</div>
+            </div>
+
+            <h3>The Recommendation Template</h3>
+            <div class="fw-block">
+                <span class="fw-title">Final Recommendation Structure</span>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                    <div class="ans-block">
+                        <div class="ans-label">1. The Headline</div>"Based on our analysis, I recommend that [client]
+                        should [specific action]."
+                    </div>
+                    <div class="ans-block">
+                        <div class="ans-label">2. Supporting Reasons (2–3)</div>"The primary reason is [Reason 1],
+                        supported by [evidence]. Additionally, [Reason 2] which is validated by [data]. Finally, [Reason
+                        3]."
+                    </div>
+                    <div class="ans-block">
+                        <div class="ans-label">3. Key Risk + Mitigation</div>"The most significant risk is [Risk], which
+                        we can mitigate by [specific action / condition]."
+                    </div>
+                    <div class="ans-block">
+                        <div class="ans-label">4. Next Steps (3 prioritised)</div>"If we proceed, the immediate next
+                        steps would be: (1) [quick win], (2) [medium-term action], (3) [long-term investment]."
+                    </div>
+                </div>
+            </div>
+            <div class="tip">💡 <strong>One-sentence test:</strong> Can you summarise your recommendation in one
+                sentence? If not, it's not clear enough yet. The best recommendations pass this test: "The client should
+                exit the European market and redeploy capital into APAC over 18 months."</div>
+        </div>
+
+        <!-- ══════════════ CLARIFY ══════════════ -->
+        <div class="section" id="sec-clarify">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(56,217,169,.1);color:var(--teal)">■ Structure & Approach
+                </div>
+                <h2>Clarifying Questions — What to Ask & When</h2>
+                <p>The questions you ask in the first 2 minutes reveal your business acumen and problem-solving
+                    instincts more than almost anything else in the case.</p>
+            </div>
+
+            <h3>The Four Types of Clarifying Questions</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Question</th>
+                            <th>Why It Matters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Objective</td>
+                            <td>"What does success look like for the client in this situation?"</td>
+                            <td>Defines the end goal — prevents solving the wrong problem</td>
+                        </tr>
+                        <tr>
+                            <td>Objective</td>
+                            <td>"Is there a specific financial target or timeline we're working toward?"</td>
+                            <td>Anchors the scope of your analysis</td>
+                        </tr>
+                        <tr>
+                            <td>Scope</td>
+                            <td>"Are there any areas of the business or geographies that are out of scope?"</td>
+                            <td>Saves time on irrelevant analysis</td>
+                        </tr>
+                        <tr>
+                            <td>Context</td>
+                            <td>"Has this problem occurred before or is this a new trend?"</td>
+                            <td>Immediately suggests whether it's cyclical or structural</td>
+                        </tr>
+                        <tr>
+                            <td>Context</td>
+                            <td>"Is the industry experiencing this challenge broadly or is it specific to our client?"
+                            </td>
+                            <td>Determines if external or internal cause</td>
+                        </tr>
+                        <tr>
+                            <td>Constraints</td>
+                            <td>"Are there any financial, regulatory, or strategic constraints we should be aware of?"
+                            </td>
+                            <td>Prevents recommending options that are already ruled out</td>
+                        </tr>
+                        <tr>
+                            <td>Definition</td>
+                            <td>"When you say 'profitability,' are we talking gross margin, EBITDA, or net profit?"</td>
+                            <td>Ensures you're measuring the right thing</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>What NOT to Ask</h3>
+            <div class="danger">⚠️ Don't ask questions you could answer yourself or that reveal a lack of business
+                knowledge. "What is EBITDA?" or "Can you explain what a supply chain is?" will immediately signal you're
+                not ready. If something is truly unclear, frame it as a confirmation: "Just to confirm — when you say
+                'growth,' you mean top-line revenue growth, correct?"</div>
+
+            <h3>Reading Between the Lines</h3>
+            <p>Often the most important information is what the interviewer <em>didn't</em> say. Train yourself to
+                notice:</p>
+            <ul>
+                <li><strong>Time specificity</strong> — "profits fell last quarter" → look for recent events (new
+                    competitor? cost spike? pricing change?)</li>
+                <li><strong>Comparison language</strong> — "our margins are lower than industry" → benchmark problem,
+                    not absolute problem</li>
+                <li><strong>Emotional language</strong> — "the CEO is very concerned" → urgency, political dimensions,
+                    perhaps a board presentation is coming</li>
+                <li><strong>Passive voice</strong> — "costs have risen" vs "we increased our headcount" → internal vs
+                    external cause already implied</li>
+            </ul>
+        </div>
+
+        <!-- ══════════════ FRAMEWORKS ══════════════ -->
+        <div class="section" id="sec-frameworks">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(56,217,169,.1);color:var(--teal)">■ Structure & Approach
+                </div>
+                <h2>Choosing & Adapting Frameworks</h2>
+                <p>Frameworks are starting points — not straitjackets. The best candidates adapt standard frameworks to
+                    the specific case rather than mechanically applying them.</p>
+            </div>
+
+            <h3>Framework Selection Guide</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Case Type</th>
+                            <th>Primary Framework</th>
+                            <th>Supporting Tools</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Profitability</td>
+                            <td>Profit = Revenue − Cost tree (Price × Volume; Fixed + Variable)</td>
+                            <td>Benchmarking, Porter's 5 Forces, Value Chain</td>
+                        </tr>
+                        <tr>
+                            <td>Market Entry</td>
+                            <td>3Cs: Market (customers, size, growth) → Competition → Company capabilities</td>
+                            <td>Ansoff Matrix, Porter's 5 Forces, Entry modes</td>
+                        </tr>
+                        <tr>
+                            <td>Growth Strategy</td>
+                            <td>Ansoff Matrix (existing/new × product/market)</td>
+                            <td>Revenue tree, Porter's, Customer segmentation</td>
+                        </tr>
+                        <tr>
+                            <td>M&A / Investment</td>
+                            <td>Strategic fit → Target quality → Synergies → Risks → Valuation</td>
+                            <td>Porter's, DCF basics, Integration considerations</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing</td>
+                            <td>3 lenses: WTP (value-based) + Cost floor + Competitive anchor</td>
+                            <td>Elasticity, price-volume trade-off, segmentation</td>
+                        </tr>
+                        <tr>
+                            <td>Operations</td>
+                            <td>Value Chain → Process mapping → Root cause analysis</td>
+                            <td>Lean waste types, benchmarking, capacity analysis</td>
+                        </tr>
+                        <tr>
+                            <td>Competitive Response</td>
+                            <td>Porter's 5 Forces + Competitor analysis</td>
+                            <td>SWOT, blue ocean, differentiation options</td>
+                        </tr>
+                        <tr>
+                            <td>Market Sizing</td>
+                            <td>Top-down (population funnel) OR Bottom-up (unit × price)</td>
+                            <td>Triangulate both; sanity check against known anchors</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Building a Custom Framework</h3>
+            <p>For unusual cases, build a bespoke framework by asking: <strong>"What are the 3–4 most important
+                    categories of issues that could explain this problem?"</strong></p>
+            <div class="fw-block">
+                <span class="fw-title">Example: "A hospital is losing patients to competitors"</span>
+                <div style="margin-top:4px">
+                    <p style="font-size:13px;color:var(--muted);margin-bottom:10px">Not a standard profitability case —
+                        needs a custom lens:</p>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <div
+                            style="background:rgba(56,217,169,.08);border:1px solid rgba(56,217,169,.3);border-radius:6px;padding:9px 13px;flex:1;min-width:120px">
+                            <div style="font-size:12px;font-weight:700;color:var(--teal);margin-bottom:3px">Patient
+                                Experience</div>
+                            <div style="font-size:11.5px;color:var(--muted)">Wait times, service quality, communication,
+                                post-care follow-up</div>
+                        </div>
+                        <div
+                            style="background:rgba(240,101,149,.08);border:1px solid rgba(240,101,149,.3);border-radius:6px;padding:9px 13px;flex:1;min-width:120px">
+                            <div style="font-size:12px;font-weight:700;color:var(--rose);margin-bottom:3px">Clinical
+                                Quality</div>
+                            <div style="font-size:11.5px;color:var(--muted)">Outcomes, specialist availability,
+                                equipment, accreditations</div>
+                        </div>
+                        <div
+                            style="background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.3);border-radius:6px;padding:9px 13px;flex:1;min-width:120px">
+                            <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:3px">Access &
+                                Location</div>
+                            <div style="font-size:11.5px;color:var(--muted)">Transport links, appointment availability,
+                                digital booking, insurance accepted</div>
+                        </div>
+                        <div
+                            style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.3);border-radius:6px;padding:9px 13px;flex:1;min-width:120px">
+                            <div style="font-size:12px;font-weight:700;color:var(--violet);margin-bottom:3px">Competitor
+                                Moves</div>
+                            <div style="font-size:11.5px;color:var(--muted)">New entrant? Competitor improvement?
+                                Changed referral patterns?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="warn">⚠️ <strong>The "framework trap":</strong> Blindly applying Porter's 5 Forces to every
+                case, or starting every answer with "I'd like to look at this through a SWOT lens" signals you're
+                relying on memorised templates rather than thinking. Frameworks should emerge from the problem, not be
+                imposed on it.</div>
+        </div>
+
+        <!-- ══════════════ SYNTHESIS ══════════════ -->
+        <div class="section" id="sec-synthesis">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(56,217,169,.1);color:var(--teal)">■ Structure & Approach
+                </div>
+                <h2>Synthesis & Recommendation</h2>
+                <p>Synthesis is where most candidates stumble. They can analyse, but they can't connect the pieces into
+                    a coherent story. This skill separates good from great.</p>
+            </div>
+
+            <h3>What is Synthesis?</h3>
+            <p>Synthesis is <strong>not</strong> a summary. It's the act of drawing connections between disparate
+                findings to arrive at a root cause and a direction for action.</p>
+            <div class="grid2">
+                <div class="card" style="border-top:2px solid var(--red)">
+                    <h4 style="color:var(--red)">Summary (wrong)</h4>
+                    <p>"Revenue fell 12%, costs rose 8%, margins dropped from 18% to 6%, and the new competitor has 15%
+                        market share."<br><br><em>Just restating findings — no value added.</em></p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--green)">
+                    <h4 style="color:var(--green)">Synthesis (right)</h4>
+                    <p>"The margin collapse is fundamentally a revenue problem — the new low-cost competitor has forced
+                        us into defensive price cuts that are not supported by our cost structure. This tells us we need
+                        to either differentiate upward or restructure costs."<br><br><em>Findings connected → Root cause
+                            → Direction.</em></p>
+                </div>
+            </div>
+
+            <h3>The Issue Tree to Synthesis Flow</h3>
+            <div class="flow-wrap">
+                <div class="flow-box" style="border-color:rgba(245,200,66,.4)">
+                    <div class="fb-title">Build Issue Tree</div>
+                    <div class="fb-sub">MECE branches of potential causes</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box" style="border-color:rgba(56,217,169,.4)">
+                    <div class="fb-title">Gather Evidence</div>
+                    <div class="fb-sub">Data per branch; confirm or rule out</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box" style="border-color:rgba(240,101,149,.4)">
+                    <div class="fb-title">Identify Root Cause</div>
+                    <div class="fb-sub">Which branch explains most of the variance?</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box" style="border-color:rgba(96,165,250,.4)">
+                    <div class="fb-title">Draw Implications</div>
+                    <div class="fb-sub">"This means we should / should not…"</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box" style="border-color:rgba(167,139,250,.4)">
+                    <div class="fb-title">Recommend</div>
+                    <div class="fb-sub">Specific, prioritised, actionable</div>
+                </div>
+            </div>
+
+            <h3>Handling Pushback</h3>
+            <p>Interviewers often push back on your recommendation — even if it's correct — to see how you handle
+                pressure. The right response is <strong>not</strong> to immediately capitulate.</p>
+            <div class="fw-block">
+                <span class="fw-title">Pushback Response Framework</span>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+                    <div class="ans-block">
+                        <div class="ans-label">Step 1: Acknowledge</div>"That's a really important point / fair
+                        challenge — thank you for raising it."
+                    </div>
+                    <div class="ans-block">
+                        <div class="ans-label">Step 2: Evaluate honestly</div>Ask yourself: Is this pushback based on
+                        new information I hadn't considered? Or is it a test of my conviction?
+                    </div>
+                    <div class="ans-block">
+                        <div class="ans-label">Step 3a: If they're right — update</div>"You're right — I hadn't fully
+                        weighted [factor]. That actually changes my view. I'd now lean toward [revised recommendation]
+                        because…"
+                    </div>
+                    <div class="ans-block">
+                        <div class="ans-label">Step 3b: If you're right — hold firm</div>"I understand the concern, and
+                        it's a valid risk. However, I still recommend X because [evidence A] and [evidence B]. The
+                        downside of not acting seems greater than the risk you've identified."
+                    </div>
+                </div>
+            </div>
+            <div class="tip">💡 <strong>The key:</strong> Change your mind when the evidence warrants it. Don't change
+                your mind just because the interviewer looks sceptical. Intellectual honesty + conviction under pressure
+                = the ideal candidate.</div>
+        </div>
+
+        <!-- ══════════════ PROFITABILITY ══════════════ -->
+        <div class="section" id="sec-profitability">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(240,101,149,.1);color:var(--rose)">■ Case Type Deep-Dive
+                </div>
+                <h2>Profitability Cases</h2>
+                <p>The most common case type across all consulting firms. Mastering the profitability framework is
+                    non-negotiable.</p>
+            </div>
+
+            <h3>The Profitability Tree</h3>
+            <div class="tree-wrap">
+                <div>
+                    <div class="tree-root">Profit = Revenue − Costs</div>
+                </div>
+                <div style="padding-left:20px;border-left:2px solid rgba(245,200,66,.4);margin-left:10px">
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0">
+                        <div class="tree-node teal">Revenue (Price × Volume)</div>
+                        <div class="tree-node blue">Costs (Fixed + Variable)</div>
+                    </div>
+                    <div
+                        style="padding-left:20px;border-left:2px solid rgba(56,217,169,.3);margin-left:8px;margin-bottom:14px">
+                        <div
+                            style="font-size:11px;color:var(--teal);margin:4px 0;font-weight:700;text-transform:uppercase;letter-spacing:.5px">
+                            Revenue breakdown:</div>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+                            <div class="tree-node teal">Price per unit</div>
+                            <div class="tree-node teal">Volume (units sold)</div>
+                        </div>
+                        <div style="padding-left:20px;border-left:2px solid rgba(56,217,169,.2);margin-left:8px">
+                            <div style="display:flex;gap:6px;flex-wrap:wrap">
+                                <div
+                                    style="background:rgba(56,217,169,.04);border:1px solid rgba(56,217,169,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Avg selling price</div>
+                                <div
+                                    style="background:rgba(56,217,169,.04);border:1px solid rgba(56,217,169,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Discount rates</div>
+                                <div
+                                    style="background:rgba(56,217,169,.04);border:1px solid rgba(56,217,169,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    New customers</div>
+                                <div
+                                    style="background:rgba(56,217,169,.04);border:1px solid rgba(56,217,169,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Retention / churn</div>
+                                <div
+                                    style="background:rgba(56,217,169,.04);border:1px solid rgba(56,217,169,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Purchase frequency</div>
+                                <div
+                                    style="background:rgba(56,217,169,.04);border:1px solid rgba(56,217,169,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Units per transaction</div>
+                                <div
+                                    style="background:rgba(56,217,169,.04);border:1px solid rgba(56,217,169,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Mix shift</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-left:20px;border-left:2px solid rgba(96,165,250,.3);margin-left:8px">
+                        <div
+                            style="font-size:11px;color:var(--blue);margin:4px 0;font-weight:700;text-transform:uppercase;letter-spacing:.5px">
+                            Cost breakdown:</div>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+                            <div class="tree-node blue">Fixed Costs</div>
+                            <div class="tree-node blue">Variable Costs</div>
+                        </div>
+                        <div style="padding-left:20px;border-left:2px solid rgba(96,165,250,.2);margin-left:8px">
+                            <div style="display:flex;gap:6px;flex-wrap:wrap">
+                                <div
+                                    style="background:rgba(96,165,250,.04);border:1px solid rgba(96,165,250,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Rent / facilities</div>
+                                <div
+                                    style="background:rgba(96,165,250,.04);border:1px solid rgba(96,165,250,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Salaries (fixed)</div>
+                                <div
+                                    style="background:rgba(96,165,250,.04);border:1px solid rgba(96,165,250,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Depreciation</div>
+                                <div
+                                    style="background:rgba(96,165,250,.04);border:1px solid rgba(96,165,250,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Raw materials</div>
+                                <div
+                                    style="background:rgba(96,165,250,.04);border:1px solid rgba(96,165,250,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Labour (variable)</div>
+                                <div
+                                    style="background:rgba(96,165,250,.04);border:1px solid rgba(96,165,250,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Marketing</div>
+                                <div
+                                    style="background:rgba(96,165,250,.04);border:1px solid rgba(96,165,250,.15);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--muted)">
+                                    Logistics / shipping</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Step-by-Step Profitability Diagnosis</h3>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">1</div>
+                <div class="step-body"><strong>Scope it:</strong> Is this a single product, division, or whole company?
+                    Which geography? When did it start? Is it getting worse or stabilising?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">2</div>
+                <div class="step-body"><strong>Benchmark:</strong> Is the industry profitable? If yes → company-specific
+                    issue. If no → industry-wide (macro, structural, competitive).</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">3</div>
+                <div class="step-body"><strong>Isolate revenue vs cost:</strong> If revenue is flat/up but profit fell →
+                    cost problem. If revenue fell → dig into price vs volume.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">4</div>
+                <div class="step-body"><strong>Drill down:</strong> Once you know it's e.g., a variable cost issue,
+                    drill: which cost line? Is it one-off or recurring? Internal decision or external factor?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">5</div>
+                <div class="step-body"><strong>Root cause → fix:</strong> Match the root cause to the right lever.
+                    Revenue fix: pricing strategy, sales force, new segments. Cost fix: renegotiate contracts, automate,
+                    outsource.</div>
+            </div>
+        </div>
+
+        <!-- ══════════════ MARKET ENTRY ══════════════ -->
+        <div class="section" id="sec-marketentry">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(240,101,149,.1);color:var(--rose)">■ Case Type Deep-Dive
+                </div>
+                <h2>Market Entry Cases</h2>
+            </div>
+
+            <h3>The Three Core Questions</h3>
+            <div class="grid3">
+                <div class="card" style="border-top:2px solid var(--teal)">
+                    <h4 style="color:var(--teal)">1. Is the Market Attractive?</h4>
+                    <p>Size, growth rate, profitability of incumbents, competition intensity (Porter's 5), regulation,
+                        customer needs, barriers to entry.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--gold)">
+                    <h4 style="color:var(--gold)">2. Can We Compete and Win?</h4>
+                    <p>Do we have the capabilities, brand, relationships, cost structure, and technology? What's our
+                        advantage vs. incumbents? Right to win?</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--violet)">
+                    <h4 style="color:var(--violet)">3. Is the Return Worth It?</h4>
+                    <p>Investment required, timeline to profitability, expected market share, risk-adjusted return vs
+                        alternatives (opportunity cost).</p>
+                </div>
+            </div>
+
+            <h3>Entry Mode Comparison</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>Investment</th>
+                            <th>Control</th>
+                            <th>Speed</th>
+                            <th>Risk</th>
+                            <th>Best When</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Organic / Greenfield</td>
+                            <td>High</td>
+                            <td>Full</td>
+                            <td>Slow</td>
+                            <td>High</td>
+                            <td>No good acquisition target; want full control; time not critical</td>
+                        </tr>
+                        <tr>
+                            <td>Acquisition</td>
+                            <td>Very High</td>
+                            <td>Full</td>
+                            <td>Fast</td>
+                            <td>Very High</td>
+                            <td>Need speed; target has capabilities/customers/distribution</td>
+                        </tr>
+                        <tr>
+                            <td>Joint Venture</td>
+                            <td>Medium</td>
+                            <td>Shared</td>
+                            <td>Medium</td>
+                            <td>Medium</td>
+                            <td>Need local knowledge; regulatory requirement; risk-sharing</td>
+                        </tr>
+                        <tr>
+                            <td>Licensing / Franchise</td>
+                            <td>Low</td>
+                            <td>Low</td>
+                            <td>Fast</td>
+                            <td>Low</td>
+                            <td>Limited capital; scalable model; partner has distribution</td>
+                        </tr>
+                        <tr>
+                            <td>Strategic Partnership</td>
+                            <td>Low</td>
+                            <td>Minimal</td>
+                            <td>Fastest</td>
+                            <td>Lowest</td>
+                            <td>Test market; access without full commitment</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Market Sizing for Entry Cases</h3>
+            <p>Always quantify the opportunity: <strong>TAM → SAM → SOM</strong></p>
+            <div class="fw-block">
+                <span class="fw-title">TAM → SAM → SOM</span>
+                <div style="display:flex;gap:10px;align-items:flex-end;margin:8px 0">
+                    <div
+                        style="flex:3;background:rgba(245,200,66,.08);border:1px solid rgba(245,200,66,.3);border-radius:7px;padding:12px;text-align:center">
+                        <div style="font-weight:700;color:var(--gold);font-size:14px">TAM</div>
+                        <div style="font-size:11.5px;color:var(--muted);margin-top:3px">Total Addressable
+                            Market<br>Everyone who could buy this globally</div>
+                    </div>
+                    <div
+                        style="flex:2;background:rgba(56,217,169,.08);border:1px solid rgba(56,217,169,.3);border-radius:7px;padding:12px;text-align:center">
+                        <div style="font-weight:700;color:var(--teal);font-size:14px">SAM</div>
+                        <div style="font-size:11.5px;color:var(--muted);margin-top:3px">Serviceable Addressable
+                            Market<br>Who we can realistically reach</div>
+                    </div>
+                    <div
+                        style="flex:1;background:rgba(240,101,149,.08);border:1px solid rgba(240,101,149,.3);border-radius:7px;padding:12px;text-align:center">
+                        <div style="font-weight:700;color:var(--rose);font-size:14px">SOM</div>
+                        <div style="font-size:11.5px;color:var(--muted);margin-top:3px">Share we can capture in 3–5
+                            years</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ GROWTH ══════════════ -->
+        <div class="section" id="sec-growth">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(240,101,149,.1);color:var(--rose)">■ Case Type Deep-Dive
+                </div>
+                <h2>Growth Strategy Cases</h2>
+            </div>
+
+            <h3>Revenue Growth Levers</h3>
+            <div class="fw-block">
+                <span class="fw-title">Growth = Price × Volume — expanded</span>
+                <div class="grid2" style="margin:4px 0 0">
+                    <div>
+                        <div
+                            style="font-size:11.5px;font-weight:700;color:var(--teal);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">
+                            Existing Customers</div>
+                        <ul style="font-size:12.5px;color:var(--muted);padding-left:16px">
+                            <li>Increase purchase frequency</li>
+                            <li>Increase average order value (upsell/cross-sell)</li>
+                            <li>Reduce churn / improve retention</li>
+                            <li>Price increase (if WTP allows)</li>
+                            <li>Win back lapsed customers</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div
+                            style="font-size:11.5px;font-weight:700;color:var(--gold);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">
+                            New Customers</div>
+                        <ul style="font-size:12.5px;color:var(--muted);padding-left:16px">
+                            <li>Expand to new geographies</li>
+                            <li>Target new customer segments</li>
+                            <li>New channels (online, partnerships, D2C)</li>
+                            <li>Referral / viral growth programmes</li>
+                            <li>Bundling with complementary products</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>The Ansoff Matrix Applied</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Strategy</th>
+                            <th>Products</th>
+                            <th>Markets</th>
+                            <th>Risk</th>
+                            <th>Example Levers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Market Penetration</td>
+                            <td>Existing</td>
+                            <td>Existing</td>
+                            <td>Lowest</td>
+                            <td>Price cuts, promotions, loyalty schemes, more sales reps</td>
+                        </tr>
+                        <tr>
+                            <td>Market Development</td>
+                            <td>Existing</td>
+                            <td>New</td>
+                            <td>Medium</td>
+                            <td>Geographic expansion, new demographics, new channels</td>
+                        </tr>
+                        <tr>
+                            <td>Product Development</td>
+                            <td>New</td>
+                            <td>Existing</td>
+                            <td>Medium</td>
+                            <td>Line extensions, complementary products, new features</td>
+                        </tr>
+                        <tr>
+                            <td>Diversification</td>
+                            <td>New</td>
+                            <td>New</td>
+                            <td>Highest</td>
+                            <td>M&A, joint ventures, entirely new business units</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tip">💡 <strong>Start with penetration:</strong> Unless the market is saturated, the lowest-risk
+                growth strategy is always penetration — selling more to existing customers through existing channels.
+                Only recommend diversification if all lower-risk options are exhausted.</div>
+        </div>
+
+        <!-- ══════════════ M&A ══════════════ -->
+        <div class="section" id="sec-manda">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(240,101,149,.1);color:var(--rose)">■ Case Type Deep-Dive
+                </div>
+                <h2>M&A / Investment Cases</h2>
+            </div>
+
+            <h3>The M&A Value Equation</h3>
+            <div class="fw-block">
+                <span class="fw-title">Core Logic</span>
+                <div style="text-align:center;font-size:16px;font-weight:700;color:var(--text);margin:8px 0 6px">Value
+                    Created = PV(Synergies) − Acquisition Premium</div>
+                <p style="font-size:12.5px;color:var(--muted);text-align:center">A deal only creates value if the
+                    present value of synergies exceeds the premium paid above market value</p>
+            </div>
+
+            <h3>The 6-Step M&A Framework</h3>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(167,139,250,.15);color:var(--violet)">1</div>
+                <div class="step-body"><strong>Strategic Rationale</strong> — Why this deal? Horizontal consolidation,
+                    vertical integration, new capability acquisition, geographic expansion, acqui-hire, defensive
+                    blocking?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(167,139,250,.15);color:var(--violet)">2</div>
+                <div class="step-body"><strong>Target Quality</strong> — Is the target a good business? Revenue growth,
+                    margins, competitive moat, customer quality, management team, IP/brand.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(167,139,250,.15);color:var(--violet)">3</div>
+                <div class="step-body"><strong>Synergy Quantification</strong> — Revenue synergies (cross-sell, new
+                    markets) and cost synergies (shared overheads, procurement). When do they materialise? What % are
+                    achievable?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(167,139,250,.15);color:var(--violet)">4</div>
+                <div class="step-body"><strong>Risks & Red Flags</strong> — Cultural mismatch, regulatory approval risk,
+                    customer/talent attrition, hidden liabilities, integration complexity, leverage risk.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(167,139,250,.15);color:var(--violet)">5</div>
+                <div class="step-body"><strong>Valuation & Affordability</strong> — Is the price reasonable? Compare
+                    EV/EBITDA multiple to sector peers. Can the acquirer afford it without compromising their own
+                    strategy?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(167,139,250,.15);color:var(--violet)">6</div>
+                <div class="step-body"><strong>Integration Plan</strong> — Day 1 priorities, systems integration,
+                    culture integration, leadership decisions, customer communication, timeline to synergy realisation.
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ PRICING ══════════════ -->
+        <div class="section" id="sec-pricing">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(240,101,149,.1);color:var(--rose)">■ Case Type Deep-Dive
+                </div>
+                <h2>Pricing Cases</h2>
+            </div>
+
+            <h3>The Pricing Triangle</h3>
+            <div class="grid3">
+                <div class="card" style="border-top:2px solid var(--gold)">
+                    <h4 style="color:var(--gold)">Customer WTP (Ceiling)</h4>
+                    <p>Maximum any customer will pay. Determined by the economic value created for them. Survey,
+                        conjoint analysis, or competitive benchmarking reveal WTP.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--teal)">
+                    <h4 style="color:var(--teal)">Cost (Floor)</h4>
+                    <p>Variable cost at minimum; full cost + required margin for sustainability. Price must always
+                        exceed variable cost or each unit sold is a loss.</p>
+                </div>
+                <div class="card" style="border-top:2px solid var(--rose)">
+                    <h4 style="color:var(--rose)">Competitive Anchor (Context)</h4>
+                    <p>What substitutes cost shapes customer expectations. Price in relation to alternatives — even for
+                        a novel product.</p>
+                </div>
+            </div>
+
+            <h3>Pricing Strategy Matrix</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Strategy</th>
+                            <th>Set price based on…</th>
+                            <th>Use when…</th>
+                            <th>Risk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Value-based</td>
+                            <td>Customer's economic value gained</td>
+                            <td>Differentiated product with clear ROI for customer</td>
+                            <td>Hard to measure WTP precisely</td>
+                        </tr>
+                        <tr>
+                            <td>Cost-plus</td>
+                            <td>Cost × (1 + margin%)</td>
+                            <td>Commodities, government contracts, simple pricing</td>
+                            <td>Ignores market — may over- or underprice</td>
+                        </tr>
+                        <tr>
+                            <td>Competitive</td>
+                            <td>Competitor prices as anchor</td>
+                            <td>Commodity markets, price-sensitive segments</td>
+                            <td>Can trigger price wars; only works if costs lower</td>
+                        </tr>
+                        <tr>
+                            <td>Penetration</td>
+                            <td>Below market to gain share</td>
+                            <td>New entrant, network effects, rapid adoption needed</td>
+                            <td>Hard to raise price later; signals low quality</td>
+                        </tr>
+                        <tr>
+                            <td>Price skimming</td>
+                            <td>High launch price, reduce over time</td>
+                            <td>Novel product, no substitutes, early adopters with high WTP</td>
+                            <td>Invites competition; early adopters feel exploited</td>
+                        </tr>
+                        <tr>
+                            <td>Freemium</td>
+                            <td>Free tier + premium tier</td>
+                            <td>Digital products with low marginal cost; network effects</td>
+                            <td>Low conversion; free tier is expensive to serve</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ══════════════ OPS ══════════════ -->
+        <div class="section" id="sec-ops">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(240,101,149,.1);color:var(--rose)">■ Case Type Deep-Dive
+                </div>
+                <h2>Operational Cases</h2>
+            </div>
+
+            <h3>The Ops Diagnosis Framework</h3>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">1</div>
+                <div class="step-body"><strong>Map the value chain</strong> — Where does this business create value?
+                    Which step is the bottleneck? (Inbound logistics → Operations → Outbound → Marketing → Service)
+                </div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">2</div>
+                <div class="step-body"><strong>Identify the constraint</strong> — Where does work pile up? Where are
+                    cycle times longest? Where is utilisation highest? (Theory of Constraints: the weakest link limits
+                    the whole system)</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">3</div>
+                <div class="step-body"><strong>Root cause analysis</strong> — People, Process, Technology, or Materials?
+                    Use "5 Whys" to dig beneath surface symptoms to structural causes.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">4</div>
+                <div class="step-body"><strong>Benchmark</strong> — How does this metric compare to best-in-class? If
+                    industry standard cycle time is 3 days and we're at 12 days → 4× gap to close.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">5</div>
+                <div class="step-body"><strong>Prioritise interventions</strong> — Quick wins (0–3 months, low
+                    investment) vs medium-term (process redesign) vs long-term (technology investment, new facilities).
+                </div>
+            </div>
+
+            <h3>Key Operational Metrics</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Formula</th>
+                            <th>Interpretation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Capacity Utilisation</td>
+                            <td>Actual output ÷ Maximum output</td>
+                            <td>&gt;85% = potential bottleneck; &lt;60% = underutilised asset</td>
+                        </tr>
+                        <tr>
+                            <td>Overall Equipment Effectiveness (OEE)</td>
+                            <td>Availability × Performance × Quality</td>
+                            <td>World class = 85%+; most firms operate at 40–60%</td>
+                        </tr>
+                        <tr>
+                            <td>Cycle Time</td>
+                            <td>End time − Start time per unit</td>
+                            <td>Lower = more throughput; compare to industry benchmark</td>
+                        </tr>
+                        <tr>
+                            <td>Defect Rate (DPMO)</td>
+                            <td>Defects per million opportunities</td>
+                            <td>Six Sigma target: 3.4 DPMO</td>
+                        </tr>
+                        <tr>
+                            <td>Inventory Turnover</td>
+                            <td>COGS ÷ Average Inventory</td>
+                            <td>Higher = leaner; low = cash tied up in stock</td>
+                        </tr>
+                        <tr>
+                            <td>On-time Delivery (OTD)</td>
+                            <td>On-time deliveries ÷ Total deliveries</td>
+                            <td>Best-in-class: 95%+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ══════════════ FERMI ══════════════ -->
+        <div class="section" id="sec-fermi">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(96,165,250,.1);color:var(--blue)">■ Quantitative Skills
+                </div>
+                <h2>Fermi Estimation & Market Sizing</h2>
+                <p>Fermi estimation is the art of making reasonable estimates with limited data using structured logic.
+                    It is tested in every consulting interview in some form.</p>
+            </div>
+
+            <h3>The Two Approaches</h3>
+            <div class="grid2">
+                <div class="card" style="border-top:2px solid var(--teal)">
+                    <h4 style="color:var(--teal)">Top-Down (Demand-side)</h4>
+                    <p>Start with the total population → filter down to the relevant segment → estimate penetration →
+                        multiply by value.</p>
+                    <br>
+                    <div
+                        style="background:var(--code-bg);border-radius:5px;padding:9px 12px;font-size:12px;color:var(--muted)">
+                        <strong style="color:var(--text)">Example: Market for gym memberships in
+                            Delhi</strong><br><br>Delhi population: 20M<br>Adults (60%): 12M<br>Disposable income
+                        bracket (30%): 3.6M<br>Health-conscious (25%): 0.9M<br>Currently gym members (40%):
+                        360,000<br>Avg annual fee: ₹15,000<br><strong style="color:var(--teal)">Market = ₹540
+                            Cr</strong></div>
+                </div>
+                <div class="card" style="border-top:2px solid var(--gold)">
+                    <h4 style="color:var(--gold)">Bottom-Up (Supply-side)</h4>
+                    <p>Start from supply units (stores, workers, capacity) → estimate usage per unit → multiply by
+                        price.</p>
+                    <br>
+                    <div
+                        style="background:var(--code-bg);border-radius:5px;padding:9px 12px;font-size:12px;color:var(--muted)">
+                        <strong style="color:var(--text)">Example: Revenue of a busy restaurant per
+                            year</strong><br><br>Seats: 50<br>Turns per day: 3 (lunch+dinner)<br>Occupancy: 70%<br>Daily
+                        covers: 50 × 3 × 0.7 = 105<br>Avg bill: ₹800<br>Operating days: 300/year<br><strong
+                            style="color:var(--gold)">Revenue = ₹2.52 Cr / year</strong></div>
+                </div>
+            </div>
+
+            <h3>Key Reference Numbers to Memorise</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Reference Point</th>
+                            <th>Approximate Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>India population</td>
+                            <td>1.4 billion</td>
+                        </tr>
+                        <tr>
+                            <td>Urban India (% of population)</td>
+                            <td>~36% → ~500M people</td>
+                        </tr>
+                        <tr>
+                            <td>Delhi / Mumbai / Bangalore population</td>
+                            <td>~20M / 20M / 12M</td>
+                        </tr>
+                        <tr>
+                            <td>India middle class (₹5–30L household income)</td>
+                            <td>~100–150M people</td>
+                        </tr>
+                        <tr>
+                            <td>India internet users</td>
+                            <td>~900M (2024)</td>
+                        </tr>
+                        <tr>
+                            <td>India smartphone users</td>
+                            <td>~750M</td>
+                        </tr>
+                        <tr>
+                            <td>Average Indian urban household size</td>
+                            <td>4 people</td>
+                        </tr>
+                        <tr>
+                            <td>Working days per year</td>
+                            <td>~250 days</td>
+                        </tr>
+                        <tr>
+                            <td>Hours per year</td>
+                            <td>8,760 (~9,000)</td>
+                        </tr>
+                        <tr>
+                            <td>India GDP (approximate)</td>
+                            <td>~$3.5 trillion (2024)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Sanity Check Your Answer</h3>
+            <p>Always do a sense-check: "Does this feel right for what I know about the world?" If your estimate says
+                India's coffee market is larger than India's GDP — something is wrong. Common anchors:</p>
+            <ul>
+                <li>India's total retail market: ~$900B</li>
+                <li>FMCG market in India: ~$110B</li>
+                <li>E-commerce market in India: ~$70B (growing fast)</li>
+                <li>A Tier-1 city coffee shop: ₹1–3 Cr revenue/year is reasonable</li>
+            </ul>
+        </div>
+
+        <!-- ══════════════ MATHS ══════════════ -->
+        <div class="section" id="sec-maths">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(96,165,250,.1);color:var(--blue)">■ Quantitative Skills
+                </div>
+                <h2>Case Maths & Mental Calculation Shortcuts</h2>
+            </div>
+
+            <h3>Core Mental Maths Techniques</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operation</th>
+                            <th>Shortcut</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10% of a number</td>
+                            <td>Move decimal one place left</td>
+                            <td>10% of 4,750 = 475</td>
+                        </tr>
+                        <tr>
+                            <td>15%</td>
+                            <td>10% + half of 10%</td>
+                            <td>15% of 4,750 = 475 + 237.5 = 712.5</td>
+                        </tr>
+                        <tr>
+                            <td>% change</td>
+                            <td>(New − Old) ÷ Old × 100</td>
+                            <td>From 80 to 100 = +25%</td>
+                        </tr>
+                        <tr>
+                            <td>× 5</td>
+                            <td>Multiply by 10, divide by 2</td>
+                            <td>5 × 386 = 3,860 ÷ 2 = 1,930</td>
+                        </tr>
+                        <tr>
+                            <td>× 25</td>
+                            <td>Multiply by 100, divide by 4</td>
+                            <td>25 × 48 = 4,800 ÷ 4 = 1,200</td>
+                        </tr>
+                        <tr>
+                            <td>Large number × large number</td>
+                            <td>Decompose and reassemble</td>
+                            <td>450 × 240 = 45 × 24 × 100 = 1,080 × 100 = 108,000</td>
+                        </tr>
+                        <tr>
+                            <td>Divide by 3</td>
+                            <td>If sum of digits divisible by 3, so is number</td>
+                            <td>312 ÷ 3 = 104 (3+1+2=6, divisible by 3)</td>
+                        </tr>
+                        <tr>
+                            <td>Fractions to %</td>
+                            <td>Memorise key fractions</td>
+                            <td>1/3 ≈ 33%, 1/6 ≈ 17%, 1/8 = 12.5%, 1/7 ≈ 14%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Key Financial Concepts for Cases</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Formula</th>
+                            <th>Use In Cases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>(Revenue − COGS) ÷ Revenue</td>
+                            <td>Profitability cases; compare to industry benchmark</td>
+                        </tr>
+                        <tr>
+                            <td>EBITDA Margin</td>
+                            <td>EBITDA ÷ Revenue</td>
+                            <td>Company profitability; typical for M&A valuation multiples</td>
+                        </tr>
+                        <tr>
+                            <td>Break-even point</td>
+                            <td>Fixed Costs ÷ (Price − Variable Cost)</td>
+                            <td>New product launch, market entry — "How many units to break even?"</td>
+                        </tr>
+                        <tr>
+                            <td>Payback Period</td>
+                            <td>Initial Investment ÷ Annual Cash Flow</td>
+                            <td>Investment cases — "When do we recoup the investment?"</td>
+                        </tr>
+                        <tr>
+                            <td>ROI</td>
+                            <td>(Gain − Investment) ÷ Investment × 100%</td>
+                            <td>Comparing initiative options by return</td>
+                        </tr>
+                        <tr>
+                            <td>Market Share</td>
+                            <td>Client Revenue ÷ Total Market Revenue</td>
+                            <td>Context for growth potential and competitive position</td>
+                        </tr>
+                        <tr>
+                            <td>LTV / CAC</td>
+                            <td>LTV: ARPU × Customer lifetime; CAC: Marketing ÷ New Customers</td>
+                            <td>SaaS / subscription business models</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Rounding & Approximation</h3>
+            <div class="tip">💡 <strong>Round aggressively then sanity-check.</strong> In case maths: use 300M instead
+                of 290M, ₹50 instead of ₹47. State your rounding: "I'll use ₹500 average spend for simplicity."
+                Interviewers want to see the logic, not perfect arithmetic. Accuracy within ±20% is almost always
+                sufficient.</div>
+        </div>
+
+        <!-- ══════════════ CASE 1 ══════════════ -->
+        <div class="section" id="sec-case1">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(167,139,250,.1);color:var(--violet)">■ Worked Case ·
+                    Profitability</div>
+                <h2>Case 1: The Struggling Coffee Chain</h2>
+            </div>
+
+            <div class="case-box">
+                <div class="case-header">
+                    <div class="case-icon">☕</div>
+                    <div class="case-meta">
+                        <div class="case-company">BrewPoint — National Coffee Chain (India)</div>
+                        <div class="case-type">Profitability Case · Difficulty: Medium · ~30 min</div>
+                    </div>
+                </div>
+                <div class="case-body">
+                    <div class="case-q">"Your client, BrewPoint, is a national coffee chain with 200 outlets across
+                        India. Despite strong revenue growth of 12% this year, their EBITDA margin has fallen from 18%
+                        to 9%. The CEO is alarmed and has asked your firm to find out why and what to do."</div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🎤 Step 1 — Clarifying Questions to Ask</div>
+                        <div class="case-section-body">
+                            <ul style="font-size:12.5px;padding-left:16px">
+                                <li>Is the margin drop consistent across all outlets, or is it concentrated in specific
+                                    geographies / formats?</li>
+                                <li>When did the decline begin — was it sudden or gradual?</li>
+                                <li>Is this decline affecting competitors too, or is it specific to BrewPoint?</li>
+                                <li>Has there been any major change to the business — new store format, menu overhaul,
+                                    acquisition?</li>
+                            </ul>
+                            <div class="case-section-body" style="margin-top:8px"><strong>Interviewer response:</strong>
+                                The margin drop started 8 months ago. It's across all outlets. Competitors appear to be
+                                doing fine. A new premium store format was launched 10 months ago.</div>
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🏗️ Step 2 — Framework</div>
+                        <div class="case-section-body">Since revenue grew but margin fell → most likely a cost problem,
+                            but also check mix shift. Frame as:<br><strong>Revenue Analysis (mix shift?) → Cost Analysis
+                                (what drove cost up?) → Premium Store Format (culprit?)</strong></div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">📊 Step 3 — Analysis & Data</div>
+                        <div class="case-section-body">
+                            <strong>Revenue:</strong> ₹500 Cr → ₹560 Cr (+12%). Revenue per outlet: ₹280L → ₹285L
+                            (+1.8%). So revenue growth is mostly from new outlets.<br><br>
+                            <strong>Costs:</strong> EBITDA margin fell from 18% to 9% → EBITDA fell from ₹90 Cr to ₹50.4
+                            Cr despite higher revenue. Costs rose from ₹410 Cr to ₹509.6 Cr (+24%)!<br><br>
+                            <strong>New format:</strong> 40 premium stores opened. Average capex ₹2 Cr each = ₹80 Cr
+                            total. Depreciation ≈ ₹8 Cr/year. These stores have 35% higher rent and 25% higher labour
+                            costs. But their revenue per outlet is only 18% higher than standard stores — cost premium
+                            isn't justified by revenue premium.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🎯 Step 4 — Recommendation</div>
+                        <div class="case-section-body">
+                            <strong>Root cause:</strong> The premium store format has a cost structure that outpaces its
+                            revenue premium. Fixed cost growth (rent + labour) driven by these 40 stores is the primary
+                            driver of margin collapse.<br><br>
+                            <strong>Recommend:</strong> (1) Pause premium store rollout immediately — run a 90-day
+                            performance review of existing 40 stores. (2) Renegotiate leases on worst-performing premium
+                            locations — exit 10–15 underperformers. (3) Redesign the premium format to reduce fixed cost
+                            intensity without losing brand positioning. (4) In parallel, investigate whether premium
+                            format revenue can be improved through menu pricing, loyalty programme, or B2B catering
+                            partnerships.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ CASE 2 ══════════════ -->
+        <div class="section" id="sec-case2">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(167,139,250,.1);color:var(--violet)">■ Worked Case ·
+                    Market Entry</div>
+                <h2>Case 2: Telecom Market Entry</h2>
+            </div>
+
+            <div class="case-box">
+                <div class="case-header">
+                    <div class="case-icon">📱</div>
+                    <div class="case-meta">
+                        <div class="case-company">TelcoVision — European Operator considering Indian Entry</div>
+                        <div class="case-type">Market Entry Case · Difficulty: Hard · ~35 min</div>
+                    </div>
+                </div>
+                <div class="case-body">
+                    <div class="case-q">"TelcoVision is a large European telecom operator with no presence in Asia. They
+                        are considering entering the Indian mobile market. Should they enter, and if so, how?"</div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🏗️ Framework Applied</div>
+                        <div class="case-section-body">Use 3-part structure: <strong>Market Attractiveness → Competitive
+                                Position → Entry Strategy & Financials</strong></div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">📊 Market Attractiveness</div>
+                        <div class="case-section-body">
+                            <strong>Size:</strong> ~1.1B mobile subscribers. ~₹2.5 trillion market. 5G rollout underway
+                            — significant upgrade cycle ahead.<br>
+                            <strong>Growth:</strong> Subscriber growth slowing (near saturation) but ARPU growing as
+                            data usage explodes. Enterprise and IoT expanding fast.<br>
+                            <strong>Competition:</strong> Three major players — Jio (dominant, ~40% share), Airtel
+                            (premium, ~35%), Vi (struggling, ~20%). Intense price competition. Jio entered in 2016 with
+                            free data and permanently disrupted pricing. Margins are thin — Jio EBITDA margin ~52%,
+                            Airtel ~50%, Vi barely profitable.<br>
+                            <strong>Regulation:</strong> Spectrum auctions are expensive. Foreign direct investment cap
+                            requires Indian partner (26% equity allowed directly; 100% via automatic route for
+                            infrastructure). TRAI is active regulator.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">⚔️ Competitive Position</div>
+                        <div class="case-section-body">
+                            TelcoVision has no brand recognition in India, no spectrum, no infrastructure, and no
+                            distribution. The market is a three-player oligopoly with massive incumbents who have sunk
+                            ₹4+ trillion in infrastructure. Entering the consumer market directly would require ₹2–3
+                            trillion in investment with uncertain returns given Jio's pricing power.<br><br>
+                            <strong>However</strong>: The enterprise 5G market is underpenetrated. Multinationals
+                            operating in India need telecom partners who understand global enterprise needs. This is a
+                            niche TelcoVision could credibly serve.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🎯 Recommendation</div>
+                        <div class="case-section-body">
+                            <strong>Do NOT enter the consumer market.</strong> The economics are unfavourable,
+                            incumbents are deeply entrenched, and the capital required is prohibitive.<br><br>
+                            <strong>Enter via the enterprise segment as a virtual network operator (MVNO) or through a
+                                partnership with Airtel</strong>, leveraging TelcoVision's existing enterprise client
+                            relationships globally. Serve multinationals operating in India who need seamless global
+                            connectivity — a segment neither Jio nor Airtel prioritises. Investment required: ₹500–800
+                            Cr vs ₹2+ trillion for full entry. Timeline to profitability: 3–4 years.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ CASE 3 ══════════════ -->
+        <div class="section" id="sec-case3">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(167,139,250,.1);color:var(--violet)">■ Worked Case ·
+                    Growth + Pricing</div>
+                <h2>Case 3: EV Start-up Pricing</h2>
+            </div>
+
+            <div class="case-box">
+                <div class="case-header">
+                    <div class="case-icon">🚗</div>
+                    <div class="case-meta">
+                        <div class="case-company">Volta Motors — Indian Electric Two-Wheeler Start-up</div>
+                        <div class="case-type">Pricing + Growth Strategy · Difficulty: Medium · ~30 min</div>
+                    </div>
+                </div>
+                <div class="case-body">
+                    <div class="case-q">"Volta Motors is preparing to launch its first electric scooter in India.
+                        They've asked you to help them determine the right launch price and a go-to-market strategy."
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">📊 Key Data (provided by interviewer)</div>
+                        <div class="case-section-body">
+                            Variable cost per scooter: ₹70,000. Fixed costs: ₹50 Cr/year. Capacity: 20,000
+                            scooters/year. Comparable ICE scooter (Honda Activa): ₹80,000. Ola Electric (competitor EV):
+                            ₹1,00,000. Ather Energy (premium EV): ₹1,40,000. Target market: Urban daily commuters (25–45
+                            yrs), 100–150 km/day range requirement. Running cost: EV ≈ ₹0.25/km vs ICE ≈ ₹2.5/km.
+                            Average daily commute: 30 km.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🔢 Pricing Analysis</div>
+                        <div class="case-section-body">
+                            <strong>Cost floor:</strong> ₹70,000 variable + break-even requires: ₹50Cr ÷ 20,000 units =
+                            ₹25,000 fixed cost/unit → minimum price = ₹95,000.<br><br>
+                            <strong>WTP (value-based):</strong> EV saves ₹(2.5−0.25) × 30 km × 300 days = ₹20,250/year
+                            in fuel. Over 5 years: ₹1,01,250 savings. Plus lower maintenance ≈ ₹20,000 over 5 years.
+                            Total 5-year value = ₹1,21,000 over ICE. WTP ceiling = ICE price + value premium = ₹80,000 +
+                            ₹60,000 (customers rarely pay full value) = ₹1,40,000.<br><br>
+                            <strong>Competitive anchor:</strong> Ola at ₹1,00,000 is the reference. Differentiate on
+                            range and service network → justify ₹10,000–20,000 premium.<br><br>
+                            <strong>Recommended launch price: ₹1,10,000</strong> — above cost floor (₹95K), below Ather
+                            premium tier, and clearly above Ola on differentiated specs. Margin = ₹40,000/unit.
+                            Break-even = ₹50Cr ÷ ₹40,000 = 12,500 units (63% of capacity).
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🎯 Go-to-Market Strategy</div>
+                        <div class="case-section-body">
+                            Phase 1 (0–6 months): Launch in 3 Tier-1 cities (Delhi, Bengaluru, Pune) — highest EV
+                            awareness, best charging infrastructure. Direct-to-consumer via brand experience centres +
+                            digital. Target: 5,000 units.<br>
+                            Phase 2 (6–18 months): Expand to 10 Tier-2 cities. Add dealer network. EMI financing
+                            partnerships with banks.<br>
+                            Phase 3 (18–36 months): National rollout, fleet partnerships (delivery companies,
+                            ride-hailing), B2B segment.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ CASE 4 ══════════════ -->
+        <div class="section" id="sec-case4">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(167,139,250,.1);color:var(--violet)">■ Worked Case ·
+                    Operations</div>
+                <h2>Case 4: Hospital Operations</h2>
+            </div>
+
+            <div class="case-box">
+                <div class="case-header">
+                    <div class="case-icon">🏥</div>
+                    <div class="case-meta">
+                        <div class="case-company">MediCore Hospital — Delhi NCR</div>
+                        <div class="case-type">Operations / Process Improvement · Difficulty: Hard · ~35 min</div>
+                    </div>
+                </div>
+                <div class="case-body">
+                    <div class="case-q">"MediCore is a 500-bed private hospital in Delhi NCR. Patient satisfaction
+                        scores have declined 20% over 18 months and occupancy is falling from 85% to 72%. The MD has
+                        asked for urgent help."</div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🏗️ Custom Framework</div>
+                        <div class="case-section-body">Not a standard profitability case. Build a custom structure:
+                            <strong>Patient Journey (pre-visit → during → post-visit) × Service Quality Drivers (Access,
+                                Clinical, Non-clinical, Administrative)</strong></div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">📊 Key Findings (from data provided)</div>
+                        <div class="case-section-body">
+                            <strong>Wait times:</strong> OPD wait up from 22 min to 58 min. 40% of patients wait >45
+                            min. Post-consultation billing: 35 min average.<br>
+                            <strong>Clinical quality:</strong> No change in outcomes; retained all accreditations. No
+                            clinical complaints.<br>
+                            <strong>Staff:</strong> Nursing attrition 28% (vs 14% 2 years ago). High attrition → more
+                            agency nurses → less familiarity → slower workflows → longer wait times.<br>
+                            <strong>Competition:</strong> Two new multi-specialty hospitals opened within 5 km in the
+                            last 18 months. Both have digital appointment systems. MediCore still uses phone
+                            booking.<br>
+                            <strong>Patient feedback themes:</strong> "Long waits," "Can't book appointments online,"
+                            "Hard to find parking," "Bills are confusing."
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🔍 Root Cause</div>
+                        <div class="case-section-body">
+                            Two reinforcing problems: (1) <strong>Operational:</strong> High nursing attrition → agency
+                            reliance → workflow inefficiency → long waits. (2) <strong>Digital lag:</strong> No online
+                            booking while competitors offer it → convenience gap → patients switching for routine care.
+                            The clinical quality is not the issue; the experience and access are.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-title">🎯 Prioritised Recommendations</div>
+                        <div class="case-section-body">
+                            <strong>Immediate (0–3 months):</strong> (1) Launch digital appointment booking —
+                            off-the-shelf solution, 6–8 weeks to implement. (2) Redesign OPD patient flow — dedicated
+                            fast lanes for follow-up visits (shorter wait), triage nurse at front. Expected: reduce wait
+                            time to &lt;30 min.<br><br>
+                            <strong>Medium-term (3–9 months):</strong> Address nursing attrition — market benchmarking
+                            on compensation + improve scheduling flexibility + career development programme. Target:
+                            reduce attrition to &lt;18%. Implement billing transparency — itemised bills with QR codes
+                            to explain charges.<br><br>
+                            <strong>Long-term (9–18 months):</strong> Add parking structure (key hygiene factor). Launch
+                            patient loyalty programme. Develop telemedicine for post-discharge follow-up — increases
+                            patient touchpoints without bed consumption.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ COMMUNICATE ══════════════ -->
+        <div class="section" id="sec-communicate">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(251,146,60,.1);color:var(--amber)">■ Communication</div>
+                <h2>Communication, Presence & Signposting</h2>
+                <p>In case interviews, <em>how</em> you say something is nearly as important as <em>what</em> you say.
+                    Interviewers at top firms score communication independently from analysis.</p>
+            </div>
+
+            <h3>Signposting — Your Verbal GPS</h3>
+            <p>Signposting tells the interviewer where you are in your analysis and where you're going next. It creates
+                structure in the listener's mind.</p>
+            <div class="fw-block">
+                <span class="fw-title">Signposting Phrases by Purpose</span>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+                    <div>
+                        <div
+                            style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px">
+                            Starting structure</div>
+                        <div style="font-size:12.5px;color:var(--text);line-height:1.85">"I'd like to approach this
+                            through three lenses..."<br>"Before I dive in, let me frame the problem as..."<br>"I'm going
+                            to take 60 seconds to structure this."</div>
+                    </div>
+                    <div>
+                        <div
+                            style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px">
+                            Transitioning</div>
+                        <div style="font-size:12.5px;color:var(--text);line-height:1.85">"Now let me move to the cost
+                            side..."<br>"That covers revenue. Turning to costs..."<br>"Having looked at X, I now want to
+                            explore Y."</div>
+                    </div>
+                    <div>
+                        <div
+                            style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px">
+                            Requesting data</div>
+                        <div style="font-size:12.5px;color:var(--text);line-height:1.85">"To test this hypothesis, it
+                            would be helpful to know..."<br>"Do you have data on [X]?"<br>"My assumption is Y — does
+                            that seem reasonable?"</div>
+                    </div>
+                    <div>
+                        <div
+                            style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px">
+                            Synthesising</div>
+                        <div style="font-size:12.5px;color:var(--text);line-height:1.85">"Pulling this together, what
+                            I'm seeing is..."<br>"The data points to one root cause..."<br>"Based on everything we've
+                            covered..."</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Body Language & Presence</h3>
+            <div class="dos-donts">
+                <div class="do-col">
+                    <h4>✅ Positive Signals</h4>
+                    <ul>
+                        <li>Lean slightly forward — shows engagement</li>
+                        <li>Maintain comfortable eye contact (70–80%)</li>
+                        <li>Write on paper visibly while structuring</li>
+                        <li>Nod when receiving data — shows you're processing</li>
+                        <li>Pause 2–3 seconds before answering a new question</li>
+                        <li>Speak at 75% of your normal speed under pressure</li>
+                        <li>Smile when appropriate — consulting is a human business</li>
+                    </ul>
+                </div>
+                <div class="dont-col">
+                    <h4>❌ Negative Signals</h4>
+                    <ul>
+                        <li>Looking at the ceiling or away when thinking</li>
+                        <li>Fidgeting with pen / tapping nervously</li>
+                        <li>Speaking too fast when nervous — slur and mumble</li>
+                        <li>Upward inflection at end of statements (sounds uncertain)</li>
+                        <li>Saying "umm/like/basically" excessively</li>
+                        <li>Not writing anything — shows no structure</li>
+                        <li>Checking the interviewer's face for approval too often</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Recovering from Mistakes</h3>
+            <p>Everyone makes calculation errors in case interviews. What matters is how you recover:</p>
+            <div class="success">✅ <strong>The right approach:</strong> "Wait — let me check that. I think I made an
+                error. [Recalculate briefly.] Yes, the correct number is X. That changes my conclusion slightly:
+                [update]. Thank you for bearing with me." Then move on confidently. Don't apologise repeatedly. The
+                interviewer wants to see you catch and correct — not spiral.</div>
+        </div>
+
+        <!-- ══════════════ CHARTS ══════════════ -->
+        <div class="section" id="sec-charts">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(251,146,60,.1);color:var(--amber)">■ Communication</div>
+                <h2>Reading Charts & Data Exhibits</h2>
+                <p>Written cases and some interviewer-led cases present data exhibits. Knowing how to quickly extract
+                    insight from charts is a testable skill.</p>
+            </div>
+
+            <h3>The TLDR Method for Charts</h3>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">T</div>
+                <div class="step-body"><strong>Title:</strong> Read the title and axes first. What is being measured?
+                    What time period? What unit (%, ₹, units)?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">L</div>
+                <div class="step-body"><strong>Level:</strong> What is the absolute level of the key metric? Is it high
+                    or low vs. what you'd expect?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">D</div>
+                <div class="step-body"><strong>Direction:</strong> Is the trend up, down, or flat? Is it accelerating or
+                    decelerating? When did direction change?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(251,146,60,.15);color:var(--amber)">R</div>
+                <div class="step-body"><strong>Relativity:</strong> Compare to benchmarks — other companies, prior
+                    periods, targets. An absolute number is meaningless without context.</div>
+            </div>
+
+            <h3>What Each Chart Type Usually Shows</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Chart Type</th>
+                            <th>Best For</th>
+                            <th>What to Look For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Line chart</td>
+                            <td>Trends over time</td>
+                            <td>Direction, inflection points, seasonality, comparative lines</td>
+                        </tr>
+                        <tr>
+                            <td>Bar chart</td>
+                            <td>Comparisons across categories</td>
+                            <td>Relative size, outliers, ranking changes</td>
+                        </tr>
+                        <tr>
+                            <td>Waterfall chart</td>
+                            <td>Bridge from one value to another</td>
+                            <td>Largest contributors to change (positive and negative)</td>
+                        </tr>
+                        <tr>
+                            <td>Scatter plot</td>
+                            <td>Relationship between two variables</td>
+                            <td>Correlation direction, outliers, clusters</td>
+                        </tr>
+                        <tr>
+                            <td>Pie / Donut</td>
+                            <td>Composition / share</td>
+                            <td>Dominant segments, unusual splits</td>
+                        </tr>
+                        <tr>
+                            <td>Indexed chart</td>
+                            <td>Growth relative to a base period</td>
+                            <td>Which series grew faster; when divergence occurred</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tip">💡 <strong>The "so what?" test:</strong> After reading any chart, immediately ask "so what
+                does this imply for the client?" A chart insight without an implication is incomplete. "Revenue grew
+                20%" → so what? "Revenue grew 20% while industry grew 35% → our relative market share is declining."
+            </div>
+        </div>
+
+        <!-- ══════════════ WRITTEN ══════════════ -->
+        <div class="section" id="sec-written">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(251,146,60,.1);color:var(--amber)">■ Communication</div>
+                <h2>Written Case Studies</h2>
+                <p>Written cases test the same skills as verbal cases but require a polished, structured document. You
+                    have more time — use it for depth, not just breadth.</p>
+            </div>
+
+            <h3>Written Case Format</h3>
+            <p>Typically: 1–2 hours to read a 15–30 page case pack + write a 3–8 page analysis OR a short slide deck.
+                Sometimes includes financial modelling in Excel.</p>
+
+            <h3>The Written Case Structure</h3>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">1</div>
+                <div class="step-body"><strong>Executive Summary (½ page)</strong> — Written last, placed first. State
+                    the problem, your recommendation, and the top 3 reasons in 3–4 sentences. The entire case must pass
+                    the "executive summary only" test.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">2</div>
+                <div class="step-body"><strong>Problem Diagnosis (1–2 pages)</strong> — What is happening and why? Use
+                    data from the exhibits to support each claim. Quantify where possible. Identify root causes.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">3</div>
+                <div class="step-body"><strong>Options Analysis (1–2 pages)</strong> — Present 2–3 strategic options.
+                    For each: pros, cons, financial implications, risks. Don't present only your preferred option — show
+                    you considered alternatives.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">4</div>
+                <div class="step-body"><strong>Recommendation (1 page)</strong> — State clearly which option you
+                    recommend and why. Include a sensitivity analysis if time allows. Address the biggest
+                    counter-argument.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge" style="background:rgba(240,101,149,.15);color:var(--rose)">5</div>
+                <div class="step-body"><strong>Implementation Plan (½–1 page)</strong> — Timeline, key milestones,
+                    resources required, risks and mitigations, KPIs to track success.</div>
+            </div>
+
+            <div class="tip">💡 <strong>Time allocation (2-hour case):</strong> 20 min reading the case → 15 min
+                structuring your approach → 45 min writing → 20 min refining and proofreading → 20 min writing the
+                executive summary last.</div>
+
+            <h3>Written Case Quality Standards</h3>
+            <div class="dos-donts">
+                <div class="do-col">
+                    <h4>✅ Excellent Written Case</h4>
+                    <ul>
+                        <li>Every claim supported by data from exhibits</li>
+                        <li>Numbers clearly calculated and referenced</li>
+                        <li>Headers and sub-headers create easy navigation</li>
+                        <li>Executive summary can stand alone</li>
+                        <li>Recommendation is specific and actionable</li>
+                        <li>Risks acknowledged and mitigated</li>
+                        <li>Professional language, no typos</li>
+                    </ul>
+                </div>
+                <div class="dont-col">
+                    <h4>❌ Weak Written Case</h4>
+                    <ul>
+                        <li>Assertions without data support</li>
+                        <li>Analysis summary without a recommendation</li>
+                        <li>One giant wall of text with no structure</li>
+                        <li>Recommendation buried at the end</li>
+                        <li>No consideration of risks or alternatives</li>
+                        <li>Vague next steps ("the company should improve")</li>
+                        <li>Exhibits referenced but not interpreted</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ MISTAKES ══════════════ -->
+        <div class="section" id="sec-mistakes">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(248,113,113,.1);color:var(--red)">■ Interview Prep</div>
+                <h2>The 12 Most Common Case Interview Mistakes</h2>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mistake</th>
+                            <th>Why It Fails</th>
+                            <th>The Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Jumping to a solution before structuring</td>
+                            <td>Shows reactive, unstructured thinking</td>
+                            <td>Always pause 60–90 sec to build a framework first</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Going too narrow too fast (one branch)</td>
+                            <td>Misses the real issue in the other branch</td>
+                            <td>Always breadth-first — full tree before diving deep</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Reciting a framework mechanically</td>
+                            <td>Generic templates signal no real thinking</td>
+                            <td>Tailor frameworks to the specific case context</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Not asking clarifying questions</td>
+                            <td>Solves the wrong problem</td>
+                            <td>Always ask 1–2 targeted questions before structuring</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Asking too many questions before starting</td>
+                            <td>Wastes time; signals uncertainty about the problem</td>
+                            <td>Limit to 1–2 high-value questions; start with available info</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Going silent for long periods</td>
+                            <td>Interviewer can't evaluate your thinking</td>
+                            <td>Think out loud; if pausing, say "I'm working through the maths"</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Maths errors without catching them</td>
+                            <td>Undermines credibility of all analysis</td>
+                            <td>Speak numbers aloud; round aggressively; sanity-check each step</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>No recommendation at the end</td>
+                            <td>The whole point is to advise — no advice = failure</td>
+                            <td>Always land on a specific, actionable recommendation</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Wishy-washy recommendation ("it depends")</td>
+                            <td>Clients pay for answers, not hedging</td>
+                            <td>Make a call. Acknowledge risk, but make the call.</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Caving immediately on pushback</td>
+                            <td>Shows lack of conviction; interviewers test this deliberately</td>
+                            <td>Acknowledge the pushback; evaluate it; hold firm or update with reason</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Ignoring the human / change angle</td>
+                            <td>Implementation fails without people and culture considered</td>
+                            <td>Include stakeholder management and change management in recommendations</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Not practising out loud</td>
+                            <td>Reading cases silently builds no verbal fluency</td>
+                            <td>Practise with a partner; record yourself; simulate real interview conditions</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ══════════════ PRACTICE ══════════════ -->
+        <div class="section" id="sec-practice">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(248,113,113,.1);color:var(--red)">■ Interview Prep</div>
+                <h2>Practice Plan & Preparation Checklist</h2>
+            </div>
+
+            <h3>The 6-Week Practice Plan</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Focus</th>
+                            <th>Activities</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Week 1</td>
+                            <td>Foundations</td>
+                            <td>Study all frameworks. Read Case in Point or Victor Cheng materials. Understand the
+                                6-phase structure.</td>
+                            <td>Know every framework cold; can draw issue trees instinctively</td>
+                        </tr>
+                        <tr>
+                            <td>Week 2</td>
+                            <td>Profitability & Ops</td>
+                            <td>Practice 8–10 profitability cases. Drill the profit tree until automatic. 2 with a
+                                partner if possible.</td>
+                            <td>Sub-3 min structured framework, correct diagnosis, clear recommendation</td>
+                        </tr>
+                        <tr>
+                            <td>Week 3</td>
+                            <td>Market Entry & Growth</td>
+                            <td>10 market entry and growth cases. Practise market sizing from scratch daily. Time
+                                yourself.</td>
+                            <td>Market sizing in under 4 minutes; Ansoff Matrix applied naturally</td>
+                        </tr>
+                        <tr>
+                            <td>Week 4</td>
+                            <td>Quant Mastery</td>
+                            <td>Daily mental maths drills. 5 Fermi estimations per day. Financial concepts flashcards.
+                            </td>
+                            <td>Mental calculations within ±10% and under 60 seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Week 5</td>
+                            <td>Full Mock Interviews</td>
+                            <td>3–4 full mock cases per week with a partner using the real format. Record yourself.
+                                Review recordings.</td>
+                            <td>Complete all 6 phases in 30 min; clean signposting; confident recommendation</td>
+                        </tr>
+                        <tr>
+                            <td>Week 6</td>
+                            <td>Polishing & Firm-Specific</td>
+                            <td>Research your target firm's case style. Do their published practice cases. Work on weak
+                                areas only.</td>
+                            <td>Comfortable, confident, consistent — not robotic</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Pre-Interview Checklist</h3>
+            <ul class="checklist">
+                <li><strong>Know the 6-phase structure</strong> — Open → Clarify → Structure → Analyse → Synthesise →
+                    Recommend</li>
+                <li><strong>Have 4–5 core frameworks memorised</strong> — Profitability tree, Market entry 3Cs, Ansoff,
+                    Porter's 5, Value chain</li>
+                <li><strong>Practised 20+ cases out loud</strong> — including at least 5 full mock interviews with a
+                    real partner</li>
+                <li><strong>Mental maths</strong> — can calculate percentages, growth rates, and break-even in under 90
+                    seconds</li>
+                <li><strong>Know reference numbers</strong> — India population, urban %, GDP, major city sizes</li>
+                <li><strong>Have a 30-second "why consulting" answer</strong> ready for the personal experience section
+                </li>
+                <li><strong>Researched the firm's case style</strong> — McKinsey (interviewer-led), BCG (candidate-led),
+                    Deloitte (mix)</li>
+                <li><strong>Slept well and eaten before</strong> — cognitive performance drops sharply on low sleep /
+                    blood sugar</li>
+                <li><strong>Have pen and blank paper</strong> — always ask if you can take notes</li>
+                <li><strong>Prepared your STAR stories</strong> — for fit interview questions (leadership, failure, team
+                    conflict)</li>
+            </ul>
+
+            <h3>Best Practice Resources</h3>
+            <div class="grid3">
+                <div class="card">
+                    <h4>Books</h4>
+                    <p>Case in Point (Marc Cosentino), The McKinsey Way, Crack the Case System (David Ohrvall), Case
+                        Interview Secrets (Victor Cheng)</p>
+                </div>
+                <div class="card">
+                    <h4>Online</h4>
+                    <p>PrepLounge (case partner platform), RocketBlocks (drills), MyConsultingCoach, MBA-Exchange,
+                        YouTube: Victor Cheng case demos</p>
+                </div>
+                <div class="card">
+                    <h4>Firm Resources</h4>
+                    <p>McKinsey.com/practice cases, BCG case library, Bain practice cases — all firms publish official
+                        practice cases free on their websites</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════ Q&A ══════════════ -->
+        <div class="section" id="sec-qanda">
+            <div class="sec-hero">
+                <div class="sec-badge" style="background:rgba(248,113,113,.1);color:var(--red)">■ Interview Prep</div>
+                <h2>Interview Q&A — What Interviewers Really Want to Hear</h2>
+            </div>
+
+            <div class="qa-block"
+                style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin:10px 0;overflow:hidden">
+                <div
+                    style="padding:12px 16px;font-size:13px;font-weight:600;color:var(--gold);border-bottom:1px solid var(--border)">
+                    Q: Walk me through how you would structure a case about a company's declining profits.</div>
+                <div style="padding:12px 16px;font-size:12.5px;color:var(--muted);line-height:1.7">I'd start by
+                    clarifying the scope — is this a single product, division, or the whole company? And is the industry
+                    also experiencing this, or is it specific to our client? Then I'd structure the analysis as:
+                    <strong>Profit = Revenue − Costs</strong>. On the revenue side, I'd look at whether it's a price
+                    issue or a volume issue — volume breaks down into customer acquisition and retention, and price
+                    includes mix shift. On the cost side, I'd split into fixed costs (rent, salaries, depreciation) and
+                    variable costs (COGS, labour, logistics). I'd also benchmark the client against industry peers and
+                    historical performance to understand whether this is a structural or cyclical issue. I'd prioritise
+                    whichever branch shows the biggest gap, then drill to root cause and recommend targeted
+                    interventions.</div>
+            </div>
+
+            <div class="qa-block"
+                style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin:10px 0;overflow:hidden">
+                <div
+                    style="padding:12px 16px;font-size:13px;font-weight:600;color:var(--gold);border-bottom:1px solid var(--border)">
+                    Q: How do you estimate the number of petrol pumps in India?</div>
+                <div style="padding:12px 16px;font-size:12.5px;color:var(--muted);line-height:1.7">I'll use a
+                    demand-side approach. India has ~300 million registered vehicles. Average vehicle is driven ~30
+                    km/day × 300 days = 9,000 km/year. Fuel efficiency ~15 km/litre → ~600 litres/year per vehicle.
+                    Total fuel demand = 300M × 600 = 180 billion litres/year. A petrol pump serves ~2,000 litres/day ×
+                    300 operating days = 600,000 litres/year. Number of pumps = 180B ÷ 600K = <strong>300,000
+                        pumps</strong>. Sanity check: IOCL alone has ~30,000 pumps; 4 major OMCs → ~120,000
+                    company-owned + dealer pumps. My estimate of 300,000 feels reasonable as a total including all
+                    dealer-operated stations.</div>
+            </div>
+
+            <div class="qa-block"
+                style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin:10px 0;overflow:hidden">
+                <div
+                    style="padding:12px 16px;font-size:13px;font-weight:600;color:var(--gold);border-bottom:1px solid var(--border)">
+                    Q: Our client should definitely enter this new market. I strongly disagree with your recommendation
+                    not to. What do you say?</div>
+                <div style="padding:12px 16px;font-size:12.5px;color:var(--muted);line-height:1.7">I appreciate the
+                    challenge, and I want to make sure I'm not missing something important. Could you share what
+                    specific evidence or factor is leading you toward entry? [Listen carefully.] If the point raised is
+                    new information I hadn't weighted — I'd update: "That's a fair point — I hadn't fully weighted
+                    [factor]. Given that, I'd revise my view toward entry, specifically via [mode]." If it's the same
+                    information I'd already considered: "I understand the instinct, and entry is attractive on paper.
+                    However, my concern remains: [evidence A and evidence B]. The risk of undercapitalised entry into
+                    this incumbent-dominated market exceeds the expected return in the 5-year window. That said, if we
+                    could structure entry via a joint venture to limit downside, I'd be more comfortable recommending
+                    it."</div>
+            </div>
+
+            <div class="qa-block"
+                style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin:10px 0;overflow:hidden">
+                <div
+                    style="padding:12px 16px;font-size:13px;font-weight:600;color:var(--gold);border-bottom:1px solid var(--border)">
+                    Q: Tell me about a time you solved a complex analytical problem.</div>
+                <div style="padding:12px 16px;font-size:12.5px;color:var(--muted);line-height:1.7">Use the <strong>STAR
+                        format</strong> — Situation, Task, Action, Result. The "Action" should demonstrate structured
+                    thinking and data use. Example: "In my college project, our team was tasked with [Situation]. I was
+                    responsible for [Task]. I structured the analysis by [breaking it into X and Y], gathered data from
+                    [sources], identified that [key insight], and recommended [specific action]. As a result,
+                    [quantified outcome]." The best STAR stories show you were the driver, faced real ambiguity, used
+                    data, and created measurable impact.</div>
+            </div>
+
+            <h3>Quick-Fire Reference</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>What is MECE?</td>
+                            <td>Mutually Exclusive, Collectively Exhaustive — no overlaps, no gaps in your analysis
+                                buckets</td>
+                        </tr>
+                        <tr>
+                            <td>What is the Pyramid Principle?</td>
+                            <td>Lead with the conclusion/recommendation, follow with supporting arguments, then
+                                supporting evidence</td>
+                        </tr>
+                        <tr>
+                            <td>Profit = ?</td>
+                            <td>Revenue − Costs. Revenue = Price × Volume. Costs = Fixed + Variable.</td>
+                        </tr>
+                        <tr>
+                            <td>TAM vs SAM vs SOM?</td>
+                            <td>Total Addressable Market → Serviceable Addressable Market → Serviceable Obtainable
+                                Market (our realistic share)</td>
+                        </tr>
+                        <tr>
+                            <td>When to use Porter's 5 Forces?</td>
+                            <td>Assessing industry attractiveness and competitive dynamics — especially for market
+                                entry, competitive response, or strategy cases</td>
+                        </tr>
+                        <tr>
+                            <td>What is a STAR answer?</td>
+                            <td>Situation → Task → Action → Result. Used for behavioural / fit interview questions.</td>
+                        </tr>
+                        <tr>
+                            <td>How many clarifying questions should you ask?</td>
+                            <td>1–2 targeted, high-value questions. Not more — you should derive most context from the
+                                prompt itself.</td>
+                        </tr>
+                        <tr>
+                            <td>What is synergy in M&A?</td>
+                            <td>Value created from combining two companies that wouldn't exist independently — revenue
+                                synergies (cross-sell) and cost synergies (shared overhead)</td>
+                        </tr>
+                        <tr>
+                            <td>What does "boiling the ocean" mean?</td>
+                            <td>Analysing everything exhaustively without prioritising — the opposite of the 80/20
+                                principle. A common mistake in case interviews.</td>
+                        </tr>
+                        <tr>
+                            <td>How do you handle not knowing an industry?</td>
+                            <td>Say so briefly, apply general principles, and show you can reason from first principles:
+                                "I don't have deep experience here, so I'll treat this as [analogous industry] and
+                                adjust for [key differences]."</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const sections = ['what', 'types', 'mindset', 'structure', 'clarify', 'frameworks', 'synthesis', 'profitability', 'marketentry', 'growth', 'manda', 'pricing', 'ops', 'fermi', 'maths', 'case1', 'case2', 'case3', 'case4', 'communicate', 'charts', 'written', 'mistakes', 'practice', 'qanda'];
+        const colors = { what: '#f5c842', types: '#f5c842', mindset: '#f5c842', structure: '#38d9a9', clarify: '#38d9a9', frameworks: '#38d9a9', synthesis: '#38d9a9', profitability: '#f06595', marketentry: '#f06595', growth: '#f06595', manda: '#f06595', pricing: '#f06595', ops: '#f06595', fermi: '#60a5fa', maths: '#60a5fa', case1: '#a78bfa', case2: '#a78bfa', case3: '#a78bfa', case4: '#a78bfa', communicate: '#fb923c', charts: '#fb923c', written: '#fb923c', mistakes: '#f87171', practice: '#f87171', qanda: '#f87171' };
+        const visited = new Set();
+        function show(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('sec-' + id).classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
+            visited.add(id); updateProgress();
+            document.getElementById('main').scrollTop = 0;
+        }
+        function updateProgress() {
+            const wrap = document.getElementById('progress'); wrap.innerHTML = '';
+            sections.forEach(id => {
+                const seg = document.createElement('div');
+                seg.className = 'prog-seg' + (visited.has(id) ? ' done' : '');
+                seg.style.background = colors[id];
+                seg.onclick = () => show(id);
+                wrap.appendChild(seg);
+            });
+        }
+        updateProgress();
+    </script>
+</body>
+
+</html>

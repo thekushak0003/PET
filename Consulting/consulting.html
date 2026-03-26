@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulting Frameworks — Placement Guide</title>
+    <style>
+        :root {
+            --bg: #0b0f0e;
+            --bg2: #111817;
+            --bg3: #182120;
+            --border: #1e2d2b;
+            --text: #e4ede9;
+            --muted: #607a74;
+            --accent: #4fd1b0;
+            --gold: #f0c060;
+            --red: #f47c7c;
+            --blue: #70b8ff;
+            --violet: #b89aff;
+            --rose: #f9a8c9;
+            --amber: #fbbf24;
+            --code-bg: #080f0e;
+            --tag-found: #4fd1b0;
+            --tag-strategy: #f0c060;
+            --tag-marketing: #f9a8c9;
+            --tag-biz: #70b8ff;
+            --tag-adv: #b89aff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh
+        }
+
+        #sidebar {
+            width: 272px;
+            min-width: 272px;
+            background: var(--bg2);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto
+        }
+
+        .sidebar-header {
+            padding: 18px 16px 12px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px
+        }
+
+        .con-badge {
+            background: linear-gradient(135deg, #4fd1b0, #f0c060);
+            color: #0b0f0e;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 4px;
+            letter-spacing: .5px
+        }
+
+        .sidebar-header h1 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .sidebar-header p {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px
+        }
+
+        .level-group {
+            margin: 5px 0
+        }
+
+        .level-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 10px 16px 4px;
+            color: var(--muted)
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 16px;
+            font-size: 12.5px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all .15s;
+            color: var(--muted)
+        }
+
+        .nav-item:hover {
+            background: var(--bg3);
+            color: var(--text)
+        }
+
+        .nav-item.active {
+            border-left-color: var(--accent);
+            background: rgba(79, 209, 176, .08);
+            color: var(--accent)
+        }
+
+        .nav-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .dot-found {
+            background: var(--tag-found)
+        }
+
+        .dot-strategy {
+            background: var(--tag-strategy)
+        }
+
+        .dot-marketing {
+            background: var(--tag-marketing)
+        }
+
+        .dot-biz {
+            background: var(--tag-biz)
+        }
+
+        .dot-adv {
+            background: var(--tag-adv)
+        }
+
+        .progress-bar-wrap {
+            display: flex;
+            gap: 3px;
+            padding: 14px 16px 8px;
+            flex-wrap: wrap
+        }
+
+        .prog-seg {
+            height: 3px;
+            flex: 1;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: opacity .2s;
+            opacity: .22
+        }
+
+        .prog-seg.done {
+            opacity: 1
+        }
+
+        #main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px 42px;
+            max-width: 950px
+        }
+
+        .section {
+            display: none
+        }
+
+        .section.active {
+            display: block
+        }
+
+        .section-header {
+            margin-bottom: 28px
+        }
+
+        .level-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px
+        }
+
+        .badge-found {
+            background: rgba(79, 209, 176, .12);
+            color: var(--tag-found)
+        }
+
+        .badge-strategy {
+            background: rgba(240, 192, 96, .12);
+            color: var(--tag-strategy)
+        }
+
+        .badge-marketing {
+            background: rgba(249, 168, 201, .12);
+            color: var(--tag-marketing)
+        }
+
+        .badge-biz {
+            background: rgba(112, 184, 255, .12);
+            color: var(--tag-biz)
+        }
+
+        .badge-adv {
+            background: rgba(184, 154, 255, .12);
+            color: var(--tag-adv)
+        }
+
+        .section-header h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text)
+        }
+
+        .section-header p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 6px;
+            line-height: 1.65
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 28px 0 10px
+        }
+
+        h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+            margin: 18px 0 7px
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text);
+            margin-bottom: 10px
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+            margin-bottom: 10px
+        }
+
+        li {
+            font-size: 13.5px;
+            line-height: 1.85;
+            color: var(--muted)
+        }
+
+        li strong {
+            color: var(--text)
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 24px 0
+        }
+
+        code {
+            background: var(--bg3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Cascadia Code', monospace;
+            font-size: 12.5px;
+            color: var(--gold)
+        }
+
+        /* framework visual boxes */
+        .fw-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 14px 0 20px;
+            position: relative
+        }
+
+        .fw-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            position: absolute;
+            top: -10px;
+            left: 16px;
+            background: var(--code-bg);
+            padding: 0 8px
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 12px 0 18px
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px
+        }
+
+        thead tr {
+            background: var(--bg3)
+        }
+
+        th {
+            padding: 9px 14px;
+            text-align: left;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border)
+        }
+
+        td {
+            padding: 8px 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+            vertical-align: top
+        }
+
+        td:first-child {
+            color: var(--text);
+            font-weight: 500
+        }
+
+        tr:last-child td {
+            border-bottom: none
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, .02)
+        }
+
+        .tip {
+            background: rgba(79, 209, 176, .07);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        .warn {
+            background: rgba(240, 192, 96, .07);
+            border-left: 3px solid var(--gold);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        .danger {
+            background: rgba(244, 124, 124, .07);
+            border-left: 3px solid var(--red);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        .success {
+            background: rgba(79, 209, 176, .07);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        .purple-box {
+            background: rgba(184, 154, 255, .07);
+            border-left: 3px solid var(--violet);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        .blue-box {
+            background: rgba(112, 184, 255, .07);
+            border-left: 3px solid var(--blue);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        .gold-box {
+            background: rgba(240, 192, 96, .07);
+            border-left: 3px solid var(--gold);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 14px 0
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            margin: 14px 0
+        }
+
+        .grid4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 14px 0
+        }
+
+        .card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px
+        }
+
+        .card h4 {
+            margin-top: 0;
+            font-size: 13px
+        }
+
+        .card p {
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-bottom: 0;
+            line-height: 1.6
+        }
+
+        .card-accent-green {
+            border-top: 2px solid var(--accent)
+        }
+
+        .card-accent-gold {
+            border-top: 2px solid var(--gold)
+        }
+
+        .card-accent-red {
+            border-top: 2px solid var(--red)
+        }
+
+        .card-accent-blue {
+            border-top: 2px solid var(--blue)
+        }
+
+        .card-accent-violet {
+            border-top: 2px solid var(--violet)
+        }
+
+        .card-accent-rose {
+            border-top: 2px solid var(--rose)
+        }
+
+        /* MECE tree / issue tree */
+        .tree {
+            margin: 14px 0 20px;
+            font-size: 13px
+        }
+
+        .tree-root {
+            background: rgba(79, 209, 176, .12);
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            padding: 8px 14px;
+            display: inline-block;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 8px
+        }
+
+        .tree-branch {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding-left: 24px;
+            border-left: 2px solid var(--border);
+            margin-left: 12px;
+            margin-bottom: 8px
+        }
+
+        .tree-node {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 7px 12px;
+            font-size: 12.5px;
+            color: var(--text)
+        }
+
+        .tree-node.gold {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(240, 192, 96, .07)
+        }
+
+        .tree-node.blue {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: rgba(112, 184, 255, .07)
+        }
+
+        .tree-node.rose {
+            border-color: var(--rose);
+            color: var(--rose);
+            background: rgba(249, 168, 201, .07)
+        }
+
+        .tree-node.violet {
+            border-color: var(--violet);
+            color: var(--violet);
+            background: rgba(184, 154, 255, .07)
+        }
+
+        /* 2x2 matrix */
+        .matrix2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            width: 100%;
+            max-width: 600px;
+            margin: 14px auto;
+            aspect-ratio: 1.2
+        }
+
+        .quad {
+            border-radius: 6px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .quad-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px
+        }
+
+        .quad-name {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px
+        }
+
+        .quad-desc {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .65);
+            line-height: 1.5
+        }
+
+        .quad.tl {
+            background: rgba(112, 184, 255, .15);
+            border: 1px solid rgba(112, 184, 255, .3)
+        }
+
+        .quad.tr {
+            background: rgba(79, 209, 176, .15);
+            border: 1px solid rgba(79, 209, 176, .3)
+        }
+
+        .quad.bl {
+            background: rgba(244, 124, 124, .12);
+            border: 1px solid rgba(244, 124, 124, .25)
+        }
+
+        .quad.br {
+            background: rgba(240, 192, 96, .12);
+            border: 1px solid rgba(240, 192, 96, .25)
+        }
+
+        .matrix-axis-x {
+            text-align: center;
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 4px;
+            letter-spacing: .5px
+        }
+
+        .matrix-axis-y {
+            writing-mode: vertical-rl;
+            text-align: center;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: .5px;
+            margin-right: 4px
+        }
+
+        .matrix-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        /* SWOT */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+            margin: 14px 0
+        }
+
+        .swot-cell {
+            border-radius: 6px;
+            padding: 16px 18px
+        }
+
+        .swot-cell h4 {
+            font-size: 14px;
+            margin-bottom: 6px;
+            margin-top: 0
+        }
+
+        .swot-cell ul {
+            padding-left: 16px;
+            margin: 0
+        }
+
+        .swot-cell li {
+            font-size: 12.5px;
+            line-height: 1.8
+        }
+
+        .sw-s {
+            background: rgba(79, 209, 176, .12);
+            border: 1px solid rgba(79, 209, 176, .25)
+        }
+
+        .sw-s h4 {
+            color: var(--accent)
+        }
+
+        .sw-w {
+            background: rgba(244, 124, 124, .1);
+            border: 1px solid rgba(244, 124, 124, .25)
+        }
+
+        .sw-w h4 {
+            color: var(--red)
+        }
+
+        .sw-o {
+            background: rgba(112, 184, 255, .1);
+            border: 1px solid rgba(112, 184, 255, .25)
+        }
+
+        .sw-o h4 {
+            color: var(--blue)
+        }
+
+        .sw-t {
+            background: rgba(240, 192, 96, .1);
+            border: 1px solid rgba(240, 192, 96, .25)
+        }
+
+        .sw-t h4 {
+            color: var(--gold)
+        }
+
+        /* porter's 5 forces hexagonal display */
+        .forces-center {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 8px;
+            max-width: 640px;
+            margin: 14px auto
+        }
+
+        .force-cell {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 14px
+        }
+
+        .force-cell.center-cell {
+            background: rgba(79, 209, 176, .1);
+            border-color: var(--accent);
+            grid-column: 2;
+            grid-row: 2
+        }
+
+        .force-cell.top-cell {
+            grid-column: 2;
+            grid-row: 1
+        }
+
+        .force-cell.bottom-cell {
+            grid-column: 2;
+            grid-row: 3
+        }
+
+        .force-cell.left-cell {
+            grid-column: 1;
+            grid-row: 2
+        }
+
+        .force-cell.right-cell {
+            grid-column: 3;
+            grid-row: 2
+        }
+
+        .force-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px
+        }
+
+        .force-desc {
+            font-size: 11.5px;
+            color: var(--muted);
+            line-height: 1.5
+        }
+
+        .step-row {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin: 8px 0
+        }
+
+        .step-badge {
+            background: rgba(79, 209, 176, .15);
+            border: 1px solid rgba(79, 209, 176, .3);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        .step-body {
+            font-size: 13.5px;
+            color: var(--text);
+            line-height: 1.65
+        }
+
+        .step-body strong {
+            color: var(--accent)
+        }
+
+        /* pill tags */
+        .pill {
+            display: inline-block;
+            padding: 2px 9px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 2px 2px
+        }
+
+        .pill-green {
+            background: rgba(79, 209, 176, .15);
+            color: var(--accent)
+        }
+
+        .pill-gold {
+            background: rgba(240, 192, 96, .15);
+            color: var(--gold)
+        }
+
+        .pill-blue {
+            background: rgba(112, 184, 255, .15);
+            color: var(--blue)
+        }
+
+        .pill-red {
+            background: rgba(244, 124, 124, .15);
+            color: var(--red)
+        }
+
+        .pill-violet {
+            background: rgba(184, 154, 255, .15);
+            color: var(--violet)
+        }
+
+        /* case interview flow */
+        .flow-row {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 14px 0;
+            flex-wrap: wrap;
+            gap: 4px
+        }
+
+        .flow-box {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+            min-width: 100px;
+            text-align: center
+        }
+
+        .flow-arrow {
+            color: var(--muted);
+            font-size: 18px;
+            flex-shrink: 0
+        }
+
+        @media(max-width:768px) {
+            #sidebar {
+                display: none
+            }
+
+            #main {
+                padding: 20px 16px
+            }
+
+            .grid2,
+            .grid3,
+            .grid4 {
+                grid-template-columns: 1fr
+            }
+
+            .matrix2x2 {
+                max-width: 100%
+            }
+
+            .forces-center {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><span class="con-badge">CONSULT</span></div>
+            <h1 style="margin-top:6px">Consulting Frameworks</h1>
+            <p>Placement & Case Interview Guide</p>
+        </div>
+        <div class="progress-bar-wrap" id="progress"></div>
+
+        <div class="level-group">
+            <div class="level-label">Foundations</div>
+            <div class="nav-item active" onclick="show('thinking')" id="nav-thinking"> <span
+                    class="nav-dot dot-found"></span>Structured Thinking</div>
+            <div class="nav-item" onclick="show('mece')" id="nav-mece"> <span class="nav-dot dot-found"></span>MECE
+                Principle</div>
+            <div class="nav-item" onclick="show('issuetree')" id="nav-issuetree"> <span
+                    class="nav-dot dot-found"></span>Issue Trees</div>
+            <div class="nav-item" onclick="show('hypotheses')" id="nav-hypotheses"> <span
+                    class="nav-dot dot-found"></span>Hypothesis-Led Thinking</div>
+        </div>
+
+        <div class="level-group">
+            <div class="level-label">Strategy Frameworks</div>
+            <div class="nav-item" onclick="show('swot')" id="nav-swot"> <span class="nav-dot dot-strategy"></span>SWOT
+                Analysis</div>
+            <div class="nav-item" onclick="show('porter')" id="nav-porter"> <span
+                    class="nav-dot dot-strategy"></span>Porter's Five Forces</div>
+            <div class="nav-item" onclick="show('bcg')" id="nav-bcg"> <span class="nav-dot dot-strategy"></span>BCG
+                Matrix</div>
+            <div class="nav-item" onclick="show('ansoff')" id="nav-ansoff"> <span
+                    class="nav-dot dot-strategy"></span>Ansoff Matrix</div>
+            <div class="nav-item" onclick="show('7s')" id="nav-7s"> <span class="nav-dot dot-strategy"></span>McKinsey
+                7-S</div>
+            <div class="nav-item" onclick="show('valuechain')" id="nav-valuechain"><span
+                    class="nav-dot dot-strategy"></span>Value Chain Analysis</div>
+        </div>
+
+        <div class="level-group">
+            <div class="level-label">Marketing Frameworks</div>
+            <div class="nav-item" onclick="show('4ps')" id="nav-4ps"> <span class="nav-dot dot-marketing"></span>4 Ps /
+                7 Ps Marketing Mix</div>
+            <div class="nav-item" onclick="show('stp')" id="nav-stp"> <span class="nav-dot dot-marketing"></span>STP
+                Framework</div>
+            <div class="nav-item" onclick="show('plc')" id="nav-plc"> <span class="nav-dot dot-marketing"></span>Product
+                Life Cycle</div>
+        </div>
+
+        <div class="level-group">
+            <div class="level-label">Business Frameworks</div>
+            <div class="nav-item" onclick="show('profit')" id="nav-profit"> <span
+                    class="nav-dot dot-biz"></span>Profitability Framework</div>
+            <div class="nav-item" onclick="show('marketentry')" id="nav-marketentry"> <span
+                    class="nav-dot dot-biz"></span>Market Entry Framework</div>
+            <div class="nav-item" onclick="show('manda')" id="nav-manda"> <span class="nav-dot dot-biz"></span>M&A
+                Framework</div>
+            <div class="nav-item" onclick="show('pricing')" id="nav-pricing"> <span
+                    class="nav-dot dot-biz"></span>Pricing Strategies</div>
+            <div class="nav-item" onclick="show('pestle')" id="nav-pestle"> <span class="nav-dot dot-biz"></span>PESTLE
+                Analysis</div>
+        </div>
+
+        <div class="level-group">
+            <div class="level-label">Case Interview</div>
+            <div class="nav-item" onclick="show('casestructure')" id="nav-casestructure"><span
+                    class="nav-dot dot-adv"></span>Case Interview Structure</div>
+            <div class="nav-item" onclick="show('casetypes')" id="nav-casetypes"> <span
+                    class="nav-dot dot-adv"></span>Case Types & Approaches</div>
+            <div class="nav-item" onclick="show('interview')" id="nav-interview"> <span
+                    class="nav-dot dot-adv"></span>Interview Questions</div>
+        </div>
+    </nav>
+
+    <main id="main">
+
+        <!-- ==================== STRUCTURED THINKING ==================== -->
+        <div class="section active" id="sec-thinking">
+            <div class="section-header">
+                <span class="level-badge badge-found">Foundations</span>
+                <h2>Structured Thinking</h2>
+                <p>Consulting is about solving ambiguous problems with rigour and clarity. Structured thinking is the
+                    single most important skill evaluated in every consulting placement round.</p>
+            </div>
+
+            <h3>The Consulting Mindset</h3>
+            <div class="grid3">
+                <div class="card card-accent-green">
+                    <h4>Structure First</h4>
+                    <p>Never jump to solutions. Break the problem into parts before analysing any part. A structured
+                        wrong answer beats an unstructured right one.</p>
+                </div>
+                <div class="card card-accent-gold">
+                    <h4>Data-Driven</h4>
+                    <p>Form a hypothesis, then test it with data. Distinguish fact from assumption. Quantify whenever
+                        possible.</p>
+                </div>
+                <div class="card card-accent-blue">
+                    <h4>So What? Test</h4>
+                    <p>Every insight must lead to a recommendation. Ask "so what does this mean for the client?" after
+                        every finding.</p>
+                </div>
+            </div>
+
+            <h3>The Pyramid Principle (Barbara Minto)</h3>
+            <p>The most used communication framework in consulting. Structure communication top-down: <strong>Answer
+                    First → Supporting Arguments → Supporting Data.</strong></p>
+
+            <div class="fw-block">
+                <span class="fw-title">Pyramid Structure</span>
+                <div style="text-align:center;margin-bottom:8px">
+                    <div
+                        style="display:inline-block;background:rgba(79,209,176,.15);border:1px solid var(--accent);border-radius:6px;padding:8px 24px;font-weight:700;font-size:14px;color:var(--accent)">
+                        RECOMMENDATION / ANSWER</div>
+                </div>
+                <div style="display:flex;justify-content:center;gap:8px;margin-bottom:8px">
+                    <div
+                        style="background:rgba(240,192,96,.1);border:1px solid rgba(240,192,96,.3);border-radius:6px;padding:7px 14px;font-size:12.5px;color:var(--gold);text-align:center;flex:1">
+                        Key Argument 1</div>
+                    <div
+                        style="background:rgba(240,192,96,.1);border:1px solid rgba(240,192,96,.3);border-radius:6px;padding:7px 14px;font-size:12.5px;color:var(--gold);text-align:center;flex:1">
+                        Key Argument 2</div>
+                    <div
+                        style="background:rgba(240,192,96,.1);border:1px solid rgba(240,192,96,.3);border-radius:6px;padding:7px 14px;font-size:12.5px;color:var(--gold);text-align:center;flex:1">
+                        Key Argument 3</div>
+                </div>
+                <div style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap">
+                    <div
+                        style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                        Data / Evidence</div>
+                    <div
+                        style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                        Data / Evidence</div>
+                    <div
+                        style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                        Analysis</div>
+                    <div
+                        style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                        Data / Evidence</div>
+                    <div
+                        style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                        Analysis</div>
+                </div>
+            </div>
+            <div class="tip">💡 <strong>SCR (Situation–Complication–Resolution):</strong> A variant of the Pyramid
+                Principle for storytelling. Situation = what's happening now. Complication = why the current approach
+                fails. Resolution = our recommended path forward.</div>
+
+            <h3>How Consultants Approach Any Problem</h3>
+            <div class="step-row">
+                <div class="step-badge">1</div>
+                <div class="step-body"><strong>Clarify the problem</strong> — What does success look like? What is
+                    in/out of scope? What constraints exist? Never start without understanding the real question.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">2</div>
+                <div class="step-body"><strong>Structure the analysis</strong> — Build a MECE issue tree. Identify the
+                    2–3 most important branches to explore first.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">3</div>
+                <div class="step-body"><strong>Form a hypothesis</strong> — Based on initial information, hypothesise
+                    the most likely root cause or answer. Think like a doctor: "My initial hypothesis is X, and I'll
+                    test it."</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">4</div>
+                <div class="step-body"><strong>Prioritise and analyse</strong> — Use the 80/20 rule (Pareto principle).
+                    Focus effort on the analyses most likely to prove or disprove your hypothesis.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">5</div>
+                <div class="step-body"><strong>Synthesise and recommend</strong> — Distil findings into actionable,
+                    prioritised recommendations. Answer: What? So what? Now what?</div>
+            </div>
+        </div>
+
+        <!-- ==================== MECE ==================== -->
+        <div class="section" id="sec-mece">
+            <div class="section-header">
+                <span class="level-badge badge-found">Foundations</span>
+                <h2>MECE Principle</h2>
+                <p>MECE — Mutually Exclusive, Collectively Exhaustive — is the bedrock of all consulting frameworks. It
+                    ensures analyses have no overlaps and no gaps.</p>
+            </div>
+
+            <h3>What MECE Means</h3>
+            <div class="grid2">
+                <div class="card card-accent-green">
+                    <h4>Mutually Exclusive (ME)</h4>
+                    <p>No overlap between categories. Each item belongs to exactly one bucket. Prevents double-counting
+                        and confusion.</p>
+                    <p style="margin-top:8px;font-size:12px;color:var(--muted)"><strong>Test:</strong> If something fits
+                        in two buckets, the buckets are not ME.</p>
+                </div>
+                <div class="card card-accent-blue">
+                    <h4>Collectively Exhaustive (CE)</h4>
+                    <p>All possibilities are covered. No item falls outside the categories. Prevents blind spots in
+                        analysis.</p>
+                    <p style="margin-top:8px;font-size:12px;color:var(--muted)"><strong>Test:</strong> Can you think of
+                        any case not covered by your list?</p>
+                </div>
+            </div>
+
+            <h3>MECE Examples</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Context</th>
+                            <th>Non-MECE (bad)</th>
+                            <th>MECE (good)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Segmenting customers</td>
+                            <td>"Young, old, and loyal customers" — overlapping categories</td>
+                            <td>By age: 0–18, 19–35, 36–55, 56+ — clean buckets</td>
+                        </tr>
+                        <tr>
+                            <td>Revenue analysis</td>
+                            <td>"Online sales and international sales" — a customer can be both</td>
+                            <td>By channel: online vs offline (ME); by geography: domestic vs international (ME)</td>
+                        </tr>
+                        <tr>
+                            <td>Cost breakdown</td>
+                            <td>"Fixed costs, labour, and overhead" — labour is a subcategory of fixed costs</td>
+                            <td>Fixed costs vs Variable costs (complete split at one level)</td>
+                        </tr>
+                        <tr>
+                            <td>Declining profits</td>
+                            <td>"Revenue fell and costs rose" — can be both simultaneously</td>
+                            <td>Revenue issue tree (price × volume) || Cost issue tree (fixed || variable) — separate
+                                branches</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Common MECE Splitting Approaches</h3>
+            <div class="grid3">
+                <div class="card">
+                    <h4>By Formula</h4>
+                    <p>Profit = Revenue − Costs. Each driver is mutually exclusive. Classic for financial problems.</p>
+                </div>
+                <div class="card">
+                    <h4>By Process / Journey</h4>
+                    <p>Awareness → Interest → Consideration → Purchase → Retention. Each stage is sequential and
+                        non-overlapping.</p>
+                </div>
+                <div class="card">
+                    <h4>By Segment</h4>
+                    <p>B2B vs B2C, domestic vs international, product A vs B vs C. Each observation belongs to one
+                        group.</p>
+                </div>
+                <div class="card">
+                    <h4>By Factor</h4>
+                    <p>Internal vs External, short-term vs long-term, controllable vs uncontrollable.</p>
+                </div>
+                <div class="card">
+                    <h4>By Geography</h4>
+                    <p>North / South / East / West zones; country by country; city vs rural.</p>
+                </div>
+                <div class="card">
+                    <h4>By Time</h4>
+                    <p>Before vs during vs after an event. Historical vs current vs future state.</p>
+                </div>
+            </div>
+
+            <div class="warn">⚠️ <strong>MECE pitfalls:</strong> Being MECE at the top level but not at sub-levels.
+                Creating so many buckets that structure becomes unwieldy. Spending too long ensuring perfect MECE
+                instead of making progress. Aim for "good enough MECE" in a time-pressured case.</div>
+        </div>
+
+        <!-- ==================== ISSUE TREES ==================== -->
+        <div class="section" id="sec-issuetree">
+            <div class="section-header">
+                <span class="level-badge badge-found">Foundations</span>
+                <h2>Issue Trees & Problem Decomposition</h2>
+                <p>An issue tree is a visual, MECE breakdown of a problem into its component parts. It is the primary
+                    tool for structuring any business problem.</p>
+            </div>
+
+            <h3>Logic Tree vs Issue Tree vs Hypothesis Tree</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Purpose</th>
+                            <th>Direction</th>
+                            <th>Use When</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Logic Tree (Why?)</td>
+                            <td>Decompose causes of a problem</td>
+                            <td>Drill down into causes</td>
+                            <td>Root cause analysis: "Why are profits falling?"</td>
+                        </tr>
+                        <tr>
+                            <td>Issue Tree (What?)</td>
+                            <td>Identify all issues to investigate</td>
+                            <td>Neutral decomposition of problem space</td>
+                            <td>Unknown problems: "What could be causing X?"</td>
+                        </tr>
+                        <tr>
+                            <td>Hypothesis Tree</td>
+                            <td>Test a specific hypothesis</td>
+                            <td>Start with answer, find evidence</td>
+                            <td>You have a strong initial view to prove/disprove</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Example: "Why are our profits declining?"</h3>
+            <div class="tree">
+                <div>
+                    <div class="tree-root">Profits Declining</div>
+                </div>
+                <div style="padding-left:20px;border-left:2px solid var(--accent);margin-left:8px">
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0">
+                        <div class="tree-node gold">Revenue ↓</div>
+                        <div class="tree-node blue">Costs ↑</div>
+                    </div>
+                    <div
+                        style="padding-left:20px;border-left:2px solid rgba(240,192,96,.4);margin-left:8px;margin-bottom:12px">
+                        <div style="font-size:11px;color:var(--gold);margin-bottom:4px;padding-top:4px">Revenue branch:
+                        </div>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap">
+                            <div class="tree-node gold">Price ↓</div>
+                            <div class="tree-node gold">Volume ↓</div>
+                        </div>
+                        <div
+                            style="padding-left:20px;border-left:2px solid rgba(240,192,96,.3);margin-left:8px;margin-top:6px">
+                            <div style="display:flex;gap:6px;flex-wrap:wrap">
+                                <div
+                                    style="background:rgba(240,192,96,.05);border:1px solid rgba(240,192,96,.2);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                                    Market price ↓</div>
+                                <div
+                                    style="background:rgba(240,192,96,.05);border:1px solid rgba(240,192,96,.2);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                                    Pricing strategy change</div>
+                                <div
+                                    style="background:rgba(240,192,96,.05);border:1px solid rgba(240,192,96,.2);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                                    New customers ↓</div>
+                                <div
+                                    style="background:rgba(240,192,96,.05);border:1px solid rgba(240,192,96,.2);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                                    Retention ↓</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-left:20px;border-left:2px solid rgba(112,184,255,.4);margin-left:8px">
+                        <div style="font-size:11px;color:var(--blue);margin-bottom:4px;padding-top:4px">Cost branch:
+                        </div>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap">
+                            <div class="tree-node blue">Fixed Costs ↑</div>
+                            <div class="tree-node blue">Variable Costs ↑</div>
+                        </div>
+                        <div
+                            style="padding-left:20px;border-left:2px solid rgba(112,184,255,.3);margin-left:8px;margin-top:6px">
+                            <div style="display:flex;gap:6px;flex-wrap:wrap">
+                                <div
+                                    style="background:rgba(112,184,255,.05);border:1px solid rgba(112,184,255,.2);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                                    Rent / capex</div>
+                                <div
+                                    style="background:rgba(112,184,255,.05);border:1px solid rgba(112,184,255,.2);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                                    Headcount</div>
+                                <div
+                                    style="background:rgba(112,184,255,.05);border:1px solid rgba(112,184,255,.2);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                                    Raw materials ↑</div>
+                                <div
+                                    style="background:rgba(112,184,255,.05);border:1px solid rgba(112,184,255,.2);border-radius:5px;padding:5px 10px;font-size:11.5px;color:var(--muted)">
+                                    Supply chain inefficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip">💡 <strong>Breadth before depth:</strong> Build out all branches to the same level before
+                diving deep into any one. This ensures you don't miss important issues by over-indexing on the first
+                thing you see.</div>
+
+            <h3>Issue Tree Best Practices</h3>
+            <ul>
+                <li><strong>Use MECE splits at each level</strong> — every branch should be non-overlapping and
+                    exhaustive</li>
+                <li><strong>3–5 branches per level</strong> — fewer looks incomplete, more becomes unwieldy</li>
+                <li><strong>Use nouns for issues, verbs for hypotheses</strong> — "Revenue" vs "Revenue has fallen due
+                    to lost customers"</li>
+                <li><strong>Prioritise after building</strong> — once the tree is built, mark which 2–3 branches are
+                    most critical to investigate</li>
+                <li><strong>Keep it visual</strong> — always draw it, even in verbal cases ("imagine I'm drawing a
+                    tree…")</li>
+            </ul>
+        </div>
+
+        <!-- ==================== HYPOTHESIS-LED ==================== -->
+        <div class="section" id="sec-hypotheses">
+            <div class="section-header">
+                <span class="level-badge badge-found">Foundations</span>
+                <h2>Hypothesis-Led Thinking</h2>
+                <p>Top consulting firms expect candidates to form a hypothesis early and drive the analysis to test it,
+                    rather than collecting all data first.</p>
+            </div>
+
+            <h3>Why Hypothesis-Led?</h3>
+            <p>In real consulting, clients pay by the hour. Boiling the ocean (analysing everything) is expensive and
+                slow. A hypothesis directs effort to the most impactful analyses first.</p>
+            <div class="gold-box">🎯 <strong>The Consulting Detective analogy:</strong> Sherlock Holmes doesn't wait to
+                collect all evidence before forming a theory. He forms a hypothesis immediately from available clues,
+                then tests and refines it. Consultants do the same.</div>
+
+            <h3>The Hypothesis Testing Cycle</h3>
+            <div class="flow-row">
+                <div class="flow-box">Understand<br>Problem</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Form<br>Hypothesis</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Identify<br>Key Tests</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Gather<br>Data</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Confirm / <br>Revise</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Recommend</div>
+            </div>
+
+            <h3>Good vs Bad Hypotheses</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Criterion</th>
+                            <th>Bad Hypothesis</th>
+                            <th>Good Hypothesis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Specificity</td>
+                            <td>"Something is wrong with revenue"</td>
+                            <td>"Revenue is declining because new customer acquisition fell by 30% in the last two
+                                quarters"</td>
+                        </tr>
+                        <tr>
+                            <td>Testability</td>
+                            <td>"The company needs to innovate more"</td>
+                            <td>"Introducing a subscription model will increase LTV by 25% within 12 months"</td>
+                        </tr>
+                        <tr>
+                            <td>Directional</td>
+                            <td>"Costs might be too high"</td>
+                            <td>"Variable costs have increased due to a spike in raw material prices, not operational
+                                inefficiency"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>The 80/20 Rule (Pareto Principle) in Consulting</h3>
+            <p>80% of the impact comes from 20% of the causes. In consulting this means:</p>
+            <ul>
+                <li>Focus on the <strong>2–3 most critical issues</strong>, not all 10 possible issues</li>
+                <li>Prioritise analyses with the <strong>highest expected value</strong> (impact × probability)</li>
+                <li>A <strong>good enough answer fast</strong> is more valuable than a perfect answer slow</li>
+            </ul>
+        </div>
+
+        <!-- ==================== SWOT ==================== -->
+        <div class="section" id="sec-swot">
+            <div class="section-header">
+                <span class="level-badge badge-strategy">Strategy</span>
+                <h2>SWOT Analysis</h2>
+                <p>SWOT maps a company's internal capabilities against external market realities. It is the most widely
+                    known strategy framework — but must be used thoughtfully, not as a superficial list.</p>
+            </div>
+
+            <h3>The Four Quadrants</h3>
+            <div class="swot-grid">
+                <div class="swot-cell sw-s">
+                    <h4>Strengths (Internal, Positive)</h4>
+                    <ul>
+                        <li>What does the company do better than competitors?</li>
+                        <li>Unique resources, capabilities, or assets</li>
+                        <li>Strong brand, patents, loyal customer base</li>
+                        <li>Cost advantages, superior technology</li>
+                    </ul>
+                </div>
+                <div class="swot-cell sw-w">
+                    <h4>Weaknesses (Internal, Negative)</h4>
+                    <ul>
+                        <li>What areas need improvement?</li>
+                        <li>Resource gaps, skill shortages</li>
+                        <li>Poor brand perception in certain segments</li>
+                        <li>High cost structure, outdated technology</li>
+                    </ul>
+                </div>
+                <div class="swot-cell sw-o">
+                    <h4>Opportunities (External, Positive)</h4>
+                    <ul>
+                        <li>Emerging market trends to exploit</li>
+                        <li>Regulatory changes opening new markets</li>
+                        <li>Competitors' weaknesses to capitalise on</li>
+                        <li>Underserved customer segments</li>
+                    </ul>
+                </div>
+                <div class="swot-cell sw-t">
+                    <h4>Threats (External, Negative)</h4>
+                    <ul>
+                        <li>New entrants or substitute products</li>
+                        <li>Shifting consumer preferences</li>
+                        <li>Regulatory or geopolitical risks</li>
+                        <li>Supply chain vulnerabilities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>TOWS Matrix — Turning SWOT Into Strategy</h3>
+            <p>SWOT lists observations. TOWS converts them into strategic actions by combining quadrants:</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Opportunities</th>
+                            <th>Threats</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Strengths</strong></td>
+                            <td><span class="pill pill-green">SO — Maxi-Maxi</span><br>Use strengths to seize
+                                opportunities. Aggressive growth strategies.</td>
+                            <td><span class="pill pill-gold">ST — Maxi-Mini</span><br>Use strengths to counter threats.
+                                Defensive strategies using core advantages.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Weaknesses</strong></td>
+                            <td><span class="pill pill-blue">WO — Mini-Maxi</span><br>Overcome weaknesses to exploit
+                                opportunities. Invest in development.</td>
+                            <td><span class="pill pill-red">WT — Mini-Mini</span><br>Minimise weaknesses and threats.
+                                Defensive, consolidation strategies.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tip">💡 <strong>Interview tip:</strong> Never stop at listing SWOT items. Always move to
+                implications: "Given this strength and that opportunity, the company should…" The TOWS extension shows
+                strategic depth.</div>
+        </div>
+
+        <!-- ==================== PORTER'S 5 FORCES ==================== -->
+        <div class="section" id="sec-porter">
+            <div class="section-header">
+                <span class="level-badge badge-strategy">Strategy</span>
+                <h2>Porter's Five Forces</h2>
+                <p>Developed by Michael Porter at Harvard, this framework analyses the competitive intensity and
+                    attractiveness of an industry. It determines long-run industry profitability.</p>
+            </div>
+
+            <h3>The Five Forces</h3>
+            <div class="forces-center">
+                <div style="grid-column:1;grid-row:1;grid-row:1"></div>
+                <div class="force-cell top-cell">
+                    <div class="force-name">⬆ Threat of New Entrants</div>
+                    <div class="force-desc">How easy is it for new competitors to enter? Barriers: economies of scale,
+                        capital requirements, brand loyalty, regulatory hurdles, proprietary tech.</div>
+                </div>
+                <div></div>
+                <div class="force-cell left-cell">
+                    <div class="force-name">◀ Bargaining Power of Suppliers</div>
+                    <div class="force-desc">Can suppliers raise prices or reduce quality? High when few suppliers exist,
+                        inputs are unique, or switching costs are high.</div>
+                </div>
+                <div class="force-cell center-cell">
+                    <div class="force-name" style="text-align:center;font-size:13px">INDUSTRY RIVALRY</div>
+                    <div class="force-desc" style="text-align:center">Number of competitors, growth rate, product
+                        differentiation, switching costs, exit barriers</div>
+                </div>
+                <div class="force-cell right-cell">
+                    <div class="force-name">Bargaining Power of Buyers ▶</div>
+                    <div class="force-desc">Can buyers push prices down? High when buyers are large, products are
+                        undifferentiated, or many substitutes exist.</div>
+                </div>
+                <div></div>
+                <div class="force-cell bottom-cell">
+                    <div class="force-name">⬇ Threat of Substitutes</div>
+                    <div class="force-desc">Can buyers switch to a different product/service fulfilling the same need?
+                        High when substitutes are cheaper, better quality, or switching costs are low.</div>
+                </div>
+                <div></div>
+            </div>
+
+            <h3>Interpreting Porter's Five Forces</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Force</th>
+                            <th>High force → industry is…</th>
+                            <th>Low force → industry is…</th>
+                            <th>Key Questions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Threat of New Entrants</td>
+                            <td>Less attractive (profits erode)</td>
+                            <td>More attractive (incumbents protected)</td>
+                            <td>What barriers to entry exist? How high is capital requirement?</td>
+                        </tr>
+                        <tr>
+                            <td>Supplier Power</td>
+                            <td>Costly for firms (squeezed margins)</td>
+                            <td>Firms can negotiate better terms</td>
+                            <td>How many suppliers? Can we backward-integrate?</td>
+                        </tr>
+                        <tr>
+                            <td>Buyer Power</td>
+                            <td>Pressure on prices (margin squeeze)</td>
+                            <td>Firms can charge premium prices</td>
+                            <td>How concentrated are buyers? What are switching costs?</td>
+                        </tr>
+                        <tr>
+                            <td>Threat of Substitutes</td>
+                            <td>Caps industry pricing power</td>
+                            <td>Industry can charge premium</td>
+                            <td>What's the price-performance of substitutes?</td>
+                        </tr>
+                        <tr>
+                            <td>Industry Rivalry</td>
+                            <td>Price wars, margin erosion</td>
+                            <td>Stable, profitable competition</td>
+                            <td>How many firms? Is the market growing?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warn">⚠️ <strong>Critique of Porter's 5 Forces:</strong> Static snapshot — doesn't capture
+                dynamic change. Ignores complementors (e.g., app developers for a platform). Assumes zero-sum
+                competition; misses co-opetition. Best used alongside PESTLE and internal capability analysis.</div>
+        </div>
+
+        <!-- ==================== BCG MATRIX ==================== -->
+        <div class="section" id="sec-bcg">
+            <div class="section-header">
+                <span class="level-badge badge-strategy">Strategy</span>
+                <h2>BCG Growth-Share Matrix</h2>
+                <p>Created by Boston Consulting Group, this 2×2 matrix helps companies allocate resources across a
+                    portfolio of business units or products based on market growth and relative market share.</p>
+            </div>
+
+            <h3>The Matrix</h3>
+            <div class="matrix-wrap">
+                <div class="matrix-axis-y">MARKET GROWTH RATE →</div>
+                <div style="flex:1">
+                    <div class="matrix2x2">
+                        <div class="quad tl">
+                            <div class="quad-label" style="color:#70b8ff">High Growth, Low Share</div>
+                            <div class="quad-name" style="color:#70b8ff">❓ Question Marks</div>
+                            <div class="quad-desc">Uncertain potential. High growth market but low share. Need heavy
+                                investment. Decide: invest to become Star, or divest?</div>
+                        </div>
+                        <div class="quad tr">
+                            <div class="quad-label" style="color:#4fd1b0">High Growth, High Share</div>
+                            <div class="quad-name" style="color:#4fd1b0">⭐ Stars</div>
+                            <div class="quad-desc">Market leaders in fast-growing markets. High cash use AND high cash
+                                generation. Invest heavily to maintain position.</div>
+                        </div>
+                        <div class="quad bl">
+                            <div class="quad-label" style="color:#f47c7c">Low Growth, Low Share</div>
+                            <div class="quad-name" style="color:#f47c7c">🐕 Dogs</div>
+                            <div class="quad-desc">Weak position in slow market. Low cash generation. Typically divest
+                                unless strategic reasons to retain.</div>
+                        </div>
+                        <div class="quad br">
+                            <div class="quad-label" style="color:#f0c060">Low Growth, High Share</div>
+                            <div class="quad-name" style="color:#f0c060">🐄 Cash Cows</div>
+                            <div class="quad-desc">Dominant in mature markets. Generate more cash than they need. "Milk"
+                                them to fund Stars and Question Marks.</div>
+                        </div>
+                    </div>
+                    <div class="matrix-axis-x">← RELATIVE MARKET SHARE →</div>
+                </div>
+            </div>
+
+            <h3>Strategic Prescriptions</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Quadrant</th>
+                            <th>Cash Flow</th>
+                            <th>Strategy</th>
+                            <th>Real Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>⭐ Stars</td>
+                            <td>Neutral (invest = generate)</td>
+                            <td>Hold / Invest to maintain share</td>
+                            <td>iPhone in early 2010s (high growth + dominant share)</td>
+                        </tr>
+                        <tr>
+                            <td>🐄 Cash Cows</td>
+                            <td>Strong positive</td>
+                            <td>Harvest — extract cash, minimal reinvestment</td>
+                            <td>Google Search — mature, dominant</td>
+                        </tr>
+                        <tr>
+                            <td>❓ Question Marks</td>
+                            <td>Negative (invest heavily)</td>
+                            <td>Invest selectively or divest</td>
+                            <td>Early-stage cloud services for many firms in 2010</td>
+                        </tr>
+                        <tr>
+                            <td>🐕 Dogs</td>
+                            <td>Neutral/Negative</td>
+                            <td>Divest or liquidate</td>
+                            <td>Kodak film in the digital age</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="danger">⚠️ <strong>BCG Matrix limitations:</strong> Oversimplifies with just two dimensions.
+                Market share isn't the only source of competitive advantage. "Dogs" may be strategically important
+                (brand halo, complementary to Stars). Growth and share are difficult to measure precisely.</div>
+        </div>
+
+        <!-- ==================== ANSOFF MATRIX ==================== -->
+        <div class="section" id="sec-ansoff">
+            <div class="section-header">
+                <span class="level-badge badge-strategy">Strategy</span>
+                <h2>Ansoff Matrix</h2>
+                <p>The Ansoff Matrix, also called the Product-Market Expansion Grid, helps companies decide which growth
+                    strategy to pursue based on products (new vs existing) and markets (new vs existing).</p>
+            </div>
+
+            <h3>The Matrix</h3>
+            <div class="matrix-wrap">
+                <div class="matrix-axis-y">PRODUCTS →</div>
+                <div style="flex:1">
+                    <div class="matrix2x2">
+                        <div class="quad tl">
+                            <div class="quad-label" style="color:#70b8ff">Existing Markets, New Products</div>
+                            <div class="quad-name" style="color:#70b8ff">Product Development</div>
+                            <div class="quad-desc">Develop new offerings for current customers. Leverages existing
+                                relationships. Medium risk.</div>
+                        </div>
+                        <div class="quad tr">
+                            <div class="quad-label" style="color:#b89aff">New Markets, New Products</div>
+                            <div class="quad-name" style="color:#b89aff">Diversification</div>
+                            <div class="quad-desc">Highest risk strategy. Related (synergies) or unrelated
+                                (conglomerates). "Don't know what you don't know."</div>
+                        </div>
+                        <div class="quad bl">
+                            <div class="quad-label" style="color:#4fd1b0">Existing Markets, Existing Products</div>
+                            <div class="quad-name" style="color:#4fd1b0">Market Penetration</div>
+                            <div class="quad-desc">Lowest risk. Sell more to existing customers. Tactics: promotions,
+                                pricing, increased distribution, win share from competitors.</div>
+                        </div>
+                        <div class="quad br">
+                            <div class="quad-label" style="color:#f0c060">New Markets, Existing Products</div>
+                            <div class="quad-name" style="color:#f0c060">Market Development</div>
+                            <div class="quad-desc">Take current product to new customer segments or geographies. Medium
+                                risk. Requires market knowledge.</div>
+                        </div>
+                    </div>
+                    <div class="matrix-axis-x">← MARKETS →</div>
+                </div>
+            </div>
+
+            <h3>Risk Gradient & Examples</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Strategy</th>
+                            <th>Risk Level</th>
+                            <th>Example</th>
+                            <th>Key Question</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Market Penetration</td>
+                            <td><span class="pill pill-green">Lowest</span></td>
+                            <td>Uber increasing promo codes to win more rides in existing cities</td>
+                            <td>How do we grow share in our current market?</td>
+                        </tr>
+                        <tr>
+                            <td>Market Development</td>
+                            <td><span class="pill pill-gold">Medium</span></td>
+                            <td>McDonald's expanding from USA to India</td>
+                            <td>Which new customer segments or geographies could use our product?</td>
+                        </tr>
+                        <tr>
+                            <td>Product Development</td>
+                            <td><span class="pill pill-gold">Medium</span></td>
+                            <td>Apple launching Apple Watch for existing iPhone users</td>
+                            <td>What new products would our existing customers value?</td>
+                        </tr>
+                        <tr>
+                            <td>Diversification</td>
+                            <td><span class="pill pill-red">Highest</span></td>
+                            <td>Amazon (e-commerce) → AWS (cloud); Virgin Group's many ventures</td>
+                            <td>Can we leverage capabilities in an adjacent market we don't serve?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== McKINSEY 7-S ==================== -->
+        <div class="section" id="sec-7s">
+            <div class="section-header">
+                <span class="level-badge badge-strategy">Strategy</span>
+                <h2>McKinsey 7-S Framework</h2>
+                <p>The 7-S model analyses organisational effectiveness by examining seven interdependent internal
+                    elements. All seven must be aligned for the organisation to function well.</p>
+            </div>
+
+            <h3>The Seven Elements</h3>
+            <div class="grid2">
+                <div>
+                    <h4>Hard Elements (easier to change)</h4>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Element</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Strategy</td>
+                                    <td>The plan to build competitive advantage. How the firm wins in its markets.</td>
+                                </tr>
+                                <tr>
+                                    <td>Structure</td>
+                                    <td>How the organisation is divided. Hierarchy, reporting lines, divisions.</td>
+                                </tr>
+                                <tr>
+                                    <td>Systems</td>
+                                    <td>Daily processes and procedures. IT systems, HR processes, reporting routines.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4>Soft Elements (harder to change)</h4>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Element</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Shared Values</td>
+                                    <td>Core values and culture — the centre of the model. Influences all other
+                                        elements.</td>
+                                </tr>
+                                <tr>
+                                    <td>Style</td>
+                                    <td>Leadership style and management behaviour. Culture at the top.</td>
+                                </tr>
+                                <tr>
+                                    <td>Staff</td>
+                                    <td>The people — number, type, and general capabilities of workforce.</td>
+                                </tr>
+                                <tr>
+                                    <td>Skills</td>
+                                    <td>Actual skills and competencies of employees. Core competencies of the firm.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <h3>When to Use the 7-S Framework</h3>
+            <ul>
+                <li>Post-merger integration — aligning two organisations' structures, systems, and cultures</li>
+                <li>Organisational transformation or change management</li>
+                <li>Diagnosing why a strategy is not being executed effectively</li>
+                <li>Identifying gaps between current and desired state across all 7 elements</li>
+            </ul>
+            <div class="tip">💡 <strong>The key insight of 7-S:</strong> Strategy alone is insufficient. A brilliant
+                strategy will fail if the structure, systems, people, and culture are misaligned with it. The "Soft Ss"
+                (culture, skills, values) are often harder to change than the "Hard Ss" but matter just as much.</div>
+        </div>
+
+        <!-- ==================== VALUE CHAIN ==================== -->
+        <div class="section" id="sec-valuechain">
+            <div class="section-header">
+                <span class="level-badge badge-strategy">Strategy</span>
+                <h2>Value Chain Analysis</h2>
+                <p>Porter's Value Chain disaggregates a company's activities to understand where value is created and
+                    where cost is incurred — identifying sources of competitive advantage.</p>
+            </div>
+
+            <h3>Primary Activities (directly create value)</h3>
+            <div class="fw-block">
+                <span class="fw-title">Porter's Value Chain</span>
+                <div style="display:flex;gap:4px;margin-bottom:10px">
+                    <div
+                        style="flex:1;background:rgba(79,209,176,.1);border:1px solid rgba(79,209,176,.3);border-radius:6px;padding:10px;font-size:12px;text-align:center">
+                        <div style="font-weight:700;color:var(--accent);margin-bottom:4px">Inbound Logistics</div>
+                        <div style="color:var(--muted);font-size:11px">Receiving, storing, distributing inputs</div>
+                    </div>
+                    <div
+                        style="flex:1;background:rgba(112,184,255,.1);border:1px solid rgba(112,184,255,.3);border-radius:6px;padding:10px;font-size:12px;text-align:center">
+                        <div style="font-weight:700;color:var(--blue);margin-bottom:4px">Operations</div>
+                        <div style="color:var(--muted);font-size:11px">Transforming inputs into outputs (manufacturing)
+                        </div>
+                    </div>
+                    <div
+                        style="flex:1;background:rgba(240,192,96,.1);border:1px solid rgba(240,192,96,.3);border-radius:6px;padding:10px;font-size:12px;text-align:center">
+                        <div style="font-weight:700;color:var(--gold);margin-bottom:4px">Outbound Logistics</div>
+                        <div style="color:var(--muted);font-size:11px">Collecting, storing, distributing outputs</div>
+                    </div>
+                    <div
+                        style="flex:1;background:rgba(249,168,201,.1);border:1px solid rgba(249,168,201,.3);border-radius:6px;padding:10px;font-size:12px;text-align:center">
+                        <div style="font-weight:700;color:var(--rose);margin-bottom:4px">Sales & Marketing</div>
+                        <div style="color:var(--muted);font-size:11px">Advertising, promotion, pricing, channel
+                            selection</div>
+                    </div>
+                    <div
+                        style="flex:1;background:rgba(184,154,255,.1);border:1px solid rgba(184,154,255,.3);border-radius:6px;padding:10px;font-size:12px;text-align:center">
+                        <div style="font-weight:700;color:var(--violet);margin-bottom:4px">Service</div>
+                        <div style="color:var(--muted);font-size:11px">After-sale support, repair, installation,
+                            training</div>
+                    </div>
+                </div>
+                <div
+                    style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:6px;padding:8px 14px">
+                    <div
+                        style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">
+                        Support Activities</div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <span
+                            style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:4px 10px;font-size:12px;color:var(--muted)">Firm
+                            Infrastructure (Finance, Legal, Planning)</span>
+                        <span
+                            style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:4px 10px;font-size:12px;color:var(--muted)">HR
+                            Management</span>
+                        <span
+                            style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:4px 10px;font-size:12px;color:var(--muted)">Technology
+                            Development / R&D</span>
+                        <span
+                            style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:4px 10px;font-size:12px;color:var(--muted)">Procurement</span>
+                    </div>
+                </div>
+                <div style="text-align:right;margin-top:8px">
+                    <span
+                        style="background:rgba(79,209,176,.15);border:1px solid var(--accent);border-radius:5px;padding:5px 14px;font-size:12px;color:var(--accent);font-weight:600">→
+                        MARGIN (Value − Cost)</span>
+                </div>
+            </div>
+
+            <div class="tip">💡 <strong>Use value chain analysis to:</strong> Identify which activities create the most
+                value (core competencies to protect), find cost reduction opportunities, decide what to outsource vs
+                keep in-house, assess where competitors have an advantage over you.</div>
+        </div>
+
+        <!-- ==================== 4Ps / 7Ps ==================== -->
+        <div class="section" id="sec-4ps">
+            <div class="section-header">
+                <span class="level-badge badge-marketing">Marketing</span>
+                <h2>4 Ps / 7 Ps — The Marketing Mix</h2>
+                <p>The Marketing Mix defines how a company brings a product or service to market. The original 4 Ps were
+                    extended to 7 Ps for services companies.</p>
+            </div>
+
+            <h3>The 4 Ps (Products)</h3>
+            <div class="grid2">
+                <div class="card card-accent-green">
+                    <h4>1. Product</h4>
+                    <p>What are you selling? Physical product, service, or experience? Key decisions: features, design,
+                        quality, branding, packaging, product range, lifecycle.</p>
+                    <p style="margin-top:6px;font-size:12px;color:var(--muted)"><strong>Ask:</strong> What problem does
+                        it solve? What is its USP? Which stage of PLC is it in?</p>
+                </div>
+                <div class="card card-accent-gold">
+                    <h4>2. Price</h4>
+                    <p>What will customers pay? Strategies: cost-plus, value-based, competitive, penetration, skimming,
+                        freemium, dynamic pricing.</p>
+                    <p style="margin-top:6px;font-size:12px;color:var(--muted)"><strong>Ask:</strong> What is the
+                        customer's WTP? How price-elastic is demand? What signals does price send about quality?</p>
+                </div>
+                <div class="card card-accent-blue">
+                    <h4>3. Place (Distribution)</h4>
+                    <p>How does it reach the customer? Channels: direct (website, store), indirect (distributors,
+                        retailers), omnichannel strategy. Coverage, logistics, convenience.</p>
+                    <p style="margin-top:6px;font-size:12px;color:var(--muted)"><strong>Ask:</strong> Where does the
+                        target customer shop? What are channel economics?</p>
+                </div>
+                <div class="card card-accent-rose">
+                    <h4>4. Promotion</h4>
+                    <p>How will you communicate and attract customers? Mix: advertising, PR, sales promotion, direct
+                        marketing, digital/social media, content marketing, SEO.</p>
+                    <p style="margin-top:6px;font-size:12px;color:var(--muted)"><strong>Ask:</strong> What is the
+                        customer journey? Where are the touchpoints? What message resonates?</p>
+                </div>
+            </div>
+
+            <h3>Extended 7 Ps (Services)</h3>
+            <p>Services differ from products because they are intangible, heterogeneous, and perishable. Three extra Ps
+                address service-specific challenges:</p>
+            <div class="grid3">
+                <div class="card card-accent-violet">
+                    <h4>5. People</h4>
+                    <p>All human actors in the service delivery — employees, customers, other customers. Especially
+                        critical in hospitality, healthcare, consulting. Training, culture, and appearance all matter.
+                    </p>
+                </div>
+                <div class="card card-accent-green">
+                    <h4>6. Process</h4>
+                    <p>The procedures, mechanisms, and flow of activities used to deliver the service. Service
+                        blueprinting, efficiency, standardisation vs customisation, digital process vs human touch.</p>
+                </div>
+                <div class="card card-accent-gold">
+                    <h4>7. Physical Evidence</h4>
+                    <p>Tangible cues that signal service quality — the environment, décor, uniforms, receipts, website
+                        design. Since services are intangible, physical evidence reduces perceived risk.</p>
+                </div>
+            </div>
+
+            <div class="tip">💡 <strong>Interview application:</strong> When asked to launch a product or grow a brand,
+                systematically run through all 4 (or 7) Ps. Don't skip Place — distribution strategy is commonly
+                overlooked but critically important.</div>
+        </div>
+
+        <!-- ==================== STP ==================== -->
+        <div class="section" id="sec-stp">
+            <div class="section-header">
+                <span class="level-badge badge-marketing">Marketing</span>
+                <h2>STP — Segmentation, Targeting, Positioning</h2>
+                <p>STP is the strategic process before the 4 Ps. You cannot build an effective marketing mix without
+                    first knowing who you're targeting and how you want to be perceived.</p>
+            </div>
+
+            <h3>The Three Steps</h3>
+            <div class="step-row">
+                <div class="step-badge">S</div>
+                <div class="step-body"><strong>Segmentation:</strong> Divide the total market into distinct groups of
+                    buyers with different needs, characteristics, or behaviours who might require separate products or
+                    marketing mixes.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">T</div>
+                <div class="step-body"><strong>Targeting:</strong> Evaluate each segment's attractiveness and select
+                    which segment(s) to serve. Decide on coverage strategy: undifferentiated, differentiated,
+                    concentrated, or micromarketing.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">P</div>
+                <div class="step-body"><strong>Positioning:</strong> Define how you want the target segment to perceive
+                    your offering relative to competitors. Create a positioning statement and design the marketing mix
+                    to deliver it.</div>
+            </div>
+
+            <h3>Segmentation Variables</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Variables</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Geographic</td>
+                            <td>Country, region, city size, climate, urban/rural</td>
+                            <td>McDonalds adapts menu by country</td>
+                        </tr>
+                        <tr>
+                            <td>Demographic</td>
+                            <td>Age, gender, income, education, occupation, family size</td>
+                            <td>Luxury cars targeting high-income 35–55 year olds</td>
+                        </tr>
+                        <tr>
+                            <td>Psychographic</td>
+                            <td>Lifestyle, personality, values, social class, attitudes</td>
+                            <td>Patagonia targets environmentally-conscious consumers</td>
+                        </tr>
+                        <tr>
+                            <td>Behavioural</td>
+                            <td>Usage rate, loyalty, benefits sought, purchase occasion</td>
+                            <td>Airlines segmenting frequent vs occasional flyers</td>
+                        </tr>
+                        <tr>
+                            <td>Firmographic (B2B)</td>
+                            <td>Industry, company size, revenue, number of employees</td>
+                            <td>Salesforce targeting mid-market firms &gt;100 employees</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Criteria for Effective Segmentation (MADS)</h3>
+            <ul>
+                <li><strong>Measurable</strong> — can you quantify the segment's size and purchasing power?</li>
+                <li><strong>Accessible</strong> — can you effectively reach and serve this segment?</li>
+                <li><strong>Differentiable</strong> — do segments respond differently to marketing stimuli?</li>
+                <li><strong>Substantial</strong> — is the segment large or profitable enough to pursue?</li>
+                <li><strong>Actionable</strong> — can you design effective programmes to attract and serve them?</li>
+            </ul>
+
+            <h3>Positioning Statement Template</h3>
+            <div class="blue-box">📝 <strong>For</strong> [target segment] <strong>who</strong> [statement of the need
+                or opportunity], <strong>[brand/product name]</strong> is a <strong>[product category]</strong> that
+                <strong>[key benefit — compelling reason to buy]</strong>. <strong>Unlike</strong> [primary competitor],
+                our product <strong>[statement of key differentiation]</strong>.</div>
+        </div>
+
+        <!-- ==================== PRODUCT LIFE CYCLE ==================== -->
+        <div class="section" id="sec-plc">
+            <div class="section-header">
+                <span class="level-badge badge-marketing">Marketing</span>
+                <h2>Product Life Cycle (PLC)</h2>
+                <p>Every product moves through four stages — Introduction, Growth, Maturity, Decline. Strategy must
+                    adapt at each stage.</p>
+            </div>
+
+            <h3>The Four Stages</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stage</th>
+                            <th>Sales</th>
+                            <th>Profits</th>
+                            <th>Competition</th>
+                            <th>Strategic Focus</th>
+                            <th>Tactics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="pill pill-blue">Introduction</span></td>
+                            <td>Low, growing slowly</td>
+                            <td>Negative (heavy investment)</td>
+                            <td>None or very few</td>
+                            <td>Awareness & trial</td>
+                            <td>Heavy promotion, selective distribution, skimming or penetration pricing</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-green">Growth</span></td>
+                            <td>Rapidly rising</td>
+                            <td>Rising, peak near end</td>
+                            <td>Increasing entrants</td>
+                            <td>Gain market share fast</td>
+                            <td>Expand distribution, improve product, moderate pricing</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-gold">Maturity</span></td>
+                            <td>Peak, slowing</td>
+                            <td>Declining slowly</td>
+                            <td>Many, intense rivalry</td>
+                            <td>Defend share, extend life</td>
+                            <td>Competitive pricing, product modifications, new segments, promo efficiency</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-red">Decline</span></td>
+                            <td>Falling</td>
+                            <td>Low or negative</td>
+                            <td>Consolidating</td>
+                            <td>Harvest or divest</td>
+                            <td>Cut costs, selective distribution, reduce marketing spend, exit decision</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip">💡 <strong>Extending the Maturity stage:</strong> Market modification (new users, more
+                usage), product modification (new features, quality improvements), marketing mix modification (new
+                channels, promotions). iPhone is a masterclass in extending product life through yearly iterations.
+            </div>
+        </div>
+
+        <!-- ==================== PROFITABILITY ==================== -->
+        <div class="section" id="sec-profit">
+            <div class="section-header">
+                <span class="level-badge badge-biz">Business</span>
+                <h2>Profitability Framework</h2>
+                <p>The most common case interview framework. "Profits are declining — why?" is asked at nearly every
+                    consulting first round. Nail this framework cold.</p>
+            </div>
+
+            <h3>The Core Structure</h3>
+            <div class="fw-block">
+                <span class="fw-title">Profitability Framework</span>
+                <div style="text-align:center;margin-bottom:12px">
+                    <div
+                        style="display:inline-block;background:rgba(79,209,176,.12);border:1px solid var(--accent);border-radius:6px;padding:8px 20px;font-weight:700;font-size:15px;color:var(--accent)">
+                        Profit = Revenue − Costs</div>
+                </div>
+                <div class="grid2" style="margin:0">
+                    <div>
+                        <div style="text-align:center;margin-bottom:8px">
+                            <div
+                                style="display:inline-block;background:rgba(240,192,96,.1);border:1px solid rgba(240,192,96,.3);border-radius:6px;padding:6px 16px;font-weight:700;font-size:13px;color:var(--gold)">
+                                Revenue = Price × Volume</div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:6px">
+                            <div
+                                style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:8px 12px;font-size:12.5px">
+                                <div style="color:var(--gold);font-weight:600;margin-bottom:3px">Price:</div>
+                                <div style="color:var(--muted);font-size:11.5px">Pricing strategy · Discounting ·
+                                    Competitors · Mix shift (premium vs economy units)</div>
+                            </div>
+                            <div
+                                style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:8px 12px;font-size:12.5px">
+                                <div style="color:var(--gold);font-weight:600;margin-bottom:3px">Volume:</div>
+                                <div style="color:var(--muted);font-size:11.5px">Number of customers × purchase
+                                    frequency × units per transaction<br>New acquisition · Retention/churn · Market size
+                                    · Market share</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="text-align:center;margin-bottom:8px">
+                            <div
+                                style="display:inline-block;background:rgba(112,184,255,.1);border:1px solid rgba(112,184,255,.3);border-radius:6px;padding:6px 16px;font-weight:700;font-size:13px;color:var(--blue)">
+                                Costs = Fixed + Variable</div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:6px">
+                            <div
+                                style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:8px 12px;font-size:12.5px">
+                                <div style="color:var(--blue);font-weight:600;margin-bottom:3px">Fixed Costs:</div>
+                                <div style="color:var(--muted);font-size:11.5px">Rent · Depreciation · Salaries ·
+                                    Overheads · Technology infrastructure</div>
+                            </div>
+                            <div
+                                style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:8px 12px;font-size:12.5px">
+                                <div style="color:var(--blue);font-weight:600;margin-bottom:3px">Variable Costs:</div>
+                                <div style="color:var(--muted);font-size:11.5px">Raw materials · Labour per unit ·
+                                    Packaging · Shipping · Sales commissions</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Profitability Analysis — Key Questions to Ask</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Area</th>
+                            <th>Questions to Ask the Interviewer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Scope & Context</td>
+                            <td>Is this decline company-wide or specific to a product/region/segment? When did it start?
+                                Is the industry also declining or only us?</td>
+                        </tr>
+                        <tr>
+                            <td>Revenue</td>
+                            <td>Are prices the same? Has volume changed? What's the product mix shift? Are we losing
+                                customers or are they buying less?</td>
+                        </tr>
+                        <tr>
+                            <td>Costs</td>
+                            <td>Have costs increased? Which costs — fixed or variable? Is it one-off (e.g., legal
+                                settlement) or ongoing? Relative to revenue or absolute?</td>
+                        </tr>
+                        <tr>
+                            <td>Benchmarking</td>
+                            <td>How are competitors performing? Are they profitable? What does industry margin look
+                                like?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip">💡 <strong>Always benchmark:</strong> A 5% profit margin might be great in grocery retail
+                but terrible in software. Compare against the company's historical trend AND against industry peers.
+                This quickly narrows whether the problem is company-specific or industry-wide.</div>
+        </div>
+
+        <!-- ==================== MARKET ENTRY ==================== -->
+        <div class="section" id="sec-marketentry">
+            <div class="section-header">
+                <span class="level-badge badge-biz">Business</span>
+                <h2>Market Entry Framework</h2>
+                <p>"Should our client enter this new market?" — a classic case type at every major firm. Use this
+                    structured approach.</p>
+            </div>
+
+            <h3>The Three Big Questions</h3>
+            <div class="grid3">
+                <div class="card card-accent-green">
+                    <h4>1. Is the market attractive?</h4>
+                    <p>Market size, growth rate, profitability, competitive intensity (Porter's 5), regulation, customer
+                        needs.</p>
+                </div>
+                <div class="card card-accent-gold">
+                    <h4>2. Can we compete?</h4>
+                    <p>Do we have the capabilities, resources, relationships, and brand to win? What's our competitive
+                        advantage vs incumbents?</p>
+                </div>
+                <div class="card card-accent-blue">
+                    <h4>3. Is it worth it?</h4>
+                    <p>Expected ROI, required investment, timeline to profitability, risk-adjusted return, opportunity
+                        cost vs other investments.</p>
+                </div>
+            </div>
+
+            <h3>Market Attractiveness Assessment</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Key Questions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Market Size & Growth</td>
+                            <td>TAM/SAM/SOM? What is the growth rate? Secular trend or cyclical? Is it early stage or
+                                mature?</td>
+                        </tr>
+                        <tr>
+                            <td>Profitability</td>
+                            <td>What are typical margins in this market? Who currently makes money and why?</td>
+                        </tr>
+                        <tr>
+                            <td>Competition</td>
+                            <td>How many players? How entrenched? Any dominant player with network effects or high
+                                switching costs?</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Needs</td>
+                            <td>Are customers underserved? What's their willingness to pay? Are there underserved
+                                segments?</td>
+                        </tr>
+                        <tr>
+                            <td>Regulatory / Macro</td>
+                            <td>Any legal barriers? Licences required? Geopolitical risks? ESG considerations?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Entry Mode Choices</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>Investment</th>
+                            <th>Control</th>
+                            <th>Risk</th>
+                            <th>Best When</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Organic / Greenfield</td>
+                            <td>High</td>
+                            <td>Full</td>
+                            <td>High</td>
+                            <td>No suitable acquisition target; want custom build; time is not critical</td>
+                        </tr>
+                        <tr>
+                            <td>Acquisition</td>
+                            <td>Very High</td>
+                            <td>Full</td>
+                            <td>Very High</td>
+                            <td>Need speed; target has capabilities/customers you lack; high synergies</td>
+                        </tr>
+                        <tr>
+                            <td>Joint Venture</td>
+                            <td>Medium</td>
+                            <td>Shared</td>
+                            <td>Medium</td>
+                            <td>Need local partner knowledge; regulatory requirement; share risk</td>
+                        </tr>
+                        <tr>
+                            <td>Partnership / Licensing</td>
+                            <td>Low</td>
+                            <td>Low</td>
+                            <td>Low</td>
+                            <td>Limited capital; want to test market; partner has distribution</td>
+                        </tr>
+                        <tr>
+                            <td>Franchise</td>
+                            <td>Low</td>
+                            <td>Medium</td>
+                            <td>Low</td>
+                            <td>Scalable business model; want rapid geographic expansion</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== M&A ==================== -->
+        <div class="section" id="sec-manda">
+            <div class="section-header">
+                <span class="level-badge badge-biz">Business</span>
+                <h2>M&A Framework</h2>
+                <p>Mergers and Acquisitions cases appear in banking, strategy, and consulting interviews. Evaluate
+                    whether an acquisition creates value for the acquirer.</p>
+            </div>
+
+            <h3>The Core M&A Question</h3>
+            <div class="gold-box">🎯 <strong>Should the acquirer buy the target?</strong><br>Value created = Synergies −
+                Premium paid. A deal only makes sense if the synergies (over time) exceed the acquisition premium paid
+                above market value.</div>
+
+            <h3>M&A Evaluation Framework</h3>
+            <div class="step-row">
+                <div class="step-badge">1</div>
+                <div class="step-body"><strong>Strategic Rationale</strong> — Why is the acquirer buying this target?
+                    Horizontal consolidation, vertical integration, new capability, new geography, eliminating a
+                    competitor, acqui-hire?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">2</div>
+                <div class="step-body"><strong>Target Assessment</strong> — Is the target a good business? Revenue
+                    growth, profitability, market position, management quality, customer base, technology/IP.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">3</div>
+                <div class="step-body"><strong>Synergy Analysis</strong> — Revenue synergies (cross-sell, new markets)
+                    and cost synergies (headcount, procurement, shared infrastructure). Quantify and timeline each.
+                </div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">4</div>
+                <div class="step-body"><strong>Risks & Red Flags</strong> — Cultural mismatch, regulatory approval risk,
+                    customer/talent attrition, hidden liabilities, integration complexity, leverage risk.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">5</div>
+                <div class="step-body"><strong>Valuation & Affordability</strong> — Is the price fair? EV/EBITDA
+                    multiple vs peers. Can the acquirer afford it without jeopardising balance sheet health?</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">6</div>
+                <div class="step-body"><strong>Integration Plan</strong> — What is the Day 1 plan? Which systems to
+                    integrate first? What's the timeline to realise synergies? Who leads integration?</div>
+            </div>
+
+            <h3>Types of Synergies</h3>
+            <div class="grid2">
+                <div class="card card-accent-green">
+                    <h4>Revenue Synergies</h4>
+                    <p>Cross-selling products to each other's customer base. Entering new geographies using target's
+                        distribution. Combined brand reputation commanding premium pricing. Usually harder to achieve
+                        and slower to materialise.</p>
+                </div>
+                <div class="card card-accent-gold">
+                    <h4>Cost Synergies</h4>
+                    <p>Eliminating duplicate functions (HR, Finance, IT). Combined purchasing power reducing procurement
+                        costs. Closing redundant facilities. Generally more certain and faster than revenue synergies.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== PRICING ==================== -->
+        <div class="section" id="sec-pricing">
+            <div class="section-header">
+                <span class="level-badge badge-biz">Business</span>
+                <h2>Pricing Strategies</h2>
+                <p>Pricing is one of the highest-leverage levers in any business — a 1% price increase typically creates
+                    a 10%+ improvement in operating profit. Know all major pricing strategies.</p>
+            </div>
+
+            <h3>Core Pricing Approaches</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Strategy</th>
+                            <th>How It Works</th>
+                            <th>Use When</th>
+                            <th>Risk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cost-Plus</td>
+                            <td>Price = Cost × (1 + margin%). Simple, ensures profitability.</td>
+                            <td>Manufacturing, construction, government contracts</td>
+                            <td>Ignores customer WTP and competition. Can overprice or underprice.</td>
+                        </tr>
+                        <tr>
+                            <td>Value-Based</td>
+                            <td>Price based on perceived value to customer and WTP, not cost. Most profitable approach.
+                            </td>
+                            <td>Differentiated products, B2B software, luxury</td>
+                            <td>Requires deep customer insight. Hard to determine WTP precisely.</td>
+                        </tr>
+                        <tr>
+                            <td>Competitive</td>
+                            <td>Price at, above, or below competitors. Use competitor prices as anchor.</td>
+                            <td>Commoditised markets, price-sensitive segments</td>
+                            <td>Can lead to price wars. Profit only if costs are lower than competitors.</td>
+                        </tr>
+                        <tr>
+                            <td>Penetration</td>
+                            <td>Launch low to gain share quickly, raise price later.</td>
+                            <td>Network-effect products, fast-growing markets</td>
+                            <td>Sets low-price expectation. Customers resist later increases.</td>
+                        </tr>
+                        <tr>
+                            <td>Price Skimming</td>
+                            <td>Launch high to capture maximum WTP from early adopters, reduce over time.</td>
+                            <td>Tech products, innovative goods with few substitutes</td>
+                            <td>Invites competition quickly. Loyal early adopters feel exploited.</td>
+                        </tr>
+                        <tr>
+                            <td>Dynamic Pricing</td>
+                            <td>Real-time price adjustments based on demand, time, inventory, user data.</td>
+                            <td>Airlines, hotels, ride-hailing, e-commerce</td>
+                            <td>Customer backlash (price discrimination). Regulatory scrutiny.</td>
+                        </tr>
+                        <tr>
+                            <td>Freemium</td>
+                            <td>Basic version free; premium features paid. Convert free users to paying.</td>
+                            <td>SaaS, apps, digital products</td>
+                            <td>Low conversion rates (typically 2–5%). Free users are expensive to serve.</td>
+                        </tr>
+                        <tr>
+                            <td>Subscription</td>
+                            <td>Recurring charge for continuous access. Predictable revenue.</td>
+                            <td>Software, media, services with ongoing use</td>
+                            <td>Churn management. Customers compare total cost over time.</td>
+                        </tr>
+                        <tr>
+                            <td>Price Bundling</td>
+                            <td>Combine products/services at one price. Captures more value.</td>
+                            <td>Software suites, cable, fast food meals</td>
+                            <td>Can obscure individual product value. Unwanted items frustrate customers.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip">💡 <strong>The pricing interview framework:</strong> (1) What is the customer's WTP? (2)
+                What are our costs? (3) What are competitors charging? (4) What pricing strategy aligns with our brand
+                positioning? Then triangulate to a price range and recommend.</div>
+        </div>
+
+        <!-- ==================== PESTLE ==================== -->
+        <div class="section" id="sec-pestle">
+            <div class="section-header">
+                <span class="level-badge badge-biz">Business</span>
+                <h2>PESTLE Analysis</h2>
+                <p>PESTLE examines the macro-environmental forces that affect a business or industry. Use it to identify
+                    external opportunities and threats (the "E" and "T" of SWOT).</p>
+            </div>
+
+            <h3>The Six Dimensions</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Factor</th>
+                            <th>What to Analyse</th>
+                            <th>Example Questions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span style="color:var(--blue);font-weight:600">P</span> — Political</td>
+                            <td>Government policies, political stability, trade policy, tariffs, geopolitical risk</td>
+                            <td>Could a change in government policy restrict our operations? Are there sanctions on key
+                                markets?</td>
+                        </tr>
+                        <tr>
+                            <td><span style="color:var(--accent);font-weight:600">E</span> — Economic</td>
+                            <td>GDP growth, inflation, interest rates, unemployment, exchange rates, consumer spending
+                            </td>
+                            <td>How does a recession affect our demand? Are our costs sensitive to exchange rate
+                                movements?</td>
+                        </tr>
+                        <tr>
+                            <td><span style="color:var(--gold);font-weight:600">S</span> — Social</td>
+                            <td>Demographics, cultural trends, health consciousness, attitudes, lifestyle shifts</td>
+                            <td>Is an ageing population a growth opportunity? How is WFH culture affecting our market?
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color:var(--violet);font-weight:600">T</span> — Technological</td>
+                            <td>R&D trends, automation, digitalisation, AI, cybersecurity, infrastructure</td>
+                            <td>Could AI automate our core service? Are we exposed to cybersecurity risks?</td>
+                        </tr>
+                        <tr>
+                            <td><span style="color:var(--rose);font-weight:600">L</span> — Legal</td>
+                            <td>Employment law, health & safety, consumer protection, IP, data privacy (GDPR)</td>
+                            <td>Does GDPR compliance add significant cost? Are our contracts protected by IP law?</td>
+                        </tr>
+                        <tr>
+                            <td><span style="color:var(--green);font-weight:600">E</span> — Environmental</td>
+                            <td>Climate change, sustainability regulations, carbon pricing, ESG expectations</td>
+                            <td>Are we exposed to carbon taxes? What ESG standards do our key investors expect?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip">💡 <strong>PESTLE vs Porter's 5 Forces:</strong> PESTLE = macro-environment (outside the
+                industry). Porter = competitive forces within the industry. Use PESTLE first to understand the context,
+                then Porter's to analyse the competitive dynamics within that context.</div>
+        </div>
+
+        <!-- ==================== CASE STRUCTURE ==================== -->
+        <div class="section" id="sec-casestructure">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Case Interview</span>
+                <h2>Case Interview Structure</h2>
+                <p>A case interview tests your ability to structure ambiguous business problems and communicate clearly
+                    under pressure. Mastering the structure is non-negotiable.</p>
+            </div>
+
+            <h3>The Case Interview Format (30–45 min)</h3>
+            <div class="step-row">
+                <div class="step-badge">1</div>
+                <div class="step-body"><strong>Understand the question (2–3 min)</strong> — Listen carefully. Take
+                    notes. Ask 1–2 clarifying questions to confirm scope, define success, and understand constraints.
+                    Never rush past this step.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">2</div>
+                <div class="step-body"><strong>Structure your approach (2–3 min)</strong> — Say "I'd like to take a
+                    moment to structure my thinking." Build a MECE issue tree. Tell the interviewer what you'll explore
+                    and why.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">3</div>
+                <div class="step-body"><strong>Analyse key branches (~20 min)</strong> — Proceed branch by branch. Ask
+                    for data. Do mental maths. Form and test hypotheses. Prioritise the 2–3 most important areas, not
+                    all of them.</div>
+            </div>
+            <div class="step-row">
+                <div class="step-badge">4</div>
+                <div class="step-body"><strong>Synthesise a recommendation (2–3 min)</strong> — Provide a clear, direct
+                    answer. "I recommend X because of reasons A, B, and C. The key risk is Y, which we can mitigate by
+                    Z." Never be wishy-washy.</div>
+            </div>
+
+            <h3>Do's and Don'ts</h3>
+            <div class="grid2">
+                <div class="card card-accent-green">
+                    <h4>DO's</h4>
+                    <ul style="font-size:12.5px;color:var(--muted);padding-left:16px">
+                        <li>Think aloud — interviewers want to see your process</li>
+                        <li>Signpost transitions: "Moving on to costs..."</li>
+                        <li>State hypotheses before asking for data</li>
+                        <li>Sanity-check your numbers (is ₹1T revenue plausible?)</li>
+                        <li>Ask for 1–2 minutes to structure when needed</li>
+                        <li>Adapt structure when you receive new information</li>
+                        <li>Be direct with your recommendation at the end</li>
+                    </ul>
+                </div>
+                <div class="card card-accent-red">
+                    <h4>DON'Ts</h4>
+                    <ul style="font-size:12.5px;color:var(--muted);padding-left:16px">
+                        <li>Jump into an answer without structuring first</li>
+                        <li>Go silent for more than 15 seconds</li>
+                        <li>Present every possible issue equally — prioritise</li>
+                        <li>Panic when the interviewer pushes back on your answer</li>
+                        <li>Give a wishy-washy or multiple-choice recommendation</li>
+                        <li>Forget to check the numbers make sense</li>
+                        <li>Ignore clues the interviewer gives you about direction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>The Recommendation Template</h3>
+            <div class="blue-box">
+                <strong>"Based on our analysis, I recommend that [client] should [specific action]."</strong><br><br>
+                "The primary reason is [Reason 1], which is supported by [evidence / data]. Additionally, [Reason 2].
+                The most significant risk is [Risk], but this can be mitigated by [mitigation]."<br><br>
+                "The next steps would be: (1) [immediate action], (2) [short-term action], (3) [long-term action]."
+            </div>
+        </div>
+
+        <!-- ==================== CASE TYPES ==================== -->
+        <div class="section" id="sec-casetypes">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Case Interview</span>
+                <h2>Case Types & Approaches</h2>
+                <p>Recognising the case type quickly lets you deploy the right framework immediately — saving precious
+                    time in the interview.</p>
+            </div>
+
+            <h3>Common Case Types and Go-To Frameworks</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Case Type</th>
+                            <th>Trigger Phrases</th>
+                            <th>Primary Framework</th>
+                            <th>Key Sub-Questions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Profitability</td>
+                            <td>"Profits are declining," "margins are falling"</td>
+                            <td>Revenue → Price/Volume || Costs → Fixed/Variable</td>
+                            <td>Is it revenue or cost? Company-wide or segment-specific? External or internal?</td>
+                        </tr>
+                        <tr>
+                            <td>Market Entry</td>
+                            <td>"Should we enter X market?" "Should we launch in Y country?"</td>
+                            <td>Market Attractiveness → Competitive Position → Entry Mode → Financials</td>
+                            <td>Is the market growing? Do we have an edge? Organic vs acquire vs partner?</td>
+                        </tr>
+                        <tr>
+                            <td>Growth Strategy</td>
+                            <td>"How can we grow revenues by X%?"</td>
+                            <td>Ansoff Matrix || Revenue = Price × Volume breakdown</td>
+                            <td>Existing vs new products? Existing vs new markets? Organic vs M&A?</td>
+                        </tr>
+                        <tr>
+                            <td>M&A / Investment</td>
+                            <td>"Should we acquire Company X?"</td>
+                            <td>Strategic rationale → Target quality → Synergies → Risks → Financials</td>
+                            <td>Why this target? What synergies? Fair price? Integration feasibility?</td>
+                        </tr>
+                        <tr>
+                            <td>Competitive Response</td>
+                            <td>"A new competitor entered our market"</td>
+                            <td>Understand threat → Porter's + competitive analysis → Response options</td>
+                            <td>How big a threat? What's their advantage? Match, differentiate, or retreat?</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing</td>
+                            <td>"What price should we set?" "Should we change our pricing?"</td>
+                            <td>WTP → Cost floor → Competitive anchors → Pricing strategy choice</td>
+                            <td>What's the WTP? What's our cost? How elastic is demand?</td>
+                        </tr>
+                        <tr>
+                            <td>Operational</td>
+                            <td>"How do we reduce costs?" "Improve efficiency?"</td>
+                            <td>Value chain → Process mapping → Root cause analysis</td>
+                            <td>Where are the cost drivers? Benchmark vs industry? One-off or structural?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Market Sizing (Fermi Estimation)</h3>
+            <p>Market sizing tests your ability to estimate quickly with structured logic, not memorised numbers.</p>
+            <div class="fw-block">
+                <span class="fw-title">Two Approaches</span>
+                <div class="grid2" style="margin:0">
+                    <div>
+                        <h4 style="color:var(--accent);font-size:13px;margin-top:0">Top-Down</h4>
+                        <p style="font-size:12.5px;color:var(--muted)">Start with total population → narrow down by
+                            relevant filters<br><br><em>Example: "Market for yoga mats in India"</em><br>India
+                            population 1.4B → Adults (75%) = 1.05B → Urban (35%) = 368M → Exercise-conscious (20%) = 74M
+                            → Yoga practitioners (15%) = 11M → Buy a new mat every 3 years → ~3.7M mats/year × ₹1,500
+                            avg = ₹5.5B market</p>
+                    </div>
+                    <div>
+                        <h4 style="color:var(--gold);font-size:13px;margin-top:0">Bottom-Up</h4>
+                        <p style="font-size:12.5px;color:var(--muted)">Start with supply-side units ×
+                            usage<br><br><em>Example: "Revenue of a busy coffee shop"</em><br>Seats: 40 × Turnover:
+                            3x/hour × Operating hours: 8 hrs = 960 visits/day × ₹180 avg spend = ₹172,800/day × 300
+                            operating days = ₹52M/year</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tip">💡 <strong>Market sizing tips:</strong> Round numbers for easy mental maths. State your
+                assumptions explicitly before calculating. Sense-check your final answer: "Does ₹5.5B for yoga mats
+                sound reasonable?" Ask if interviewer wants you to adjust any assumptions.</div>
+        </div>
+
+        <!-- ==================== INTERVIEW QUESTIONS ==================== -->
+        <div class="section" id="sec-interview">
+            <div class="section-header">
+                <span class="level-badge badge-adv">Case Interview</span>
+                <h2>Top Interview Questions & Answers</h2>
+                <p>The most commonly asked conceptual and framework questions across McKinsey, BCG, Bain, Deloitte, and
+                    similar firms.</p>
+            </div>
+
+            <h3>Q1: What is the difference between SWOT and PESTLE?</h3>
+            <div class="success">PESTLE analyses macro-environmental factors entirely outside the company's control
+                (political, economic, social, technology, legal, environmental). SWOT analyses both internal factors
+                (Strengths, Weaknesses — the company's own capabilities) and external factors (Opportunities, Threats —
+                often drawn from PESTLE). In practice, PESTLE is often used as input to populate the O and T of a SWOT
+                analysis.</div>
+
+            <h3>Q2: A company's revenue is flat but profits are falling — where do you start?</h3>
+            <div class="purple-box">Since revenue is flat, the problem must be on the cost side. I'd investigate: (1)
+                Have fixed costs increased — new hires, new leases, depreciation? (2) Have variable costs increased —
+                raw material prices, logistics costs, higher cost-per-unit? (3) Has the product mix shifted toward
+                lower-margin items (revenue flat but mix changed)? (4) Are there one-off costs (legal, restructuring)?
+                I'd ask for a breakdown of costs by category and compare to the prior period and to industry benchmarks.
+            </div>
+
+            <h3>Q3: How do you assess whether a market is attractive?</h3>
+            <div class="blue-box">I'd use a three-lens approach: (1) <strong>Market economics</strong> — size (TAM),
+                growth rate, profitability of incumbents, cyclicality. (2) <strong>Competitive dynamics</strong> —
+                Porter's Five Forces: barriers to entry, supplier/buyer power, substitutes, rivalry. (3)
+                <strong>Strategic fit</strong> — Does our client have a right to win? Existing capabilities,
+                relationships, brand that can be leveraged? A large, growing market is only attractive if we can compete
+                effectively in it.</div>
+
+            <h3>Q4: Why might a profitable company have a cash flow problem?</h3>
+            <div class="warn">Common causes: (1) <strong>Working capital issues</strong> — collecting receivables slowly
+                (long credit terms to customers) while paying suppliers quickly, or building up large inventory. (2)
+                <strong>Heavy capex</strong> — investing in machinery/property that doesn't show immediately in P&L
+                (depreciated, not expensed). (3) <strong>Seasonal business</strong> — profits accrue over time but cash
+                is spent upfront on inventory or seasonal staff. (4) <strong>Rapid growth</strong> — fast growth
+                requires upfront cash for stock, staff, and assets before revenue catches up. Key lesson: profit ≠ cash
+                flow.</div>
+
+            <h3>Q5: How would you price a new product no one has seen before?</h3>
+            <div class="success">Three-step triangulation: (1) <strong>Willingness to pay (WTP)</strong> — conduct
+                customer research, use conjoint analysis, look at how much they currently spend on alternatives solving
+                the same need. (2) <strong>Cost floor</strong> — ensure price covers variable costs at minimum; above
+                break-even for profitability. (3) <strong>Competitive anchoring</strong> — what do substitutes cost?
+                Even for a truly novel product, there are adjacent reference points. Then choose a pricing strategy:
+                skim (high launch price, capture early adopters, lower later) or penetrate (low price, gain share fast,
+                raise later). For B2B, always use value-based pricing — quantify the economic value created for the
+                customer and price as a fraction of that.</div>
+
+            <h3>Q6: When would you NOT recommend using Porter's Five Forces?</h3>
+            <div class="purple-box">Porter's Five Forces has several limitations: (1) It's a <strong>static
+                    snapshot</strong> — doesn't capture how quickly digital industries evolve (e.g., a smartphone app
+                could disrupt an industry overnight). (2) It ignores <strong>complementors</strong> — firms that enhance
+                your product's value (e.g., app developers for Apple's ecosystem are critical to Apple but not captured
+                as one of the 5 forces). (3) It assumes zero-sum competition and misses <strong>co-opetition</strong>
+                (e.g., Samsung is both a supplier to and competitor of Apple). (4) Less useful for <strong>platform
+                    businesses</strong> or <strong>multi-sided markets</strong> where traditional industry boundaries
+                are blurry. In these cases, supplement with a platform/network-effect analysis or a jobs-to-be-done
+                framework.</div>
+
+            <h3>Quick-Fire Concept Reference</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>What does MECE stand for?</td>
+                            <td>Mutually Exclusive, Collectively Exhaustive — no overlaps, no gaps</td>
+                        </tr>
+                        <tr>
+                            <td>What is the Pyramid Principle?</td>
+                            <td>Answer first, then support: lead with recommendation, follow with arguments and data
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>What is a "Cash Cow" in BCG?</td>
+                            <td>High market share, low growth market — generates cash, needs minimal reinvestment</td>
+                        </tr>
+                        <tr>
+                            <td>4 Ps of marketing?</td>
+                            <td>Product, Price, Place (distribution), Promotion</td>
+                        </tr>
+                        <tr>
+                            <td>Difference between penetration and skimming pricing?</td>
+                            <td>Penetration = low launch price to grab share; Skimming = high launch price to capture
+                                WTP of early adopters</td>
+                        </tr>
+                        <tr>
+                            <td>What does Porter's Value Chain separate?</td>
+                            <td>Primary activities (directly create value) from Support activities (enable primary
+                                activities)</td>
+                        </tr>
+                        <tr>
+                            <td>What does STP stand for?</td>
+                            <td>Segmentation, Targeting, Positioning</td>
+                        </tr>
+                        <tr>
+                            <td>TOWS vs SWOT?</td>
+                            <td>SWOT lists findings; TOWS converts them into strategies by combining quadrants (SO, ST,
+                                WO, WT)</td>
+                        </tr>
+                        <tr>
+                            <td>What are the two synergy types in M&A?</td>
+                            <td>Revenue synergies (cross-sell, new markets) and Cost synergies (headcount, procurement,
+                                shared assets)</td>
+                        </tr>
+                        <tr>
+                            <td>Profit ≠ Cash Flow — why?</td>
+                            <td>Working capital changes, capex investment, seasonal timing, and rapid growth can all
+                                cause a profitable business to consume cash</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const sections = ['thinking', 'mece', 'issuetree', 'hypotheses', 'swot', 'porter', 'bcg', 'ansoff', '7s', 'valuechain', '4ps', 'stp', 'plc', 'profit', 'marketentry', 'manda', 'pricing', 'pestle', 'casestructure', 'casetypes', 'interview'];
+        const visited = new Set();
+        function show(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('sec-' + id).classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
+            visited.add(id); updateProgress();
+            document.getElementById('main').scrollTop = 0;
+        }
+        function updateProgress() {
+            const wrap = document.getElementById('progress'); wrap.innerHTML = '';
+            const colors = { thinking: '#4fd1b0', mece: '#4fd1b0', issuetree: '#4fd1b0', hypotheses: '#4fd1b0', swot: '#f0c060', porter: '#f0c060', bcg: '#f0c060', ansoff: '#f0c060', '7s': '#f0c060', valuechain: '#f0c060', '4ps': '#f9a8c9', stp: '#f9a8c9', plc: '#f9a8c9', profit: '#70b8ff', marketentry: '#70b8ff', manda: '#70b8ff', pricing: '#70b8ff', pestle: '#70b8ff', casestructure: '#b89aff', casetypes: '#b89aff', interview: '#b89aff' };
+            sections.forEach(id => {
+                const seg = document.createElement('div');
+                seg.className = 'prog-seg' + (visited.has(id) ? ' done' : '');
+                seg.style.background = colors[id];
+                seg.onclick = () => show(id);
+                wrap.appendChild(seg);
+            });
+        }
+        updateProgress();
+    </script>
+</body>
+
+</html>
